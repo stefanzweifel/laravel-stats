@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats\Commands;
 
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Helper\TableCell;
 use Symfony\Component\Console\Helper\TableSeparator;
 
 class StatsListCommand extends Command
