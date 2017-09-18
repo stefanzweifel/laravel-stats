@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats\Commands;
 
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Helper\TableSeparator;
 
 class StatsListCommand extends Command
 {
@@ -37,7 +38,30 @@ class StatsListCommand extends Command
      */
     public function handle()
     {
-        $this->info('Hi there!');
+        $headers = [
+            'Name', 'Lines', 'LOC', 'Classes', 'Methods', 'M/C', 'LOC/M'
+        ];
+
+        $dummyData = [
+            ['Controllers', 100, 50, 2, 4, 1, 1],
+            ['Models', 100, 50, 2, 4, 1, 1],
+            ['Policies', 100, 50, 2, 4, 1, 1],
+            ['Form Requests', 100, 50, 2, 4, 1, 1],
+            ['Integration Tests', 100, 50, 2, 4, 1, 1],
+            ['Unit Tests', 100, 50, 2, 4, 1, 1],
+            new TableSeparator(),
+            ['Total', 99999, 99, 9, 9, 9, 9],
+            new TableSeparator(),
+            [
+                new TableCell('Code LOC: 999', array('colspan' => 2)),
+                new TableCell('Test LOC: 999', array('colspan' => 2)),
+                new TableCell('Code to Test Ratio: 1:3.8', array('colspan' => 2))
+            ]
+        ];
+
+        $this->table(
+            $headers, $dummyData
+        );
     }
 
 }
