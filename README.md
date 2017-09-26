@@ -1,6 +1,7 @@
 # Laravel Stats
 
 [![Build Status](https://travis-ci.org/stefanzweifel/laravel-stats.svg)](https://travis-ci.org/stefanzweifel/laravel-stats)
+[![Coverage Status](https://coveralls.io/repos/github/stefanzweifel/laravel-stats/badge.svg?branch=master)](https://coveralls.io/github/stefanzweifel/laravel-stats?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/wnx/laravel-stats/v/stable)](https://packagist.org/packages/wnx/laravel-stats)
 [![Total Downloads](https://poser.pugx.org/wnx/laravel-stats/downloads)](https://packagist.org/packages/wnx/laravel-stats)
 [![License](https://poser.pugx.org/wnx/laravel-stats/license)](https://packagist.org/packages/wnx/laravel-stats)

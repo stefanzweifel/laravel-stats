@@ -1,13 +1,14 @@
 language: php
 
 php:
-  - 5.5
-  - 5.6
   - 7.0
-  - hhvm
+  - 7.1
 
 before_script:
   - travis_retry composer self-update
   - travis_retry composer install --prefer-source --no-interaction --dev
 
 script: phpunit
+
+after_success:
+  - travis_retry php vendor/bin/coveralls
