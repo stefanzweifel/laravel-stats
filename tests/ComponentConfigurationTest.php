@@ -3,7 +3,6 @@
 namespace Wnx\LaravelStats\Tests;
 
 use Wnx\LaravelStats\ComponentConfiguration;
-use Wnx\LaravelStats\Tests\TestCase;
 
 class ComponentConfigurationTest extends TestCase
 {
@@ -110,5 +109,4 @@ class ComponentConfigurationTest extends TestCase
 
         $this->assertTrue($config->contains('name', 'Service Providers'));
     }
-
 }

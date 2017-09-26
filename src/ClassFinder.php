@@ -26,7 +26,7 @@ class ClassFinder
     /**
      * Return a Collection of Declared Classes
      * Classes belonging to the Illuminate and Symfony Namespace
-     * are removed from the Collection
+     * are removed from the Collection.
      *
      * @return Illuminate\Support\Collection
      */
@@ -38,9 +38,9 @@ class ClassFinder
         // - ? Exception
         $classes = collect(get_declared_classes());
 
-        $filtered = $classes->reject(function($value, $key) {
+        $filtered = $classes->reject(function ($value, $key) {
             return starts_with($value, 'Illuminate'); // Ignore Illuminate Packages
-        })->reject(function($value, $key) {
+        })->reject(function ($value, $key) {
             return starts_with($value, 'Symfony');
         });
 
@@ -48,7 +48,8 @@ class ClassFinder
     }
 
     /**
-     * Set base path
+     * Set base path.
+     *
      * @param string $path
      */
     public function setBasePath($path)
@@ -65,8 +66,10 @@ class ClassFinder
 
     /**
      * Require each PHP file to make them available
-     * in the get_declared_classes function
-     * @param  Finder $files
+     * in the get_declared_classes function.
+     *
+     * @param Finder $files
+     *
      * @return void
      */
     protected function requireClassesFromFiles(Finder $files) : void
@@ -74,12 +77,14 @@ class ClassFinder
         foreach ($files as $file) {
             try {
                 require_once $file->getRealPath();
-            } catch (Exception $e) {}
+            } catch (Exception $e) {
+            }
         }
     }
 
     /**
-     * Find PHP Files which should be analyzed
+     * Find PHP Files which should be analyzed.
+     *
      * @return Finder
      */
     protected function findFilesInProjectPath() : Finder
@@ -92,7 +97,7 @@ class ClassFinder
             'tests',
             'resources',
             'routes',
-            'public'
+            'public',
         ])->name('*.php')->notName('*.blade.php')->notName('server.php');
 
         return $this->finder;

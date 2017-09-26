@@ -3,14 +3,13 @@
 namespace Wnx\LaravelStats\Tests;
 
 use Wnx\LaravelStats\ClassFinder;
-use Wnx\LaravelStats\Tests\TestCase;
 
 class ClassFinderTest extends TestCase
 {
     public function getFinder()
     {
         $service = resolve(ClassFinder::class);
-        $service->setBasePath(__DIR__ . '/../tests/Stubs');
+        $service->setBasePath(__DIR__.'/../tests/Stubs');
 
         return $service;
     }
@@ -135,6 +134,4 @@ class ClassFinderTest extends TestCase
 
         $this->assertTrue($classes->contains(\Wnx\LaravelStats\Tests\Stubs\Providers\DemoProvider::class));
     }
-
-
 }

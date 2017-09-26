@@ -2,7 +2,6 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs\Policies;
 
-use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class DemoPolicy

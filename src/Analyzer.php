@@ -2,11 +2,7 @@
 
 namespace Wnx\LaravelStats;
 
-use Wnx\LaravelStats\ComponentConfiguration;
 use ReflectionClass;
-use Symfony\Component\Finder\Finder;
-use Wnx\LaravelStats\ClassFinder;
-use Wnx\LaravelStats\Statistics;
 
 class Analyzer
 {
@@ -23,12 +19,13 @@ class Analyzer
     }
 
     /**
-     * Analyze Project classes and return Statistics object
+     * Analyze Project classes and return Statistics object.
+     *
      * @return Statistics
      */
     public function get()
     {
-        $this->classFinder->getDeclaredClasses()->each(function($class) {
+        $this->classFinder->getDeclaredClasses()->each(function ($class) {
             $reflection = new ReflectionClass($class);
             $this->checkIfClassIsLaravelComponentAndAddToStatistics($reflection);
         });
@@ -40,19 +37,18 @@ class Analyzer
     {
         if ($componentName = $this->doesClassExtendALaravelComponent($reflectionClass)) {
             $this->addClassToComponentStatisitcs($componentName, $reflectionClass);
-        }
-        elseif ($componentName = $this->doesClassImplementLaravelTrait($reflectionClass)) {
+        } elseif ($componentName = $this->doesClassImplementLaravelTrait($reflectionClass)) {
             $this->addClassToComponentStatisitcs($componentName, $reflectionClass);
-        }
-        else {
+        } else {
             // This Class couldn't get mapped
             // var_dump($reflectionClass->getName());
         }
     }
 
     /**
-     * Add given Class to Statistics Collection for a Component
-     * @param string $component
+     * Add given Class to Statistics Collection for a Component.
+     *
+     * @param string          $component
      * @param ReflectionClass $class
      */
     protected function addClassToComponentStatisitcs($component, $class)
@@ -61,7 +57,8 @@ class Analyzer
     }
 
     /**
-     * Get Component Configuration
+     * Get Component Configuration.
+     *
      * @return Collection
      */
     protected function componentConfiguration()
@@ -70,8 +67,10 @@ class Analyzer
     }
 
     /**
-     * Determine if given Class extends from a Core Laravel Class
-     * @param  ReflectionClass $reflection
+     * Determine if given Class extends from a Core Laravel Class.
+     *
+     * @param ReflectionClass $reflection
+     *
      * @return mixed (string|boolean)
      */
     protected function doesClassExtendALaravelComponent(ReflectionClass $reflection)
@@ -100,8 +99,10 @@ class Analyzer
     }
 
     /**
-     * Determine if a given Class uses a Laravel Core Trait
-     * @param  ReflectionClass $reflection
+     * Determine if a given Class uses a Laravel Core Trait.
+     *
+     * @param ReflectionClass $reflection
+     *
      * @return mixed (string|boolean)
      */
     protected function doesClassImplementLaravelTrait(ReflectionClass $reflection)
@@ -117,7 +118,7 @@ class Analyzer
         $componentName = false;
 
         // Loop through all traits and search Trait in Component Configuration
-        foreach($classTraits as $trait) {
+        foreach ($classTraits as $trait) {
             if ($uses->search($trait)) {
                 $componentName = $uses->search($trait);
             }
@@ -138,5 +139,4 @@ class Analyzer
 
         return false;
     }
-
 }

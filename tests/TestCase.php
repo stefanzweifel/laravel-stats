@@ -24,5 +24,5 @@ abstract class TestCase extends Orchestra
      */
     protected function getEnvironmentSetUp($app)
     {
-
-    }}
+    }
+}
