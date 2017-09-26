@@ -62,7 +62,7 @@ class ComponentConfiguration
                 'extends' => \Illuminate\Foundation\Http\FormRequest::class
             ],
             [
-                'name' => 'ServiceProviders',
+                'name' => 'Service Providers',
                 'extends' => \Illuminate\Support\ServiceProvider::class
             ],
             [

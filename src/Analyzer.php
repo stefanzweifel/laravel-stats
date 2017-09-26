@@ -22,17 +22,21 @@ class Analyzer
         $this->classFinder = $classFinder;
     }
 
+    /**
+     * Analyze Project classes and return Statistics object
+     * @return Statistics
+     */
     public function get()
     {
         $this->classFinder->getDeclaredClasses()->each(function($class) {
             $reflection = new ReflectionClass($class);
-            $this->shouldClassBeAddedToStatistics($reflection);
+            $this->checkIfClassIsLaravelComponentAndAddToStatistics($reflection);
         });
 
         return resolve(Statistics::class)->getAsArray($this->projectStatistics);
     }
 
-    public function shouldClassBeAddedToStatistics($reflectionClass)
+    protected function checkIfClassIsLaravelComponentAndAddToStatistics($reflectionClass)
     {
         if ($componentName = $this->doesClassExtendALaravelComponent($reflectionClass)) {
             $this->addClassToComponentStatisitcs($componentName, $reflectionClass);
@@ -46,16 +50,30 @@ class Analyzer
         }
     }
 
+    /**
+     * Add given Class to Statistics Collection for a Component
+     * @param string $component
+     * @param ReflectionClass $class
+     */
     protected function addClassToComponentStatisitcs($component, $class)
     {
         $this->projectStatistics[$component][] = $class;
     }
 
-    public function componentConfiguration()
+    /**
+     * Get Component Configuration
+     * @return Collection
+     */
+    protected function componentConfiguration()
     {
         return resolve(ComponentConfiguration::class)->get();
     }
 
+    /**
+     * Determine if given Class extends from a Core Laravel Class
+     * @param  ReflectionClass $reflection
+     * @return mixed (string|boolean)
+     */
     protected function doesClassExtendALaravelComponent(ReflectionClass $reflection)
     {
         // Check if Classname of currently given Class is in Extends Array
@@ -81,6 +99,11 @@ class Analyzer
         return false;
     }
 
+    /**
+     * Determine if a given Class uses a Laravel Core Trait
+     * @param  ReflectionClass $reflection
+     * @return mixed (string|boolean)
+     */
     protected function doesClassImplementLaravelTrait(ReflectionClass $reflection)
     {
         // If the given Class does not use any traits, return false
@@ -115,6 +138,5 @@ class Analyzer
 
         return false;
     }
-
 
 }

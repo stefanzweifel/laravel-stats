@@ -2,8 +2,9 @@
 
 namespace Wnx\LaravelStats;
 
-use Symfony\Component\Finder\Finder;
 use Exception;
+use Illuminate\Support\Collection;
+use Symfony\Component\Finder\Finder;
 
 class ClassFinder
 {
@@ -12,12 +13,15 @@ class ClassFinder
      */
     protected $finder;
 
+    protected $basePath;
+
     public function __construct(Finder $finder)
     {
         $this->finder = $finder;
-        $this->findAndLoadClasses();
-    }
 
+        // Set default base path to look for classes
+        $this->basePath = base_path();
+    }
 
     /**
      * Return a Collection of Declared Classes
@@ -26,8 +30,9 @@ class ClassFinder
      *
      * @return Illuminate\Support\Collection
      */
-    public function getDeclaredClasses()
+    public function getDeclaredClasses() : Collection
     {
+        $this->findAndLoadClasses();
         // We should filter out common classes
         // - std_class
         // - ? Exception
@@ -42,10 +47,19 @@ class ClassFinder
         return $filtered;
     }
 
-    protected function findAndLoadClasses()
+    /**
+     * Set base path
+     * @param string $path
+     */
+    public function setBasePath($path)
+    {
+        $this->basePath = $path;
+    }
+
+    protected function findAndLoadClasses() : void
     {
         $this->requireClassesFromFiles(
-            $this->findFilesInProject()
+            $this->findFilesInProjectPath()
         );
     }
 
@@ -55,7 +69,7 @@ class ClassFinder
      * @param  Finder $files
      * @return void
      */
-    protected function requireClassesFromFiles(Finder $files)
+    protected function requireClassesFromFiles(Finder $files) : void
     {
         foreach ($files as $file) {
             try {
@@ -68,10 +82,9 @@ class ClassFinder
      * Find PHP Files which should be analyzed
      * @return Finder
      */
-    protected function findFilesInProject()
+    protected function findFilesInProjectPath() : Finder
     {
-        $this->finder->files()->in(base_path())->exclude([
-            'app/Console',
+        $this->finder->files()->in($this->basePath)->exclude([
             'vendor',
             'config',
             'bootstrap',
