@@ -1,5 +1,6 @@
 # Laravel Stats
 
+[![StyleCI](https://styleci.io/repos/104390273/shield?branch=master)](https://styleci.io/repos/104390273)
 [![Build Status](https://travis-ci.org/stefanzweifel/laravel-stats.svg)](https://travis-ci.org/stefanzweifel/laravel-stats)
 [![Coverage Status](https://coveralls.io/repos/github/stefanzweifel/laravel-stats/badge.svg?branch=master)](https://coveralls.io/github/stefanzweifel/laravel-stats?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/wnx/laravel-stats/v/stable)](https://packagist.org/packages/wnx/laravel-stats)
