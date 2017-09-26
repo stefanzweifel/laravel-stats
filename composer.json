@@ -1,8 +1,8 @@
 {
     "name": "wnx/laravel-stats",
-    "description": "TBD",
+    "description": "Get insights about your Laravel Project",
     "homepage": "https://github.com/stefanzweifel/laravel-stats",
-    "keywords": ["laravel"],
+    "keywords": ["laravel", "wnx", "statistics", "stats"],
     "authors": [
         {
             "name": "Stefan Zweifel",
@@ -16,14 +16,14 @@
         "illuminate/support": "^5.5",
         "symfony/finder": "^3.3"
     },
+    "require-dev": {
+        "orchestra/testbench": "^3.5",
+        "phpunit/phpunit": "6.*"
+    },
     "autoload": {
         "psr-4": {
             "Wnx\\LaravelStats\\": "src/"
         }
-    },
-    "require-dev": {
-        "orchestra/testbench": "^3.5",
-        "phpunit/phpunit": "6.*"
     },
     "autoload-dev": {
         "psr-4": {
