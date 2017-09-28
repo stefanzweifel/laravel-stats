@@ -75,9 +75,11 @@ class ClassFinder
     protected function requireClassesFromFiles(Finder $files) : void
     {
         foreach ($files as $file) {
-            try {
-                require_once $file->getRealPath();
-            } catch (Exception $e) {
+            if (!str_contains($file->getFileName(), 'blade')) {
+                try {
+                    require_once $file->getRealPath();
+                } catch (Exception $e) {
+                }
             }
         }
     }
