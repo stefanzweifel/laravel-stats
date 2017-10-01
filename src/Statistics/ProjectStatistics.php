@@ -20,7 +20,8 @@ class ProjectStatistics
     }
 
     /**
-     * Generate Project Statistics
+     * Generate Project Statistics.
+     *
      * @return Collection
      */
     public function generate() : Collection
@@ -37,7 +38,8 @@ class ProjectStatistics
     }
 
     /**
-     * Return the project statistics as an array
+     * Return the project statistics as an array.
+     *
      * @return array
      */
     public function getAsArray() : array

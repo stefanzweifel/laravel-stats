@@ -15,7 +15,8 @@ class StatisticsListService
     protected $components;
 
     /**
-     * Find all Classes and Sort them into Components
+     * Find all Classes and Sort them into Components.
+     *
      * @return void
      */
     public function build() : void
@@ -27,7 +28,8 @@ class StatisticsListService
     }
 
     /**
-     * Return the Headers array used for Table Representation
+     * Return the Headers array used for Table Representation.
+     *
      * @return array
      */
     public function headers() : array
@@ -39,12 +41,13 @@ class StatisticsListService
             'Classes',
             'Methods',
             'M/C',
-            'LOC/M'
+            'LOC/M',
         ];
     }
 
     /**
-     * Return the project statistics as an array
+     * Return the project statistics as an array.
+     *
      * @return array
      */
     public function data() : array
@@ -54,5 +57,4 @@ class StatisticsListService
 
         return $statistics->getAsArray();
     }
-
 }

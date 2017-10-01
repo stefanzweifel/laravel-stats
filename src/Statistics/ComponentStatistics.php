@@ -2,9 +2,7 @@
 
 namespace Wnx\LaravelStats\Statistics;
 
-use Wnx\LaravelStats\Analyzers\ClassMethodsAnalyzer;
 use Wnx\LaravelStats\Component;
-use Wnx\LaravelStats\Statistics\ClassStatistics;
 
 class ComponentStatistics
 {
@@ -19,7 +17,8 @@ class ComponentStatistics
     }
 
     /**
-     * Generate Statistics Array for the given Component
+     * Generate Statistics Array for the given Component.
+     *
      * @return array
      */
     public function getAsArray() : array
@@ -31,12 +30,13 @@ class ComponentStatistics
             'number_of_classes' => $this->getNumberOfClasses(),
             'methods'           => $this->getNumberOfMethods(),
             'methods_per_class' => $this->getNumberOfMethodsPerClass(),
-            'loc_per_method'    => $this->getLinesOfCodePerMethod()
+            'loc_per_method'    => $this->getLinesOfCodePerMethod(),
         ];
     }
 
     /**
-     * Return the total number of Classes declared for this component
+     * Return the total number of Classes declared for this component.
+     *
      * @return int
      */
     public function getNumberOfClasses() : int
@@ -45,15 +45,15 @@ class ComponentStatistics
     }
 
     /**
-     * Return the total number of Methods declared over all declared classes
+     * Return the total number of Methods declared over all declared classes.
+     *
      * @return int
      */
     public function getNumberOfMethods() : int
     {
         $methods = 0;
 
-        foreach($this->component->getClasses() as $reflection) {
-
+        foreach ($this->component->getClasses() as $reflection) {
             $classStats = new ClassStatistics($reflection);
             $methods += $classStats->getNumberOfMethods();
         }
@@ -62,7 +62,8 @@ class ComponentStatistics
     }
 
     /**
-     * Return the average number of methods per class
+     * Return the average number of methods per class.
+     *
      * @return float
      */
     public function getNumberOfMethodsPerClass() : float
@@ -71,7 +72,8 @@ class ComponentStatistics
     }
 
     /**
-     * Return the total number of lines
+     * Return the total number of lines.
+     *
      * @return int
      */
     public function getLines() : int
@@ -80,7 +82,8 @@ class ComponentStatistics
     }
 
     /**
-     * Return the total number of lines of code
+     * Return the total number of lines of code.
+     *
      * @return int
      */
     public function getLinesOfCode() : float
@@ -89,7 +92,8 @@ class ComponentStatistics
     }
 
     /**
-     * Return the average number of lines of code per method
+     * Return the average number of lines of code per method.
+     *
      * @return float
      */
     public function getLinesOfCodePerMethod() : float

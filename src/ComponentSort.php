@@ -3,29 +3,26 @@
 namespace Wnx\LaravelStats;
 
 use Illuminate\Support\Collection;
-use Wnx\LaravelStats\Component;
-use Wnx\LaravelStats\ReflectionClass;
 
 class ComponentSort
 {
     protected $components = [];
 
     /**
-     * Sort array of Classes into Laravel Component
-     * @param  array $classes
+     * Sort array of Classes into Laravel Component.
+     *
+     * @param array $classes
+     *
      * @return Collection
      */
     public function sortClassesIntoComponents($classes) : Collection
     {
-        $classes->each(function($fqdn) {
-
+        $classes->each(function ($fqdn) {
             $reflection = new ReflectionClass($fqdn);
 
             if ($reflection->isLaravelComponent()) {
-
                 $componentName = $reflection->getLaravelComponentName();
                 $this->addClassToComponents($componentName, $reflection);
-
             }
         });
 
@@ -33,7 +30,8 @@ class ComponentSort
     }
 
     /**
-     * Create a Collection of Components
+     * Create a Collection of Components.
+     *
      * @return Collection
      */
     public function getComponentsCollection() : Collection
@@ -41,7 +39,6 @@ class ComponentSort
         $return = [];
 
         foreach ($this->components as $component => $classes) {
-
             $componentObject = new Component();
             $componentObject->setName($component);
             $componentObject->setClasses($classes);
@@ -53,7 +50,7 @@ class ComponentSort
     }
 
     /**
-     * Add given Class to Components Collection
+     * Add given Class to Components Collection.
      *
      * @param string          $component
      * @param ReflectionClass $class
@@ -62,5 +59,4 @@ class ComponentSort
     {
         $this->components[$component][] = $class;
     }
-
 }

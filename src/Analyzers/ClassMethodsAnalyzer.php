@@ -9,8 +9,10 @@ use ReflectionMethod;
 class ClassMethodsAnalyzer
 {
     /**
-     * Return the total numbers of methods declared on the given class
-     * @param  ReflectionClass $class
+     * Return the total numbers of methods declared on the given class.
+     *
+     * @param ReflectionClass $class
+     *
      * @return int
      */
     public function getNumberOfMethods(ReflectionClass $class) : int
@@ -19,8 +21,10 @@ class ClassMethodsAnalyzer
     }
 
     /**
-     * Return a Collection of method names grouped by visibility
-     * @param  ReflectionClass $class
+     * Return a Collection of method names grouped by visibility.
+     *
+     * @param ReflectionClass $class
+     *
      * @return Collection
      */
     public function getCollectionOfMethodNames(ReflectionClass $class) : Collection
@@ -34,9 +38,9 @@ class ClassMethodsAnalyzer
     protected function getMethods(ReflectionClass $class, $inherit = false, $static = null, $scope = ['public', 'protected', 'private']) : Collection
     {
         $return = [
-            'public' => [],
+            'public'    => [],
             'protected' => [],
-            'private' => []
+            'private'   => [],
         ];
 
         foreach ($scope as $key) {
@@ -66,6 +70,7 @@ class ClassMethodsAnalyzer
                 }
             }
         }
+
         return collect($return);
     }
 }

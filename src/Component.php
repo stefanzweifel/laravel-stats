@@ -4,7 +4,6 @@ namespace Wnx\LaravelStats;
 
 class Component
 {
-
     protected $name;
 
     /**
@@ -31,5 +30,4 @@ class Component
     {
         return $this->classes;
     }
-
 }

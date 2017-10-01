@@ -18,7 +18,8 @@ class ClassStatistics
     }
 
     /**
-     * Return the number of methods declared on the given class
+     * Return the number of methods declared on the given class.
+     *
      * @return int
      */
     public function getNumberOfMethods() : int
@@ -27,5 +28,4 @@ class ClassStatistics
             $this->class->getNativeReflectionClass()
         );
     }
-
 }

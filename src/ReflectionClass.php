@@ -4,7 +4,6 @@ namespace Wnx\LaravelStats;
 
 use Illuminate\Support\Collection;
 use ReflectionClass as NativeReflectionClass;
-use Wnx\LaravelStats\ComponentConfiguration;
 
 class ReflectionClass
 {
@@ -25,8 +24,6 @@ class ReflectionClass
         } elseif ($componentName = $this->usesLaravelComponentTrait($this->class)) {
             return $componentName;
         }
-
-        return null;
     }
 
     public function isLaravelComponent()
@@ -41,7 +38,8 @@ class ReflectionClass
     }
 
     /**
-     * Return the Native ReflectionClass Instance
+     * Return the Native ReflectionClass Instance.
+     *
      * @return NativeReflectionClass
      */
     public function getNativeReflectionClass() : NativeReflectionClass

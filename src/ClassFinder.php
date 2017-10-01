@@ -61,7 +61,8 @@ class ClassFinder
     }
 
     /**
-     * Find PHP Files on filesystem and require them
+     * Find PHP Files on filesystem and require them.
+     *
      * @return void
      */
     protected function findAndLoadClasses() : void
