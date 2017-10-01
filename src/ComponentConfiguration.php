@@ -11,7 +11,7 @@ class ComponentConfiguration
      *
      * @return Collection
      */
-    public function get()
+    public function get() : Collection
     {
         return collect([
             [

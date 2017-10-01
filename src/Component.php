@@ -7,7 +7,10 @@ class Component
 
     protected $name;
 
-    protected $classes;
+    /**
+     * @var array
+     */
+    protected $classes = [];
 
     public function setName($name)
     {
@@ -19,12 +22,12 @@ class Component
         return $this->name;
     }
 
-    public function setClasses($classes)
+    public function setClasses(array $classes)
     {
         $this->classes = $classes;
     }
 
-    public function getClasses()
+    public function getClasses() : array
     {
         return $this->classes;
     }

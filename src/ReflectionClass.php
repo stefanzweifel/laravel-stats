@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats;
 
+use Illuminate\Support\Collection;
 use ReflectionClass as NativeReflectionClass;
 use Wnx\LaravelStats\ComponentConfiguration;
 
@@ -40,11 +41,20 @@ class ReflectionClass
     }
 
     /**
+     * Return the Native ReflectionClass Instance
+     * @return NativeReflectionClass
+     */
+    public function getNativeReflectionClass() : NativeReflectionClass
+    {
+        return $this->class;
+    }
+
+    /**
      * Get Component Configuration.
      *
      * @return Collection
      */
-    protected function componentConfiguration()
+    protected function componentConfiguration() : Collection
     {
         return resolve(ComponentConfiguration::class)->get();
     }
