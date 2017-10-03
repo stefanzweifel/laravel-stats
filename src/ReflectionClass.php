@@ -2,58 +2,49 @@
 
 namespace Wnx\LaravelStats;
 
-use ReflectionClass;
+use Illuminate\Support\Collection;
+use ReflectionClass as NativeReflectionClass;
 
-class Analyzer
+class ReflectionClass
 {
     /**
-     * @var Wnx\LaravelStats\ClassFinder
+     * @var ReflectionClass
      */
-    protected $classFinder;
+    protected $class;
 
-    protected $projectStatistics = [];
-
-    public function __construct(ClassFinder $classFinder)
+    public function __construct($className)
     {
-        $this->classFinder = $classFinder;
+        $this->class = new NativeReflectionClass($className);
     }
 
-    /**
-     * Analyze Project classes and return Statistics object.
-     *
-     * @return Statistics
-     */
-    public function get()
+    public function getLaravelComponentName()
     {
-        $this->classFinder->getDeclaredClasses()->each(function ($class) {
-            $reflection = new ReflectionClass($class);
-            $this->checkIfClassIsLaravelComponentAndAddToStatistics($reflection);
-        });
-
-        return resolve(Statistics::class)->getAsArray($this->projectStatistics);
-    }
-
-    protected function checkIfClassIsLaravelComponentAndAddToStatistics($reflectionClass)
-    {
-        if ($componentName = $this->doesClassExtendALaravelComponent($reflectionClass)) {
-            $this->addClassToComponentStatisitcs($componentName, $reflectionClass);
-        } elseif ($componentName = $this->doesClassImplementLaravelTrait($reflectionClass)) {
-            $this->addClassToComponentStatisitcs($componentName, $reflectionClass);
-        } else {
-            // This Class couldn't get mapped
-            // var_dump($reflectionClass->getName());
+        if ($componentName = $this->extendsLaravelComponentClass($this->class)) {
+            return $componentName;
+        } elseif ($componentName = $this->usesLaravelComponentTrait($this->class)) {
+            return $componentName;
         }
     }
 
-    /**
-     * Add given Class to Statistics Collection for a Component.
-     *
-     * @param string          $component
-     * @param ReflectionClass $class
-     */
-    protected function addClassToComponentStatisitcs($component, $class)
+    public function isLaravelComponent()
     {
-        $this->projectStatistics[$component][] = $class;
+        if ($componentName = $this->extendsLaravelComponentClass($this->class)) {
+            return true;
+        } elseif ($componentName = $this->usesLaravelComponentTrait($this->class)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Return the Native ReflectionClass Instance.
+     *
+     * @return NativeReflectionClass
+     */
+    public function getNativeReflectionClass() : NativeReflectionClass
+    {
+        return $this->class;
     }
 
     /**
@@ -61,7 +52,7 @@ class Analyzer
      *
      * @return Collection
      */
-    protected function componentConfiguration()
+    protected function componentConfiguration() : Collection
     {
         return resolve(ComponentConfiguration::class)->get();
     }
@@ -73,7 +64,7 @@ class Analyzer
      *
      * @return mixed (string|boolean)
      */
-    protected function doesClassExtendALaravelComponent(ReflectionClass $reflection)
+    protected function extendsLaravelComponentClass(\ReflectionClass $reflection)
     {
         // Check if Classname of currently given Class is in Extends Array
         $extends = $this->componentConfiguration()->pluck('extends', 'name');
@@ -91,7 +82,7 @@ class Analyzer
         $hasParentClass = $reflection->getParentClass();
 
         if ($hasParentClass !== false) {
-            return $this->doesClassExtendALaravelComponent($hasParentClass);
+            return $this->extendsLaravelComponentClass($hasParentClass);
         }
 
         // If no, return false
@@ -105,7 +96,7 @@ class Analyzer
      *
      * @return mixed (string|boolean)
      */
-    protected function doesClassImplementLaravelTrait(ReflectionClass $reflection)
+    protected function usesLaravelComponentTrait(\ReflectionClass $reflection)
     {
         // If the given Class does not use any traits, return false
         if (count($reflection->getTraits()) == 0) {
@@ -134,7 +125,7 @@ class Analyzer
         $hasParentClass = $reflection->getParentClass();
 
         if ($hasParentClass !== false) {
-            return $this->doesClassImplementLaravelTrait($hasParentClass);
+            return $this->usesLaravelComponentTrait($hasParentClass);
         }
 
         return false;

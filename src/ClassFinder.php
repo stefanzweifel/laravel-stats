@@ -13,6 +13,9 @@ class ClassFinder
      */
     protected $finder;
 
+    /**
+     * @var string
+     */
     protected $basePath;
 
     public function __construct(Finder $finder)
@@ -57,6 +60,11 @@ class ClassFinder
         $this->basePath = $path;
     }
 
+    /**
+     * Find PHP Files on filesystem and require them.
+     *
+     * @return void
+     */
     protected function findAndLoadClasses() : void
     {
         $this->requireClassesFromFiles(

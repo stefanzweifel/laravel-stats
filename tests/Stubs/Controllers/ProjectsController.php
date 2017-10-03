@@ -13,4 +13,9 @@ class ProjectsController extends Controller
     {
         // code
     }
+
+    protected function protectedControllerMethod()
+    {
+        // code
+    }
 }

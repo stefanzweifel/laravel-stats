@@ -11,7 +11,7 @@ class ComponentConfiguration
      *
      * @return Collection
      */
-    public function get()
+    public function get() : Collection
     {
         return collect([
             [
@@ -75,7 +75,15 @@ class ComponentConfiguration
                 // TODO
             ],
             [
-                'name' => 'Test',
+                'name' => 'PHPUnit Tests',
+                // TODO
+            ],
+            [
+                'name' => 'phpspec Tests',
+                // TODO
+            ],
+            [
+                'name' => 'Dusk Tests',
                 // TODO
             ],
         ]);

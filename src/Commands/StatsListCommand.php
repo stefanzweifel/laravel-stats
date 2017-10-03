@@ -3,7 +3,7 @@
 namespace Wnx\LaravelStats\Commands;
 
 use Illuminate\Console\Command;
-use Wnx\LaravelStats\Analyzer;
+use Wnx\LaravelStats\Services\StatisticsListService;
 
 class StatsListCommand extends Command
 {
@@ -21,17 +21,14 @@ class StatsListCommand extends Command
      */
     protected $description = 'Generate Statistics for this Laravel Project';
 
-    protected $analyzer;
-
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct(Analyzer $analyzer)
+    public function __construct()
     {
         parent::__construct();
-        $this->analyzer = $analyzer;
     }
 
     /**
@@ -41,9 +38,11 @@ class StatsListCommand extends Command
      */
     public function handle()
     {
-        $this->table(
-            ['Name', 'Lines', 'LOC', 'Classes', 'Methods', 'M/C', 'LOC/M'],
-            $this->analyzer->get()
-        );
+        $service = resolve(StatisticsListService::class);
+        $service->build();
+        $headers = $service->headers();
+        $data = $service->data();
+
+        $this->table($headers, $data);
     }
 }
