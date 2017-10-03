@@ -34,7 +34,7 @@ class ComponentSort
      *
      * @return Collection
      */
-    public function getComponentsCollection() : Collection
+    protected function getComponentsCollection() : Collection
     {
         $return = [];
 
