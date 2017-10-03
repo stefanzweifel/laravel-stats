@@ -68,6 +68,10 @@ class ComponentStatistics
      */
     public function getNumberOfMethodsPerClass() : float
     {
+        if ($this->getNumberOfClasses() == 0) {
+            return 0;
+        }
+
         return round($this->getNumberOfMethods() / $this->getNumberOfClasses(), 2);
     }
 
