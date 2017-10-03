@@ -4,6 +4,7 @@ namespace Wnx\LaravelStats\Tests\Analyzers;
 
 use ReflectionClass;
 use Wnx\LaravelStats\Analyzers\ClassMethodsAnalyzer;
+use Wnx\LaravelStats\Tests\Stubs\Controllers\Controller;
 use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
 use Wnx\LaravelStats\Tests\TestCase;
 
@@ -17,18 +18,9 @@ class ClassMethodsAnalyzerTest extends TestCase
 
         $methodsCollection = $service->getCollectionOfMethodNames($reflection);
 
-        $this->assertArrayHasKey('public', $methodsCollection);
-        $this->assertArrayHasKey('protected', $methodsCollection);
-        $this->assertArrayHasKey('private', $methodsCollection);
-
-        $this->assertArraySubset(
-            ['index', 'show'],
-            $methodsCollection->toArray()['public']
-        );
-        $this->assertArraySubset(
-            ['protectedControllerMethod'],
-            $methodsCollection->toArray()['protected']
-        );
+        $this->assertContains('index', $methodsCollection->toArray());
+        $this->assertContains('show', $methodsCollection->toArray());
+        $this->assertContains('protectedControllerMethod', $methodsCollection->toArray());
     }
 
     /** @test */
@@ -40,5 +32,16 @@ class ClassMethodsAnalyzerTest extends TestCase
         $numberOfMethods = $service->getNumberOfMethods($reflection);
 
         $this->assertEquals(3, $numberOfMethods);
+    }
+
+    /** @test */
+    public function it_ignores_method_declared_on_traits()
+    {
+        $service = resolve(ClassMethodsAnalyzer::class);
+        $reflection = new ReflectionClass(Controller::class);
+
+        $numberOfMethods = $service->getNumberOfMethods($reflection);
+
+        $this->assertEquals(0, $numberOfMethods);
     }
 }

@@ -17,7 +17,7 @@ class ClassMethodsAnalyzer
      */
     public function getNumberOfMethods(ReflectionClass $class) : int
     {
-        return $this->getMethods($class)->collapse()->count();
+        return $this->getMethodsWithoutTraitMethods($class)->count();
     }
 
     /**
@@ -29,7 +29,7 @@ class ClassMethodsAnalyzer
      */
     public function getCollectionOfMethodNames(ReflectionClass $class) : Collection
     {
-        return $this->getMethods($class);
+        return $this->getMethodsWithoutTraitMethods($class);
     }
 
     /**
@@ -71,6 +71,42 @@ class ClassMethodsAnalyzer
             }
         }
 
-        return collect($return);
+        $return = collect($return)->collapse();
+
+        return $return;
+    }
+
+    /**
+     * Return a Collection of Method Names which are only declared on the class itself
+     * Methods declared on a used trait are beeing ignored.
+     *
+     * @param ReflectionClass $class
+     *
+     * @return Collection
+     */
+    public function getMethodsWithoutTraitMethods(ReflectionClass $class) : Collection
+    {
+        return $this->getMethods($class)->diff(
+            collect($this->getTraitMethods($class))
+        );
+    }
+
+    /**
+     * Get an Array of Trait Methods.
+     *
+     * @return array
+     */
+    protected function getTraitMethods($class) : array
+    {
+        $methods = [];
+        $traits = $class->getTraits();
+
+        foreach ($traits as $trait) {
+            foreach ($trait->getMethods() as $method) {
+                $methods[] = $method->getName();
+            }
+        }
+
+        return $methods;
     }
 }

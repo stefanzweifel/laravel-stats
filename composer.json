@@ -13,6 +13,7 @@
         }
     ],
     "require": {
+        "php": "^7.1",
         "illuminate/console": "^5.5",
         "illuminate/support": "^5.5",
         "symfony/finder": "^3.3"
