@@ -11,6 +11,11 @@ class ProjectStatistics
      */
     protected $components;
 
+    public function __construct()
+    {
+        $this->components = collect([]);
+    }
+
     /**
      * @param Collection $components
      */
