@@ -38,5 +38,4 @@ class UsersController extends Controller
     {
         // code
     }
-
 }

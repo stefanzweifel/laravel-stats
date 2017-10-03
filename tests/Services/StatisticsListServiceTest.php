@@ -36,5 +36,4 @@ class StatisticsListServiceTest extends TestCase
             'LOC/M',
         ], $service->headers());
     }
-
 }

@@ -18,19 +18,19 @@ class ComponentStatisticsTest extends TestCase
         $component->setName('Controllers');
         $component->setClasses([
             new ReflectionClass(ProjectsController::class),
-            new ReflectionClass(UsersController::class)
+            new ReflectionClass(UsersController::class),
         ]);
 
         $stats = new ComponentStatistics($component);
         $result = $stats->getAsArray();
 
         $this->assertEquals('Controllers', $result['component']);
-        $this->assertEquals(2,  $result['number_of_classes']);
-        $this->assertEquals(0,  $result['lines']);
-        $this->assertEquals(0,  $result['loc']);
+        $this->assertEquals(2, $result['number_of_classes']);
+        $this->assertEquals(0, $result['lines']);
+        $this->assertEquals(0, $result['loc']);
         $this->assertEquals(10, $result['methods']);
-        $this->assertEquals(5,  $result['methods_per_class']);
-        $this->assertEquals(0,  $result['loc_per_method']);
+        $this->assertEquals(5, $result['methods_per_class']);
+        $this->assertEquals(0, $result['loc_per_method']);
     }
 
     /** @test */
@@ -42,8 +42,5 @@ class ComponentStatisticsTest extends TestCase
         $stats = new ComponentStatistics($component);
 
         $this->assertEquals(0, $stats->getNumberOfMethodsPerClass());
-
-
-
     }
 }

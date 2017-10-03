@@ -4,14 +4,14 @@ namespace Wnx\LaravelStats\Tests;
 
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
-use Wnx\LaravelStats\Tests\TestCase;
 
 class ReflectionClassTest extends TestCase
 {
     /** @test */
     public function it_returns_null_if_component_name_could_not_be_defined()
     {
-        $reflection = new ReflectionClass(new class {});
+        $reflection = new ReflectionClass(new class() {
+        });
 
         $this->assertNull($reflection->getLaravelComponentName());
     }
@@ -19,7 +19,8 @@ class ReflectionClassTest extends TestCase
     /** @test */
     public function it_returns_false_if_class_could_not_be_identified_as_a_laravel_component()
     {
-        $reflection = new ReflectionClass(new class {});
+        $reflection = new ReflectionClass(new class() {
+        });
 
         $this->assertFalse($reflection->isLaravelComponent());
     }
@@ -50,5 +51,4 @@ class ReflectionClassTest extends TestCase
 
         $this->assertEquals('Controllers', $reflection->getLaravelComponentName());
     }
-
 }

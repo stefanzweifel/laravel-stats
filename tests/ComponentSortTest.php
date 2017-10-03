@@ -8,7 +8,6 @@ use Wnx\LaravelStats\ComponentSort;
 use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
 use Wnx\LaravelStats\Tests\Stubs\Events\DemoEvent;
 use Wnx\LaravelStats\Tests\Stubs\Models\Project;
-use Wnx\LaravelStats\Tests\TestCase;
 
 class ComponentSortTest extends TestCase
 {
@@ -20,7 +19,7 @@ class ComponentSortTest extends TestCase
         $classes = collect([
             DemoEvent::class,
             Project::class,
-            ProjectsController::class
+            ProjectsController::class,
         ]);
 
         $components = $sort->sortClassesIntoComponents($classes);
@@ -38,8 +37,9 @@ class ComponentSortTest extends TestCase
         $sort = resolve(ComponentSort::class);
 
         $classes = collect([
-            new class {},
-            Component::class
+            new class() {
+            },
+            Component::class,
         ]);
 
         $components = $sort->sortClassesIntoComponents($classes);

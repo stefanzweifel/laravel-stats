@@ -3,7 +3,6 @@
 namespace Wnx\LaravelStats\Tests\Analyzers;
 
 use ReflectionClass;
-use Wnx\LaravelStats\Analyzer;
 use Wnx\LaravelStats\Analyzers\ClassMethodsAnalyzer;
 use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
 use Wnx\LaravelStats\Tests\TestCase;
@@ -42,5 +41,4 @@ class ClassMethodsAnalyzerTest extends TestCase
 
         $this->assertEquals(3, $numberOfMethods);
     }
-
 }

@@ -13,11 +13,11 @@ class ProjectStatisticsTest extends TestCase
     public function it_adds_components_to_the_internal_components_array()
     {
         $components = collect([
-            new Component,
-            new Component,
-            new Component
+            new Component(),
+            new Component(),
+            new Component(),
         ]);
-        $stats = new ProjectStatistics;
+        $stats = new ProjectStatistics();
         $stats->addComponents($components);
 
         $result = $stats->generate();
@@ -29,7 +29,7 @@ class ProjectStatisticsTest extends TestCase
     /** @test */
     public function it_returns_an_empty_collection_if_no_components_are_passed_to_the_project_statistics()
     {
-        $stats = new ProjectStatistics;
+        $stats = new ProjectStatistics();
         $result = $stats->generate();
 
         $this->assertCount(0, $result);

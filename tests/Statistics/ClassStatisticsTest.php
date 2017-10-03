@@ -13,15 +13,19 @@ class ClassStatisticsTest extends TestCase
     /** @test */
     public function it_returns_number_of_methods_for_given_class()
     {
-        $reflect = new ReflectionClass(new class {
-            public function foo() {}
-            public function bar() {}
+        $reflect = new ReflectionClass(new class() {
+            public function foo()
+            {
+            }
+
+            public function bar()
+            {
+            }
         });
 
         $stats = new ClassStatistics($reflect);
 
         $this->assertEquals(2, $stats->getNumberOfMethods());
-
     }
 
     /** @test */
@@ -31,7 +35,6 @@ class ClassStatisticsTest extends TestCase
             new ReflectionClass(Project::class)
         );
         $this->assertEquals(0, $stats->getNumberOfMethods());
-
 
         $stats = new ClassStatistics(
             new ReflectionClass(ProjectsController::class)
