@@ -78,9 +78,9 @@ class ClassMethodsAnalyzer
 
     /**
      * Return a Collection of Method Names which are only declared on the class itself
-     * Methods declared on a used trait are beeing ignored
+     * Methods declared on a used trait are beeing ignored.
      *
-     * @param  ReflectionClass $class
+     * @param ReflectionClass $class
      *
      * @return Collection
      */
@@ -92,7 +92,8 @@ class ClassMethodsAnalyzer
     }
 
     /**
-     * Get an Array of Trait Methods
+     * Get an Array of Trait Methods.
+     *
      * @return array
      */
     protected function getTraitMethods($class) : array
@@ -100,13 +101,12 @@ class ClassMethodsAnalyzer
         $methods = [];
         $traits = $class->getTraits();
 
-        foreach($traits as $trait) {
-            foreach($trait->getMethods() as $method) {
+        foreach ($traits as $trait) {
+            foreach ($trait->getMethods() as $method) {
                 $methods[] = $method->getName();
             }
         }
 
         return $methods;
     }
-
 }
