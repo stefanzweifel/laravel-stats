@@ -11,7 +11,7 @@ Get insights about your Laravel Project.
 
 ### Installing
 
-The easiest way to install the the script is by using composer.
+The easiest way to install the the pacakge is by using composer.
 
 ```shell
 composer require wnx/laravel-stats
