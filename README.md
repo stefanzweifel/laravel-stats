@@ -1,11 +1,25 @@
-# Laravel Stats
+<h1 align="center">Laravel Stats</h1>
 
-[![StyleCI](https://styleci.io/repos/104390273/shield?branch=master)](https://styleci.io/repos/104390273)
-[![Build Status](https://travis-ci.org/stefanzweifel/laravel-stats.svg)](https://travis-ci.org/stefanzweifel/laravel-stats)
-[![Coverage Status](https://coveralls.io/repos/github/stefanzweifel/laravel-stats/badge.svg?branch=master)](https://coveralls.io/github/stefanzweifel/laravel-stats?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/wnx/laravel-stats/v/stable)](https://packagist.org/packages/wnx/laravel-stats)
-[![Total Downloads](https://poser.pugx.org/wnx/laravel-stats/downloads)](https://packagist.org/packages/wnx/laravel-stats)
-[![License](https://poser.pugx.org/wnx/laravel-stats/license)](https://packagist.org/packages/wnx/laravel-stats)
+<p align="center">
+<a href="https://styleci.io/repos/104390273">
+    <img src="https://styleci.io/repos/104390273/shield?branch=master" alt="">
+</a>
+<a href="https://travis-ci.org/stefanzweifel/laravel-stats">
+    <img src="https://travis-ci.org/stefanzweifel/laravel-stats.svg" alt="">
+</a>
+<a href="https://coveralls.io/github/stefanzweifel/laravel-stats?branch=master">
+    <img src="https://coveralls.io/repos/github/stefanzweifel/laravel-stats/badge.svg?branch=master" alt="">
+</a>
+<a href="https://packagist.org/packages/wnx/laravel-stats">
+    <img src="https://poser.pugx.org/wnx/laravel-stats/v/stable" alt="">
+</a>
+<a href="https://packagist.org/packages/wnx/laravel-stats">
+    <img src="https://poser.pugx.org/wnx/laravel-stats/downloads" alt="">
+</a>
+<a href="https://packagist.org/packages/wnx/laravel-stats">
+    <img src="https://poser.pugx.org/wnx/laravel-stats/license" alt="">
+</a>
+</p>
 
 Get insights about your Laravel Project.
 
