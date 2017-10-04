@@ -82,12 +82,12 @@ class ClassFinder
      */
     protected function requireClassesFromFiles(Finder $files) : void
     {
+        $filesToIgnore = collect($this->getFilesToIgnore());
+
         foreach ($files as $file) {
-            if (!str_contains($file->getFileName(), 'blade')) {
-                try {
-                    require_once $file->getRealPath();
-                } catch (Exception $e) {
-                }
+            try {
+                require_once $file->getRealPath();
+            } catch (Exception $e) {
             }
         }
     }
@@ -99,17 +99,60 @@ class ClassFinder
      */
     protected function findFilesInProjectPath() : Finder
     {
-        $this->finder->files()->in($this->basePath)->exclude([
-            'vendor',
-            'config',
-            'bootstrap',
-            // 'database',
-            'tests',
-            'resources',
-            'routes',
-            'public',
-        ])->name('*.php')->notName('*.blade.php')->notName('server.php');
+        $excludedFolders = $this->getFoldersToIgnore();
+
+        $this->finder->files()
+            ->in($this->basePath)
+            ->exclude($excludedFolders)
+            ->name('*.php');
+
+        foreach ($this->getFilesToIgnore() as $filename) {
+            $this->finder->notName($filename);
+        }
 
         return $this->finder;
+    }
+
+    /**
+     * Get an array of folder paths in which we shouldn't search for files.
+     *
+     * @return array
+     */
+    protected function getFoldersToIgnore() : array
+    {
+        $defaultIgnoredFolders = [
+            'bootstrap',
+            'config',
+            'public',
+            'resources',
+            'routes',
+            'storage',
+            'tests',
+            'vendor',
+        ];
+
+        $customIgnoredFolders = config('laravel-stats.ignore.folders');
+
+        return array_merge($defaultIgnoredFolders, $customIgnoredFolders);
+    }
+
+    /**
+     * Get an array of file paths and names which should be ignored.
+     *
+     * @return array
+     */
+    protected function getFilesToIgnore() : array
+    {
+        $defaultFilesToIgnore = [
+            '*.html',
+            '*twig*',
+            '*.blade.php',
+            'blade.php',
+            'server.php',
+        ];
+
+        $customIgnoredFiles = config('laravel-stats.ignore.files');
+
+        return array_merge($defaultFilesToIgnore, $customIgnoredFiles);
     }
 }
