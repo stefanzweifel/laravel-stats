@@ -99,17 +99,58 @@ class ClassFinder
      */
     protected function findFilesInProjectPath() : Finder
     {
-        $this->finder->files()->in($this->basePath)->exclude([
-            'vendor',
-            'config',
-            'bootstrap',
-            // 'database',
-            'tests',
-            'resources',
-            'routes',
-            'public',
-        ])->name('*.php')->notName('*.blade.php')->notName('server.php');
+        $excludedFolders = $this->getFoldersToExclude();
+
+        $this->finder->files()
+            ->in($this->basePath)
+            ->exclude($excludedFolders)
+            ->name('*.php')
+            ->notName('*.blade.php');
+
+        foreach($this->getFilesToExclude() as $filename) {
+            $this->finder->notName($filename);
+        }
 
         return $this->finder;
+    }
+
+    /**
+     * Get an array of folder paths in which we shouldn't search for files
+     *
+     * @return array
+     */
+    protected function getFoldersToExclude() : array
+    {
+        $defaultIgnoredFolders = [
+            'bootstrap',
+            'config',
+            'public',
+            'resources',
+            'routes',
+            'storage',
+            'tests',
+            'vendor',
+        ];
+
+        $customIgnoredFolders = config('laravel-stats.ignore.folders');
+
+        return array_merge($defaultIgnoredFolders, $customIgnoredFolders);
+    }
+
+    /**
+     * Get an array of file paths and names which should be ignored
+     *
+     * @return array
+     */
+    protected function getFilesToExclude() : array
+    {
+        $defaultFilesToIgnore = [
+            '*.blade.php',
+            'server.php'
+        ];
+
+        $customIgnoredFiles = config('laravel-stats.ignore.files');
+
+        return array_merge($defaultFilesToIgnore, $customIgnoredFiles);
     }
 }
