@@ -144,5 +144,4 @@ class ClassFinderTest extends TestCase
         $this->assertFalse($classes->contains('blade'));
         $this->assertFalse($classes->contains('twig'));
     }
-
 }
