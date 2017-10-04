@@ -82,12 +82,12 @@ class ClassFinder
      */
     protected function requireClassesFromFiles(Finder $files) : void
     {
+        $filesToIgnore = collect($this->getFilesToIgnore());
+
         foreach ($files as $file) {
-            if (!str_contains($file->getFileName(), 'blade')) {
-                try {
-                    require_once $file->getRealPath();
-                } catch (Exception $e) {
-                }
+            try {
+                require_once $file->getRealPath();
+            } catch (Exception $e) {
             }
         }
     }
@@ -99,15 +99,14 @@ class ClassFinder
      */
     protected function findFilesInProjectPath() : Finder
     {
-        $excludedFolders = $this->getFoldersToExclude();
+        $excludedFolders = $this->getFoldersToIgnore();
 
         $this->finder->files()
             ->in($this->basePath)
             ->exclude($excludedFolders)
-            ->name('*.php')
-            ->notName('*.blade.php');
+            ->name('*.php');
 
-        foreach ($this->getFilesToExclude() as $filename) {
+        foreach ($this->getFilesToIgnore() as $filename) {
             $this->finder->notName($filename);
         }
 
@@ -119,7 +118,7 @@ class ClassFinder
      *
      * @return array
      */
-    protected function getFoldersToExclude() : array
+    protected function getFoldersToIgnore() : array
     {
         $defaultIgnoredFolders = [
             'bootstrap',
@@ -142,10 +141,13 @@ class ClassFinder
      *
      * @return array
      */
-    protected function getFilesToExclude() : array
+    protected function getFilesToIgnore() : array
     {
         $defaultFilesToIgnore = [
+            '*.html',
+            '*twig*',
             '*.blade.php',
+            'blade.php',
             'server.php',
         ];
 

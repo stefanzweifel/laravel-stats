@@ -134,4 +134,15 @@ class ClassFinderTest extends TestCase
 
         $this->assertTrue($classes->contains(\Wnx\LaravelStats\Tests\Stubs\Providers\DemoProvider::class));
     }
+
+    /** @test */
+    public function it_does_not_require_files_which_are_set_to_be_ignored()
+    {
+        $classes = $this->getFinder()->getDeclaredClasses();
+
+        $this->assertFalse($classes->contains('html'));
+        $this->assertFalse($classes->contains('blade'));
+        $this->assertFalse($classes->contains('twig'));
+    }
+
 }
