@@ -107,7 +107,7 @@ class ClassFinder
             ->name('*.php')
             ->notName('*.blade.php');
 
-        foreach($this->getFilesToExclude() as $filename) {
+        foreach ($this->getFilesToExclude() as $filename) {
             $this->finder->notName($filename);
         }
 
@@ -115,7 +115,7 @@ class ClassFinder
     }
 
     /**
-     * Get an array of folder paths in which we shouldn't search for files
+     * Get an array of folder paths in which we shouldn't search for files.
      *
      * @return array
      */
@@ -138,7 +138,7 @@ class ClassFinder
     }
 
     /**
-     * Get an array of file paths and names which should be ignored
+     * Get an array of file paths and names which should be ignored.
      *
      * @return array
      */
@@ -146,7 +146,7 @@ class ClassFinder
     {
         $defaultFilesToIgnore = [
             '*.blade.php',
-            'server.php'
+            'server.php',
         ];
 
         $customIgnoredFiles = config('laravel-stats.ignore.files');
