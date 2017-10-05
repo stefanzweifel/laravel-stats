@@ -26,11 +26,11 @@ class ComponentStatisticsTest extends TestCase
 
         $this->assertEquals('Controllers', $result['component']);
         $this->assertEquals(2, $result['number_of_classes']);
-        $this->assertEquals(0, $result['lines']);
-        $this->assertEquals(0, $result['loc']);
+        $this->assertEquals(62, $result['lines']);
+        $this->assertEquals(12, $result['loc']);
         $this->assertEquals(10, $result['methods']);
         $this->assertEquals(5, $result['methods_per_class']);
-        $this->assertEquals(0, $result['loc_per_method']);
+        $this->assertEquals(1.2, $result['loc_per_method']);
     }
 
     /** @test */
