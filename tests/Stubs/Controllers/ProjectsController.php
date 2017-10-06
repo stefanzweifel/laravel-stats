@@ -6,16 +6,16 @@ class ProjectsController extends Controller
 {
     public function index()
     {
-        // code
+        return [];
     }
 
     public function show()
     {
-        // code
+        return [];
     }
 
     protected function protectedControllerMethod()
     {
-        // code
+        return [];
     }
 }

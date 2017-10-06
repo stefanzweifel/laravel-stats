@@ -6,36 +6,36 @@ class UsersController extends Controller
 {
     public function index()
     {
-        // code
+        return [];
     }
 
     public function create()
     {
-        // code
+        return [];
     }
 
     public function store()
     {
-        // code
+        return [];
     }
 
     public function show()
     {
-        // code
+        return [];
     }
 
     public function edit()
     {
-        // code
+        return [];
     }
 
     public function update()
     {
-        // code
+        return [];
     }
 
     public function delete()
     {
-        // code
+        return [];
     }
 }

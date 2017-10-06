@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Statistics;
 
+use SebastianBergmann\PHPLOC\Analyser;
 use Wnx\LaravelStats\Component;
 
 class ComponentStatistics
@@ -82,7 +83,15 @@ class ComponentStatistics
      */
     public function getLines() : int
     {
-        return 0;
+        $classPaths = [];
+
+        foreach ($this->component->getClasses() as $reflection) {
+            $classPaths[] = $reflection->getNativeReflectionClass()->getFileName();
+        }
+
+        $service = resolve(Analyser::class);
+
+        return $service->countFiles($classPaths, false)['loc'];
     }
 
     /**
@@ -92,7 +101,15 @@ class ComponentStatistics
      */
     public function getLinesOfCode() : float
     {
-        return 0;
+        $classPaths = [];
+
+        foreach ($this->component->getClasses() as $reflection) {
+            $classPaths[] = $reflection->getNativeReflectionClass()->getFileName();
+        }
+
+        $service = resolve(Analyser::class);
+
+        return $service->countFiles($classPaths, false)['lloc'];
     }
 
     /**
@@ -102,6 +119,12 @@ class ComponentStatistics
      */
     public function getLinesOfCodePerMethod() : float
     {
-        return 0;
+        $numberOfMethods = $this->getNumberOfMethods();
+
+        if ($numberOfMethods == 0) {
+            return 0;
+        }
+
+        return $this->getLinesOfCode() / $this->getNumberOfMethods();
     }
 }
