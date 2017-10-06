@@ -31,6 +31,14 @@ The easiest way to install the the pacakge is by using composer.
 composer require wnx/laravel-stats
 ```
 
+The package will automatically register itself.
+
+If you want to ignore certain folder, files or namespaces you must publish the config file:
+
+```shell
+php artisan vendor:publish --provider="Wnx\LaravelStats\StatsServiceProvider"
+```
+
 ## Usage
 
 After installing you can generate the statistics by running the following Artisan Command
