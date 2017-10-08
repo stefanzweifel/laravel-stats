@@ -25,7 +25,7 @@ class ReflectionClass
     public function isVendorProvided($root)
     {
         return $this->class->getFileName()
-            && str_contains($this->class->getFileName(), "/vendor/");
+            && str_contains($this->class->getFileName(), '/vendor/');
     }
 
     public function getLaravelComponentName()
