@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats;
 
+use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Support\Collection;
 use ReflectionClass as NativeReflectionClass;
 
@@ -25,6 +26,8 @@ class ReflectionClass
             return $componentName;
         } elseif ($componentName = $this->implementsLaravelComponentInterface($this->class)) {
             return $componentName;
+        } elseif ($componentName = $this->isRegisteredPolicy($this->class)) {
+            return $componentName;
         }
     }
 
@@ -35,6 +38,8 @@ class ReflectionClass
         } elseif ($componentName = $this->usesLaravelComponentTrait($this->class)) {
             return true;
         } elseif ($componentName = $this->implementsLaravelComponentInterface($this->class)) {
+            return true;
+        } elseif ($componentName = $this->isRegisteredPolicy($this->class)) {
             return true;
         }
 
@@ -151,11 +156,37 @@ class ReflectionClass
         }
 
         // Does the Class have a Parent Class?
-        // If yes, recursivly call this method
+        // If yes, recursively call this method
         $hasParentClass = $reflection->getParentClass();
 
         if ($hasParentClass !== false) {
             return $this->implementsLaravelComponentInterface($hasParentClass);
+        }
+
+        return false;
+    }
+
+    /**
+     * Determine if the given class is a registered policy.
+     *
+     * @param   ReflectionClass $reflection
+     *
+     * @return  mixed (string|boolean)
+     */
+    public function isRegisteredPolicy(\ReflectionClass $reflection)
+    {
+        $policies = resolve(Gate::class)->policies();
+
+        if (in_array($reflection->getName(), $policies)) {
+            return 'Policies';
+        }
+
+        $hasParentClass = $reflection->getParentClass();
+
+        // Does the Class have a Parent Class?
+        // If yes, recursively call this method
+        if ($hasParentClass !== false) {
+            return $this->isRegisteredPolicy($hasParentClass);
         }
 
         return false;

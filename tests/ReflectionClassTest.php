@@ -2,8 +2,11 @@
 
 namespace Wnx\LaravelStats\Tests;
 
+use Illuminate\Support\Facades\Gate;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
+use Wnx\LaravelStats\Tests\Stubs\Models\Project;
+use Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy;
 use Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule;
 
 class ReflectionClassTest extends TestCase
@@ -67,5 +70,15 @@ class ReflectionClassTest extends TestCase
         $reflection = new ReflectionClass(DemoRule::class);
 
         $this->assertEquals('Rules', $reflection->getLaravelComponentName());
+    }
+
+    /** @test */
+    public function it_returns_component_name_for_policies()
+    {
+        Gate::policy(Project::class, DemoPolicy::class);
+
+        $reflection = new ReflectionClass(DemoPolicy::class);
+
+        $this->assertEquals('Policies', $reflection->getLaravelComponentName());
     }
 }
