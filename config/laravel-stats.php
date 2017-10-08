@@ -22,14 +22,7 @@ return [
         'files' => [
             // 'helpers.php'
             // 'twig.php'
-        ],
-
-        /*
-         * Ignore certain namespaces
-         */
-        'namespaces' => [
-            // 'Illuminate'
-        ],
+        ]
 
     ],
 
