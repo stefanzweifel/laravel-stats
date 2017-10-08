@@ -23,6 +23,8 @@
 
 Get insights about your Laravel Project. (Inspired by [`rake stats`](https://robots.thoughtbot.com/simple-test-metrics-in-your-rails-app-and-what-they))
 
+![Screenshot](https://raw.githubusercontent.com/stefanzweifel/laravel-stats/master/screenshot.png)
+
 ### Installing
 
 The easiest way to install the the pacakge is by using composer.
