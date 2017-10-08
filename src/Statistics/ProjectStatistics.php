@@ -43,12 +43,20 @@ class ProjectStatistics
     }
 
     /**
-     * Return the project statistics as an array.
-     *
+     * Create Total Row for current Project Statistics
+     * @param  Collection $stats
      * @return array
      */
-    public function getAsArray() : array
+    public function getTotalRow(Collection $stats) : array
     {
-        return $this->generate()->toArray();
+        return [
+            'Total',
+            $stats->sum('lines'),
+            $stats->sum('loc'),
+            $stats->sum('number_of_classes'),
+            $stats->sum('methods'),
+            round($stats->avg('methods_per_class'), 2),
+            round($stats->avg('loc_per_method'), 2),
+        ];
     }
 }

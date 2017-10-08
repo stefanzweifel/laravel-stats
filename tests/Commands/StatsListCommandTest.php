@@ -15,5 +15,6 @@ class StatisticsListCommandTest extends TestCase
         $resultAsText = Artisan::output();
 
         $this->assertContains('Controllers', $resultAsText);
+        $this->assertContains('Total', $resultAsText);
     }
 }
