@@ -16,19 +16,6 @@ class StatisticsListService
     protected $components;
 
     /**
-     * Find all Classes and Sort them into Components.
-     *
-     * @return void
-     */
-    public function build() : void
-    {
-        $classes = resolve(ClassFinder::class)->getDeclaredClasses();
-        $components = resolve(ComponentSort::class)->sortClassesIntoComponents($classes);
-
-        $this->components = $components;
-    }
-
-    /**
      * Return the Headers array used for Table Representation.
      *
      * @return array
@@ -51,8 +38,10 @@ class StatisticsListService
      *
      * @return Collection
      */
-    public function data()
+    public function getData()
     {
+        $this->findAndSortComponents();
+
         $statistics = resolve(ProjectStatistics::class);
         $statistics->addComponents($this->components);
 
@@ -64,5 +53,18 @@ class StatisticsListService
             new TableSeparator,
             $totalRow
         ]);
+    }
+
+    /**
+     * Find all Classes and Sort them into Components.
+     *
+     * @return void
+     */
+    protected function findAndSortComponents() : void
+    {
+        $classes = resolve(ClassFinder::class)->getDeclaredClasses();
+        $components = resolve(ComponentSort::class)->sortClassesIntoComponents($classes);
+
+        $this->components = $components;
     }
 }
