@@ -21,7 +21,7 @@
 </a>
 </p>
 
-Get insights about your Laravel Project.
+Get insights about your Laravel Project. (Inspired by [`rake stats`](https://robots.thoughtbot.com/simple-test-metrics-in-your-rails-app-and-what-they))
 
 ### Installing
 
@@ -49,10 +49,10 @@ php artisan stats
 
 ## Running the tests
 
-There are some phpunit tests. You can run them with the following command.
+The package has tests written in phpunit. You can run them with the following command.
 
 ```shell
-phpunit
+./vendor/bin/phpunit
 ```
 
 ## Versioning
