@@ -22,7 +22,7 @@ class ReflectionClass
         return $this->class->getFileName() === false;
     }
 
-    public function isVendorProvided($root)
+    public function isVendorProvided()
     {
         return $this->class->getFileName()
             && str_contains($this->class->getFileName(), '/vendor/');

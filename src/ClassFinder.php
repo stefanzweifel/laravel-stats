@@ -48,7 +48,7 @@ class ClassFinder
         })->reject(function ($class) {
             return (new ReflectionClass($class))->isNative();
         })->reject(function ($class) {
-            return (new ReflectionClass($class))->isVendorProvided($this->basePath);
+            return (new ReflectionClass($class))->isVendorProvided();
         });
 
         return $filtered;
