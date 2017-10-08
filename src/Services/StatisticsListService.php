@@ -45,13 +45,13 @@ class StatisticsListService
         $statistics = resolve(ProjectStatistics::class);
         $statistics->addComponents($this->components);
 
-        $data =  $statistics->generate();
+        $data = $statistics->generate();
 
         $totalRow = $statistics->getTotalRow($data);
 
         return $data->concat([
-            new TableSeparator,
-            $totalRow
+            new TableSeparator(),
+            $totalRow,
         ]);
     }
 
