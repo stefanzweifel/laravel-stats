@@ -159,7 +159,6 @@ class ClassFinderTest extends TestCase
     {
         $classes = $this->getFinder()->getDeclaredClasses();
 
-        $this->assertFalse($classes->contains(\PHPUnit\Framework\TestCase::class));
-        $this->assertFalse($classes->contains(\Orchestra\Testbench\TestCase::class));
+        $this->assertFalse($classes->contains(\Symfony\Component\Finder\Finder::class));
     }
 }
