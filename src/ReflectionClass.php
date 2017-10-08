@@ -17,6 +17,11 @@ class ReflectionClass
         $this->class = new NativeReflectionClass($className);
     }
 
+    public function isNative()
+    {
+        return $this->class->getFileName() === false;
+    }
+
     public function getLaravelComponentName()
     {
         if ($componentName = $this->extendsLaravelComponentClass($this->class)) {

@@ -45,6 +45,8 @@ class ClassFinder
             return starts_with($value, 'Illuminate'); // Ignore Illuminate Packages
         })->reject(function ($value, $key) {
             return starts_with($value, 'Symfony');
+        })->reject(function ($class) {
+            return (new ReflectionClass($class))->isNative();
         });
 
         return $filtered;
