@@ -23,7 +23,7 @@ class ReflectionClass
             return $componentName;
         } elseif ($componentName = $this->usesLaravelComponentTrait($this->class)) {
             return $componentName;
-        } elseif ($componentName = $this->implementsLaravelComponentInterface($this->class) ) {
+        } elseif ($componentName = $this->implementsLaravelComponentInterface($this->class)) {
             return $componentName;
         }
     }
@@ -34,7 +34,7 @@ class ReflectionClass
             return true;
         } elseif ($componentName = $this->usesLaravelComponentTrait($this->class)) {
             return true;
-        } elseif ($componentName = $this->implementsLaravelComponentInterface($this->class) ) {
+        } elseif ($componentName = $this->implementsLaravelComponentInterface($this->class)) {
             return true;
         }
 
@@ -148,7 +148,6 @@ class ReflectionClass
             if ($reflection->implementsInterface($interface) == true) {
                 return $name;
             }
-
         }
 
         // Does the Class have a Parent Class?

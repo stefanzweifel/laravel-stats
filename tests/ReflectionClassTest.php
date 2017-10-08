@@ -68,5 +68,4 @@ class ReflectionClassTest extends TestCase
 
         $this->assertEquals('Rules', $reflection->getLaravelComponentName());
     }
-
 }
