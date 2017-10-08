@@ -47,6 +47,8 @@ class ClassFinder
             return starts_with($value, 'Symfony');
         })->reject(function ($class) {
             return (new ReflectionClass($class))->isNative();
+        })->reject(function ($class) {
+            return (new ReflectionClass($class))->isVendorProvided($this->basePath);
         });
 
         return $filtered;

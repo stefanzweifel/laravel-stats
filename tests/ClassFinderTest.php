@@ -153,4 +153,13 @@ class ClassFinderTest extends TestCase
         $this->assertFalse($classes->contains('stdClass'));
         $this->assertFalse($classes->contains('Exception'));
     }
+
+    /** @test */
+    public function it_ignores_vendored_classes()
+    {
+        $classes = $this->getFinder()->getDeclaredClasses();
+
+        $this->assertFalse($classes->contains(\PHPUnit\Framework\TestCase::class));
+        $this->assertFalse($classes->contains(\Orchestra\Testbench\TestCase::class));
+    }
 }
