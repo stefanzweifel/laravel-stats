@@ -11,9 +11,8 @@ class StatisticsListServiceTest extends TestCase
     public function it_returns_a_rich_statistics_array()
     {
         $service = resolve(StatisticsListService::class);
-        $service->build();
 
-        $data = collect($service->data());
+        $data = collect($service->getData());
 
         $controllerSet = $data->where('component', 'Controllers')->first();
 
@@ -34,6 +33,6 @@ class StatisticsListServiceTest extends TestCase
             'Methods',
             'M/C',
             'LOC/M',
-        ], $service->headers());
+        ], $service->getHeaders());
     }
 }
