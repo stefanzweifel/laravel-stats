@@ -26,11 +26,11 @@ class ComponentStatistics
     {
         return [
             'component'         => $this->component->getName(),
-            'lines'             => $this->getLines(),
-            'loc'               => $this->getLinesOfCode(),
             'number_of_classes' => $this->getNumberOfClasses(),
             'methods'           => $this->getNumberOfMethods(),
             'methods_per_class' => $this->getNumberOfMethodsPerClass(),
+            'lines'             => $this->getLines(),
+            'loc'               => $this->getLinesOfCode(),
             'loc_per_method'    => $this->getLinesOfCodePerMethod(),
         ];
     }
@@ -125,6 +125,6 @@ class ComponentStatistics
             return 0;
         }
 
-        return $this->getLinesOfCode() / $this->getNumberOfMethods();
+        return round($this->getLinesOfCode() / $this->getNumberOfMethods(), 2);
     }
 }

@@ -27,12 +27,12 @@ class StatisticsListServiceTest extends TestCase
 
         $this->assertEquals([
             'Name',
-            'Lines',
-            'LOC',
             'Classes',
             'Methods',
-            'M/C',
-            'LOC/M',
+            'Methods/Class',
+            'Lines',
+            'LoC',
+            'LoC/Method',
         ], $service->getHeaders());
     }
 }

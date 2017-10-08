@@ -53,11 +53,11 @@ class ProjectStatistics
     {
         return [
             'Total',
-            $stats->sum('lines'),
-            $stats->sum('loc'),
             $stats->sum('number_of_classes'),
             $stats->sum('methods'),
             round($stats->avg('methods_per_class'), 2),
+            $stats->sum('lines'),
+            $stats->sum('loc'),
             round($stats->avg('loc_per_method'), 2),
         ];
     }

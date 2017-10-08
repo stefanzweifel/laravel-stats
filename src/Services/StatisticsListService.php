@@ -24,12 +24,12 @@ class StatisticsListService
     {
         return [
             'Name',
-            'Lines',
-            'LOC',
             'Classes',
             'Methods',
-            'M/C',
-            'LOC/M',
+            'Methods/Class',
+            'Lines',
+            'LoC',
+            'LoC/Method',
         ];
     }
 
