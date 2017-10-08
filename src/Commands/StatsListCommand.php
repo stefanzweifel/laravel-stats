@@ -40,7 +40,7 @@ class StatsListCommand extends Command
     {
         $service = resolve(StatisticsListService::class);
         $service->build();
-        $headers = $service->headers();
+        $headers = $service->getHeaders();
         $data = $service->data();
 
         $this->table($headers, $data);

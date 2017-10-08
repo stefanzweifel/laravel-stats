@@ -34,6 +34,6 @@ class StatisticsListServiceTest extends TestCase
             'Methods',
             'M/C',
             'LOC/M',
-        ], $service->headers());
+        ], $service->getHeaders());
     }
 }

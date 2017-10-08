@@ -32,7 +32,7 @@ class StatisticsListService
      *
      * @return array
      */
-    public function headers() : array
+    public function getHeaders() : array
     {
         return [
             'Name',
