@@ -22,7 +22,7 @@ return [
         'files' => [
             // 'helpers.php'
             // 'twig.php'
-        ]
+        ],
 
     ],
 
