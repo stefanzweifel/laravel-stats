@@ -4,6 +4,7 @@ namespace Wnx\LaravelStats\Tests;
 
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
+use Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule;
 
 class ReflectionClassTest extends TestCase
 {
@@ -51,4 +52,21 @@ class ReflectionClassTest extends TestCase
 
         $this->assertEquals('Controllers', $reflection->getLaravelComponentName());
     }
+
+    /** @test */
+    public function it_returns_true_if_class_can_be_identified_as_a_component_through_an_interface()
+    {
+        $reflection = new ReflectionClass(DemoRule::class);
+
+        $this->assertEquals(true, $reflection->isLaravelComponent());
+    }
+
+    /** @test */
+    public function it_returns_component_name_for_interface_components()
+    {
+        $reflection = new ReflectionClass(DemoRule::class);
+
+        $this->assertEquals('Rules', $reflection->getLaravelComponentName());
+    }
+
 }

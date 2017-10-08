@@ -23,6 +23,8 @@ class ReflectionClass
             return $componentName;
         } elseif ($componentName = $this->usesLaravelComponentTrait($this->class)) {
             return $componentName;
+        } elseif ($componentName = $this->implementsLaravelComponentInterface($this->class) ) {
+            return $componentName;
         }
     }
 
@@ -31,6 +33,8 @@ class ReflectionClass
         if ($componentName = $this->extendsLaravelComponentClass($this->class)) {
             return true;
         } elseif ($componentName = $this->usesLaravelComponentTrait($this->class)) {
+            return true;
+        } elseif ($componentName = $this->implementsLaravelComponentInterface($this->class) ) {
             return true;
         }
 
@@ -67,7 +71,7 @@ class ReflectionClass
     protected function extendsLaravelComponentClass(\ReflectionClass $reflection)
     {
         // Check if Classname of currently given Class is in Extends Array
-        $extends = $this->componentConfiguration()->pluck('extends', 'name');
+        $extends = $this->componentConfiguration()->pluck('extends', 'name')->filter();
 
         $className = $reflection->getName();
         $componentName = $extends->search($className);
@@ -103,7 +107,7 @@ class ReflectionClass
             return false;
         }
 
-        $uses = $this->componentConfiguration()->pluck('uses', 'name');
+        $uses = $this->componentConfiguration()->pluck('uses', 'name')->filter();
 
         $classTraits = $reflection->getTraitNames();
         $componentName = false;
@@ -126,6 +130,33 @@ class ReflectionClass
 
         if ($hasParentClass !== false) {
             return $this->usesLaravelComponentTrait($hasParentClass);
+        }
+
+        return false;
+    }
+
+    public function implementsLaravelComponentInterface(\ReflectionClass $reflection)
+    {
+        // If the given Class does not use any traits, return false
+        if (count($reflection->getInterfaces()) == 0) {
+            return false;
+        }
+
+        $implements = $this->componentConfiguration()->pluck('implements', 'name')->filter();
+
+        foreach ($implements as $name => $interface) {
+            if ($reflection->implementsInterface($interface) == true) {
+                return $name;
+            }
+
+        }
+
+        // Does the Class have a Parent Class?
+        // If yes, recursivly call this method
+        $hasParentClass = $reflection->getParentClass();
+
+        if ($hasParentClass !== false) {
+            return $this->implementsLaravelComponentInterface($hasParentClass);
         }
 
         return false;
