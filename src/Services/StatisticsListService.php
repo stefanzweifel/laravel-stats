@@ -60,7 +60,7 @@ class StatisticsListService
      *
      * @return void
      */
-    protected function findAndSortComponents() : void
+    protected function findAndSortComponents()
     {
         $classes = resolve(ClassFinder::class)->getDeclaredClasses();
         $components = resolve(ComponentSort::class)->sortClassesIntoComponents($classes);

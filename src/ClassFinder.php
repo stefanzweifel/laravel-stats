@@ -69,7 +69,7 @@ class ClassFinder
      *
      * @return void
      */
-    protected function findAndLoadClasses() : void
+    protected function findAndLoadClasses()
     {
         $this->requireClassesFromFiles(
             $this->findFilesInProjectPath()
@@ -84,7 +84,7 @@ class ClassFinder
      *
      * @return void
      */
-    protected function requireClassesFromFiles(Finder $files) : void
+    protected function requireClassesFromFiles(Finder $files)
     {
         $filesToIgnore = collect($this->getFilesToIgnore());
 
