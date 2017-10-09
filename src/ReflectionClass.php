@@ -41,15 +41,7 @@ class ReflectionClass
 
     public function isLaravelComponent()
     {
-        if ($componentName = $this->extendsLaravelComponentClass($this->class)) {
-            return true;
-        } elseif ($componentName = $this->usesLaravelComponentTrait($this->class)) {
-            return true;
-        } elseif ($componentName = $this->implementsLaravelComponentInterface($this->class)) {
-            return true;
-        }
-
-        return false;
+        return (bool) $this->getLaravelComponentName();
     }
 
     /**
