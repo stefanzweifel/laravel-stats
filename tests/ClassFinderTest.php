@@ -144,4 +144,21 @@ class ClassFinderTest extends TestCase
         $this->assertFalse($classes->contains('blade'));
         $this->assertFalse($classes->contains('twig'));
     }
+
+    /** @test */
+    public function it_ignores_native_php_classes()
+    {
+        $classes = $this->getFinder()->getDeclaredClasses();
+
+        $this->assertFalse($classes->contains('stdClass'));
+        $this->assertFalse($classes->contains('Exception'));
+    }
+
+    /** @test */
+    public function it_ignores_vendored_classes()
+    {
+        $classes = $this->getFinder()->getDeclaredClasses();
+
+        $this->assertFalse($classes->contains(\Symfony\Component\Finder\Finder::class));
+    }
 }
