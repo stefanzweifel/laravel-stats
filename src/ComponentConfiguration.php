@@ -68,7 +68,6 @@ class ComponentConfiguration
             ],
             [
                 'name' => 'Policies',
-                // TODO
             ],
             [
                 'name' => 'Middlewares',

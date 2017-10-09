@@ -109,4 +109,12 @@ class ComponentConfigurationTest extends TestCase
 
         $this->assertTrue($config->contains('name', 'Service Providers'));
     }
+
+    /** @test */
+    public function it_has_configuration_for_policies()
+    {
+        $config = resolve(ComponentConfiguration::class)->get();
+
+        $this->assertTrue($config->contains('name', 'Policies'));
+    }
 }
