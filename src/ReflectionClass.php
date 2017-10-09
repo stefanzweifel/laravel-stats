@@ -30,7 +30,7 @@ class ReflectionClass
 
     public function isLaravelComponent()
     {
-        return !! $this->getLaravelComponentName();
+        return (bool) $this->getLaravelComponentName();
     }
 
     /**
