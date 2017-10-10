@@ -27,7 +27,7 @@ Get insights about your Laravel Project. (Inspired by [`rake stats`](https://rob
 
 ### Installing
 
-The easiest way to install the the pacakge is by using composer. (The package is currently in beta.)
+The easiest way to install the the package is by using composer. (The package is currently in beta.)
 
 ```shell
 composer require "wnx/laravel-stats:1.0.0-beta"
