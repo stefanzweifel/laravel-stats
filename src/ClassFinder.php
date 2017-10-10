@@ -101,7 +101,7 @@ class ClassFinder
      *
      * @return Finder
      */
-    protected function findFilesInProjectPath() : Finder
+    public function findFilesInProjectPath() : Finder
     {
         $excludedFolders = $this->getFoldersToIgnore();
 
@@ -153,6 +153,7 @@ class ClassFinder
             '*.blade.php',
             'blade.php',
             'server.php',
+            '_ide_helper.php',
         ];
 
         $customIgnoredFiles = config('laravel-stats.ignore.files');

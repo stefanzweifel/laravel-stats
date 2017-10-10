@@ -161,4 +161,15 @@ class ClassFinderTest extends TestCase
 
         $this->assertFalse($classes->contains(\Symfony\Component\Finder\Finder::class));
     }
+
+    /** @test */
+    public function it_ignores_ide_helper_file()
+    {
+        $files = collect(iterator_to_array($this->getFinder()->findFilesInProjectPath()));
+        $files = $files->filter(function($file) {
+            return $file->getFileName() === '_ide_helper.php';
+        });
+
+        $this->assertEquals(0, $files->count());
+    }
 }
