@@ -68,7 +68,7 @@ class ClassFinderTest extends TestCase
     {
         $classes = $this->getFinder()->getDeclaredClasses();
 
-        $this->assertTrue($classes->contains(\Wnx\LaravelStats\Tests\Stubs\Middleware\DemoMiddleware::class));
+        $this->assertTrue($classes->contains(\Wnx\LaravelStats\Tests\Stubs\Migrations\CreateUsersTable::class));
     }
 
     /** @test */
