@@ -39,6 +39,8 @@ class ReflectionClass
             return $componentName;
         } elseif ($componentName = $this->isRegisteredPolicy($this->class)) {
             return $componentName;
+        } elseif ($componentName = $this->isRegisteredMiddleware($this->class)) {
+            return $componentName;
         }
     }
 
@@ -189,6 +191,39 @@ class ReflectionClass
         // If yes, recursively call this method
         if ($hasParentClass !== false) {
             return $this->isRegisteredPolicy($hasParentClass);
+        }
+
+        return false;
+    }
+
+    /**
+     * Determine if the given class is a registered Middleware
+     *
+     * @param  \ReflectionClass $reflection
+     *
+     * @return boolean
+     */
+    public function isRegisteredMiddleware(\ReflectionClass $reflection)
+    {
+        // The Router Instance returns emtpy array, if I don't resolve the
+        // HTTP Kernel here. Why is that? This seems weird ...
+        resolve(\Illuminate\Contracts\Http\Kernel::class);
+        $router = resolve('router');
+
+        $middlewares = collect($router->getMiddleware())->flatten();
+        $groupMiddlewares = collect($router->getMiddlewareGroups())->flatten();
+        $mergedMiddlewares = $middlewares->merge($groupMiddlewares);
+
+        if ($mergedMiddlewares->contains($reflection->getName())) {
+            return 'Middlewares';
+        }
+
+        $hasParentClass = $reflection->getParentClass();
+
+        // Does the Class have a Parent Class?
+        // If yes, recursively call this method
+        if ($hasParentClass !== false) {
+            return $this->isRegisteredMiddleware($hasParentClass);
         }
 
         return false;
