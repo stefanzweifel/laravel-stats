@@ -28,7 +28,7 @@ class ClassFinder
 
     /**
      * Return a Collection of Declared Classes
-     * Classes belonging to the Illuminate and Symfony Namespace
+     * Classes that belong to the Illuminate and Symfony Namespace
      * are removed from the Collection.
      *
      * @return Illuminate\Support\Collection
@@ -135,7 +135,7 @@ class ClassFinder
             'vendor',
         ];
 
-        $customIgnoredFolders = config('laravel-stats.ignore.folders');
+        $customIgnoredFolders = config('stats.ignore.folders');
 
         return array_merge($defaultIgnoredFolders, $customIgnoredFolders);
     }
@@ -156,7 +156,7 @@ class ClassFinder
             '_ide_helper.php',
         ];
 
-        $customIgnoredFiles = config('laravel-stats.ignore.files');
+        $customIgnoredFiles = config('stats.ignore.files');
 
         return array_merge($defaultFilesToIgnore, $customIgnoredFiles);
     }

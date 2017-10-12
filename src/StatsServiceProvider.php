@@ -11,14 +11,14 @@ class StatsServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/laravel-stats.php' => config_path('laravel-stats.php'),
+                __DIR__.'/../config/stats.php' => config_path('stats.php'),
             ], 'config');
         }
     }
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/laravel-stats.php', 'laravel-stats');
+        $this->mergeConfigFrom(__DIR__.'/../config/stats.php', 'stats');
 
         $this->app->bind('command.stats:stats-list', StatsListCommand::class);
 

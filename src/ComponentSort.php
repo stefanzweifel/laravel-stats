@@ -26,10 +26,7 @@ class ComponentSort
                 return $reflection->getLaravelComponentName();
             })
             ->map(function ($classes, $name) {
-                $component = new Component();
-                $component->setName($name);
-                $component->setClasses($classes->all());
-                return $component;
+                return new Component($name, $classes);
             });
     }
 }
