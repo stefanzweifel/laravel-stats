@@ -1,4 +1,2 @@
-composer.phar
-composer.lock
-vendor
-build
+/vendor
+/build
