@@ -8,10 +8,11 @@ class ClassFinderTest extends TestCase
 {
     public function getFinder()
     {
-        $service = resolve(ClassFinder::class);
-        $service->setBasePath(__DIR__.'/../tests/Stubs');
+        config()->set('stats.path', [
+            __DIR__.'/../tests/Stubs',
+        ]);
 
-        return $service;
+        return resolve(ClassFinder::class);
     }
 
     /** @test */
@@ -150,16 +151,5 @@ class ClassFinderTest extends TestCase
         $classes = $this->getFinder()->getDeclaredClasses();
 
         $this->assertFalse($classes->contains(\Symfony\Component\Finder\Finder::class));
-    }
-
-    /** @test */
-    public function it_ignores_ide_helper_file()
-    {
-        $files = collect(iterator_to_array($this->getFinder()->findFilesInProjectPath()));
-        $files = $files->filter(function($file) {
-            return $file->getFileName() === '_ide_helper.php';
-        });
-
-        $this->assertEquals(0, $files->count());
     }
 }

@@ -93,61 +93,8 @@ class ClassFinder
      */
     public function findFilesInProjectPath() : Finder
     {
-        $excludedFolders = $this->getFoldersToIgnore();
-
-        $this->finder->files()
-            ->in($this->basePath)
-            ->exclude($excludedFolders)
+        return $this->finder->files()
+            ->in(config('stats.path', []))
             ->name('*.php');
-
-        foreach ($this->getFilesToIgnore() as $filename) {
-            $this->finder->notName($filename);
-        }
-
-        return $this->finder;
-    }
-
-    /**
-     * Get an array of folder paths in which we shouldn't search for files.
-     *
-     * @return array
-     */
-    protected function getFoldersToIgnore() : array
-    {
-        $defaultIgnoredFolders = [
-            'bootstrap',
-            'config',
-            'public',
-            'resources',
-            'routes',
-            'storage',
-            'tests',
-            'vendor',
-        ];
-
-        $customIgnoredFolders = config('stats.ignore.folders');
-
-        return array_merge($defaultIgnoredFolders, $customIgnoredFolders);
-    }
-
-    /**
-     * Get an array of file paths and names which should be ignored.
-     *
-     * @return array
-     */
-    protected function getFilesToIgnore() : array
-    {
-        $defaultFilesToIgnore = [
-            '*.html',
-            '*twig*',
-            '*.blade.php',
-            'blade.php',
-            'server.php',
-            '_ide_helper.php',
-        ];
-
-        $customIgnoredFiles = config('stats.ignore.files');
-
-        return array_merge($defaultFilesToIgnore, $customIgnoredFiles);
     }
 }
