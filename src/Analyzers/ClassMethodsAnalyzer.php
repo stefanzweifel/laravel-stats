@@ -9,7 +9,7 @@ use ReflectionMethod;
 class ClassMethodsAnalyzer
 {
     /**
-     * Return the total numbers of methods declared on the given class.
+     * Return the total number of methods declared on the given class.
      *
      * @param ReflectionClass $class
      *
@@ -78,7 +78,7 @@ class ClassMethodsAnalyzer
 
     /**
      * Return a Collection of Method Names which are only declared on the class itself
-     * Methods declared on a used trait are beeing ignored.
+     * Methods declared on a trait are ignored.
      *
      * @param ReflectionClass $class
      *
