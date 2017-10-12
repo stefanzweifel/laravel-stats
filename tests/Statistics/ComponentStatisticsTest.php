@@ -14,12 +14,10 @@ class ComponentStatisticsTest extends TestCase
     /** @test */
     public function it_returns_component_statistics_as_an_array()
     {
-        $component = new Component();
-        $component->setName('Controllers');
-        $component->setClasses([
+        $component = new Component('Controllers', collect([
             new ReflectionClass(ProjectsController::class),
             new ReflectionClass(UsersController::class),
-        ]);
+        ]));
 
         $stats = new ComponentStatistics($component);
         $result = $stats->getAsArray();
@@ -36,8 +34,7 @@ class ComponentStatisticsTest extends TestCase
     /** @test */
     public function it_returns_0_for_methods_per_class_if_no_class_has_been_set()
     {
-        $component = new Component();
-        $component->setName('Controllers');
+        $component = new Component('Controllers', collect());
 
         $stats = new ComponentStatistics($component);
 
