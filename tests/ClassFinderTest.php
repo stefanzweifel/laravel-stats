@@ -172,4 +172,15 @@ class ClassFinderTest extends TestCase
 
         $this->assertEquals(0, $files->count());
     }
+
+    /** @test */
+    public function it_ignores_ide_helper_models_file()
+    {
+        $files = collect(iterator_to_array($this->getFinder()->findFilesInProjectPath()));
+        $files = $files->filter(function($file) {
+            return $file->getFileName() === '_ide_helper_models.php';
+        });
+
+        $this->assertEquals(0, $files->count());
+    }
 }

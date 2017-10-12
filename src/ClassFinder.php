@@ -144,6 +144,7 @@ class ClassFinder
             'blade.php',
             'server.php',
             '_ide_helper.php',
+            '_ide_helper_models.php',
         ];
 
         $customIgnoredFiles = config('stats.ignore.files');
