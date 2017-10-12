@@ -6,8 +6,6 @@ use Illuminate\Support\Collection;
 
 class ComponentSort
 {
-    protected $components = [];
-
     /**
      * Sort array of Classes into Laravel Component.
      *
@@ -17,46 +15,21 @@ class ComponentSort
      */
     public function sortClassesIntoComponents($classes) : Collection
     {
-        $classes->each(function ($fqdn) {
-            $reflection = new ReflectionClass($fqdn);
-
-            if ($reflection->isLaravelComponent()) {
-                $componentName = $reflection->getLaravelComponentName();
-                $this->addClassToComponents($componentName, $reflection);
-            }
-        });
-
-        return $this->getComponentsCollection();
-    }
-
-    /**
-     * Create a Collection of Components.
-     *
-     * @return Collection
-     */
-    protected function getComponentsCollection() : Collection
-    {
-        $return = [];
-
-        foreach ($this->components as $component => $classes) {
-            $componentObject = new Component();
-            $componentObject->setName($component);
-            $componentObject->setClasses($classes);
-
-            $return[] = $componentObject;
-        }
-
-        return collect($return);
-    }
-
-    /**
-     * Add given Class to Components Collection.
-     *
-     * @param string          $component
-     * @param ReflectionClass $class
-     */
-    protected function addClassToComponents($component, $class)
-    {
-        $this->components[$component][] = $class;
+        return $classes
+            ->map(function ($class) {
+                return new ReflectionClass($class);
+            })
+            ->filter(function ($reflection) {
+                return $reflection->isLaravelComponent();
+            })
+            ->groupBy(function ($reflection) {
+                return $reflection->getLaravelComponentName();
+            })
+            ->map(function ($classes, $name) {
+                $component = new Component();
+                $component->setName($name);
+                $component->setClasses($classes->all());
+                return $component;
+            });
     }
 }
