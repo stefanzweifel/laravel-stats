@@ -35,23 +35,13 @@ class ClassFinder
      */
     public function getDeclaredClasses() : Collection
     {
-        $this->findAndLoadClasses();
-        // We should filter out common classes
-        // - std_class
-        // - ? Exception
-        $classes = collect(get_declared_classes());
-
-        $filtered = $classes->reject(function ($value, $key) {
-            return starts_with($value, 'Illuminate'); // Ignore Illuminate Packages
-        })->reject(function ($value, $key) {
-            return starts_with($value, 'Symfony');
-        })->reject(function ($class) {
-            return (new ReflectionClass($class))->isNative();
-        })->reject(function ($class) {
-            return (new ReflectionClass($class))->isVendorProvided();
-        });
-
-        return $filtered;
+        return $this->findAndLoadClasses()
+            ->reject(function ($class) {
+                return (new ReflectionClass($class))->isNative();
+            })
+            ->reject(function ($class) {
+                return (new ReflectionClass($class))->isVendorProvided();
+            });
     }
 
     /**
@@ -74,6 +64,8 @@ class ClassFinder
         $this->requireClassesFromFiles(
             $this->findFilesInProjectPath()
         );
+
+        return collect(get_declared_classes());
     }
 
     /**
@@ -86,8 +78,6 @@ class ClassFinder
      */
     protected function requireClassesFromFiles(Finder $files)
     {
-        $filesToIgnore = collect($this->getFilesToIgnore());
-
         foreach ($files as $file) {
             try {
                 require_once $file->getRealPath();
