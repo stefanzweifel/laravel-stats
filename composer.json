@@ -40,6 +40,9 @@
     "config": {
         "sort-packages": true
     },
+    "platform": {
+        "php": "7.0"
+    },
     "extra": {
         "laravel": {
             "providers": [
