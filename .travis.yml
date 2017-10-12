@@ -7,10 +7,8 @@ php:
   - 7.1
 
 before_script:
+  - phpenv config-rm xdebug.ini
   - travis_retry composer self-update
   - travis_retry composer install --prefer-source --no-interaction
 
 script: phpunit
-
-after_success:
-  - travis_retry php vendor/bin/coveralls
