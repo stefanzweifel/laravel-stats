@@ -39,34 +39,23 @@ class ClassFinder
 
     /**
      * Find PHP Files on filesystem and require them.
+     * We need to use ob_* functions to ensure that
+     * loaded files do not output anything.
      *
      * @return void
      */
     protected function findAndLoadClasses()
     {
-        $this->requireClassesFromFiles(
-            $this->findFilesInProjectPath()
-        );
+        ob_start();
+
+        $this->findFilesInProjectPath()
+            ->each(function ($file) {
+                require_once $file->getRealPath();
+            });
+
+        ob_end_clean();
 
         return collect(get_declared_classes());
-    }
-
-    /**
-     * Require each PHP file to make them available
-     * in the get_declared_classes function.
-     *
-     * @param Collection $files
-     *
-     * @return void
-     */
-    protected function requireClassesFromFiles(Collection $files)
-    {
-        foreach ($files as $file) {
-            try {
-                require_once $file->getRealPath();
-            } catch (Exception $e) {
-            }
-        }
     }
 
     /**
