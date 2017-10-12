@@ -136,16 +136,6 @@ class ClassFinderTest extends TestCase
     }
 
     /** @test */
-    public function it_does_not_require_files_which_are_set_to_be_ignored()
-    {
-        $classes = $this->getFinder()->getDeclaredClasses();
-
-        $this->assertFalse($classes->contains('html'));
-        $this->assertFalse($classes->contains('blade'));
-        $this->assertFalse($classes->contains('twig'));
-    }
-
-    /** @test */
     public function it_ignores_native_php_classes()
     {
         $classes = $this->getFinder()->getDeclaredClasses();
