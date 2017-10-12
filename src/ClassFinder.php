@@ -13,17 +13,9 @@ class ClassFinder
      */
     protected $finder;
 
-    /**
-     * @var string
-     */
-    protected $basePath;
-
     public function __construct(Finder $finder)
     {
         $this->finder = $finder;
-
-        // Set default base path to look for classes
-        $this->basePath = base_path();
     }
 
     /**
@@ -42,16 +34,6 @@ class ClassFinder
             ->reject(function ($class) {
                 return (new ReflectionClass($class))->isVendorProvided();
             });
-    }
-
-    /**
-     * Set base path.
-     *
-     * @param string $path
-     */
-    public function setBasePath($path)
-    {
-        $this->basePath = $path;
     }
 
     /**
