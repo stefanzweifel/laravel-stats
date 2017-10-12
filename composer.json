@@ -14,15 +14,15 @@
     ],
     "require": {
         "php": ">=7.0.0",
-        "illuminate/console": "^5.5",
-        "illuminate/support": "^5.5",
+        "illuminate/console": "~5.2|~5.3|~5.4|~5.5",
+        "illuminate/support": "~5.2|~5.3|~5.4|~5.5",
         "phploc/phploc": "^4.0",
         "symfony/finder": "^3.3"
     },
     "require-dev": {
-        "orchestra/testbench": "^3.5",
+        "orchestra/testbench": "~3.2|~3.3|~3.4|~3.5",
         "php-coveralls/php-coveralls": "^1.0",
-        "phpunit/phpunit": "6.*"
+        "phpunit/phpunit": "~5.7|~6.0"
     },
     "autoload": {
         "psr-4": {
