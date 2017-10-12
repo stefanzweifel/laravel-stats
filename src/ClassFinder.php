@@ -86,8 +86,6 @@ class ClassFinder
      */
     protected function requireClassesFromFiles(Finder $files)
     {
-        $filesToIgnore = collect($this->getFilesToIgnore());
-
         foreach ($files as $file) {
             try {
                 require_once $file->getRealPath();
