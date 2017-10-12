@@ -13,9 +13,9 @@ class ProjectStatisticsTest extends TestCase
     public function it_adds_components_to_the_internal_components_array()
     {
         $components = collect([
-            new Component(),
-            new Component(),
-            new Component(),
+            new Component('foo', collect()),
+            new Component('bar', collect()),
+            new Component('baz', collect()),
         ]);
         $stats = new ProjectStatistics();
         $stats->addComponents($components);
