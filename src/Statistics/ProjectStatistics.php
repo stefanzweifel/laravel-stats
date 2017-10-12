@@ -31,15 +31,11 @@ class ProjectStatistics
      */
     public function generate() : Collection
     {
-        $stats = [];
-
-        foreach ($this->components as $component) {
-            $stats[] = (new ComponentStatistics($component))->getAsArray();
-        }
-
-        $stats = collect($stats)->sortBy('component');
-
-        return $stats;
+        return $this->components
+            ->map(function ($component) {
+                return (new ComponentStatistics($component))->getAsArray();
+            })
+            ->sortBy('component');
     }
 
     /**
