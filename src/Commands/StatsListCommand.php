@@ -21,29 +21,16 @@ class StatsListCommand extends Command
      */
     protected $description = 'Generate Statistics for this Laravel Project';
 
-    protected $service;
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct(StatisticsListService $service)
-    {
-        parent::__construct();
-        $this->service = $service;
-    }
-
     /**
      * Execute the console command.
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(StatisticsListService $service)
     {
         $this->table(
-            $this->service->getHeaders(),
-            $this->service->getData()
+            $service->getHeaders(),
+            $service->getData()
         );
     }
 }
