@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats;
 
 use Exception;
+use SplFileInfo;
 use Illuminate\Support\Collection;
 use Symfony\Component\Finder\Finder;
 
@@ -54,11 +55,11 @@ class ClassFinder
      * Require each PHP file to make them available
      * in the get_declared_classes function.
      *
-     * @param Finder $files
+     * @param Collection $files
      *
      * @return void
      */
-    protected function requireClassesFromFiles(Finder $files)
+    protected function requireClassesFromFiles(Collection $files)
     {
         foreach ($files as $file) {
             try {
@@ -71,12 +72,26 @@ class ClassFinder
     /**
      * Find PHP Files which should be analyzed.
      *
-     * @return Finder
+     * @return Collection
      */
-    public function findFilesInProjectPath() : Finder
+    public function findFilesInProjectPath() : Collection
     {
-        return $this->finder->files()
-            ->in(config('stats.path', []))
+        $excludes = collect(config('stats.exclude', []));
+
+        $files = $this->finder->files()
+            ->in(config('stats.paths', []))
             ->name('*.php');
+
+        return collect($files)
+            ->reject(function ($file) use ($excludes) {
+                return $this->isExcluded($file, $excludes);
+            });
+    }
+
+    protected function isExcluded(SplFileInfo $file, Collection $excludes)
+    {
+        return $excludes->contains(function ($exclude) use ($file) {
+            return starts_with($file->getPathname(), $exclude);
+        });
     }
 }

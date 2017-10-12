@@ -8,8 +8,13 @@ class ClassFinderTest extends TestCase
 {
     public function getFinder()
     {
-        config()->set('stats.path', [
-            __DIR__.'/../tests/Stubs',
+        config()->set('stats', [
+            'paths' => [
+                __DIR__.'/../tests/Stubs',
+            ],
+            'exclude' => [
+                __DIR__.'/../tests/Stubs/ExcludedFile.php',
+            ]
         ]);
 
         return resolve(ClassFinder::class);
@@ -143,6 +148,14 @@ class ClassFinderTest extends TestCase
 
         $this->assertFalse($classes->contains('stdClass'));
         $this->assertFalse($classes->contains('Exception'));
+    }
+
+    /** @test */
+    public function it_ignores_exluded_file()
+    {
+        $classes = $this->getFinder()->getDeclaredClasses();
+
+        $this->assertFalse($classes->contains('ExcludedFile'));
     }
 
     /** @test */
