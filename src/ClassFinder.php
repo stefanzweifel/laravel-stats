@@ -28,7 +28,7 @@ class ClassFinder
 
     /**
      * Return a Collection of Declared Classes
-     * Classes belonging to the Illuminate and Symfony Namespace
+     * Classes that belong to the Illuminate and Symfony Namespace
      * are removed from the Collection.
      *
      * @return Illuminate\Support\Collection
