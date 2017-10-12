@@ -3,7 +3,7 @@
 return [
 
     /*
-     * Ever project is different and sometimes files
+     * Every project is different and sometimes files
      * and folders should be ignored and never
      * count towards the project stats.
      */
@@ -17,7 +17,7 @@ return [
         ],
 
         /*
-         * Ignore certain file names or extensions
+         * Ignore certain filenames or extensions
          */
         'files' => [
             // 'helpers.php'
