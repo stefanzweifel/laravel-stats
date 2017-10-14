@@ -55,7 +55,7 @@ class ReflectionClass extends NativeReflectionClass
      *
      * @return mixed (string|boolean)
      */
-    protected function extendsLaravelComponentClass(\ReflectionClass $reflection)
+    protected function extendsLaravelComponentClass(NativeReflectionClass $reflection)
     {
         // Check if Classname of currently given Class is in Extends Array
         $extends = $this->componentConfiguration()->pluck('extends', 'name')->filter();
@@ -87,7 +87,7 @@ class ReflectionClass extends NativeReflectionClass
      *
      * @return mixed (string|boolean)
      */
-    protected function usesLaravelComponentTrait(\ReflectionClass $reflection)
+    protected function usesLaravelComponentTrait(NativeReflectionClass $reflection)
     {
         // If the given Class does not use any traits, return false
         if (count($reflection->getTraits()) == 0) {
@@ -122,7 +122,7 @@ class ReflectionClass extends NativeReflectionClass
         return false;
     }
 
-    public function implementsLaravelComponentInterface(\ReflectionClass $reflection)
+    public function implementsLaravelComponentInterface(NativeReflectionClass $reflection)
     {
         // If the given Class does not use any traits, return false
         if (count($reflection->getInterfaces()) == 0) {
@@ -155,7 +155,7 @@ class ReflectionClass extends NativeReflectionClass
      *
      * @return  mixed (string|boolean)
      */
-    public function isRegisteredPolicy(\ReflectionClass $reflection)
+    public function isRegisteredPolicy(NativeReflectionClass $reflection)
     {
         $policies = resolve(Gate::class)->policies();
 
