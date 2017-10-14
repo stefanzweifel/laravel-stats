@@ -50,7 +50,9 @@ class ClassFinder
 
         $this->findFilesInProjectPath()
             ->each(function ($file) {
-                require_once $file->getRealPath();
+                try {
+                    require_once $file->getRealPath();
+                } catch (Exception $e) {}
             });
 
         ob_end_clean();
