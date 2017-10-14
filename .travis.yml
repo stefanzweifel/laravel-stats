@@ -1,14 +1,13 @@
 language: php
+sudo: false
+dist: trusty
 
 php:
   - 7.0
   - 7.1
 
 before_script:
-  - travis_retry composer self-update
-  - travis_retry composer install --prefer-source --no-interaction --dev
+  - phpenv config-rm xdebug.ini
+  - travis_retry composer install --prefer-source --no-interaction
 
 script: phpunit
-
-after_success:
-  - travis_retry php vendor/bin/coveralls

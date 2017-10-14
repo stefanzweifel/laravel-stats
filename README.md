@@ -7,9 +7,6 @@
 <a href="https://travis-ci.org/stefanzweifel/laravel-stats">
     <img src="https://travis-ci.org/stefanzweifel/laravel-stats.svg" alt="">
 </a>
-<a href="https://coveralls.io/github/stefanzweifel/laravel-stats?branch=master">
-    <img src="https://coveralls.io/repos/github/stefanzweifel/laravel-stats/badge.svg?branch=master" alt="">
-</a>
 <a href="https://packagist.org/packages/wnx/laravel-stats">
     <img src="https://poser.pugx.org/wnx/laravel-stats/v/stable" alt="">
 </a>
@@ -27,7 +24,7 @@ Get insights about your Laravel Project. (Inspired by [`rake stats`](https://rob
 
 ### Installing
 
-The easiest way to install the the package is by using composer. (The package is currently in beta.)
+The easiest way to install the the package is by using composer. (The package is currently in beta and requires php ^7.0)
 
 ```shell
 composer require "wnx/laravel-stats:1.0.0-beta"

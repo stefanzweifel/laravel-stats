@@ -9,7 +9,7 @@ use ReflectionMethod;
 class ClassMethodsAnalyzer
 {
     /**
-     * Return the total numbers of methods declared on the given class.
+     * Return the total number of methods declared on the given class.
      *
      * @param ReflectionClass $class
      *
@@ -78,7 +78,7 @@ class ClassMethodsAnalyzer
 
     /**
      * Return a Collection of Method Names which are only declared on the class itself
-     * Methods declared on a used trait are beeing ignored.
+     * Methods declared on a trait are ignored.
      *
      * @param ReflectionClass $class
      *
@@ -87,26 +87,24 @@ class ClassMethodsAnalyzer
     public function getMethodsWithoutTraitMethods(ReflectionClass $class) : Collection
     {
         return $this->getMethods($class)->diff(
-            collect($this->getTraitMethods($class))
+            $this->getTraitMethods($class)
         );
     }
 
     /**
      * Get an Array of Trait Methods.
      *
-     * @return array
+     * @return Collection
      */
-    protected function getTraitMethods($class) : array
+    protected function getTraitMethods($class) : Collection
     {
-        $methods = [];
-        $traits = $class->getTraits();
-
-        foreach ($traits as $trait) {
-            foreach ($trait->getMethods() as $method) {
-                $methods[] = $method->getName();
-            }
-        }
-
-        return $methods;
+        return collect($class->getTraits())
+            ->map(function ($trait) {
+                return $trait->getMethods();
+            })
+            ->flatten()
+            ->map(function ($method) {
+                return $method->getName();
+            });
     }
 }

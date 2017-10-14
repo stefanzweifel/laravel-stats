@@ -36,7 +36,7 @@ class ComponentStatistics
     }
 
     /**
-     * Return the total number of Classes declared for this component.
+     * Return the total number of Classes declared for the component.
      *
      * @return int
      */
@@ -46,7 +46,7 @@ class ComponentStatistics
     }
 
     /**
-     * Return the total number of Methods declared over all declared classes.
+     * Return the total number of Methods declared in all declared classes.
      *
      * @return int
      */
