@@ -30,17 +30,6 @@ class ReflectionClassTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_php_native_reflection_class()
-    {
-        $reflection = new ReflectionClass(TestCase::class);
-
-        $this->assertInstanceOf(
-            \ReflectionClass::class,
-            $reflection->getNativeReflectionClass()
-        );
-    }
-
-    /** @test */
     public function it_returns_true_if_class_could_be_identified_as_a_laravel_component()
     {
         $reflection = new ReflectionClass(ProjectsController::class);

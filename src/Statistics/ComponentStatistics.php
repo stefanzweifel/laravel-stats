@@ -86,7 +86,7 @@ class ComponentStatistics
         $classPaths = [];
 
         foreach ($this->component->getClasses() as $reflection) {
-            $classPaths[] = $reflection->getNativeReflectionClass()->getFileName();
+            $classPaths[] = $reflection->getFileName();
         }
 
         $service = resolve(Analyser::class);
@@ -104,7 +104,7 @@ class ComponentStatistics
         $classPaths = [];
 
         foreach ($this->component->getClasses() as $reflection) {
-            $classPaths[] = $reflection->getNativeReflectionClass()->getFileName();
+            $classPaths[] = $reflection->getFileName();
         }
 
         $service = resolve(Analyser::class);
