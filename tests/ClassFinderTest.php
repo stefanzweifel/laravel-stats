@@ -8,10 +8,16 @@ class ClassFinderTest extends TestCase
 {
     public function getFinder()
     {
-        $service = resolve(ClassFinder::class);
-        $service->setBasePath(__DIR__.'/../tests/Stubs');
+        config()->set('stats', [
+            'paths' => [
+                __DIR__.'/../tests/Stubs',
+            ],
+            'exclude' => [
+                __DIR__.'/../tests/Stubs/ExcludedFile.php',
+            ]
+        ]);
 
-        return $service;
+        return resolve(ClassFinder::class);
     }
 
     /** @test */
@@ -136,16 +142,6 @@ class ClassFinderTest extends TestCase
     }
 
     /** @test */
-    public function it_does_not_require_files_which_are_set_to_be_ignored()
-    {
-        $classes = $this->getFinder()->getDeclaredClasses();
-
-        $this->assertFalse($classes->contains('html'));
-        $this->assertFalse($classes->contains('blade'));
-        $this->assertFalse($classes->contains('twig'));
-    }
-
-    /** @test */
     public function it_ignores_native_php_classes()
     {
         $classes = $this->getFinder()->getDeclaredClasses();
@@ -155,21 +151,18 @@ class ClassFinderTest extends TestCase
     }
 
     /** @test */
+    public function it_ignores_exluded_file()
+    {
+        $classes = $this->getFinder()->getDeclaredClasses();
+
+        $this->assertFalse($classes->contains('ExcludedFile'));
+    }
+
+    /** @test */
     public function it_ignores_vendored_classes()
     {
         $classes = $this->getFinder()->getDeclaredClasses();
 
         $this->assertFalse($classes->contains(\Symfony\Component\Finder\Finder::class));
-    }
-
-    /** @test */
-    public function it_ignores_ide_helper_file()
-    {
-        $files = collect(iterator_to_array($this->getFinder()->findFilesInProjectPath()));
-        $files = $files->filter(function($file) {
-            return $file->getFileName() === '_ide_helper.php';
-        });
-
-        $this->assertEquals(0, $files->count());
     }
 }
