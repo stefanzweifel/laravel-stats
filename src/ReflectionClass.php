@@ -207,9 +207,13 @@ class ReflectionClass
     {
         // The Router Instance returns emtpy array, if I don't resolve the
         // HTTP Kernel here. Why is that? This seems weird ...
-        resolve(\Illuminate\Contracts\Http\Kernel::class);
-        $router = resolve('router');
+        $kernel = resolve(\Illuminate\Contracts\Http\Kernel::class);
 
+        if ($kernel->hasMiddleware($reflection->getName())) {
+            return 'Middlewares';
+        }
+
+        $router = resolve('router');
         $middlewares = collect($router->getMiddleware())->flatten();
         $groupMiddlewares = collect($router->getMiddlewareGroups())->flatten();
         $mergedMiddlewares = $middlewares->merge($groupMiddlewares);
