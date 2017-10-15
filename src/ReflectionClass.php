@@ -29,6 +29,8 @@ class ReflectionClass extends NativeReflectionClass
             return $componentName;
         } elseif ($componentName = $this->isRegisteredPolicy($this)) {
             return $componentName;
+        } elseif ($componentName = $this->isRegisteredMiddleware($this)) {
+            return $componentName;
         }
     }
 
@@ -169,6 +171,43 @@ class ReflectionClass extends NativeReflectionClass
         // If yes, recursively call this method
         if ($hasParentClass !== false) {
             return $this->isRegisteredPolicy($hasParentClass);
+        }
+
+        return false;
+    }
+
+    /**
+     * Determine if the given class is a registered Middleware
+     *
+     * @param  \ReflectionClass $reflection
+     *
+     * @return boolean
+     */
+    public function isRegisteredMiddleware(\ReflectionClass $reflection)
+    {
+        // The Router Instance returns empty array, if I don't resolve the
+        // HTTP Kernel here. Why is that? This seems weird ...
+        $kernel = resolve(\Illuminate\Contracts\Http\Kernel::class);
+
+        if ($kernel->hasMiddleware($reflection->getName())) {
+            return 'Middlewares';
+        }
+
+        $router = resolve('router');
+        $middlewares = collect($router->getMiddleware())->flatten();
+        $groupMiddlewares = collect($router->getMiddlewareGroups())->flatten();
+        $mergedMiddlewares = $middlewares->merge($groupMiddlewares);
+
+        if ($mergedMiddlewares->contains($reflection->getName())) {
+            return 'Middlewares';
+        }
+
+        $hasParentClass = $reflection->getParentClass();
+
+        // Does the Class have a Parent Class?
+        // If yes, recursively call this method
+        if ($hasParentClass !== false) {
+            return $this->isRegisteredMiddleware($hasParentClass);
         }
 
         return false;

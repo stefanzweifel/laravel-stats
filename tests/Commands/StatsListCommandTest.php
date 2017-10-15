@@ -13,6 +13,7 @@ class StatsListCommandTest extends TestCase
         $this->artisan('stats');
         $resultAsText = Artisan::output();
 
+        $this->assertContains('Middlewares', $resultAsText);
         $this->assertContains('Controllers', $resultAsText);
         $this->assertContains('Total', $resultAsText);
     }

@@ -71,7 +71,6 @@ class ComponentConfiguration
             ],
             [
                 'name' => 'Middlewares',
-                // TODO
             ],
             [
                 'name' => 'PHPUnit Tests',

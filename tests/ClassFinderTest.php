@@ -56,13 +56,13 @@ class ClassFinderTest extends TestCase
     /** @test */
     public function it_finds_middlewares()
     {
-        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Middleware\DemoMiddleware::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Middlewares\DemoMiddleware::class));
     }
 
     /** @test */
     public function it_finds_migrations()
     {
-        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Middleware\DemoMiddleware::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Migrations\CreateUsersTable::class));
     }
 
     /** @test */

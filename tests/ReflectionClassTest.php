@@ -5,6 +5,7 @@ namespace Wnx\LaravelStats\Tests;
 use Illuminate\Support\Facades\Gate;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
+use Wnx\LaravelStats\Tests\Stubs\Middlewares\DemoMiddleware;
 use Wnx\LaravelStats\Tests\Stubs\Models\Project;
 use Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy;
 use Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule;
@@ -69,5 +70,26 @@ class ReflectionClassTest extends TestCase
         $reflection = new ReflectionClass(DemoPolicy::class);
 
         $this->assertEquals('Policies', $reflection->getLaravelComponentName());
+    }
+
+    /** @test */
+    public function it_returns_component_name_for_middlewares()
+    {
+        $reflection = new ReflectionClass(DemoMiddleware::class);
+
+        $this->assertTrue($reflection->isLaravelComponent());
+        $this->assertEquals('Middlewares', $reflection->getLaravelComponentName());
+    }
+
+    /** @test */
+    public function it_currently_does_not_recognize_middlewares_which_are_only_defined_in_the_global_middleware_array()
+    {
+        // TODO: The TrimStrings-Middleware should also be recognized as a Middleware, even though
+        // it has only been declared in the `$middleware` variable
+
+        $reflection = new ReflectionClass(\Illuminate\Foundation\Http\Middleware\TrimStrings::class);
+
+        $this->assertFalse($reflection->isLaravelComponent());
+        $this->assertEquals(null, $reflection->getLaravelComponentName());
     }
 }
