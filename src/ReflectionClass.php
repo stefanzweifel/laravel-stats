@@ -6,38 +6,28 @@ use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Support\Collection;
 use ReflectionClass as NativeReflectionClass;
 
-class ReflectionClass
+class ReflectionClass extends NativeReflectionClass
 {
-    /**
-     * @var ReflectionClass
-     */
-    protected $class;
-
-    public function __construct($className)
-    {
-        $this->class = new NativeReflectionClass($className);
-    }
-
     public function isNative()
     {
-        return $this->class->getFileName() === false;
+        return $this->getFileName() === false;
     }
 
     public function isVendorProvided()
     {
-        return $this->class->getFileName()
-            && str_contains($this->class->getFileName(), '/vendor/');
+        return $this->getFileName()
+            && str_contains($this->getFileName(), '/vendor/');
     }
 
     public function getLaravelComponentName()
     {
-        if ($componentName = $this->extendsLaravelComponentClass($this->class)) {
+        if ($componentName = $this->extendsLaravelComponentClass($this)) {
             return $componentName;
-        } elseif ($componentName = $this->usesLaravelComponentTrait($this->class)) {
+        } elseif ($componentName = $this->usesLaravelComponentTrait($this)) {
             return $componentName;
-        } elseif ($componentName = $this->implementsLaravelComponentInterface($this->class)) {
+        } elseif ($componentName = $this->implementsLaravelComponentInterface($this)) {
             return $componentName;
-        } elseif ($componentName = $this->isRegisteredPolicy($this->class)) {
+        } elseif ($componentName = $this->isRegisteredPolicy($this)) {
             return $componentName;
         }
     }
@@ -46,16 +36,6 @@ class ReflectionClass
     {
         return (bool) $this->getLaravelComponentName();
 
-    }
-
-    /**
-     * Return the Native ReflectionClass Instance.
-     *
-     * @return NativeReflectionClass
-     */
-    public function getNativeReflectionClass() : NativeReflectionClass
-    {
-        return $this->class;
     }
 
     /**
@@ -75,7 +55,7 @@ class ReflectionClass
      *
      * @return mixed (string|boolean)
      */
-    protected function extendsLaravelComponentClass(\ReflectionClass $reflection)
+    protected function extendsLaravelComponentClass(NativeReflectionClass $reflection)
     {
         // Check if Classname of currently given Class is in Extends Array
         $extends = $this->componentConfiguration()->pluck('extends', 'name')->filter();
@@ -107,7 +87,7 @@ class ReflectionClass
      *
      * @return mixed (string|boolean)
      */
-    protected function usesLaravelComponentTrait(\ReflectionClass $reflection)
+    protected function usesLaravelComponentTrait(NativeReflectionClass $reflection)
     {
         // If the given Class does not use any traits, return false
         if (count($reflection->getTraits()) == 0) {
@@ -142,7 +122,7 @@ class ReflectionClass
         return false;
     }
 
-    public function implementsLaravelComponentInterface(\ReflectionClass $reflection)
+    public function implementsLaravelComponentInterface(NativeReflectionClass $reflection)
     {
         // If the given Class does not use any traits, return false
         if (count($reflection->getInterfaces()) == 0) {
@@ -175,7 +155,7 @@ class ReflectionClass
      *
      * @return  mixed (string|boolean)
      */
-    public function isRegisteredPolicy(\ReflectionClass $reflection)
+    public function isRegisteredPolicy(NativeReflectionClass $reflection)
     {
         $policies = resolve(Gate::class)->policies();
 

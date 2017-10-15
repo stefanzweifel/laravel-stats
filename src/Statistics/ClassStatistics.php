@@ -23,11 +23,9 @@ class ClassStatistics
      */
     public function getNumberOfMethods() : int
     {
-        $class = $this->class->getNativeReflectionClass();
-
-        return collect($class->getMethods())
-            ->filter(function ($method) use ($class) {
-                return $method->getFileName() == $class->getFileName();
+        return collect($this->class->getMethods())
+            ->filter(function ($method) {
+                return $method->getFileName() == $this->class->getFileName();
             })
             ->count();
     }
