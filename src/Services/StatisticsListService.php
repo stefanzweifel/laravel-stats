@@ -42,8 +42,7 @@ class StatisticsListService
     {
         $this->findAndSortComponents();
 
-        $statistics = resolve(ProjectStatistics::class);
-        $statistics->addComponents($this->components);
+        $statistics = new ProjectStatistics($this->components);
 
         $data = $statistics->generate();
 
