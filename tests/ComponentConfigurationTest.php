@@ -6,115 +6,94 @@ use Wnx\LaravelStats\ComponentConfiguration;
 
 class ComponentConfigurationTest extends TestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->config = resolve(ComponentConfiguration::class)->get();
+    }
+
     /** @test */
     public function it_has_configuration_for_controllers()
     {
-        $config = resolve(ComponentConfiguration::class)->get();
-
-        $this->assertTrue($config->contains('name', 'Controllers'));
+        $this->assertTrue($this->config->contains('name', 'Controllers'));
     }
 
     /** @test */
     public function it_has_configuration_ofrm_models()
     {
-        $config = resolve(ComponentConfiguration::class)->get();
-
-        $this->assertTrue($config->contains('name', 'Models'));
+        $this->assertTrue($this->config->contains('name', 'Models'));
     }
 
     /** @test */
     public function it_has_configuration_for_commands()
     {
-        $config = resolve(ComponentConfiguration::class)->get();
-
-        $this->assertTrue($config->contains('name', 'Commands'));
+        $this->assertTrue($this->config->contains('name', 'Commands'));
     }
 
     /** @test */
     public function it_has_configuration_for_events()
     {
-        $config = resolve(ComponentConfiguration::class)->get();
-
-        $this->assertTrue($config->contains('name', 'Events'));
+        $this->assertTrue($this->config->contains('name', 'Events'));
     }
 
     /** @test */
     public function it_has_configuration_for_mails()
     {
-        $config = resolve(ComponentConfiguration::class)->get();
-
-        $this->assertTrue($config->contains('name', 'Mails'));
+        $this->assertTrue($this->config->contains('name', 'Mails'));
     }
 
     /** @test */
     public function it_has_configuration_for_notifications()
     {
-        $config = resolve(ComponentConfiguration::class)->get();
-
-        $this->assertTrue($config->contains('name', 'Notifications'));
+        $this->assertTrue($this->config->contains('name', 'Notifications'));
     }
 
     /** @test */
     public function it_has_configuration_for_jobs()
     {
-        $config = resolve(ComponentConfiguration::class)->get();
-
-        $this->assertTrue($config->contains('name', 'Jobs'));
+        $this->assertTrue($this->config->contains('name', 'Jobs'));
     }
 
     /** @test */
     public function it_has_configuration_for_migrations()
     {
-        $config = resolve(ComponentConfiguration::class)->get();
-
-        $this->assertTrue($config->contains('name', 'Migrations'));
+        $this->assertTrue($this->config->contains('name', 'Migrations'));
     }
 
     /** @test */
     public function it_has_configuration_for_seeders()
     {
-        $config = resolve(ComponentConfiguration::class)->get();
-
-        $this->assertTrue($config->contains('name', 'Seeders'));
+        $this->assertTrue($this->config->contains('name', 'Seeders'));
     }
 
     /** @test */
     public function it_has_configuration_for_api_resources()
     {
-        $config = resolve(ComponentConfiguration::class)->get();
-
-        $this->assertTrue($config->contains('name', 'Resources'));
+        $this->assertTrue($this->config->contains('name', 'Resources'));
     }
 
     /** @test */
     public function it_has_configuration_for_validation_rules()
     {
-        $config = resolve(ComponentConfiguration::class)->get();
-
-        $this->assertTrue($config->contains('name', 'Rules'));
+        $this->assertTrue($this->config->contains('name', 'Rules'));
     }
 
     /** @test */
     public function it_has_configuration_for_form_requests()
     {
-        $config = resolve(ComponentConfiguration::class)->get();
-
-        $this->assertTrue($config->contains('name', 'Requests'));
+        $this->assertTrue($this->config->contains('name', 'Requests'));
     }
 
     /** @test */
     public function it_has_configuration_for_service_providers()
     {
-        $config = resolve(ComponentConfiguration::class)->get();
-
-        $this->assertTrue($config->contains('name', 'Service Providers'));
+        $this->assertTrue($this->config->contains('name', 'Service Providers'));
     }
 
     /** @test */
     public function it_has_configuration_for_policies()
     {
-        $config = resolve(ComponentConfiguration::class)->get();
-
-        $this->assertTrue($config->contains('name', 'Policies'));
+        $this->assertTrue($this->config->contains('name', 'Policies'));
     }
 }
