@@ -52,13 +52,11 @@ class ComponentStatistics
      */
     public function getNumberOfMethods() : int
     {
-        $methods = 0;
-
-        foreach ($this->component->getClasses() as $reflection) {
-            $methods += $reflection->getDefinedMethods()->count();
-        }
-
-        return $methods;
+        return $this->component->getClasses()
+            ->map(function ($class) {
+                return $class->getDefinedMethods()->count();
+            })
+            ->sum();
     }
 
     /**
