@@ -24,8 +24,6 @@ class ClassStatistics
      */
     public function getNumberOfMethods() : int
     {
-        return resolve(ClassMethodsAnalyzer::class)->getNumberOfMethods(
-            $this->class->getNativeReflectionClass()
-        );
+        return resolve(ClassMethodsAnalyzer::class)->getNumberOfMethods($this->class);
     }
 }
