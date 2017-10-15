@@ -55,8 +55,7 @@ class ComponentStatistics
         $methods = 0;
 
         foreach ($this->component->getClasses() as $reflection) {
-            $classStats = new ClassStatistics($reflection);
-            $methods += $classStats->getNumberOfMethods();
+            $methods += $reflection->getDefinedMethods()->count();
         }
 
         return $methods;
