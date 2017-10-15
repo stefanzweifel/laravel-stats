@@ -1,6 +1,6 @@
 <?php
 
-namespace Wnx\LaravelStats\Tests\Stubs\Seeder;
+namespace Wnx\LaravelStats\Tests\Stubs\Seeders;
 
 use Illuminate\Database\Seeder;
 

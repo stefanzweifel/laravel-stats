@@ -50,7 +50,7 @@ class ClassFinderTest extends TestCase
     /** @test */
     public function it_finds_mails()
     {
-        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Mail\DemoMail::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Mails\DemoMail::class));
     }
 
     /** @test */
@@ -104,13 +104,13 @@ class ClassFinderTest extends TestCase
     /** @test */
     public function it_finds_seeders()
     {
-        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Seeder\DemoSeeder::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Seeders\DemoSeeder::class));
     }
 
     /** @test */
     public function it_finds_service_providers()
     {
-        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Providers\DemoProvider::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\ServiceProviders\DemoProvider::class));
     }
 
     /** @test */
