@@ -6,8 +6,10 @@ use Wnx\LaravelStats\ClassFinder;
 
 class ClassFinderTest extends TestCase
 {
-    public function getFinder()
+    public function setUp()
     {
+        parent::setUp();
+
         config()->set('stats', [
             'paths' => [
                 __DIR__.'/../tests/Stubs',
@@ -17,152 +19,116 @@ class ClassFinderTest extends TestCase
             ]
         ]);
 
-        return resolve(ClassFinder::class);
+        $this->classes = resolve(ClassFinder::class)->getDeclaredClasses();
     }
 
     /** @test */
     public function it_finds_controllers()
     {
-        $classes = $this->getFinder()->getDeclaredClasses();
-
-        $this->assertTrue($classes->contains(\Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController::class));
-        $this->assertTrue($classes->contains(\Wnx\LaravelStats\Tests\Stubs\Controllers\Controller::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Controllers\Controller::class));
     }
 
     /** @test */
     public function it_finds_commands()
     {
-        $classes = $this->getFinder()->getDeclaredClasses();
-
-        $this->assertTrue($classes->contains(\Wnx\LaravelStats\Tests\Stubs\Commands\DemoCommand::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Commands\DemoCommand::class));
     }
 
     /** @test */
     public function it_finds_events()
     {
-        $classes = $this->getFinder()->getDeclaredClasses();
-
-        $this->assertTrue($classes->contains(\Wnx\LaravelStats\Tests\Stubs\Events\DemoEvent::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Events\DemoEvent::class));
     }
 
     /** @test */
     public function it_finds_jobs()
     {
-        $classes = $this->getFinder()->getDeclaredClasses();
-
-        $this->assertTrue($classes->contains(\Wnx\LaravelStats\Tests\Stubs\Jobs\DemoJob::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Jobs\DemoJob::class));
     }
 
     /** @test */
     public function it_finds_mails()
     {
-        $classes = $this->getFinder()->getDeclaredClasses();
-
-        $this->assertTrue($classes->contains(\Wnx\LaravelStats\Tests\Stubs\Mail\DemoMail::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Mail\DemoMail::class));
     }
 
     /** @test */
     public function it_finds_middlewares()
     {
-        $classes = $this->getFinder()->getDeclaredClasses();
-
-        $this->assertTrue($classes->contains(\Wnx\LaravelStats\Tests\Stubs\Middlewares\DemoMiddleware::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Middlewares\DemoMiddleware::class));
     }
 
     /** @test */
     public function it_finds_migrations()
     {
-        $classes = $this->getFinder()->getDeclaredClasses();
-
-        $this->assertTrue($classes->contains(\Wnx\LaravelStats\Tests\Stubs\Migrations\CreateUsersTable::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Migrations\CreateUsersTable::class));
     }
 
     /** @test */
     public function it_finds_models()
     {
-        $classes = $this->getFinder()->getDeclaredClasses();
-
-        $this->assertTrue($classes->contains(\Wnx\LaravelStats\Tests\Stubs\Models\Project::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Models\Project::class));
     }
 
     /** @test */
     public function it_finds_notifications()
     {
-        $classes = $this->getFinder()->getDeclaredClasses();
-
-        $this->assertTrue($classes->contains(\Wnx\LaravelStats\Tests\Stubs\Notifications\ServerDownNotification::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Notifications\ServerDownNotification::class));
     }
 
     /** @test */
     public function it_finds_policies()
     {
-        $classes = $this->getFinder()->getDeclaredClasses();
-
-        $this->assertTrue($classes->contains(\Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy::class));
     }
 
     /** @test */
     public function it_finds_request()
     {
-        $classes = $this->getFinder()->getDeclaredClasses();
-
-        $this->assertTrue($classes->contains(\Wnx\LaravelStats\Tests\Stubs\Requests\UserRequest::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Requests\UserRequest::class));
     }
 
     /** @test */
     public function it_finds_resources()
     {
-        $classes = $this->getFinder()->getDeclaredClasses();
-
-        $this->assertTrue($classes->contains(\Wnx\LaravelStats\Tests\Stubs\Resources\DemoResource::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Resources\DemoResource::class));
     }
 
     /** @test */
     public function it_finds_rules()
     {
-        $classes = $this->getFinder()->getDeclaredClasses();
-
-        $this->assertTrue($classes->contains(\Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule::class));
     }
 
     /** @test */
     public function it_finds_seeders()
     {
-        $classes = $this->getFinder()->getDeclaredClasses();
-
-        $this->assertTrue($classes->contains(\Wnx\LaravelStats\Tests\Stubs\Seeder\DemoSeeder::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Seeder\DemoSeeder::class));
     }
 
     /** @test */
     public function it_finds_service_providers()
     {
-        $classes = $this->getFinder()->getDeclaredClasses();
-
-        $this->assertTrue($classes->contains(\Wnx\LaravelStats\Tests\Stubs\Providers\DemoProvider::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Providers\DemoProvider::class));
     }
 
     /** @test */
     public function it_ignores_native_php_classes()
     {
-        $classes = $this->getFinder()->getDeclaredClasses();
-
-        $this->assertFalse($classes->contains('stdClass'));
-        $this->assertFalse($classes->contains('Exception'));
+        $this->assertFalse($this->classes->contains('stdClass'));
+        $this->assertFalse($this->classes->contains('Exception'));
     }
 
     /** @test */
     public function it_ignores_exluded_file()
     {
-        $classes = $this->getFinder()->getDeclaredClasses();
-
-        $this->assertFalse($classes->contains('ExcludedFile'));
+        $this->assertFalse($this->classes->contains('ExcludedFile'));
     }
 
     /** @test */
     public function it_ignores_vendored_classes()
     {
-        $classes = $this->getFinder()->getDeclaredClasses();
-
-        $this->assertFalse($classes->contains(\Symfony\Component\Finder\Finder::class));
+        $this->assertFalse($this->classes->contains(\Symfony\Component\Finder\Finder::class));
     }
 }

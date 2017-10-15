@@ -13,23 +13,15 @@ class ClassStatisticsTest extends TestCase
     /** @test */
     public function it_returns_number_of_methods_for_given_class()
     {
-        $reflect = new ReflectionClass(new class() {
-            public function foo()
-            {
-            }
+        $stats = new ClassStatistics(
+            new ReflectionClass(ProjectsController::class)
+        );
 
-            public function bar()
-            {
-            }
-        });
-
-        $stats = new ClassStatistics($reflect);
-
-        $this->assertEquals(2, $stats->getNumberOfMethods());
+        $this->assertEquals(3, $stats->getNumberOfMethods());
     }
 
     /** @test */
-    public function it_returns_number_of_methods_which_are_only_declared_on_the_class()
+    public function it_ignores_method_declared_on_traits()
     {
         $stats = new ClassStatistics(
             new ReflectionClass(Project::class)
