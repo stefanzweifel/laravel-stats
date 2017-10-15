@@ -2,7 +2,6 @@
 
 namespace Wnx\LaravelStats\Statistics;
 
-use Wnx\LaravelStats\Analyzers\ClassMethodsAnalyzer;
 use Wnx\LaravelStats\ReflectionClass;
 
 class ClassStatistics
@@ -24,6 +23,10 @@ class ClassStatistics
      */
     public function getNumberOfMethods() : int
     {
-        return resolve(ClassMethodsAnalyzer::class)->getNumberOfMethods($this->class);
+        return collect($this->class->getMethods())
+            ->filter(function ($method) {
+                return $method->getFileName() == $this->class->getFileName();
+            })
+            ->count();
     }
 }
