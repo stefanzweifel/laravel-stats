@@ -29,7 +29,7 @@ class ReflectionClass extends NativeReflectionClass
             return $componentName;
         } elseif ($componentName = $this->isRegisteredPolicy($this)) {
             return $componentName;
-        } elseif ($componentName = $this->isRegisteredMiddleware($this->class)) {
+        } elseif ($componentName = $this->isRegisteredMiddleware($this)) {
             return $componentName;
         }
     }
