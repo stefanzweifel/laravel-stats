@@ -14,12 +14,4 @@
             <directory>tests</directory>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist>
-            <directory suffix=".php">src/</directory>
-        </whitelist>
-        <exclude>
-            <directory suffix=".php">test/Stubs/</directory>
-      </exclude>
-    </filter>
 </phpunit>
