@@ -23,10 +23,6 @@ class ClassStatistics
      */
     public function getNumberOfMethods() : int
     {
-        return collect($this->class->getMethods())
-            ->filter(function ($method) {
-                return $method->getFileName() == $this->class->getFileName();
-            })
-            ->count();
+        return $this->class->getDefinedMethods()->count();
     }
 }

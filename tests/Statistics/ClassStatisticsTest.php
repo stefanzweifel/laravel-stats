@@ -19,18 +19,4 @@ class ClassStatisticsTest extends TestCase
 
         $this->assertEquals(3, $stats->getNumberOfMethods());
     }
-
-    /** @test */
-    public function it_ignores_method_declared_on_traits()
-    {
-        $stats = new ClassStatistics(
-            new ReflectionClass(Project::class)
-        );
-        $this->assertEquals(0, $stats->getNumberOfMethods());
-
-        $stats = new ClassStatistics(
-            new ReflectionClass(ProjectsController::class)
-        );
-        $this->assertEquals(3, $stats->getNumberOfMethods());
-    }
 }
