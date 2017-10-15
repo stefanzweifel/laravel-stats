@@ -185,7 +185,7 @@ class ReflectionClass extends NativeReflectionClass
      */
     public function isRegisteredMiddleware(\ReflectionClass $reflection)
     {
-        // The Router Instance returns emtpy array, if I don't resolve the
+        // The Router Instance returns empty array, if I don't resolve the
         // HTTP Kernel here. Why is that? This seems weird ...
         $kernel = resolve(\Illuminate\Contracts\Http\Kernel::class);
 
