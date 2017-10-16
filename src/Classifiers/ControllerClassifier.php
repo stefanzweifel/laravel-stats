@@ -14,11 +14,6 @@ class ControllerClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        return $this->hasBeenRegisteredInRouter($class);
-    }
-
-    protected function hasBeenRegisteredInRouter($class)
-    {
         return collect(resolve(Router::class)->getRoutes())
             ->map(function($route) {
                 return get_class($route->getController());

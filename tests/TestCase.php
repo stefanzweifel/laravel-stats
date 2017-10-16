@@ -3,7 +3,6 @@
 namespace Wnx\LaravelStats\Tests;
 
 use Illuminate\Contracts\Http\Kernel;
-use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Wnx\LaravelStats\StatsServiceProvider;
 use Wnx\LaravelStats\Tests\Stubs\HttpKernel;
