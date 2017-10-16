@@ -27,7 +27,7 @@ class StatisticsListServiceTest extends TestCase
     /** @test */
     public function it_does_not_throw_exception_if_route_closure_is_defined()
     {
-        Route::get('foo', function() {
+        Route::get('foo', function () {
             return [];
         });
 
