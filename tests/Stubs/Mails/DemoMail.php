@@ -1,6 +1,6 @@
 <?php
 
-namespace Wnx\LaravelStats\Tests\Stubs\Mail;
+namespace Wnx\LaravelStats\Tests\Stubs\Mails;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Wnx\LaravelStats\Tests\Stubs\Providers;
+namespace Wnx\LaravelStats\Tests\Stubs\ServiceProviders;
 
 use Illuminate\Support\ServiceProvider;
 
