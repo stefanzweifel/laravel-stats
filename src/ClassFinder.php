@@ -30,7 +30,7 @@ class ClassFinder
     {
         return $this->findAndLoadClasses()
             ->reject(function ($class) {
-                return (new ReflectionClass($class))->isNative();
+                return (new ReflectionClass($class))->isInternal();
             })
             ->reject(function ($class) {
                 return (new ReflectionClass($class))->isVendorProvided();
