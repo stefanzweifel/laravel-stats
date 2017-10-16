@@ -3,7 +3,6 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Illuminate\Routing\Router;
-use Illuminate\Support\Facades\Route;
 use Wnx\LaravelStats\ReflectionClass;
 
 class ControllerClassifier extends Classifier
@@ -15,12 +14,7 @@ class ControllerClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        return $this->extendsBaseController($class) || $this->hasBeenRegisteredInRouter($class);
-    }
-
-    protected function extendsBaseController($class)
-    {
-        return $class->isSubclassOf(\Illuminate\Routing\Controller::class);
+        return $this->hasBeenRegisteredInRouter($class);
     }
 
     protected function hasBeenRegisteredInRouter($class)

@@ -10,12 +10,6 @@ use Wnx\LaravelStats\Tests\Stubs\HttpKernel;
 
 abstract class TestCase extends Orchestra
 {
-    public function setUp()
-    {
-        parent::setUp();
-        $this->setDefaultRoutes();
-    }
-
     /**
      * @param \Illuminate\Foundation\Application $app
      *
@@ -45,10 +39,4 @@ abstract class TestCase extends Orchestra
     {
         $app->singleton(Kernel::class, HttpKernel::class);
     }
-
-    public function setDefaultRoutes()
-    {
-        Route::get('projects', 'Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController@index');
-    }
-
 }
