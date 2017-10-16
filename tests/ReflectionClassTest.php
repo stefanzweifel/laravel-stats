@@ -2,7 +2,9 @@
 
 namespace Wnx\LaravelStats\Tests;
 
+use Illuminate\Support\Facades\Route;
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController;
 use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
 
 class ReflectionClassTest extends TestCase
@@ -15,11 +17,13 @@ class ReflectionClassTest extends TestCase
         $this->assertCount(
             3, $class->getDefinedMethods()
         );
-    }  
-     
+    }
+
     /** @test */
     public function it_determines_wether_given_class_is_laravel_component()
     {
+        Route::get('projects', 'Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController@index');
+
         $reflection = new ReflectionClass(ProjectsController::class);
 
         $this->assertTrue($reflection->isLaravelComponent());
@@ -28,7 +32,9 @@ class ReflectionClassTest extends TestCase
     /** @test */
     public function it_returns_component_name()
     {
-        $reflection = new ReflectionClass(ProjectsController::class);
+        Route::get('projects', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@index');
+
+        $reflection = new ReflectionClass(UsersController::class);
 
         $this->assertEquals('Controllers', $reflection->getLaravelComponentName());
     }

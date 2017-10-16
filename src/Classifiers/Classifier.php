@@ -27,7 +27,7 @@ class Classifier
     public function classify(ReflectionClass $class)
     {
         foreach (self::CLASSIFIERS as $classifier) {
-            $c = new $classifier;
+            $c = new $classifier();
 
             if ($c->satisfies($class)) {
                 return $c->getName();

@@ -2,10 +2,9 @@
 
 namespace Wnx\LaravelStats\Tests\Statistics;
 
-use Illuminate\Support\Collection;
 use Wnx\LaravelStats\Component;
-use Wnx\LaravelStats\Statistics\ProjectStatistics;
 use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\Statistics\ProjectStatistics;
 
 class ProjectStatisticsTest extends TestCase
 {

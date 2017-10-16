@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats\Tests;
 
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Route;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Classifiers\Classifier;
 
@@ -12,14 +13,15 @@ class ClassifierTest extends TestCase
     {
         parent::setUp();
 
-        $this->classifier = new Classifier;
+        $this->classifier = new Classifier();
     }
 
     /** @test */
     public function it_returns_null_for_unidentified_class()
     {
         $this->assertNull(
-            $this->classifier->classify(new ReflectionClass(new class {}))
+            $this->classifier->classify(new ReflectionClass(new class() {
+            }))
         );
     }
 
@@ -34,6 +36,18 @@ class ClassifierTest extends TestCase
     /** @test */
     public function it_detects_controllers()
     {
+        Route::get('users', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@index');
+
+        $this->assertSame(
+            'Controllers', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController::class))
+        );
+    }
+
+    /** @test */
+    public function it_detects_controllers_which_do_not_extend_the_illuminate_base_controller()
+    {
+        Route::get('projects', 'Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController@index');
+
         $this->assertSame(
             'Controllers', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController::class))
         );
@@ -77,7 +91,6 @@ class ClassifierTest extends TestCase
         $this->assertSame(
             'Migrations', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Migrations\CreateUsersTable::class))
         );
-
     }
 
     /** @test */

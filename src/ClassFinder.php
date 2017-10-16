@@ -52,7 +52,8 @@ class ClassFinder
             ->each(function ($file) {
                 try {
                     require_once $file->getRealPath();
-                } catch (Exception $e) {}
+                } catch (Exception $e) {
+                }
             });
 
         ob_end_clean();

@@ -21,7 +21,7 @@ class ReflectionClass extends NativeReflectionClass
 
     public function getLaravelComponentName()
     {
-        return (new Classifier)->classify($this);
+        return (new Classifier())->classify($this);
     }
 
     public function isLaravelComponent()

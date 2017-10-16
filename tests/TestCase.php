@@ -3,9 +3,9 @@
 namespace Wnx\LaravelStats\Tests;
 
 use Illuminate\Contracts\Http\Kernel;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Wnx\LaravelStats\StatsServiceProvider;
 use Wnx\LaravelStats\Tests\Stubs\HttpKernel;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
 {
@@ -31,12 +31,12 @@ abstract class TestCase extends Orchestra
     /**
      * Resolve application HTTP Kernel implementation.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
+     *
      * @return void
      */
     protected function resolveApplicationHttpKernel($app)
     {
         $app->singleton(Kernel::class, HttpKernel::class);
     }
-
 }

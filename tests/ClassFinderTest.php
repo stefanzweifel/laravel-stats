@@ -16,7 +16,7 @@ class ClassFinderTest extends TestCase
             ],
             'exclude' => [
                 __DIR__.'/../tests/Stubs/ExcludedFile.php',
-            ]
+            ],
         ]);
 
         $this->classes = resolve(ClassFinder::class)->getDeclaredClasses();
