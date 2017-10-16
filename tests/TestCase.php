@@ -3,12 +3,19 @@
 namespace Wnx\LaravelStats\Tests;
 
 use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Wnx\LaravelStats\StatsServiceProvider;
 use Wnx\LaravelStats\Tests\Stubs\HttpKernel;
 
 abstract class TestCase extends Orchestra
 {
+    public function setUp()
+    {
+        parent::setUp();
+        $this->setDefaultRoutes();
+    }
+
     /**
      * @param \Illuminate\Foundation\Application $app
      *
@@ -37,6 +44,11 @@ abstract class TestCase extends Orchestra
     protected function resolveApplicationHttpKernel($app)
     {
         $app->singleton(Kernel::class, HttpKernel::class);
+    }
+
+    public function setDefaultRoutes()
+    {
+        Route::get('projects', 'Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController@index');
     }
 
 }

@@ -36,17 +36,15 @@ class ClassifierTest extends TestCase
     public function it_detects_controllers()
     {
         $this->assertSame(
-            'Controllers', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController::class))
+            'Controllers', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController::class))
         );
     }
 
     /** @test */
     public function it_detects_controllers_which_do_not_extend_the_illuminate_base_controller()
     {
-        Route::get('pages', '\Wnx\LaravelStats\Tests\Stubs\Controllers\PagesController@index');
-
         $this->assertSame(
-            'Controllers', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Controllers\PagesController::class))
+            'Controllers', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController::class))
         );
     }
 
