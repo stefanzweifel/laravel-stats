@@ -74,7 +74,10 @@ class ClassifierTest extends TestCase
     /** @test */
     public function it_detects_migrations()
     {
-        $this->markTestSkipped();
+        $this->assertSame(
+            'Migrations', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Migrations\CreateUsersTable::class))
+        );
+
     }
 
     /** @test */
