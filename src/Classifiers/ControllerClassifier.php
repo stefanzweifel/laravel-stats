@@ -15,7 +15,7 @@ class ControllerClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        return $this->extendsBaseController($class) || $this->hasBeenRegisteredInARouter($class);
+        return $this->extendsBaseController($class) || $this->hasBeenRegisteredInRouter($class);
     }
 
     protected function extendsBaseController($class)
@@ -23,7 +23,7 @@ class ControllerClassifier extends Classifier
         return $class->isSubclassOf(\Illuminate\Routing\Controller::class);
     }
 
-    protected function hasBeenRegisteredInARouter($class)
+    protected function hasBeenRegisteredInRouter($class)
     {
         return collect(resolve(Router::class)->getRoutes())
             ->map(function($route) {
