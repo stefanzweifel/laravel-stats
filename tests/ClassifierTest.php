@@ -13,14 +13,15 @@ class ClassifierTest extends TestCase
     {
         parent::setUp();
 
-        $this->classifier = new Classifier;
+        $this->classifier = new Classifier();
     }
 
     /** @test */
     public function it_returns_null_for_unidentified_class()
     {
         $this->assertNull(
-            $this->classifier->classify(new ReflectionClass(new class {}))
+            $this->classifier->classify(new ReflectionClass(new class() {
+            }))
         );
     }
 
@@ -90,7 +91,6 @@ class ClassifierTest extends TestCase
         $this->assertSame(
             'Migrations', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Migrations\CreateUsersTable::class))
         );
-
     }
 
     /** @test */

@@ -3,8 +3,8 @@
 namespace Wnx\LaravelStats;
 
 use Exception;
-use SplFileInfo;
 use Illuminate\Support\Collection;
+use SplFileInfo;
 use Symfony\Component\Finder\Finder;
 
 class ClassFinder
@@ -52,7 +52,8 @@ class ClassFinder
             ->each(function ($file) {
                 try {
                     require_once $file->getRealPath();
-                } catch (Exception $e) {}
+                } catch (Exception $e) {
+                }
             });
 
         ob_end_clean();
