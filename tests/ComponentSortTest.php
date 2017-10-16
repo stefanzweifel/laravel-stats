@@ -2,13 +2,13 @@
 
 namespace Wnx\LaravelStats\Tests;
 
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Route;
 use Wnx\LaravelStats\Component;
+use Illuminate\Support\Collection;
 use Wnx\LaravelStats\ComponentSort;
-use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
-use Wnx\LaravelStats\Tests\Stubs\Events\DemoEvent;
+use Illuminate\Support\Facades\Route;
 use Wnx\LaravelStats\Tests\Stubs\Models\Project;
+use Wnx\LaravelStats\Tests\Stubs\Events\DemoEvent;
+use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
 
 class ComponentSortTest extends TestCase
 {

@@ -2,9 +2,9 @@
 
 namespace Wnx\LaravelStats\Tests\Commands;
 
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Route;
 use Wnx\LaravelStats\Tests\TestCase;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 class StatsListCommandTest extends TestCase
 {

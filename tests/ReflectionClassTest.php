@@ -4,8 +4,8 @@ namespace Wnx\LaravelStats\Tests;
 
 use Illuminate\Support\Facades\Route;
 use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
 use Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController;
+use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
 
 class ReflectionClassTest extends TestCase
 {

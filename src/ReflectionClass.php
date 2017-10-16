@@ -3,8 +3,8 @@
 namespace Wnx\LaravelStats;
 
 use Illuminate\Support\Collection;
-use ReflectionClass as NativeReflectionClass;
 use Wnx\LaravelStats\Classifiers\Classifier;
+use ReflectionClass as NativeReflectionClass;
 
 class ReflectionClass extends NativeReflectionClass
 {

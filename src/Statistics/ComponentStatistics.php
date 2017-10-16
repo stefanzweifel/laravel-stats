@@ -2,8 +2,8 @@
 
 namespace Wnx\LaravelStats\Statistics;
 
-use SebastianBergmann\PHPLOC\Analyser;
 use Wnx\LaravelStats\Component;
+use SebastianBergmann\PHPLOC\Analyser;
 
 class ComponentStatistics
 {

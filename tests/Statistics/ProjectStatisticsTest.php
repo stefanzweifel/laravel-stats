@@ -3,8 +3,8 @@
 namespace Wnx\LaravelStats\Tests\Statistics;
 
 use Wnx\LaravelStats\Component;
-use Wnx\LaravelStats\Statistics\ProjectStatistics;
 use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\Statistics\ProjectStatistics;
 
 class ProjectStatisticsTest extends TestCase
 {
