@@ -21,7 +21,7 @@ class StatsServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/stats.php', 'stats');
 
         $this->commands([
-            StatsListCommand::class
+            StatsListCommand::class,
         ]);
     }
 }

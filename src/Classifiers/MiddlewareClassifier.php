@@ -3,7 +3,6 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
-use Illuminate\Contracts\Auth\Access\Gate;
 
 class MiddlewareClassifier extends Classifier
 {

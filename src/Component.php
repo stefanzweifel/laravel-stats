@@ -23,8 +23,9 @@ class Component
     /**
      * Create a new component instance.
      *
-     * @param  string  $name
-     * @param  Collection  $classes
+     * @param string     $name
+     * @param Collection $classes
+     *
      * @return void
      */
     public function __construct(string $name, Collection $classes)

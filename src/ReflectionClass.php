@@ -3,8 +3,8 @@
 namespace Wnx\LaravelStats;
 
 use Illuminate\Support\Collection;
-use Wnx\LaravelStats\Classifiers\Classifier;
 use ReflectionClass as NativeReflectionClass;
+use Wnx\LaravelStats\Classifiers\Classifier;
 
 class ReflectionClass extends NativeReflectionClass
 {
@@ -21,7 +21,7 @@ class ReflectionClass extends NativeReflectionClass
 
     public function getLaravelComponentName()
     {
-        return (new Classifier)->classify($this);
+        return (new Classifier())->classify($this);
     }
 
     public function isLaravelComponent()

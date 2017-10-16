@@ -15,7 +15,7 @@ class ControllerClassifier extends Classifier
     public function satisfies(ReflectionClass $class)
     {
         return collect(resolve(Router::class)->getRoutes())
-            ->map(function($route) {
+            ->map(function ($route) {
                 return get_class($route->getController());
             })
             ->unique()

@@ -2,7 +2,7 @@
 
 return [
 
-    /**
+    /*
      * List of folders to be analyzed.
      */
     'paths' => [
@@ -10,7 +10,7 @@ return [
         base_path('database'),
     ],
 
-    /**
+    /*
      * List of files/folders to be excluded from analysis.
      */
     'exclude' => [
