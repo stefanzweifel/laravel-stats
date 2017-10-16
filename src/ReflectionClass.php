@@ -41,6 +41,20 @@ class ReflectionClass extends NativeReflectionClass
     }
 
     /**
+     * Return a collection of methods defined on the given class.
+     * This ignores methods defined in parent class, traits etc.
+     *
+     * @return Collection
+     */
+    public function getDefinedMethods() : Collection
+    {
+        return collect($this->getMethods())
+            ->filter(function ($method) {
+                return $method->getFileName() == $this->getFileName();
+            });
+    }
+
+    /**
      * Get Component Configuration.
      *
      * @return Collection

@@ -13,6 +13,16 @@ use Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule;
 class ReflectionClassTest extends TestCase
 {
     /** @test */
+    public function it_returns_a_list_of_methods_for_the_given_class_and_ignores_parent_and_trait_methods()
+    {
+        $class = new ReflectionClass(ProjectsController::class);
+
+        $this->assertCount(
+            3, $class->getDefinedMethods()
+        );
+    }
+
+    /** @test */
     public function it_returns_null_if_component_name_could_not_be_defined()
     {
         $reflection = new ReflectionClass(new class() {
