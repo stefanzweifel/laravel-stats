@@ -10,7 +10,7 @@ class ReflectionClass extends NativeReflectionClass
 {
     public function isVendorProvided()
     {
-    return str_contains($this->getFileName(), '/vendor/');
+        return str_contains($this->getFileName(), '/vendor/');
     }
 
     public function getLaravelComponentName()
