@@ -2,7 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs\Rules;
 
-if (! interface_exists(Illuminate\Contracts\Validation\Rule::class)) {
+if (! interface_exists(\Illuminate\Contracts\Validation\Rule::class)) {
     return;
 }
 

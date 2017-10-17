@@ -2,7 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs\Events;
 
-if (! trait_exists(Illuminate\Foundation\Events\Dispatchable::class)) {
+if (! trait_exists(\Illuminate\Foundation\Events\Dispatchable::class)) {
     return;
 }
 

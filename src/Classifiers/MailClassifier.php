@@ -13,7 +13,7 @@ class MailClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        if (! class_exists(Illuminate\Mail\Mailable::class)) {
+        if (! class_exists(\Illuminate\Mail\Mailable::class)) {
             return false;
         }
 

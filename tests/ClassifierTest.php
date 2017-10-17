@@ -119,7 +119,7 @@ class ClassifierTest extends TestCase
         if (! class_exists(\Wnx\LaravelStats\Tests\Stubs\Notifications\ServerDownNotification::class)) {
             $this->markTestSkipped('Unsupported on current Laravel version.');
         }
-        
+
         $this->assertSame(
             'Notifications', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Notifications\ServerDownNotification::class))
         );

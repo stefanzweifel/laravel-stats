@@ -2,7 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs\Resources;
 
-if (! class_exists(Illuminate\Http\Resources\Json\Resource::class)) {
+if (! class_exists(\Illuminate\Http\Resources\Json\Resource::class)) {
     return;
 }
 

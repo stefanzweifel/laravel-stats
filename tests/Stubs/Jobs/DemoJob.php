@@ -2,7 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs\Jobs;
 
-if (! trait_exists(Illuminate\Foundation\Bus\Dispatchable::class)) {
+if (! trait_exists(\Illuminate\Foundation\Bus\Dispatchable::class)) {
     return;
 }
 

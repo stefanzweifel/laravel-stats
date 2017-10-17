@@ -2,7 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs\Mails;
 
-if (! class_exists(Illuminate\Mail\Mailable::class)) {
+if (! class_exists(\Illuminate\Mail\Mailable::class)) {
     return;
 }
 
