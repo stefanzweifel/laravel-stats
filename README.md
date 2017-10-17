@@ -24,7 +24,8 @@ Get insights about your Laravel Project. (Inspired by [`rake stats`](https://rob
 
 ### Installing
 
-The easiest way to install the the package is by using composer. (The package is currently in beta and requires php ^7.0)
+The easiest way to install the the package is by using composer (The package is currently in BETA).
+The package requires PHP 7.0 and Laravel 5.5 or higher.
 
 ```shell
 composer require "wnx/laravel-stats:1.0.0-beta-2"
@@ -32,15 +33,43 @@ composer require "wnx/laravel-stats:1.0.0-beta-2"
 
 The package will automatically register itself.
 
-If you want to ignore certain folder, files or namespaces you must publish the config file:
+Optionally, you can publish the config file of this package with this command:
 
 ```shell
 php artisan vendor:publish --provider="Wnx\LaravelStats\StatsServiceProvider"
 ```
 
+The following config file will be published in `config/stats.php`
+
+```php
+<?php
+
+return [
+
+    /*
+     * List of folders to be analyzed.
+     */
+    'paths' => [
+        base_path('app'),
+        base_path('database'),
+    ],
+
+    /*
+     * List of files/folders to be excluded from analysis.
+     */
+    'exclude' => [
+        // base_path('app/helpers.php'),
+        // base_path('app/Services'),
+    ],
+
+];
+
+```
+
+
 ## Usage
 
-After installing you can generate the statistics by running the following Artisan Command
+After installing you can generate the statistics by running the following Artisan Command.
 
 ```shell
 php artisan stats
