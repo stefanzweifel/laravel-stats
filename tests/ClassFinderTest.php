@@ -92,12 +92,20 @@ class ClassFinderTest extends TestCase
     /** @test */
     public function it_finds_resources()
     {
+        if (! class_exists(\Wnx\LaravelStats\Tests\Stubs\Resources\DemoResource::class)) {
+            $this->markTestSkipped('Unsupported on current Laravel version.');
+        }
+
         $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Resources\DemoResource::class));
     }
 
     /** @test */
     public function it_finds_rules()
     {
+        if (! class_exists(\Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule::class)) {
+            $this->markTestSkipped('Unsupported on current Laravel version.');
+        }
+
         $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule::class));
     }
 

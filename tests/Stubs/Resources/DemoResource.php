@@ -2,6 +2,10 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs\Resources;
 
+if (! class_exists(Illuminate\Http\Resources\Json\Resource::class)) {
+    return;
+}
+
 use Illuminate\Http\Resources\Json\Resource;
 
 class DemoResource extends Resource

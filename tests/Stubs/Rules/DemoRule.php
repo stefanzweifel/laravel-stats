@@ -2,6 +2,10 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs\Rules;
 
+if (! interface_exists(Illuminate\Contracts\Validation\Rule::class)) {
+    return;
+}
+
 use Illuminate\Contracts\Validation\Rule;
 
 class DemoRule implements Rule
