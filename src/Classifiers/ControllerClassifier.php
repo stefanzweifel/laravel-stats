@@ -2,7 +2,6 @@
 
 namespace Wnx\LaravelStats\Classifiers;
 
-use Exception;
 use Illuminate\Routing\Router;
 use Wnx\LaravelStats\ReflectionClass;
 
