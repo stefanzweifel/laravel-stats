@@ -15,6 +15,9 @@ class ControllerClassifier extends Classifier
     public function satisfies(ReflectionClass $class)
     {
         return collect(resolve(Router::class)->getRoutes())
+            ->reject(function ($route) {
+                return $route->getActionName() === 'Closure';
+            })
             ->map(function ($route) {
                 return get_class($route->getController());
             })

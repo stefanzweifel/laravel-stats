@@ -25,6 +25,22 @@ class StatisticsListServiceTest extends TestCase
     }
 
     /** @test */
+    public function it_does_not_throw_exception_if_route_closure_is_defined()
+    {
+        Route::get('foo', function () {
+            return [];
+        });
+
+        $service = resolve(StatisticsListService::class);
+
+        $data = collect($service->getData());
+
+        $controllerSet = $data->where('component', 'Models')->first();
+
+        $this->assertEquals(1, $controllerSet['number_of_classes']);
+    }
+
+    /** @test */
     public function it_returns_an_array_of_headers()
     {
         $service = resolve(StatisticsListService::class);
