@@ -30,7 +30,13 @@ class MiddlewareClassifier extends Classifier
     protected function getGroupMiddlewares($router)
     {
         if (! method_exists($router, 'getMiddlewareGroups')) {
-            $middlewareGroupsProperty = (new ReflectionClass($router))->getProperty('middlewareGroups');
+            $routerClass = new ReflectionClass($router);
+
+            if (! $routerClass->hasProperty('middlewareGroups')) {
+                return collect();
+            }
+
+            $middlewareGroupsProperty = $routerClass->getProperty('middlewareGroups');
             $middlewareGroupsProperty->setAccessible(true);
 
             return collect($middlewareGroupsProperty->getValue($router))->flatten();
