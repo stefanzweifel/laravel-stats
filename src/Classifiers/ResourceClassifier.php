@@ -16,7 +16,7 @@ class ResourceClassifier extends Classifier
         if (! class_exists(\Illuminate\Http\Resources\Json\Resource::class)) {
             return false;
         }
-        
+
         return $class->isSubclassOf(\Illuminate\Http\Resources\Json\Resource::class);
     }
 }

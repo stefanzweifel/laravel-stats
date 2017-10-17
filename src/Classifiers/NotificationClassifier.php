@@ -16,7 +16,7 @@ class NotificationClassifier extends Classifier
         if (! class_exists(\Illuminate\Notifications\Notification::class)) {
             return;
         }
-        
+
         return $class->isSubclassOf(\Illuminate\Notifications\Notification::class);
     }
 }
