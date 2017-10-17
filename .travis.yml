@@ -19,4 +19,4 @@ before_script:
   - phpenv config-rm xdebug.ini
   - travis_retry composer install --prefer-dist --no-interaction
 
-script: phpunit
+script: vendor/bin/phpunit
