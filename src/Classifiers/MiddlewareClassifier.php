@@ -20,10 +20,10 @@ class MiddlewareClassifier extends Classifier
         }
 
         $router = resolve('router');
-        $middlewares = collect($router->getMiddleware())->flatten();
-        $groupMiddlewares = collect($router->getMiddlewareGroups())->flatten();
-        $mergedMiddlewares = $middlewares->merge($groupMiddlewares);
 
-        return $mergedMiddlewares->contains($class->getName());
+        return collect($router->getMiddleware())
+            ->merge($router->getMiddlewareGroups())
+            ->flatten()
+            ->contains($class->getName());
     }
 }
