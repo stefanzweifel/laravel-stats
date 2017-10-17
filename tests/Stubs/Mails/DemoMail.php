@@ -2,6 +2,10 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs\Mails;
 
+if (! class_exists(Illuminate\Mail\Mailable::class)) {
+    return;
+}
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;

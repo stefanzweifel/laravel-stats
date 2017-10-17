@@ -86,7 +86,7 @@ class ComponentStatistics
             $classPaths[] = $reflection->getFileName();
         }
 
-        $service = resolve(Analyser::class);
+        $service = app(Analyser::class);
 
         return $service->countFiles($classPaths, false)['loc'];
     }
@@ -104,7 +104,7 @@ class ComponentStatistics
             $classPaths[] = $reflection->getFileName();
         }
 
-        $service = resolve(Analyser::class);
+        $service = app(Analyser::class);
 
         return $service->countFiles($classPaths, false)['lloc'];
     }

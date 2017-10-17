@@ -15,7 +15,7 @@ class PolicyClassifier extends Classifier
     public function satisfies(ReflectionClass $class)
     {
         if (! method_exists(Gate::class, 'policies')) {
-            $gate = resolve(Gate::class);
+            $gate = app(Gate::class);
 
             $policiesProperty = (new ReflectionClass($gate))->getProperty('policies');
             $policiesProperty->setAccessible(true);
@@ -24,7 +24,7 @@ class PolicyClassifier extends Classifier
         }
 
         return in_array(
-            $class->getName(), resolve(Gate::class)->policies()
+            $class->getName(), app(Gate::class)->policies()
         );
     }
 }

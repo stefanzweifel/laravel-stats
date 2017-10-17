@@ -19,7 +19,7 @@ class ClassFinderTest extends TestCase
             ],
         ]);
 
-        $this->classes = resolve(ClassFinder::class)->getDeclaredClasses();
+        $this->classes = app(ClassFinder::class)->getDeclaredClasses();
     }
 
     /** @test */
@@ -58,6 +58,10 @@ class ClassFinderTest extends TestCase
     /** @test */
     public function it_finds_mails()
     {
+        if (! class_exists(\Wnx\LaravelStats\Tests\Stubs\Mails\DemoMail::class)) {
+            $this->markTestSkipped('Unsupported on current Laravel version.');
+        }
+
         $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Mails\DemoMail::class));
     }
 
@@ -82,6 +86,10 @@ class ClassFinderTest extends TestCase
     /** @test */
     public function it_finds_notifications()
     {
+        if (! class_exists(\Wnx\LaravelStats\Tests\Stubs\Notifications\ServerDownNotification::class)) {
+            $this->markTestSkipped('Unsupported on current Laravel version.');
+        }
+
         $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Notifications\ServerDownNotification::class));
     }
 

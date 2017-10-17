@@ -17,7 +17,7 @@ class ComponentSortTest extends TestCase
     {
         Route::get('projects', 'Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController@index');
 
-        $sort = resolve(ComponentSort::class);
+        $sort = app(ComponentSort::class);
 
         $classes = collect([
             DemoCommand::class,
@@ -37,7 +37,7 @@ class ComponentSortTest extends TestCase
     /** @test */
     public function it_discards_classes_which_could_not_be_sorted_into_components()
     {
-        $sort = resolve(ComponentSort::class);
+        $sort = app(ComponentSort::class);
 
         $classes = collect([
             new class() {

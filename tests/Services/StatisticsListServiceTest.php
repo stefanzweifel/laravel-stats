@@ -14,7 +14,7 @@ class StatisticsListServiceTest extends TestCase
         Route::get('projects', 'Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController@index');
         Route::get('users', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@index');
 
-        $service = resolve(StatisticsListService::class);
+        $service = app(StatisticsListService::class);
 
         $data = collect($service->getData());
 
@@ -27,7 +27,7 @@ class StatisticsListServiceTest extends TestCase
     /** @test */
     public function it_returns_an_array_of_headers()
     {
-        $service = resolve(StatisticsListService::class);
+        $service = app(StatisticsListService::class);
 
         $this->assertEquals([
             'Name',

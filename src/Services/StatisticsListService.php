@@ -61,8 +61,8 @@ class StatisticsListService
      */
     protected function findAndSortComponents()
     {
-        $classes = resolve(ClassFinder::class)->getDeclaredClasses();
-        $components = resolve(ComponentSort::class)->sortClassesIntoComponents($classes);
+        $classes = app(ClassFinder::class)->getDeclaredClasses();
+        $components = app(ComponentSort::class)->sortClassesIntoComponents($classes);
 
         $this->components = $components;
     }

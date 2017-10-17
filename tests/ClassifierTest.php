@@ -71,7 +71,7 @@ class ClassifierTest extends TestCase
         if (! class_exists(\Wnx\LaravelStats\Tests\Stubs\Jobs\DemoJob::class)) {
             $this->markTestSkipped('Unsupported on current Laravel version.');
         }
-        
+
         $this->assertSame(
             'Jobs', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Jobs\DemoJob::class))
         );
@@ -80,6 +80,10 @@ class ClassifierTest extends TestCase
     /** @test */
     public function it_detects_mails()
     {
+        if (! class_exists(\Wnx\LaravelStats\Tests\Stubs\Mails\DemoMail::class)) {
+            $this->markTestSkipped('Unsupported on current Laravel version.');
+        }
+
         $this->assertSame(
             'Mails', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Mails\DemoMail::class))
         );
@@ -112,6 +116,10 @@ class ClassifierTest extends TestCase
     /** @test */
     public function it_detects_notifications()
     {
+        if (! class_exists(\Wnx\LaravelStats\Tests\Stubs\Notifications\ServerDownNotification::class)) {
+            $this->markTestSkipped('Unsupported on current Laravel version.');
+        }
+        
         $this->assertSame(
             'Notifications', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Notifications\ServerDownNotification::class))
         );
