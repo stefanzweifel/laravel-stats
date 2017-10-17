@@ -48,7 +48,7 @@ class StatisticsListService
 
         $totalRow = $statistics->getTotalRow($data);
 
-        return $data->concat([
+        return $data->merge([
             new TableSeparator(),
             $totalRow,
         ]);

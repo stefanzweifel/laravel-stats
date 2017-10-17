@@ -21,9 +21,21 @@ class MiddlewareClassifier extends Classifier
 
         $router = resolve('router');
         $middlewares = collect($router->getMiddleware())->flatten();
-        $groupMiddlewares = collect($router->getMiddlewareGroups())->flatten();
+        $groupMiddlewares = $this->getGroupMiddlewares($router);
         $mergedMiddlewares = $middlewares->merge($groupMiddlewares);
 
         return $mergedMiddlewares->contains($class->getName());
+    }
+
+    protected function getGroupMiddlewares($router)
+    {
+        if (! method_exists($router, 'getMiddlewareGroups')) {
+            $middlewareGroupsProperty = (new ReflectionClass($router))->getProperty('middlewareGroups');
+            $middlewareGroupsProperty->setAccessible(true);
+
+            return collect($middlewareGroupsProperty->getValue($router))->flatten();
+        }
+
+        return collect($router->getMiddlewareGroups())->flatten();
     }
 }

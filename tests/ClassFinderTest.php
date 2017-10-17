@@ -38,12 +38,20 @@ class ClassFinderTest extends TestCase
     /** @test */
     public function it_finds_events()
     {
+        if (! class_exists(\Wnx\LaravelStats\Tests\Stubs\Events\DemoEvent::class)) {
+            $this->markTestSkipped('Unsupported on current Laravel version.');
+        }
+
         $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Events\DemoEvent::class));
     }
 
     /** @test */
     public function it_finds_jobs()
     {
+        if (! class_exists(\Wnx\LaravelStats\Tests\Stubs\Jobs\DemoJob::class)) {
+            $this->markTestSkipped('Unsupported on current Laravel version.');
+        }
+
         $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Jobs\DemoJob::class));
     }
 

@@ -56,6 +56,10 @@ class ClassifierTest extends TestCase
     /** @test */
     public function it_detects_events()
     {
+        if (! class_exists(\Wnx\LaravelStats\Tests\Stubs\Events\DemoEvent::class)) {
+            $this->markTestSkipped('Unsupported on current Laravel version.');
+        }
+
         $this->assertSame(
             'Events', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Events\DemoEvent::class))
         );
@@ -64,6 +68,10 @@ class ClassifierTest extends TestCase
     /** @test */
     public function it_detects_jobs()
     {
+        if (! class_exists(\Wnx\LaravelStats\Tests\Stubs\Jobs\DemoJob::class)) {
+            $this->markTestSkipped('Unsupported on current Laravel version.');
+        }
+        
         $this->assertSame(
             'Jobs', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Jobs\DemoJob::class))
         );
