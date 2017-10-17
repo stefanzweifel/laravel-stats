@@ -13,17 +13,35 @@ class MiddlewareClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        $kernel = resolve(\Illuminate\Contracts\Http\Kernel::class);
+        $kernel = app(\Illuminate\Contracts\Http\Kernel::class);
 
         if ($kernel->hasMiddleware($class->getName())) {
             return true;
         }
 
-        $router = resolve('router');
+        $router = app('router');
         $middlewares = collect($router->getMiddleware())->flatten();
-        $groupMiddlewares = collect($router->getMiddlewareGroups())->flatten();
+        $groupMiddlewares = $this->getGroupMiddlewares($router);
         $mergedMiddlewares = $middlewares->merge($groupMiddlewares);
 
         return $mergedMiddlewares->contains($class->getName());
+    }
+
+    protected function getGroupMiddlewares($router)
+    {
+        if (! method_exists($router, 'getMiddlewareGroups')) {
+            $routerClass = new ReflectionClass($router);
+
+            if (! $routerClass->hasProperty('middlewareGroups')) {
+                return collect();
+            }
+
+            $middlewareGroupsProperty = $routerClass->getProperty('middlewareGroups');
+            $middlewareGroupsProperty->setAccessible(true);
+
+            return collect($middlewareGroupsProperty->getValue($router))->flatten();
+        }
+
+        return collect($router->getMiddlewareGroups())->flatten();
     }
 }

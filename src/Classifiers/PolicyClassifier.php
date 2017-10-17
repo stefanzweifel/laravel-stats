@@ -14,8 +14,17 @@ class PolicyClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
+        if (! method_exists(Gate::class, 'policies')) {
+            $gate = app(Gate::class);
+
+            $policiesProperty = (new ReflectionClass($gate))->getProperty('policies');
+            $policiesProperty->setAccessible(true);
+
+            return $policiesProperty->getValue($gate);
+        }
+
         return in_array(
-            $class->getName(), resolve(Gate::class)->policies()
+            $class->getName(), app(Gate::class)->policies()
         );
     }
 }

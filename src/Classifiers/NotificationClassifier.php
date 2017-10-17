@@ -13,6 +13,10 @@ class NotificationClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
+        if (! class_exists(\Illuminate\Notifications\Notification::class)) {
+            return;
+        }
+
         return $class->isSubclassOf(\Illuminate\Notifications\Notification::class);
     }
 }

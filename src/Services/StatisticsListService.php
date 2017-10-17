@@ -48,7 +48,7 @@ class StatisticsListService
 
         $totalRow = $statistics->getTotalRow($data);
 
-        return $data->concat([
+        return $data->merge([
             new TableSeparator(),
             $totalRow,
         ]);
@@ -61,8 +61,8 @@ class StatisticsListService
      */
     protected function findAndSortComponents()
     {
-        $classes = resolve(ClassFinder::class)->getDeclaredClasses();
-        $components = resolve(ComponentSort::class)->sortClassesIntoComponents($classes);
+        $classes = app(ClassFinder::class)->getDeclaredClasses();
+        $components = app(ComponentSort::class)->sortClassesIntoComponents($classes);
 
         $this->components = $components;
     }

@@ -2,6 +2,10 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs\Events;
 
+if (! trait_exists(\Illuminate\Foundation\Events\Dispatchable::class)) {
+    return;
+}
+
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;

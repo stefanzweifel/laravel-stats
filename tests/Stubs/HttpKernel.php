@@ -25,6 +25,7 @@ class HttpKernel extends \Illuminate\Foundation\Http\Kernel
         Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         // Middleware\TrustProxies::class,
+        DemoMiddleware::class,
     ];
 
     /**
@@ -41,7 +42,6 @@ class HttpKernel extends \Illuminate\Foundation\Http\Kernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            DemoMiddleware::class,
         ],
 
         'api' => [

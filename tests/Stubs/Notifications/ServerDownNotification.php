@@ -2,6 +2,10 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs\Notifications;
 
+if (! class_exists(\Illuminate\Notifications\Notification::class)) {
+    return;
+}
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;

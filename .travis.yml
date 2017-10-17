@@ -2,12 +2,21 @@ language: php
 sudo: false
 dist: trusty
 
-php:
-  - 7.0
-  - 7.1
+matrix:
+  include:
+    - php: 7.0
+    - php: 7.1
+    - php: 7.1
+      env: COMPOSER=tests/Composer/composer-5.4.json
+    - php: 7.1
+      env: COMPOSER=tests/Composer/composer-5.3.json
+    - php: 7.1
+      env: COMPOSER=tests/Composer/composer-5.2.json
+    - php: 7.1
+      env: COMPOSER=tests/Composer/composer-5.1.json
 
 before_script:
   - phpenv config-rm xdebug.ini
   - travis_retry composer install --prefer-dist --no-interaction
 
-script: phpunit
+script: vendor/bin/phpunit

@@ -74,7 +74,7 @@ class ClassFinder
             ->in(config('stats.paths', []))
             ->name('*.php');
 
-        return collect($files)
+        return collect(iterator_to_array($files))
             ->reject(function ($file) use ($excludes) {
                 return $this->isExcluded($file, $excludes);
             });
@@ -82,7 +82,9 @@ class ClassFinder
 
     protected function isExcluded(SplFileInfo $file, Collection $excludes)
     {
-        return $excludes->contains(function ($exclude) use ($file) {
+        return $excludes->contains(function ($exclude, $index) use ($file) {
+            $exclude = is_string($index) ? $index : $exclude;
+
             return starts_with($file->getPathname(), $exclude);
         });
     }

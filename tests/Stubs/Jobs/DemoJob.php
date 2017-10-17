@@ -2,6 +2,10 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs\Jobs;
 
+if (! trait_exists(\Illuminate\Foundation\Bus\Dispatchable::class)) {
+    return;
+}
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
