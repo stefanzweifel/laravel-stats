@@ -13,12 +13,6 @@ class JobClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        foreach ($class->getTraits() as $trait) {
-            if ($trait->name == \Illuminate\Foundation\Bus\Dispatchable::class) {
-                return true;
-            }
-        }
-
-        return false;
+        return $class->usesTrait(\Illuminate\Foundation\Bus\Dispatchable::class);
     }
 }
