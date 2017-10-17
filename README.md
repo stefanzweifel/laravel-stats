@@ -87,9 +87,11 @@ The package has tests written in phpunit. You can run them with the following co
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/stefanzweifel/laravel-stats/tags).
 
-## Authors
+## Credits
 
-* **Stefan Zweifel** - *Initial work* - [stefanzweifel](https://github.com/stefanzweifel)
+* [Stefan Zweifel](https://github.com/stefanzweifel)
+* [Jerguš Lejko](https://github.com/jerguslejko)
+* [All Contributors](https://github.com/stefanzweifel/laravel-stats/graphs/contributors)
 
 ## License
 
