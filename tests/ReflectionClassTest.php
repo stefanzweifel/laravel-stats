@@ -4,6 +4,7 @@ namespace Wnx\LaravelStats\Tests;
 
 use Illuminate\Support\Facades\Route;
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Tests\Stubs\Controllers\Controller;
 use Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController;
 use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
 
@@ -16,6 +17,16 @@ class ReflectionClassTest extends TestCase
 
         $this->assertCount(
             3, $class->getDefinedMethods()
+        );
+    }
+
+    /** @test */
+    public function it_determines_wether_the_given_class_uses_a_given_trait()
+    {
+        $class = new ReflectionClass(Controller::class);
+
+        $this->assertTrue(
+            $class->usesTrait(\Illuminate\Foundation\Auth\Access\AuthorizesRequests::class)
         );
     }
 
