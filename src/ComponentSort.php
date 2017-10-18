@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats;
 
 use Illuminate\Support\Collection;
+use Wnx\LaravelStats\Classifiers\Classifier;
 
 class ComponentSort
 {
@@ -19,11 +20,8 @@ class ComponentSort
             ->map(function ($class) {
                 return new ReflectionClass($class);
             })
-            ->filter(function ($reflection) {
-                return $reflection->isLaravelComponent();
-            })
-            ->groupBy(function ($reflection) {
-                return $reflection->getLaravelComponentName();
+            ->groupBy(function ($class) {
+                return (new Classifier)->classify($class);
             })
             ->map(function ($classes, $name) {
                 return new Component($name, $classes);
