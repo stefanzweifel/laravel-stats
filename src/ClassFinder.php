@@ -10,7 +10,7 @@ use Symfony\Component\Finder\Finder;
 class ClassFinder
 {
     /**
-     * @var Symfony\Component\Finder\Finder
+     * @var \Symfony\Component\Finder\Finder
      */
     protected $finder;
 
@@ -24,7 +24,7 @@ class ClassFinder
      * Classes that belong to the Illuminate and Symfony Namespace
      * are removed from the Collection.
      *
-     * @return Illuminate\Support\Collection
+     * @return Collection
      */
     public function getDeclaredClasses() : Collection
     {
@@ -42,7 +42,7 @@ class ClassFinder
      * We need to use ob_* functions to ensure that
      * loaded files do not output anything.
      *
-     * @return void
+     * @return Collection
      */
     protected function findAndLoadClasses()
     {

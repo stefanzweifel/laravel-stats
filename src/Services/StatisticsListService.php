@@ -11,7 +11,7 @@ use Symfony\Component\Console\Helper\TableSeparator;
 class StatisticsListService
 {
     /**
-     * @var Illuminate\Support\Collection
+     * @var \Illuminate\Support\Collection
      */
     protected $components;
 
@@ -36,7 +36,7 @@ class StatisticsListService
     /**
      * Return the project statistics as an array.
      *
-     * @return Collection
+     * @return \Illuminate\Support\Collection
      */
     public function getData()
     {

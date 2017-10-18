@@ -8,7 +8,7 @@ use SebastianBergmann\PHPLOC\Analyser;
 class ComponentStatistics
 {
     /**
-     * @var Wnx\LaravelStats\Component
+     * @var \Wnx\LaravelStats\Component
      */
     public $component;
 
@@ -94,7 +94,7 @@ class ComponentStatistics
     /**
      * Return the total number of lines of code.
      *
-     * @return int
+     * @return float
      */
     public function getLinesOfCode() : float
     {
