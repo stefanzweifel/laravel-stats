@@ -66,7 +66,7 @@ class ClassFinder
      *
      * @return Collection
      */
-    public function findFilesInProjectPath() : Collection
+    protected function findFilesInProjectPath() : Collection
     {
         $excludes = collect(config('stats.exclude', []));
 
