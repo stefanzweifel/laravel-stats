@@ -13,12 +13,6 @@ class EventClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        foreach ($class->getTraits() as $trait) {
-            if ($trait->name == \Illuminate\Foundation\Events\Dispatchable::class) {
-                return true;
-            }
-        }
-
-        return false;
+        return $class->usesTrait(\Illuminate\Foundation\Events\Dispatchable::class);
     }
 }
