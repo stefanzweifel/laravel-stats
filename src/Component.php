@@ -25,7 +25,6 @@ class Component
      *
      * @param string     $name
      * @param Collection $classes
-     *
      */
     public function __construct(string $name, Collection $classes)
     {
