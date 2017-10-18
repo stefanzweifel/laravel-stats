@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 class ProjectStatistics
 {
     /**
-     * @var Illuminate\Support\Collection
+     * @var Collection
      */
     protected $components;
 
