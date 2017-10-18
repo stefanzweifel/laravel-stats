@@ -24,6 +24,7 @@ class StatsListCommand extends Command
     /**
      * Execute the console command.
      *
+     * @param \Wnx\LaravelStats\Services\StatisticsListService $service
      * @return mixed
      */
     public function handle(StatisticsListService $service)
