@@ -20,7 +20,7 @@ class ClassFinder
     }
 
     /**
-     * Return a Collection of Declared Classes
+     * Return a Collection of Declared Classes.
      *
      * @return Collection
      */
@@ -79,11 +79,11 @@ class ClassFinder
     }
 
     /**
-     * Determine if a file has been defined in the exclude configuration
+     * Determine if a file has been defined in the exclude configuration.
      *
      * @param  SplFileInfo $file
      * @param  Collection  $excludes
-     * @return boolean
+     * @return bool
      */
     protected function isExcluded(SplFileInfo $file, Collection $excludes)
     {
