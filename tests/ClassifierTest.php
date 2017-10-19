@@ -17,10 +17,10 @@ class ClassifierTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_others_for_unidentified_class()
+    public function it_returns_other_for_unidentified_class()
     {
         $this->assertEquals(
-            'Others',
+            'Other',
             $this->classifier->classify(new ReflectionClass(new class() {
             }))
         );

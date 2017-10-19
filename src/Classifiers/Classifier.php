@@ -34,6 +34,6 @@ class Classifier
             }
         }
 
-        return 'Others';
+        return 'Other';
     }
 }
