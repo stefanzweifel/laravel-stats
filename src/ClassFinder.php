@@ -21,8 +21,6 @@ class ClassFinder
 
     /**
      * Return a Collection of Declared Classes
-     * Classes that belong to the Illuminate and Symfony Namespace
-     * are removed from the Collection.
      *
      * @return Collection
      */
@@ -80,6 +78,13 @@ class ClassFinder
             });
     }
 
+    /**
+     * Determine if a file has been defined in the exclude configuration
+     *
+     * @param  SplFileInfo $file
+     * @param  Collection  $excludes
+     * @return boolean
+     */
     protected function isExcluded(SplFileInfo $file, Collection $excludes)
     {
         return $excludes->contains(function ($exclude) use ($file) {
