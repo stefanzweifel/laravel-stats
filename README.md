@@ -76,7 +76,7 @@ php artisan stats
 ```
 
 
-## How does this package detect certain Laravel Components
+## How does this package detect certain Laravel Components?
 
 The package scans the files defined in the `paths`-array in the configuration file. It then applies [Classifiers](https://github.com/stefanzweifel/laravel-stats/tree/master/src/Classifiers) to those classes to determine which Laravel Component the class represents.
 
