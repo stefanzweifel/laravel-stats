@@ -2,7 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs\Controllers;
 
-class ProjectsController extends Controller
+class ProjectsController
 {
     public function index()
     {

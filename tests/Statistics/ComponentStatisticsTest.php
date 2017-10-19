@@ -3,11 +3,11 @@
 namespace Wnx\LaravelStats\Tests\Statistics;
 
 use Wnx\LaravelStats\Component;
+use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Statistics\ComponentStatistics;
-use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
 use Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController;
-use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
 
 class ComponentStatisticsTest extends TestCase
 {

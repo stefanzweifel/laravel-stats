@@ -2,195 +2,52 @@
 
 namespace Wnx\LaravelStats;
 
-use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Support\Collection;
+use Wnx\LaravelStats\Classifiers\Classifier;
 use ReflectionClass as NativeReflectionClass;
 
-class ReflectionClass
+class ReflectionClass extends NativeReflectionClass
 {
-    /**
-     * @var ReflectionClass
-     */
-    protected $class;
-
-    public function __construct($className)
-    {
-        $this->class = new NativeReflectionClass($className);
-    }
-
-    public function isNative()
-    {
-        return $this->class->getFileName() === false;
-    }
-
     public function isVendorProvided()
     {
-        return $this->class->getFileName()
-            && str_contains($this->class->getFileName(), '/vendor/');
+        return str_contains($this->getFileName(), '/vendor/');
     }
 
     public function getLaravelComponentName()
     {
-        if ($componentName = $this->extendsLaravelComponentClass($this->class)) {
-            return $componentName;
-        } elseif ($componentName = $this->usesLaravelComponentTrait($this->class)) {
-            return $componentName;
-        } elseif ($componentName = $this->implementsLaravelComponentInterface($this->class)) {
-            return $componentName;
-        } elseif ($componentName = $this->isRegisteredPolicy($this->class)) {
-            return $componentName;
-        }
+        return (new Classifier())->classify($this);
     }
 
     public function isLaravelComponent()
     {
         return (bool) $this->getLaravelComponentName();
-
     }
 
     /**
-     * Return the Native ReflectionClass Instance.
+     * Determine whether the class uses the given trait.
      *
-     * @return NativeReflectionClass
+     * @param  string $name
+     * @return bool
      */
-    public function getNativeReflectionClass() : NativeReflectionClass
+    public function usesTrait($name)
     {
-        return $this->class;
+        return collect($this->getTraits())
+            ->contains(function ($trait) use ($name) {
+                return $trait->name == $name;
+            });
     }
 
     /**
-     * Get Component Configuration.
+     * Return a collection of methods defined on the given class.
+     * This ignores methods defined in parent class, traits etc.
      *
      * @return Collection
      */
-    protected function componentConfiguration() : Collection
+    public function getDefinedMethods() : Collection
     {
-        return resolve(ComponentConfiguration::class)->get();
-    }
-
-    /**
-     * Determine if given Class extends from a Core Laravel Class.
-     *
-     * @param ReflectionClass $reflection
-     *
-     * @return mixed (string|boolean)
-     */
-    protected function extendsLaravelComponentClass(\ReflectionClass $reflection)
-    {
-        // Check if Classname of currently given Class is in Extends Array
-        $extends = $this->componentConfiguration()->pluck('extends', 'name')->filter();
-
-        $className = $reflection->getName();
-        $componentName = $extends->search($className);
-
-        // Found current Class Name, return the Component Name
-        if ($componentName !== false) {
-            return $componentName;
-        }
-
-        // Does the Class have a Parent Class?
-        // If yes, recursivly call this method
-        $hasParentClass = $reflection->getParentClass();
-
-        if ($hasParentClass !== false) {
-            return $this->extendsLaravelComponentClass($hasParentClass);
-        }
-
-        // If no, return false
-        return false;
-    }
-
-    /**
-     * Determine if a given Class uses a Laravel Core Trait.
-     *
-     * @param ReflectionClass $reflection
-     *
-     * @return mixed (string|boolean)
-     */
-    protected function usesLaravelComponentTrait(\ReflectionClass $reflection)
-    {
-        // If the given Class does not use any traits, return false
-        if (count($reflection->getTraits()) == 0) {
-            return false;
-        }
-
-        $uses = $this->componentConfiguration()->pluck('uses', 'name')->filter();
-
-        $classTraits = $reflection->getTraitNames();
-        $componentName = false;
-
-        // Loop through all traits and search Trait in Component Configuration
-        foreach ($classTraits as $trait) {
-            if ($uses->search($trait)) {
-                $componentName = $uses->search($trait);
-            }
-        }
-
-        // If Trait has been found, we return the Component Name
-        if ($componentName !== false) {
-            return $componentName;
-        }
-
-        // Does the Class have a Parent Class?
-        // If yes, recursivly call this method
-        $hasParentClass = $reflection->getParentClass();
-
-        if ($hasParentClass !== false) {
-            return $this->usesLaravelComponentTrait($hasParentClass);
-        }
-
-        return false;
-    }
-
-    public function implementsLaravelComponentInterface(\ReflectionClass $reflection)
-    {
-        // If the given Class does not use any traits, return false
-        if (count($reflection->getInterfaces()) == 0) {
-            return false;
-        }
-
-        $implements = $this->componentConfiguration()->pluck('implements', 'name')->filter();
-
-        foreach ($implements as $name => $interface) {
-            if ($reflection->implementsInterface($interface) == true) {
-                return $name;
-            }
-        }
-
-        // Does the Class have a Parent Class?
-        // If yes, recursively call this method
-        $hasParentClass = $reflection->getParentClass();
-
-        if ($hasParentClass !== false) {
-            return $this->implementsLaravelComponentInterface($hasParentClass);
-        }
-
-        return false;
-    }
-
-    /**
-     * Determine if the given class is a registered policy.
-     *
-     * @param   ReflectionClass $reflection
-     *
-     * @return  mixed (string|boolean)
-     */
-    public function isRegisteredPolicy(\ReflectionClass $reflection)
-    {
-        $policies = resolve(Gate::class)->policies();
-
-        if (in_array($reflection->getName(), $policies)) {
-            return 'Policies';
-        }
-
-        $hasParentClass = $reflection->getParentClass();
-
-        // Does the Class have a Parent Class?
-        // If yes, recursively call this method
-        if ($hasParentClass !== false) {
-            return $this->isRegisteredPolicy($hasParentClass);
-        }
-
-        return false;
+        return collect($this->getMethods())
+            ->filter(function ($method) {
+                return $method->getFileName() == $this->getFileName();
+            });
     }
 }

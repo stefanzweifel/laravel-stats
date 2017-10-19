@@ -2,16 +2,16 @@
 
 namespace Wnx\LaravelStats\Services;
 
-use Symfony\Component\Console\Helper\TableSeparator;
+use Wnx\LaravelStats\Statistics;
 use Wnx\LaravelStats\ClassFinder;
 use Wnx\LaravelStats\ComponentSort;
-use Wnx\LaravelStats\Statistics;
 use Wnx\LaravelStats\Statistics\ProjectStatistics;
+use Symfony\Component\Console\Helper\TableSeparator;
 
 class StatisticsListService
 {
     /**
-     * @var Illuminate\Support\Collection
+     * @var \Illuminate\Support\Collection
      */
     protected $components;
 
@@ -36,14 +36,13 @@ class StatisticsListService
     /**
      * Return the project statistics as an array.
      *
-     * @return Collection
+     * @return \Illuminate\Support\Collection
      */
     public function getData()
     {
         $this->findAndSortComponents();
 
-        $statistics = resolve(ProjectStatistics::class);
-        $statistics->addComponents($this->components);
+        $statistics = new ProjectStatistics($this->components);
 
         $data = $statistics->generate();
 

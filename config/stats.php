@@ -3,27 +3,19 @@
 return [
 
     /*
-     * Every project is different and sometimes files
-     * and folders should be ignored and never
-     * count towards the project stats.
+     * List of folders to be analyzed.
      */
-    'ignore' => [
+    'paths' => [
+        base_path('app'),
+        base_path('database'),
+    ],
 
-        /*
-         * Ignore the contents of an entire folder
-         */
-        'folders' => [
-            // 'app/Http/Controllers'
-        ],
-
-        /*
-         * Ignore certain filenames or extensions
-         */
-        'files' => [
-            // 'helpers.php'
-            // 'twig.php'
-        ],
-
+    /*
+     * List of files/folders to be excluded from analysis.
+     */
+    'exclude' => [
+        // base_path('app/helpers.php'),
+        // base_path('app/Services'),
     ],
 
 ];

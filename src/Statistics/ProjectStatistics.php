@@ -7,19 +7,11 @@ use Illuminate\Support\Collection;
 class ProjectStatistics
 {
     /**
-     * @var Illuminate\Support\Collection
+     * @var Collection
      */
     protected $components;
 
-    public function __construct()
-    {
-        $this->components = collect([]);
-    }
-
-    /**
-     * @param Collection $components
-     */
-    public function addComponents(Collection $components)
+    public function __construct(Collection $components)
     {
         $this->components = $components;
     }

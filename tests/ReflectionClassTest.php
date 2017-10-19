@@ -2,47 +2,39 @@
 
 namespace Wnx\LaravelStats\Tests;
 
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Route;
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Tests\Stubs\Controllers\Controller;
+use Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController;
 use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
-use Wnx\LaravelStats\Tests\Stubs\Models\Project;
-use Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy;
-use Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule;
 
 class ReflectionClassTest extends TestCase
 {
     /** @test */
-    public function it_returns_null_if_component_name_could_not_be_defined()
+    public function it_returns_a_list_of_methods_for_the_given_class_and_ignores_parent_and_trait_methods()
     {
-        $reflection = new ReflectionClass(new class() {
-        });
+        $class = new ReflectionClass(ProjectsController::class);
 
-        $this->assertNull($reflection->getLaravelComponentName());
-    }
-
-    /** @test */
-    public function it_returns_false_if_class_could_not_be_identified_as_a_laravel_component()
-    {
-        $reflection = new ReflectionClass(new class() {
-        });
-
-        $this->assertFalse($reflection->isLaravelComponent());
-    }
-
-    /** @test */
-    public function it_returns_php_native_reflection_class()
-    {
-        $reflection = new ReflectionClass(TestCase::class);
-
-        $this->assertInstanceOf(
-            \ReflectionClass::class,
-            $reflection->getNativeReflectionClass()
+        $this->assertCount(
+            3, $class->getDefinedMethods()
         );
     }
 
     /** @test */
-    public function it_returns_true_if_class_could_be_identified_as_a_laravel_component()
+    public function it_determines_wether_the_given_class_uses_a_given_trait()
     {
+        $class = new ReflectionClass(Controller::class);
+
+        $this->assertTrue(
+            $class->usesTrait(\Illuminate\Foundation\Auth\Access\AuthorizesRequests::class)
+        );
+    }
+
+    /** @test */
+    public function it_determines_wether_given_class_is_laravel_component()
+    {
+        Route::get('projects', 'Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController@index');
+
         $reflection = new ReflectionClass(ProjectsController::class);
 
         $this->assertTrue($reflection->isLaravelComponent());
@@ -51,34 +43,10 @@ class ReflectionClassTest extends TestCase
     /** @test */
     public function it_returns_component_name()
     {
-        $reflection = new ReflectionClass(ProjectsController::class);
+        Route::get('projects', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@index');
+
+        $reflection = new ReflectionClass(UsersController::class);
 
         $this->assertEquals('Controllers', $reflection->getLaravelComponentName());
-    }
-
-    /** @test */
-    public function it_returns_true_if_class_can_be_identified_as_a_component_through_an_interface()
-    {
-        $reflection = new ReflectionClass(DemoRule::class);
-
-        $this->assertEquals(true, $reflection->isLaravelComponent());
-    }
-
-    /** @test */
-    public function it_returns_component_name_for_interface_components()
-    {
-        $reflection = new ReflectionClass(DemoRule::class);
-
-        $this->assertEquals('Rules', $reflection->getLaravelComponentName());
-    }
-
-    /** @test */
-    public function it_returns_component_name_for_policies()
-    {
-        Gate::policy(Project::class, DemoPolicy::class);
-
-        $reflection = new ReflectionClass(DemoPolicy::class);
-
-        $this->assertEquals('Policies', $reflection->getLaravelComponentName());
     }
 }

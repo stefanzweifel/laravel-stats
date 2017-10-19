@@ -2,13 +2,13 @@
 
 namespace Wnx\LaravelStats\Statistics;
 
-use SebastianBergmann\PHPLOC\Analyser;
 use Wnx\LaravelStats\Component;
+use SebastianBergmann\PHPLOC\Analyser;
 
 class ComponentStatistics
 {
     /**
-     * @var Wnx\LaravelStats\Component
+     * @var \Wnx\LaravelStats\Component
      */
     public $component;
 
@@ -52,14 +52,11 @@ class ComponentStatistics
      */
     public function getNumberOfMethods() : int
     {
-        $methods = 0;
-
-        foreach ($this->component->getClasses() as $reflection) {
-            $classStats = new ClassStatistics($reflection);
-            $methods += $classStats->getNumberOfMethods();
-        }
-
-        return $methods;
+        return $this->component->getClasses()
+            ->map(function ($class) {
+                return $class->getDefinedMethods()->count();
+            })
+            ->sum();
     }
 
     /**
@@ -86,7 +83,7 @@ class ComponentStatistics
         $classPaths = [];
 
         foreach ($this->component->getClasses() as $reflection) {
-            $classPaths[] = $reflection->getNativeReflectionClass()->getFileName();
+            $classPaths[] = $reflection->getFileName();
         }
 
         $service = resolve(Analyser::class);
@@ -97,14 +94,14 @@ class ComponentStatistics
     /**
      * Return the total number of lines of code.
      *
-     * @return int
+     * @return float
      */
     public function getLinesOfCode() : float
     {
         $classPaths = [];
 
         foreach ($this->component->getClasses() as $reflection) {
-            $classPaths[] = $reflection->getNativeReflectionClass()->getFileName();
+            $classPaths[] = $reflection->getFileName();
         }
 
         $service = resolve(Analyser::class);
