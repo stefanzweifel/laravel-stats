@@ -28,7 +28,7 @@ The easiest way to install the the package is by using composer (The package is 
 The package requires PHP 7.0 and Laravel 5.5 or higher.
 
 ```shell
-composer require "wnx/laravel-stats:1.0.0-beta-2"
+composer require "wnx/laravel-stats"
 ```
 
 The package will automatically register itself.
