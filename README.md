@@ -24,8 +24,7 @@ Get insights about your Laravel Project. (Inspired by [`rake stats`](https://rob
 
 ### Installing
 
-The easiest way to install the the package is by using composer (The package is currently in BETA).
-The package requires PHP 7.0 and Laravel 5.5 or higher.
+The easiest way to install the the package is by using composer. The package requires PHP 7.0 and Laravel 5.5 or higher.
 
 ```shell
 composer require "wnx/laravel-stats"
