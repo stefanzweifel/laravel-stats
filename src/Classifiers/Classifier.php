@@ -41,6 +41,6 @@ class Classifier
             })
             ->first();
 
-        return $name ?: "Other";
+        return $name ?: 'Other';
     }
 }

@@ -2,8 +2,8 @@
 
 namespace Wnx\LaravelStats\Classifiers;
 
-use Illuminate\Contracts\Auth\Access\Gate;
 use Wnx\LaravelStats\ReflectionClass;
+use Illuminate\Contracts\Auth\Access\Gate;
 
 class PolicyClassifier implements ClassifierInterface
 {
