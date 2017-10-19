@@ -41,12 +41,12 @@ class ProjectStatistics
     {
         return [
             'Total',
-            $stats->sum('number_of_classes'),
-            $stats->sum('methods'),
-            round($stats->avg('methods_per_class'), 2),
-            $stats->sum('lines'),
-            $stats->sum('loc'),
-            round($stats->avg('loc_per_method'), 2),
+            number_format($stats->sum('number_of_classes'), 0),
+            number_format($stats->sum('methods'), 0),
+            number_format(round($stats->avg('methods_per_class'), 2), 2),
+            number_format($stats->sum('lines'), 0),
+            number_format($stats->sum('loc'), 0),
+            number_format(round($stats->avg('loc_per_method'), 2), 2),
         ];
     }
 }
