@@ -44,7 +44,9 @@ class StatisticsListService
 
         $statistics = new ProjectStatistics($this->components);
 
-        $data = $statistics->generate();
+        $data = $statistics->generate()->sortBy(function ($_, $key) {
+            return $key == 'Other' ? 1 : 0;
+        });
 
         $totalRow = $statistics->getTotalRow($data);
 

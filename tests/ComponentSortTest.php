@@ -2,7 +2,6 @@
 
 namespace Wnx\LaravelStats\Tests;
 
-use Wnx\LaravelStats\Component;
 use Illuminate\Support\Collection;
 use Wnx\LaravelStats\ComponentSort;
 use Illuminate\Support\Facades\Route;
@@ -32,23 +31,5 @@ class ComponentSortTest extends TestCase
 
         $this->assertEquals('Events', $components->first()->getName());
         $this->assertCount(1, $components->first()->getClasses());
-    }
-
-    /** @test */
-    public function it_discards_classes_which_could_not_be_sorted_into_components()
-    {
-        $sort = resolve(ComponentSort::class);
-
-        $classes = collect([
-            new class() {
-            },
-            Component::class,
-        ]);
-
-        $components = $sort->sortClassesIntoComponents($classes);
-
-        $this->assertInstanceOf(Collection::class, $components);
-
-        $this->assertCount(0, $components);
     }
 }

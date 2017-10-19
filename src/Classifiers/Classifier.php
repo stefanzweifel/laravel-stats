@@ -33,5 +33,7 @@ class Classifier
                 return $c->getName();
             }
         }
+
+        return 'Other';
     }
 }

@@ -19,6 +19,7 @@ class StatsListCommandTest extends TestCase
 
         $this->assertContains('Middlewares', $resultAsText);
         $this->assertContains('Controllers', $resultAsText);
+        $this->assertContains('Other', $resultAsText);
         $this->assertContains('Total', $resultAsText);
     }
 }
