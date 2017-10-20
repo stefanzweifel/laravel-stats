@@ -22,6 +22,7 @@ class Classifier
         ResourceClassifier::class,
         SeederClassifier::class,
         ServiceProviderClassifier::class,
+        PHPUnitClassifier::class,
     ];
 
     public function classify(ReflectionClass $class)
