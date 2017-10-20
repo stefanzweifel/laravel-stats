@@ -6,6 +6,7 @@ use Exception;
 use SplFileInfo;
 use Illuminate\Support\Collection;
 use Symfony\Component\Finder\Finder;
+use Wnx\LaravelStats\Classifiers\Classifier;
 
 class ClassFinder
 {
@@ -44,9 +45,16 @@ class ClassFinder
      */
     public function getComponents()
     {
-        return resolve(ComponentSort::class)->sortClassesIntoComponents(
-            $this->getDeclaredClasses()
-        );
+        return $this->getDeclaredClasses()
+            ->map(function ($class) {
+                return new ReflectionClass($class);
+            })
+            ->groupBy(function ($class) {
+                return (new Classifier)->classify($class);
+            })
+            ->map(function ($classes, $name) {
+                return new Component($name, $classes);
+        });
     }
 
     /**

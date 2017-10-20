@@ -131,4 +131,14 @@ class ClassFinderTest extends TestCase
     {
         $this->assertFalse($this->classes->contains(\Symfony\Component\Finder\Finder::class));
     }
+
+    /** @test */
+    public function it_sorts_classes_into_components()
+    {
+        $components = resolve(ClassFinder::class)->getComponents();
+
+        $this->assertTrue($components->has('Other'));
+        $this->assertTrue($components->has('Models'));
+        $this->assertTrue($components->has('Commands'));
+    }
 }
