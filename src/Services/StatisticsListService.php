@@ -40,9 +40,11 @@ class StatisticsListService
      */
     public function getData()
     {
-        $this->findAndSortComponents();
+        $components = resolve(ComponentSort::class)->sortClassesIntoComponents(
+            resolve(ClassFinder::class)->getDeclaredClasses()
+        );
 
-        $statistics = new ProjectStatistics($this->components);
+        $statistics = new ProjectStatistics($components);
 
         $data = $statistics->generate()->sortBy(function ($_, $key) {
             return $key == 'Other' ? 1 : 0;
@@ -54,18 +56,5 @@ class StatisticsListService
             new TableSeparator(),
             $totalRow,
         ]);
-    }
-
-    /**
-     * Find all Classes and Sort them into Components.
-     *
-     * @return void
-     */
-    protected function findAndSortComponents()
-    {
-        $classes = resolve(ClassFinder::class)->getDeclaredClasses();
-        $components = resolve(ComponentSort::class)->sortClassesIntoComponents($classes);
-
-        $this->components = $components;
     }
 }
