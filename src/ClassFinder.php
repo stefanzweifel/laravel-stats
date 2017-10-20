@@ -36,6 +36,20 @@ class ClassFinder
     }
 
     /**
+     * Sort classes into Laravel Component.
+     *
+     * @param array $classes
+     *
+     * @return Collection
+     */
+    public function getComponents()
+    {
+        return resolve(ComponentSort::class)->sortClassesIntoComponents(
+            $this->getDeclaredClasses()
+        );
+    }
+
+    /**
      * Find PHP Files on filesystem and require them.
      * We need to use ob_* functions to ensure that
      * loaded files do not output anything.

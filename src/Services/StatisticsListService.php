@@ -40,9 +40,7 @@ class StatisticsListService
      */
     public function getData()
     {
-        $components = resolve(ComponentSort::class)->sortClassesIntoComponents(
-            resolve(ClassFinder::class)->getDeclaredClasses()
-        );
+        $components = resolve(ClassFinder::class)->getComponents();
 
         $statistics = new ProjectStatistics($components);
 
