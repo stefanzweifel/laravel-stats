@@ -11,16 +11,6 @@ use Wnx\LaravelStats\Classifiers\Classifier;
 class ClassFinder
 {
     /**
-     * @var \Symfony\Component\Finder\Finder
-     */
-    protected $finder;
-
-    public function __construct(Finder $finder)
-    {
-        $this->finder = $finder;
-    }
-
-    /**
      * Sort classes into Laravel Component.
      *
      * @param array $classes
@@ -77,7 +67,7 @@ class ClassFinder
     {
         $excludes = collect(config('stats.exclude', []));
 
-        $files = $this->finder->files()
+        $files = (new Finder)->files()
             ->in(config('stats.paths', []))
             ->name('*.php');
 

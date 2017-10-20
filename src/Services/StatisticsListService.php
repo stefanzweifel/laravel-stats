@@ -4,7 +4,6 @@ namespace Wnx\LaravelStats\Services;
 
 use Wnx\LaravelStats\Statistics;
 use Wnx\LaravelStats\ClassFinder;
-use Wnx\LaravelStats\ComponentSort;
 use Wnx\LaravelStats\Statistics\ProjectStatistics;
 use Symfony\Component\Console\Helper\TableSeparator;
 
