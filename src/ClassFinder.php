@@ -21,22 +21,6 @@ class ClassFinder
     }
 
     /**
-     * Return a Collection of Declared Classes.
-     *
-     * @return Collection
-     */
-    public function getDeclaredClasses() : Collection
-    {
-        return $this->findAndLoadClasses()
-            ->reject(function ($class) {
-                return (new ReflectionClass($class))->isInternal();
-            })
-            ->reject(function ($class) {
-                return (new ReflectionClass($class))->isVendorProvided();
-            });
-    }
-
-    /**
      * Sort classes into Laravel Component.
      *
      * @param array $classes
@@ -45,16 +29,19 @@ class ClassFinder
      */
     public function getComponents()
     {
-        return $this->getDeclaredClasses()
+        return $this->findAndLoadClasses()
             ->map(function ($class) {
                 return new ReflectionClass($class);
+            })
+            ->reject(function ($class) {
+                return $class->isInternal() || $class->isVendorProvided();
             })
             ->groupBy(function ($class) {
                 return (new Classifier)->classify($class);
             })
             ->map(function ($classes, $name) {
                 return new Component($name, $classes);
-        });
+            });
     }
 
     /**
