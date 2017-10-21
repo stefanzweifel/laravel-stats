@@ -51,6 +51,7 @@ return [
     'paths' => [
         base_path('app'),
         base_path('database'),
+        base_path('tests'),
     ],
 
     /*
@@ -96,6 +97,7 @@ The package scans the files defined in the `paths`-array in the configuration fi
 | Resource | Must extend `Illuminate\Http\Resources\Json\Resource` |
 | Seeder | Must extend `Illuminate\Database\Seeder` |
 | ServiceProvider | Must extend `Illuminate\Support\ServiceProvider` |
+| Test | Must extend `PHPUnit\Framework\TestCase` |
 
 
 ## Running the tests
