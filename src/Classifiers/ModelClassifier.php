@@ -4,14 +4,14 @@ namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
 
-class ModelClassifier extends Classifier
+class ModelClassifier implements ClassifierInterface
 {
-    public function getName()
+    public function getName(): string
     {
         return 'Models';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return $class->isSubclassOf(\Illuminate\Database\Eloquent\Model::class);
     }

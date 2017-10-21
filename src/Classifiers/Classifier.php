@@ -27,14 +27,21 @@ class Classifier
 
     public function classify(ReflectionClass $class)
     {
-        foreach (self::CLASSIFIERS as $classifier) {
-            $c = new $classifier();
+        $name = collect(self::CLASSIFIERS)
+            ->map(function ($classifier) {
+                return new $classifier;
+            })
+            ->filter(function ($classifierClass) {
+                return $classifierClass instanceof ClassifierInterface;
+            })
+            ->filter(function (ClassifierInterface $classifier) use ($class) {
+                return $classifier->satisfies($class);
+            })
+            ->map(function (ClassifierInterface $classifier) {
+                return $classifier->getName();
+            })
+            ->first();
 
-            if ($c->satisfies($class)) {
-                return $c->getName();
-            }
-        }
-
-        return 'Other';
+        return $name ?: 'Other';
     }
 }
