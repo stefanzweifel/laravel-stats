@@ -159,4 +159,12 @@ class ClassifierTest extends TestCase
             'Service Providers', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\ServiceProviders\DemoProvider::class))
         );
     }
+
+    /** @test */
+    public function it_detects_phpunit_tests()
+    {
+        $this->assertSame(
+            'PHPUnit Tests', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Tests\ExampleTest::class))
+        );
+    }
 }
