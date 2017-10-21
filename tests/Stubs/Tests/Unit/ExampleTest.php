@@ -3,7 +3,6 @@
 namespace Wnx\LaravelStats\Tests\Stubs\Tests\Unit;
 
 use Wnx\LaravelStats\Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ExampleTest extends TestCase
 {
