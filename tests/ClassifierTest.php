@@ -164,8 +164,8 @@ class ClassifierTest extends TestCase
     /** @test */
     public function it_detects_dusk_tests()
     {
-    	$this->assertSame(
-    	    'DuskTests', $this->classifier->classify(new ReflectionClass(DemoDuskTest::class))
+        $this->assertSame(
+            'DuskTests', $this->classifier->classify(new ReflectionClass(DemoDuskTest::class))
         );
     }
 }
