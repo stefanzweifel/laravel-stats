@@ -22,6 +22,7 @@ class Classifier
         ResourceClassifier::class,
         SeederClassifier::class,
         ServiceProviderClassifier::class,
+        DuskClassifier::class,
     ];
 
     public function classify(ReflectionClass $class)
