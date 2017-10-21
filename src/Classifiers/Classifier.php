@@ -22,6 +22,10 @@ class Classifier
         ResourceClassifier::class,
         SeederClassifier::class,
         ServiceProviderClassifier::class,
+        UnitTestClassifier::class,
+        FeatureTestClassifier::class,
+        BrowserTestClassifier::class,
+        BrowserKitTestClassifier::class,
     ];
 
     public function classify(ReflectionClass $class)
