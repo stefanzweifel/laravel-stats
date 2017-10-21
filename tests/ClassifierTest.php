@@ -159,4 +159,20 @@ class ClassifierTest extends TestCase
             'Service Providers', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\ServiceProviders\DemoProvider::class))
         );
     }
+
+    /** @test */
+    public function it_detects_unit_tests()
+    {
+        $this->assertSame(
+            'Unit Tests', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Tests\Unit\ExampleTest::class))
+        );
+    }
+
+    /** @test */
+    public function it_detects_feature_tests()
+    {
+        $this->assertSame(
+            'Feature Tests', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Tests\Feature\ExampleTest::class))
+        );
+    }
 }
