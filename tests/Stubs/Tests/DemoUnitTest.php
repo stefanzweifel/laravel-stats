@@ -2,9 +2,9 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs\Tests;
 
-use Wnx\LaravelStats\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
-class ExampleTest extends TestCase
+class DemoUnitTest extends TestCase
 {
     /**
      * A basic test example.
