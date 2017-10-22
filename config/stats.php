@@ -8,7 +8,7 @@ return [
     'paths' => [
         base_path('app'),
         base_path('database'),
-        base_path('tests'),
+        // base_path('tests'),
     ],
 
     /*
