@@ -162,6 +162,14 @@ class ClassifierTest extends TestCase
     }
 
     /** @test */
+    public function it_detects_phpunit_tests()
+    {
+        $this->assertSame(
+            'PHPUnit Tests', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Tests\DemoUnitTest::class))
+        );
+    }
+
+    /** @test */
     public function it_detects_dusk_tests()
     {
         $this->assertSame(
