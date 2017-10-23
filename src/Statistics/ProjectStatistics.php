@@ -75,7 +75,7 @@ class ProjectStatistics
      *
      * @return int
      */
-    public function getTotalLinesOfCode()
+    public function getTotalLinesOfCode() : int
     {
         return $this->linesOfCode;
     }
@@ -85,7 +85,7 @@ class ProjectStatistics
      *
      * @param i $stats
      */
-    public function incrementTestLinesOfCode(int $number) : void
+    public function incrementTestLinesOfCode(int $number)
     {
         $this->testLinesOfCode += $number;
     }
