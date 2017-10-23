@@ -21,7 +21,8 @@ class ComponentTest extends TestCase
         $component = new Component('FooBar', collect([DemoEvent::class]));
 
         $this->assertEquals(
-            $component->getClasses()->first(), DemoEvent::class
+            $component->getClasses()->first(),
+            DemoEvent::class
         );
     }
 }
