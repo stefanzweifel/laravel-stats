@@ -20,7 +20,7 @@ class ComponentStatisticsTest extends TestCase
         ]));
 
         $stats = new ComponentStatistics($component);
-        $result = $stats->getAsArray();
+        $result = $stats->toArray();
 
         $this->assertEquals('Controllers', $result['component']);
         $this->assertEquals(2, $result['number_of_classes']);
