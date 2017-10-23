@@ -7,6 +7,16 @@ use Illuminate\Support\Collection;
 class ProjectStatistics
 {
     /**
+     * @var int
+     */
+    protected $linesOfCode = 0;
+
+    /**
+     * @var int
+     */
+    protected $testLinesOfCode = 0;
+
+    /**
      * @var Collection
      */
     protected $components;
@@ -25,7 +35,7 @@ class ProjectStatistics
     {
         return $this->components
             ->map(function ($component) {
-                return (new ComponentStatistics($component))->getAsArray();
+                return (new ComponentStatistics($this, $component))->getAsArray();
             })
             ->sortBy('component');
     }
@@ -48,5 +58,45 @@ class ProjectStatistics
             $stats->sum('loc'),
             round($stats->avg('loc_per_method'), 2),
         ];
+    }
+    
+    /**
+     * Incement Code Lines of Code.
+     *
+     * @param int $number
+     */
+    public function incrementCodeLinesOfCode(int $number) : void
+    {
+        $this->linesOfCode += $number;
+    }
+
+    /**
+     * Get Total Line of Code.
+     *
+     * @return int
+     */
+    public function getTotalLinesOfCode() : int
+    {
+        return $this->linesOfCode;
+    }
+
+    /**
+     * Incement Test Lines Of Code.
+     *
+     * @param i $stats
+     */
+    public function incrementTestLinesOfCode(int $number) : void
+    {
+        $this->testLinesOfCode += $number;
+    }
+
+    /**
+     * Get Total Test Line of Code.
+     *
+     * @return int
+     */
+    public function getTotalTestLinesOfCode() : int
+    {
+        return $this->testLinesOfCode;
     }
 }

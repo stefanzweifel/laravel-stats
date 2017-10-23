@@ -1,5 +1,5 @@
 {
-    "name": "wnx/laravel-stats",
+    "name": "dinhquochan/laravel-stats",
     "description": "Get insights about your Laravel Project",
     "homepage": "https://github.com/stefanzweifel/laravel-stats",
     "keywords": ["laravel", "wnx", "statistics", "stats"],

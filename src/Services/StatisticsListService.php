@@ -16,6 +16,17 @@ class StatisticsListService
     protected $components;
 
     /**
+     * @var \Wnx\LaravelStats\Statistics\ProjectStatistics
+     */
+    protected $statistics;
+
+    public function __construct()
+    {
+        $this->findAndSortComponents();
+        $this->statistics = new ProjectStatistics($this->components);
+    }
+
+    /**
      * Return the Headers array used for Table Representation.
      *
      * @return array
@@ -40,20 +51,50 @@ class StatisticsListService
      */
     public function getData()
     {
-        $this->findAndSortComponents();
-
-        $statistics = new ProjectStatistics($this->components);
-
-        $data = $statistics->generate()->sortBy(function ($_, $key) {
+        $data = $this->statistics->generate()->sortBy(function ($_, $key) {
             return $key == 'Other' ? 1 : 0;
         });
 
-        $totalRow = $statistics->getTotalRow($data);
+        $totalRow = $this->statistics->getTotalRow($data);
 
         return $data->concat([
             new TableSeparator(),
             $totalRow,
         ]);
+    }
+
+    /**
+     * Get Total Line of Code.
+     *
+     * @return int
+     */
+    public function getTotalLinesOfCode() : int
+    {
+        return $this->statistics->getTotalLinesOfCode();
+    }
+    
+    /**
+     * Get Total Test Line of Code.
+     *
+     * @return int
+     */
+    public function getTotalTestLinesOfCode() : int
+    {
+        return $this->statistics->getTotalTestLinesOfCode();
+    }
+
+    /**
+     * Get ratio code to test
+     *
+     * @return string
+     */
+    public function getCodeToTestRatio() : string
+    {
+        $totalCode = $this->getTotalLinesOfCode();
+        $totalTest = $this->getTotalTestLinesOfCode();
+        $ratioTestToCode = $totalCode <= 0 ? 0 : round($totalTest / $totalCode, 3);
+
+        return 1 . ':' . $ratioTestToCode;
     }
 
     /**
