@@ -4,10 +4,10 @@ namespace Wnx\LaravelStats\Tests;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
-use Wnx\LaravelStats\Classifiers\Classifier;
 use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Tests\Stubs\Tests\DemoBrowserKit;
+use Wnx\LaravelStats\Classifiers\Classifier;
 use Wnx\LaravelStats\Tests\Stubs\Tests\DemoDuskTest;
+use Wnx\LaravelStats\Tests\Stubs\Tests\DemoBrowserKit;
 
 class ClassifierTest extends TestCase
 {

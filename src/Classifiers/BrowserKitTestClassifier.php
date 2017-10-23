@@ -2,8 +2,8 @@
 
 namespace Wnx\LaravelStats\Classifiers;
 
-use Laravel\BrowserKitTesting\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
+use Laravel\BrowserKitTesting\TestCase;
 
 class BrowserKitTestClassifier extends Classifier
 {
