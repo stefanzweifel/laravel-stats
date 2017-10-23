@@ -10,6 +10,7 @@ class DemoResource extends Resource
      * Transform the resource into an array.
      *
      * @param  \Illuminate\Http\Request
+     * @param mixed $request
      *
      * @return array
      */

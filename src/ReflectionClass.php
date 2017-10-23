@@ -16,6 +16,7 @@ class ReflectionClass extends NativeReflectionClass
      * Determine whether the class uses the given trait.
      *
      * @param  string $name
+     *
      * @return bool
      */
     public function usesTrait($name)

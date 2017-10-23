@@ -8,12 +8,18 @@ use SebastianBergmann\PHPLOC\Analyser;
 class ComponentStatistics
 {
     /**
+     * @var \Wnx\LaravelStats\Statistics\ProjectStatistics
+     */
+    public $project;
+
+    /**
      * @var \Wnx\LaravelStats\Component
      */
     public $component;
 
-    public function __construct(Component $component)
+    public function __construct(ProjectStatistics $project, Component $component)
     {
+        $this->project = $project;
         $this->component = $component;
     }
 
@@ -24,13 +30,23 @@ class ComponentStatistics
      */
     public function getAsArray() : array
     {
+        if (str_contains($this->component->getName(), 'Tests')) {
+            $this->project->incrementTestLinesOfCode(
+                $loc = $this->getLinesOfCode()
+            );
+        } else {
+            $this->project->incrementCodeLinesOfCode(
+                $loc = $this->getLinesOfCode()
+            );
+        }
+
         return [
             'component'         => $this->component->getName(),
             'number_of_classes' => $this->getNumberOfClasses(),
             'methods'           => $this->getNumberOfMethods(),
             'methods_per_class' => $this->getNumberOfMethodsPerClass(),
             'lines'             => $this->getLines(),
-            'loc'               => $this->getLinesOfCode(),
+            'loc'               => $loc,
             'loc_per_method'    => $this->getLinesOfCodePerMethod(),
         ];
     }

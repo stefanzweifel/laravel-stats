@@ -13,6 +13,10 @@ class DuskClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        return $class->isSubclassOf(\Laravel\Dusk\TestCase::class);
+        if (class_exists($classifier = \Laravel\Dusk\TestCase::class)) {
+            return $class->isSubclassOf($classifier);
+        }
+
+        return false;
     }
 }

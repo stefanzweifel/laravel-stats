@@ -3,8 +3,13 @@
 namespace Wnx\LaravelStats\Tests\Statistics;
 
 use Wnx\LaravelStats\Component;
+use Wnx\LaravelStats\ComponentSort;
 use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Statistics\ProjectStatistics;
+use Wnx\LaravelStats\Tests\Stubs\Tests\DemoUnitTest;
+use Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController;
+use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
 
 class ProjectStatisticsTest extends TestCase
 {
@@ -28,5 +33,29 @@ class ProjectStatisticsTest extends TestCase
         $stats = new ProjectStatistics(collect());
 
         $this->assertCount(0, $stats->generate());
+    }
+
+    /**
+     * @test
+     */
+    public function it_return_code_to_test_ratio()
+    {
+        $componentsSort = resolve(ComponentSort::class);
+        $components = collect([
+            new Component('Controllers', collect([
+                new ReflectionClass(ProjectsController::class),
+                new ReflectionClass(UsersController::class),
+            ])),
+            new Component('PHPUnit Tests', collect([
+                new ReflectionClass(DemoUnitTest::class),
+            ])),
+        ]);
+
+        $stats = new ProjectStatistics($components);
+        $stats->generate();
+
+        $this->assertEquals(12, $stats->getTotalLinesOfCode());
+        $this->assertEquals(3, $stats->getTotalTestLinesOfCode());
+        $this->assertEquals(0.25, $stats->getTestToCodeRatio());
     }
 }
