@@ -4,8 +4,9 @@ namespace Wnx\LaravelStats\Tests;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
-use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Classifiers\Classifier;
+use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Tests\Stubs\Tests\DemoBrowserKit;
 use Wnx\LaravelStats\Tests\Stubs\Tests\DemoDuskTest;
 
 class ClassifierTest extends TestCase
@@ -174,6 +175,14 @@ class ClassifierTest extends TestCase
     {
         $this->assertSame(
             'DuskTests', $this->classifier->classify(new ReflectionClass(DemoDuskTest::class))
+        );
+    }
+
+    /** @test */
+    public function it_detects_browserkit_tests()
+    {
+        $this->assertSame(
+            'BrowserKit Tests', $this->classifier->classify(new ReflectionClass(DemoBrowserKit::class))
         );
     }
 }

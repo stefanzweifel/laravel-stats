@@ -22,6 +22,7 @@ class Classifier
         ResourceClassifier::class,
         SeederClassifier::class,
         ServiceProviderClassifier::class,
+        BrowserKitTestClassifier::class,
         DuskClassifier::class,
         PhpUnitClassifier::class,
     ];
