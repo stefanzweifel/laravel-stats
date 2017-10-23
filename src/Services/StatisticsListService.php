@@ -84,7 +84,7 @@ class StatisticsListService
     }
 
     /**
-     * Get ratio code to test
+     * Get ratio code to test.
      *
      * @return string
      */
@@ -94,7 +94,7 @@ class StatisticsListService
         $totalTest = $this->getTotalTestLinesOfCode();
         $ratioTestToCode = $totalCode <= 0 ? 0 : round($totalTest / $totalCode, 3);
 
-        return 1 . ':' . $ratioTestToCode;
+        return 1 .':'.$ratioTestToCode;
     }
 
     /**

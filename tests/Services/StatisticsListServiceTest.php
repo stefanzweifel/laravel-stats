@@ -62,7 +62,7 @@ class StatisticsListServiceTest extends TestCase
     public function it_return_total_line_of_code()
     {
         $service = resolve(StatisticsListService::class);
-        
+
         $service->getData();
 
         $this->assertEquals(42198, $service->getTotalLinesOfCode());

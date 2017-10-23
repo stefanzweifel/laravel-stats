@@ -19,7 +19,7 @@ class ComponentStatisticsTest extends TestCase
             new ReflectionClass(ProjectsController::class),
             new ReflectionClass(UsersController::class),
         ]));
-        
+
         $project = resolve(ProjectStatistics::class);
         $stats = new ComponentStatistics($project, $component);
         $result = $stats->getAsArray();

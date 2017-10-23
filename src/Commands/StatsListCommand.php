@@ -40,7 +40,7 @@ class StatsListCommand extends Command
         $this->line(sprintf(
             "  Code LOC: <info>%d</info>\t\t".
             "Test LOC: <info>%d</info>\t\t".
-            "Code to Test Radio: <info>%s</info>",
+            'Code to Test Radio: <info>%s</info>',
             $service->getTotalLinesOfCode(),
             $service->getTotalTestLinesOfCode(),
             $service->getCodeToTestRatio()

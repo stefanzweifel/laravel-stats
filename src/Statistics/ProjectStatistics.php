@@ -59,7 +59,7 @@ class ProjectStatistics
             round($stats->avg('loc_per_method'), 2),
         ];
     }
-    
+
     /**
      * Incement Code Lines of Code.
      *
