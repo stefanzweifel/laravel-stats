@@ -4,6 +4,7 @@ namespace Wnx\LaravelStats\Services;
 
 use Wnx\LaravelStats\Statistics;
 use Wnx\LaravelStats\ClassFinder;
+use Illuminate\Support\Collection;
 use Wnx\LaravelStats\Statistics\ProjectStatistics;
 use Symfony\Component\Console\Helper\TableSeparator;
 
@@ -32,7 +33,7 @@ class StatisticsListService
      *
      * @return \Illuminate\Support\Collection
      */
-    public function getData()
+    public function getData() : Collection
     {
         $components = resolve(ClassFinder::class)->getComponents();
 
