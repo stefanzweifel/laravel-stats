@@ -65,7 +65,7 @@ class StatisticsListServiceTest extends TestCase
 
         $service->getData();
 
-        $this->assertEquals(42198, $service->getTotalLinesOfCode());
+        $this->assertEquals(42200, $service->getTotalLinesOfCode());
         $this->assertEquals(201, $service->getTotalTestLinesOfCode());
         $this->assertEquals('1:0.005', $service->getCodeToTestRatio());
     }

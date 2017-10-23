@@ -72,7 +72,7 @@ class StatisticsListService
     {
         return $this->statistics->getTotalLinesOfCode();
     }
-    
+
     /**
      * Get Total Test Line of Code.
      *

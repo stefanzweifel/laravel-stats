@@ -16,7 +16,7 @@ class DuskClassifier extends Classifier
         if (class_exists($classifier = \Laravel\Dusk\TestCase::class)) {
             return $class->isSubclassOf($classifier);
         }
-        
+
         return false;
     }
 }
