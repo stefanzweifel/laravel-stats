@@ -109,6 +109,7 @@ class ProjectStatistics
     {
         $totalCode = $this->getTotalLinesOfCode();
         $totalTest = $this->getTotalTestLinesOfCode();
+
         return $totalCode <= 0 ? 0 : round($totalTest / $totalCode, 3);
     }
 }
