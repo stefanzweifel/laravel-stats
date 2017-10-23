@@ -20,6 +20,7 @@
         "symfony/finder": "^3.3"
     },
     "require-dev": {
+        "laravel/browser-kit-testing": "^2.0",
         "laravel/dusk": "^2.0",
         "orchestra/testbench": "^3.5",
         "phpunit/phpunit": "6.*"
