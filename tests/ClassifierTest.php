@@ -31,7 +31,8 @@ class ClassifierTest extends TestCase
     public function it_detects_commands()
     {
         $this->assertSame(
-            'Commands', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Commands\DemoCommand::class))
+            'Commands',
+            $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Commands\DemoCommand::class))
         );
     }
 
@@ -41,7 +42,8 @@ class ClassifierTest extends TestCase
         Route::get('users', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@index');
 
         $this->assertSame(
-            'Controllers', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController::class))
+            'Controllers',
+            $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController::class))
         );
     }
 
@@ -51,7 +53,8 @@ class ClassifierTest extends TestCase
         Route::get('projects', 'Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController@index');
 
         $this->assertSame(
-            'Controllers', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController::class))
+            'Controllers',
+            $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController::class))
         );
     }
 
@@ -59,7 +62,8 @@ class ClassifierTest extends TestCase
     public function it_detects_events()
     {
         $this->assertSame(
-            'Events', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Events\DemoEvent::class))
+            'Events',
+            $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Events\DemoEvent::class))
         );
     }
 
@@ -67,7 +71,8 @@ class ClassifierTest extends TestCase
     public function it_detects_jobs()
     {
         $this->assertSame(
-            'Jobs', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Jobs\DemoJob::class))
+            'Jobs',
+            $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Jobs\DemoJob::class))
         );
     }
 
@@ -75,7 +80,8 @@ class ClassifierTest extends TestCase
     public function it_detects_mails()
     {
         $this->assertSame(
-            'Mails', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Mails\DemoMail::class))
+            'Mails',
+            $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Mails\DemoMail::class))
         );
     }
 
@@ -83,7 +89,8 @@ class ClassifierTest extends TestCase
     public function it_detects_middlewares()
     {
         $this->assertSame(
-            'Middlewares', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Middlewares\DemoMiddleware::class))
+            'Middlewares',
+            $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Middlewares\DemoMiddleware::class))
         );
     }
 
@@ -91,7 +98,8 @@ class ClassifierTest extends TestCase
     public function it_detects_migrations()
     {
         $this->assertSame(
-            'Migrations', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Migrations\CreateUsersTable::class))
+            'Migrations',
+            $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Migrations\CreateUsersTable::class))
         );
     }
 
@@ -99,7 +107,8 @@ class ClassifierTest extends TestCase
     public function it_detects_models()
     {
         $this->assertSame(
-            'Models', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Models\Project::class))
+            'Models',
+            $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Models\Project::class))
         );
     }
 
@@ -107,7 +116,8 @@ class ClassifierTest extends TestCase
     public function it_detects_notifications()
     {
         $this->assertSame(
-            'Notifications', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Notifications\ServerDownNotification::class))
+            'Notifications',
+            $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Notifications\ServerDownNotification::class))
         );
     }
 
@@ -117,7 +127,8 @@ class ClassifierTest extends TestCase
         Gate::policy(Project::class, \Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy::class);
 
         $this->assertSame(
-            'Policies', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy::class))
+            'Policies',
+            $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy::class))
         );
     }
 
@@ -125,7 +136,8 @@ class ClassifierTest extends TestCase
     public function it_detects_requests()
     {
         $this->assertSame(
-            'Requests', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Requests\UserRequest::class))
+            'Requests',
+            $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Requests\UserRequest::class))
         );
     }
 
@@ -133,7 +145,8 @@ class ClassifierTest extends TestCase
     public function it_detects_resources()
     {
         $this->assertSame(
-            'Resources', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Resources\DemoResource::class))
+            'Resources',
+            $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Resources\DemoResource::class))
         );
     }
 
@@ -141,7 +154,8 @@ class ClassifierTest extends TestCase
     public function it_detects_rules()
     {
         $this->assertSame(
-            'Rules', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule::class))
+            'Rules',
+            $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule::class))
         );
     }
 
@@ -149,7 +163,8 @@ class ClassifierTest extends TestCase
     public function it_detects_seeders()
     {
         $this->assertSame(
-            'Seeders', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Seeders\DemoSeeder::class))
+            'Seeders',
+            $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Seeders\DemoSeeder::class))
         );
     }
 
@@ -157,7 +172,8 @@ class ClassifierTest extends TestCase
     public function it_detects_service_providers()
     {
         $this->assertSame(
-            'Service Providers', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\ServiceProviders\DemoProvider::class))
+            'Service Providers',
+            $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\ServiceProviders\DemoProvider::class))
         );
     }
 
@@ -165,7 +181,8 @@ class ClassifierTest extends TestCase
     public function it_detects_phpunit_tests()
     {
         $this->assertSame(
-            'PHPUnit Tests', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Tests\DemoUnitTest::class))
+            'PHPUnit Tests',
+            $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Tests\DemoUnitTest::class))
         );
     }
 
@@ -173,7 +190,8 @@ class ClassifierTest extends TestCase
     public function it_detects_dusk_tests()
     {
         $this->assertSame(
-            'DuskTests', $this->classifier->classify(new ReflectionClass(DemoDuskTest::class))
+            'DuskTests',
+            $this->classifier->classify(new ReflectionClass(DemoDuskTest::class))
         );
     }
 }

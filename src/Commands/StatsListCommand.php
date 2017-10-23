@@ -26,6 +26,7 @@ class StatsListCommand extends Command
      * Execute the console command.
      *
      * @param \Wnx\LaravelStats\Services\StatisticsListService $service
+     *
      * @return mixed
      */
     public function handle(StatisticsListService $service)
@@ -36,6 +37,15 @@ class StatsListCommand extends Command
             'default',
             $this->getColumnStyles()
         );
+
+        $this->line(sprintf(
+            "  Code LOC: <info>%d</info>\t\t".
+            "Test LOC: <info>%d</info>\t\t".
+            'Code to Test Radio: <info>%s</info>',
+            $service->getTotalLinesOfCode(),
+            $service->getTotalTestLinesOfCode(),
+            $service->getCodeToTestRatio()
+        ));
     }
 
     protected function getColumnStyles()
