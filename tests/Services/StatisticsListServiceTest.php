@@ -55,18 +55,4 @@ class StatisticsListServiceTest extends TestCase
             'LoC/Method',
         ], $service->getHeaders());
     }
-
-    /**
-     * @test
-     */
-    public function it_return_total_line_of_code()
-    {
-        $service = resolve(StatisticsListService::class);
-
-        $service->getData();
-
-        $this->assertEquals(42200, $service->getTotalLinesOfCode());
-        $this->assertEquals(201, $service->getTotalTestLinesOfCode());
-        $this->assertEquals('1:0.005', $service->getCodeToTestRatio());
-    }
 }

@@ -15,7 +15,8 @@ class ReflectionClassTest extends TestCase
         $class = new ReflectionClass(ProjectsController::class);
 
         $this->assertCount(
-            3, $class->getDefinedMethods()
+            3,
+            $class->getDefinedMethods()
         );
     }
 

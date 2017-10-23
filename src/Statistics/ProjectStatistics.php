@@ -99,4 +99,16 @@ class ProjectStatistics
     {
         return $this->testLinesOfCode;
     }
+
+    /**
+     * Get test to code ratio.
+     *
+     * @return float
+     */
+    public function getTestToCodeRatio() : float
+    {
+        $totalCode = $this->getTotalLinesOfCode();
+        $totalTest = $this->getTotalTestLinesOfCode();
+        return $totalCode <= 0 ? 0 : round($totalTest / $totalCode, 3);
+    }
 }

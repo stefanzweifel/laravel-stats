@@ -83,6 +83,7 @@ class ClassFinder
      *
      * @param  SplFileInfo $file
      * @param  Collection  $excludes
+     *
      * @return bool
      */
     protected function isExcluded(SplFileInfo $file, Collection $excludes)
