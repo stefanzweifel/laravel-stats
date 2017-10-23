@@ -10,11 +10,6 @@ use Symfony\Component\Console\Helper\TableSeparator;
 class StatisticsListService
 {
     /**
-     * @var \Illuminate\Support\Collection
-     */
-    protected $components;
-
-    /**
      * Return the Headers array used for Table Representation.
      *
      * @return array
