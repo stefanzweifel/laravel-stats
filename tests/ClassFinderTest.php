@@ -19,7 +19,11 @@ class ClassFinderTest extends TestCase
             ],
         ]);
 
-        $this->classes = resolve(ClassFinder::class)->getDeclaredClasses();
+        $this->classes = resolve(ClassFinder::class)->getComponents()
+            ->flatMap(function ($component) {
+                return $component->getClasses();
+            })
+            ->pluck('name');
     }
 
     /** @test */
@@ -130,5 +134,15 @@ class ClassFinderTest extends TestCase
     public function it_ignores_vendored_classes()
     {
         $this->assertFalse($this->classes->contains(\Symfony\Component\Finder\Finder::class));
+    }
+
+    /** @test */
+    public function it_sorts_classes_into_components()
+    {
+        $components = resolve(ClassFinder::class)->getComponents();
+
+        $this->assertTrue($components->has('Other'));
+        $this->assertTrue($components->has('Models'));
+        $this->assertTrue($components->has('Commands'));
     }
 }

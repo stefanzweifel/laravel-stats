@@ -6,32 +6,31 @@ use Exception;
 use SplFileInfo;
 use Illuminate\Support\Collection;
 use Symfony\Component\Finder\Finder;
+use Wnx\LaravelStats\Classifiers\Classifier;
 
 class ClassFinder
 {
     /**
-     * @var \Symfony\Component\Finder\Finder
-     */
-    protected $finder;
-
-    public function __construct(Finder $finder)
-    {
-        $this->finder = $finder;
-    }
-
-    /**
-     * Return a Collection of Declared Classes.
+     * Sort classes into Laravel Component.
+     *
+     * @param array $classes
      *
      * @return Collection
      */
-    public function getDeclaredClasses() : Collection
+    public function getComponents()
     {
         return $this->findAndLoadClasses()
-            ->reject(function ($class) {
-                return (new ReflectionClass($class))->isInternal();
+            ->map(function ($class) {
+                return new ReflectionClass($class);
             })
             ->reject(function ($class) {
-                return (new ReflectionClass($class))->isVendorProvided();
+                return $class->isInternal() || $class->isVendorProvided();
+            })
+            ->groupBy(function ($class) {
+                return (new Classifier)->classify($class);
+            })
+            ->map(function ($classes, $name) {
+                return new Component($name, $classes);
             });
     }
 
@@ -68,7 +67,7 @@ class ClassFinder
     {
         $excludes = collect(config('stats.exclude', []));
 
-        $files = $this->finder->files()
+        $files = (new Finder)->files()
             ->in(config('stats.paths', []))
             ->name('*.php');
 
