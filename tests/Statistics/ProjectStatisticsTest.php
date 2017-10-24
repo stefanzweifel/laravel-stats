@@ -2,7 +2,6 @@
 
 namespace Wnx\LaravelStats\Tests\Statistics;
 
-use Wnx\LaravelStats\Component;
 use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\Statistics\ProjectStatistics;
 
@@ -12,9 +11,9 @@ class ProjectStatisticsTest extends TestCase
     public function it_can_generate_statistics_for_given_components()
     {
         $components = collect([
-            new Component('foo', collect()),
-            new Component('bar', collect()),
-            new Component('baz', collect()),
+            'foo' => collect(),
+            'bar' => collect(),
+            'baz' => collect(),
         ]);
 
         $stats = new ProjectStatistics($components);

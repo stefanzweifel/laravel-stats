@@ -2,7 +2,6 @@
 
 namespace Wnx\LaravelStats\Tests\Statistics;
 
-use Wnx\LaravelStats\Component;
 use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Statistics\ComponentStatistics;
@@ -14,12 +13,12 @@ class ComponentStatisticsTest extends TestCase
     /** @test */
     public function it_returns_component_statistics_as_an_array()
     {
-        $component = new Component('Controllers', collect([
+        $classes = collect([
             new ReflectionClass(ProjectsController::class),
             new ReflectionClass(UsersController::class),
-        ]));
+        ]);
 
-        $stats = new ComponentStatistics($component);
+        $stats = new ComponentStatistics('Controllers', $classes);
         $result = $stats->toArray();
 
         $this->assertEquals('Controllers', $result['component']);
@@ -34,9 +33,7 @@ class ComponentStatisticsTest extends TestCase
     /** @test */
     public function it_returns_0_for_methods_per_class_if_no_class_has_been_set()
     {
-        $component = new Component('Controllers', collect());
-
-        $stats = new ComponentStatistics($component);
+        $stats = new ComponentStatistics('Controllers', collect());
 
         $this->assertEquals(0, $stats->getNumberOfMethodsPerClass());
     }
