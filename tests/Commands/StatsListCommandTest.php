@@ -22,4 +22,19 @@ class StatsListCommandTest extends TestCase
         $this->assertContains('Other', $resultAsText);
         $this->assertContains('Total', $resultAsText);
     }
+
+    /** @test */
+    public function it_displays_all_headers()
+    {
+        $this->artisan('stats');
+        $result = Artisan::output();
+
+        $this->assertContains('Name', $result);
+        $this->assertContains('Classes', $result);
+        $this->assertContains('Methods', $result);
+        $this->assertContains('Methods/Class', $result);
+        $this->assertContains('Lines', $result);
+        $this->assertContains('LoC', $result);
+        $this->assertContains('LoC/Method', $result);
+    }
 }

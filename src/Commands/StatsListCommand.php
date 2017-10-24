@@ -3,8 +3,9 @@
 namespace Wnx\LaravelStats\Commands;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Helper\TableStyle;
-use Wnx\LaravelStats\Services\StatisticsListService;
+use Wnx\LaravelStats\ClassFinder;
+use Wnx\LaravelStats\Formatters\TableOutput;
+use Wnx\LaravelStats\Statistics\ProjectStatistics;
 
 class StatsListCommand extends Command
 {
@@ -25,31 +26,13 @@ class StatsListCommand extends Command
     /**
      * Execute the console command.
      *
-     * @param \Wnx\LaravelStats\Services\StatisticsListService $service
+     * @param $finder Wnx\LaravelStats\ClassFinder
      * @return mixed
      */
-    public function handle(StatisticsListService $service)
+    public function handle(ClassFinder $finder)
     {
-        $this->table(
-            $service->getHeaders(),
-            $service->getData(),
-            'default',
-            $this->getColumnStyles()
-        );
-    }
+        $statistics = new ProjectStatistics($finder->getComponents());
 
-    protected function getColumnStyles()
-    {
-        $rightAlignment = new TableStyle();
-        $rightAlignment->setPadType(STR_PAD_LEFT);
-
-        return [
-            1 => $rightAlignment,
-            2 => $rightAlignment,
-            3 => $rightAlignment,
-            4 => $rightAlignment,
-            5 => $rightAlignment,
-            6 => $rightAlignment,
-        ];
+        (new TableOutput($this->output))->render($statistics);
     }
 }
