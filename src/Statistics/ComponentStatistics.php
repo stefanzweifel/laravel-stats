@@ -5,8 +5,9 @@ namespace Wnx\LaravelStats\Statistics;
 use Wnx\LaravelStats\Component;
 use Illuminate\Support\Collection;
 use SebastianBergmann\PHPLOC\Analyser;
+use Illuminate\Contracts\Support\Arrayable;
 
-class ComponentStatistics
+class ComponentStatistics implements Arrayable
 {
     /**
      * Component name.
@@ -32,24 +33,6 @@ class ComponentStatistics
     {
         $this->name = $name;
         $this->classes = $classes;
-    }
-
-    /**
-     * Generate Statistics Array for the given Component.
-     *
-     * @return array
-     */
-    public function getAsArray() : array
-    {
-        return [
-            'component'         => $this->name,
-            'number_of_classes' => $this->getNumberOfClasses(),
-            'methods'           => $this->getNumberOfMethods(),
-            'methods_per_class' => $this->getNumberOfMethodsPerClass(),
-            'lines'             => $this->getLines(),
-            'loc'               => $this->getLinesOfCode(),
-            'loc_per_method'    => $this->getLinesOfCodePerMethod(),
-        ];
     }
 
     /**
@@ -140,5 +123,23 @@ class ComponentStatistics
         }
 
         return round($this->getLinesOfCode() / $this->getNumberOfMethods(), 2);
+    }
+
+    /**
+     * Generate Statistics Array for the given Component.
+     *
+     * @return array
+     */
+    public function toArray() : array
+    {
+        return [
+            'component'         => $this->name,
+            'number_of_classes' => $this->getNumberOfClasses(),
+            'methods'           => $this->getNumberOfMethods(),
+            'methods_per_class' => $this->getNumberOfMethodsPerClass(),
+            'lines'             => $this->getLines(),
+            'loc'               => $this->getLinesOfCode(),
+            'loc_per_method'    => $this->getLinesOfCodePerMethod(),
+        ];
     }
 }
