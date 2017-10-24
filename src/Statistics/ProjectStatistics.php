@@ -25,7 +25,7 @@ class ProjectStatistics
     {
         return $this->components
             ->map(function ($component) {
-                return (new ComponentStatistics($component))->getAsArray();
+                return (new ComponentStatistics($component))->toArray();
             })
             ->sortBy('component');
     }

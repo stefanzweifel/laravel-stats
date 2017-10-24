@@ -16,7 +16,7 @@ class StatisticsListServiceTest extends TestCase
 
         $service = resolve(StatisticsListService::class);
 
-        $data = collect($service->getData());
+        $data = $service->getData();
 
         $controllerSet = $data->where('component', 'Controllers')->first();
 
