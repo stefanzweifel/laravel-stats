@@ -28,9 +28,6 @@ class ClassFinder
             })
             ->groupBy(function ($class) {
                 return (new Classifier)->classify($class);
-            })
-            ->map(function ($classes, $name) {
-                return new Component($name, $classes);
             });
     }
 

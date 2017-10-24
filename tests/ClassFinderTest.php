@@ -19,11 +19,7 @@ class ClassFinderTest extends TestCase
             ],
         ]);
 
-        $this->classes = resolve(ClassFinder::class)->getComponents()
-            ->flatMap(function ($component) {
-                return $component->getClasses();
-            })
-            ->pluck('name');
+        $this->classes = resolve(ClassFinder::class)->getComponents()->flatten()->pluck('name');
     }
 
     /** @test */

@@ -3,18 +3,35 @@
 namespace Wnx\LaravelStats\Statistics;
 
 use Wnx\LaravelStats\Component;
+use Illuminate\Support\Collection;
 use SebastianBergmann\PHPLOC\Analyser;
 
 class ComponentStatistics
 {
     /**
-     * @var \Wnx\LaravelStats\Component
+     * Component name.
+     *
+     * @var string
      */
-    public $component;
+    public $name;
 
-    public function __construct(Component $component)
+    /**
+     * Collection of classes that belong to a given component.
+     *
+     * @var Illuminate\Support\Collection
+     */
+    public $classes;
+
+    /**
+     * Create new ComponentStatistics instance.
+     *
+     * @param string     $name
+     * @param Collection $classes
+     */
+    public function __construct(string $name, Collection $classes)
     {
-        $this->component = $component;
+        $this->name = $name;
+        $this->classes = $classes;
     }
 
     /**
@@ -25,7 +42,7 @@ class ComponentStatistics
     public function getAsArray() : array
     {
         return [
-            'component'         => $this->component->getName(),
+            'component'         => $this->name,
             'number_of_classes' => $this->getNumberOfClasses(),
             'methods'           => $this->getNumberOfMethods(),
             'methods_per_class' => $this->getNumberOfMethodsPerClass(),
@@ -42,7 +59,7 @@ class ComponentStatistics
      */
     public function getNumberOfClasses() : int
     {
-        return count($this->component->getClasses());
+        return count($this->classes);
     }
 
     /**
@@ -52,7 +69,7 @@ class ComponentStatistics
      */
     public function getNumberOfMethods() : int
     {
-        return $this->component->getClasses()
+        return $this->classes
             ->map(function ($class) {
                 return $class->getDefinedMethods()->count();
             })
@@ -82,7 +99,7 @@ class ComponentStatistics
     {
         $classPaths = [];
 
-        foreach ($this->component->getClasses() as $reflection) {
+        foreach ($this->classes as $reflection) {
             $classPaths[] = $reflection->getFileName();
         }
 
@@ -100,7 +117,7 @@ class ComponentStatistics
     {
         $classPaths = [];
 
-        foreach ($this->component->getClasses() as $reflection) {
+        foreach ($this->classes as $reflection) {
             $classPaths[] = $reflection->getFileName();
         }
 

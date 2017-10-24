@@ -24,8 +24,8 @@ class ProjectStatistics
     public function generate() : Collection
     {
         return $this->components
-            ->map(function ($component) {
-                return (new ComponentStatistics($component))->getAsArray();
+            ->map(function ($classes, $name) {
+                return (new ComponentStatistics($name, $classes))->getAsArray();
             })
             ->sortBy('component');
     }
