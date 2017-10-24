@@ -91,6 +91,8 @@ class ClassifierTest extends TestCase
     /** @test */
     public function it_detects_migrations()
     {
+        require_once __DIR__.'/Stubs/Migrations/2014_10_12_000000_create_users_table.php';
+
         $this->assertSame(
             'Migrations', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Migrations\CreateUsersTable::class))
         );
