@@ -14,10 +14,6 @@ class BrowserKitTestClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        if (class_exists(TestCase::class)) {
-            return $class->isSubclassOf(TestCase::class);
-        }
-
-        return false;
+        return class_exists(TestCase::class) && $class->isSubclassOf(TestCase::class);
     }
 }
