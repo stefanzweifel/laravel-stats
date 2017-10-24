@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Add PHPUnit Classifier [#89](https://github.com/stefanzweifel/laravel-stats/pull/89)
 - Add Laravel Dusk Classifier [#86](https://github.com/stefanzweifel/laravel-stats/pull/86)
-- Add Laravel Browser Kit Testifier [#95](https://github.com/stefanzweifel/laravel-stats/pull/95)
+- Add Laravel Browser Kit Classifier [#95](https://github.com/stefanzweifel/laravel-stats/pull/95)
 
 ## [v.1.0.0](https://github.com/stefanzweifel/laravel-stats/compare/v1.0.0-beta-2...v1.0.0)
 
