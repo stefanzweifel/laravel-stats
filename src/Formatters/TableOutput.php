@@ -37,14 +37,12 @@ class TableOutput
     {
         $table = new Table($this->output);
 
-        $rows = $statistics->generate();
-
         $table
             ->setHeaders(['Name', 'Classes', 'Methods', 'Methods/Class', 'Lines', 'LoC', 'LoC/Method'])
-            ->setRows($rows->except('Other')->all())
-            ->addRow($rows->only('Other')->first())
+            ->setRows($statistics->components())
+            ->addRow($statistics->other())
             ->addRow(new TableSeparator)
-            ->addRow($statistics->getTotalRow($rows));
+            ->addRow($statistics->total());
 
         for ($i = 1; $i <= 6; $i++) {
             $table->setColumnStyle($i, (new TableStyle)->setPadType(STR_PAD_LEFT));
