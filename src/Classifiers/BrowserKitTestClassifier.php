@@ -17,6 +17,7 @@ class BrowserKitTestClassifier extends Classifier
         if (class_exists(TestCase::class)) {
             return $class->isSubclassOf(TestCase::class);
         }
+
         return false;
     }
 }
