@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Classifiers;
 
+use PHPUnit\Framework\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
 
 class PhpUnitClassifier extends Classifier
@@ -13,6 +14,10 @@ class PhpUnitClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        return $class->isSubclassOf(\PHPUnit\Framework\TestCase::class);
+        if (class_exists(TestCase::class)) {
+            return $class->isSubclassOf(TestCase::class);
+        }
+
+        return false;
     }
 }

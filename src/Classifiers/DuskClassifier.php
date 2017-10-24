@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Classifiers;
 
+use Laravel\Dusk\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
 
 class DuskClassifier extends Classifier
@@ -13,6 +14,10 @@ class DuskClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        return $class->isSubclassOf(\Laravel\Dusk\TestCase::class);
+        if (class_exists(TestCase::class)) {
+            return $class->isSubclassOf(TestCase::class);
+        }
+
+        return false;
     }
 }
