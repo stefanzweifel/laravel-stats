@@ -7,27 +7,49 @@ use Illuminate\Support\Collection;
 class ProjectStatistics
 {
     /**
+     * List of components.
+     *
      * @var Collection
      */
     protected $components;
 
+    /**
+     * Cache project statistics.
+     *
+     * @var Collection
+     */
+    protected $cache;
+
+    /**
+     * Create a new ProjectStatistics instance.
+     *
+     * @param Collection $components
+     */
     public function __construct(Collection $components)
     {
         $this->components = $components;
     }
 
     /**
-     * Generate Project Statistics.
+     * Get all components, except 'Other'.
      *
-     * @return Collection
+     * @return array
      */
-    public function generate() : Collection
+    public function components() : array
     {
-        return $this->components
-            ->map(function ($classes, $name) {
-                return (new ComponentStatistics($name, $classes))->toArray();
-            })
-            ->sortBy('component');
+        return $this->generate()->except('Other')->all();
+    }
+
+    /**
+     * Get 'Other' component.
+     *
+     * @return array
+     */
+    public function other() : array
+    {
+        return $this->generate()->first(function ($component) {
+            return $component['component'] == 'Other';
+        }, []);
     }
 
     /**
@@ -37,8 +59,10 @@ class ProjectStatistics
      *
      * @return array
      */
-    public function getTotalRow(Collection $stats) : array
+    public function total() : array
     {
+        $stats = $this->generate();
+
         return [
             'Total',
             $stats->sum('number_of_classes'),
@@ -48,5 +72,23 @@ class ProjectStatistics
             $stats->sum('loc'),
             round($stats->avg('loc_per_method'), 2),
         ];
+    }
+
+    /**
+     * Generate Project Statistics.
+     *
+     * @return Collection
+     */
+    private function generate() : Collection
+    {
+        if (! $this->cache) {
+            $this->cache = $this->components
+                ->map(function ($classes, $name) {
+                    return (new ComponentStatistics($name, $classes))->toArray();
+                })
+                ->sortBy('component');
+        }
+
+        return $this->cache;
     }
 }
