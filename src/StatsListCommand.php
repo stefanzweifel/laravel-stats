@@ -20,7 +20,7 @@ class StatsListCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Generate Statistics for this Laravel Project';
+    protected $description = 'Generate statistics for this Laravel project';
 
     /**
      * Execute the console command.
