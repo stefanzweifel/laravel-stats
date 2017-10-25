@@ -2,9 +2,9 @@
 
 namespace Wnx\LaravelStats\Tests;
 
-use Wnx\LaravelStats\ClassFinder;
+use Wnx\LaravelStats\ComponentFinder;
 
-class ClassFinderTest extends TestCase
+class ComponentFinderTest extends TestCase
 {
     public function setUp()
     {
@@ -19,7 +19,7 @@ class ClassFinderTest extends TestCase
             ],
         ]);
 
-        $this->classes = resolve(ClassFinder::class)->getComponents()->flatten()->pluck('name');
+        $this->classes = resolve(ComponentFinder::class)->get()->flatten()->pluck('name');
     }
 
     /** @test */
@@ -135,7 +135,7 @@ class ClassFinderTest extends TestCase
     /** @test */
     public function it_sorts_classes_into_components()
     {
-        $components = resolve(ClassFinder::class)->getComponents();
+        $components = resolve(ComponentFinder::class)->get();
 
         $this->assertTrue($components->has('Other'));
         $this->assertTrue($components->has('Models'));

@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 use Symfony\Component\Finder\Finder;
 use Wnx\LaravelStats\Classifiers\Classifier;
 
-class ClassFinder
+class ComponentFinder
 {
     /**
      * Sort classes into Laravel Component.
@@ -17,7 +17,7 @@ class ClassFinder
      *
      * @return Collection
      */
-    public function getComponents()
+    public function get()
     {
         return $this->findAndLoadClasses()
             ->map(function ($class) {

@@ -25,12 +25,12 @@ class StatsListCommand extends Command
     /**
      * Execute the console command.
      *
-     * @param $finder Wnx\LaravelStats\ClassFinder
+     * @param $finder Wnx\LaravelStats\ComponentFinder
      * @return mixed
      */
-    public function handle(ClassFinder $finder)
+    public function handle(ComponentFinder $finder)
     {
-        $statistics = new ProjectStatistics($finder->getComponents());
+        $statistics = new ProjectStatistics($finder->get());
 
         (new TableOutput($this->output))->render($statistics);
     }
