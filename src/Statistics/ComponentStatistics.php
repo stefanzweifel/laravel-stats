@@ -42,7 +42,7 @@ class ComponentStatistics implements Arrayable
      */
     public function getNumberOfClasses() : int
     {
-        return count($this->classes);
+        return $this->classes->count();
     }
 
     /**
@@ -53,10 +53,9 @@ class ComponentStatistics implements Arrayable
     public function getNumberOfMethods() : int
     {
         return $this->classes
-            ->map(function ($class) {
+            ->sum(function ($class) {
                 return $class->getDefinedMethods()->count();
-            })
-            ->sum();
+            });
     }
 
     /**
@@ -80,15 +79,13 @@ class ComponentStatistics implements Arrayable
      */
     public function getLines() : int
     {
-        $classPaths = [];
-
-        foreach ($this->classes as $reflection) {
-            $classPaths[] = $reflection->getFileName();
-        }
-
-        $service = resolve(Analyser::class);
-
-        return $service->countFiles($classPaths, false)['loc'];
+        return $this->classes
+            ->map(function ($class) {
+                return $class->getFileName();
+            })
+            ->pipe(function ($classes) {
+                return resolve(Analyser::class)->countFiles($classes->all(), false)['loc'];
+            });
     }
 
     /**
@@ -98,15 +95,13 @@ class ComponentStatistics implements Arrayable
      */
     public function getLinesOfCode() : float
     {
-        $classPaths = [];
-
-        foreach ($this->classes as $reflection) {
-            $classPaths[] = $reflection->getFileName();
-        }
-
-        $service = resolve(Analyser::class);
-
-        return $service->countFiles($classPaths, false)['lloc'];
+        return $this->classes
+            ->map(function ($class) {
+                return $class->getFileName();
+            })
+            ->pipe(function ($classes) {
+                return resolve(Analyser::class)->countFiles($classes->all(), false)['lloc'];
+            });
     }
 
     /**
@@ -116,9 +111,7 @@ class ComponentStatistics implements Arrayable
      */
     public function getLinesOfCodePerMethod() : float
     {
-        $numberOfMethods = $this->getNumberOfMethods();
-
-        if ($numberOfMethods == 0) {
+        if ($this->getNumberOfMethods() == 0) {
             return 0;
         }
 
