@@ -6,6 +6,7 @@ use Illuminate\Contracts\Http\Kernel;
 use Wnx\LaravelStats\StatsServiceProvider;
 use Wnx\LaravelStats\Tests\Stubs\HttpKernel;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Wnx\LaravelStats\Tests\Stubs\ServiceProviders\EventServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
@@ -18,6 +19,7 @@ abstract class TestCase extends Orchestra
     {
         return [
             StatsServiceProvider::class,
+            EventServiceProvider::class
         ];
     }
 
