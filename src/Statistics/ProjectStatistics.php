@@ -55,8 +55,6 @@ class ProjectStatistics
     /**
      * Create Total Row for current Project Statistics.
      *
-     * @param Collection $stats
-     *
      * @return array
      */
     public function total() : array

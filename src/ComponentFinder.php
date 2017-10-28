@@ -13,8 +13,6 @@ class ComponentFinder
     /**
      * Sort classes into Laravel Component.
      *
-     * @param array $classes
-     *
      * @return Collection
      */
     public function get()
