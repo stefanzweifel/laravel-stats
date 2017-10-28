@@ -19,7 +19,7 @@ abstract class TestCase extends Orchestra
     {
         return [
             StatsServiceProvider::class,
-            EventServiceProvider::class
+            EventServiceProvider::class,
         ];
     }
 

@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Route;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Classifiers\Classifier;
 use Wnx\LaravelStats\Tests\Stubs\Tests\DemoDuskTest;
-use Wnx\LaravelStats\Tests\Stubs\EventListeners\DemoEventListener;
 use Wnx\LaravelStats\Tests\Stubs\Tests\DemoBrowserKit;
+use Wnx\LaravelStats\Tests\Stubs\EventListeners\DemoEventListener;
 
 class ClassifierTest extends TestCase
 {
@@ -196,5 +196,4 @@ class ClassifierTest extends TestCase
             'Event Listeners', $this->classifier->classify(new ReflectionClass(DemoEventListener::class))
         );
     }
-
 }

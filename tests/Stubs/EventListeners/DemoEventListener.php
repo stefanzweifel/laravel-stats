@@ -2,9 +2,6 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs\EventListeners;
 
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-
 class DemoEventListener
 {
     /**
