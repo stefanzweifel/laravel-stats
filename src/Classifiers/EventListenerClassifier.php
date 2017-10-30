@@ -2,8 +2,8 @@
 
 namespace Wnx\LaravelStats\Classifiers;
 
-use Illuminate\Foundation\Support\Providers\EventServiceProvider;
 use Wnx\LaravelStats\ReflectionClass;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider;
 
 class EventListenerClassifier extends Classifier
 {
