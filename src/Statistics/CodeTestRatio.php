@@ -11,12 +11,12 @@ class CodeTestRatio
         $this->project = $projectStatistics;
     }
 
-    public function getRatio()
+    public function getRatio() : float
     {
         return round($this->getTestLoc() / $this->getCodeLoc(), 1);
     }
 
-    public function getTestLoc()
+    public function getTestLoc() : int
     {
         return collect($this->project->components())
             ->filter(function($_, $key) {
@@ -25,7 +25,7 @@ class CodeTestRatio
             ->sum('loc');
     }
 
-    public function getCodeLoc()
+    public function getCodeLoc() : int
     {
         return collect($this->project->components())
             ->filter(function($_, $key) {
