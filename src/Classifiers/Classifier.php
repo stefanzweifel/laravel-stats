@@ -14,6 +14,7 @@ class Classifier
         PolicyClassifier::class,
         MiddlewareClassifier::class,
         EventClassifier::class,
+        EventListenerClassifier::class,
         MailClassifier::class,
         NotificationClassifier::class,
         JobClassifier::class,

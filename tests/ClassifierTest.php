@@ -8,6 +8,7 @@ use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Classifiers\Classifier;
 use Wnx\LaravelStats\Tests\Stubs\Tests\DemoDuskTest;
 use Wnx\LaravelStats\Tests\Stubs\Tests\DemoBrowserKit;
+use Wnx\LaravelStats\Tests\Stubs\EventListeners\DemoEventListener;
 
 class ClassifierTest extends TestCase
 {
@@ -185,6 +186,14 @@ class ClassifierTest extends TestCase
     {
         $this->assertSame(
             'BrowserKit Tests', $this->classifier->classify(new ReflectionClass(DemoBrowserKit::class))
+        );
+    }
+
+    /** @test */
+    public function it_detects_event_listeners()
+    {
+        $this->assertSame(
+            'Event Listeners', $this->classifier->classify(new ReflectionClass(DemoEventListener::class))
         );
     }
 }
