@@ -2,18 +2,17 @@
 
 namespace Wnx\LaravelStats\Tests\Statistics;
 
+use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Statistics\CodeTestRatio;
-use Wnx\LaravelStats\Statistics\ProjectStatistics;
-use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
 use Wnx\LaravelStats\Tests\Stubs\Models\Project;
+use Wnx\LaravelStats\Statistics\ProjectStatistics;
 use Wnx\LaravelStats\Tests\Stubs\Tests\DemoDuskTest;
 use Wnx\LaravelStats\Tests\Stubs\Tests\DemoUnitTest;
-use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
 
 class CodeTestRatioTest extends TestCase
 {
-
     /** @test */
     public function it_gets_code_loc()
     {
@@ -22,14 +21,14 @@ class CodeTestRatioTest extends TestCase
                 new ReflectionClass(ProjectsController::class),
             ]),
             'Models' => collect([
-                new ReflectionClass(Project::class)
+                new ReflectionClass(Project::class),
             ]),
             'PHPUnit Tests' => collect([
                 new ReflectionClass(DemoUnitTest::class),
             ]),
             'Dusk Tests' => collect([
                 new ReflectionClass(DemoDuskTest::class),
-            ])
+            ]),
         ]);
 
         $stats = new ProjectStatistics($components);
@@ -46,14 +45,14 @@ class CodeTestRatioTest extends TestCase
                 new ReflectionClass(ProjectsController::class),
             ]),
             'Models' => collect([
-                new ReflectionClass(Project::class)
+                new ReflectionClass(Project::class),
             ]),
             'PHPUnit Tests' => collect([
                 new ReflectionClass(DemoUnitTest::class),
             ]),
             'Dusk Tests' => collect([
                 new ReflectionClass(DemoDuskTest::class),
-            ])
+            ]),
         ]);
 
         $stats = new ProjectStatistics($components);
@@ -70,14 +69,14 @@ class CodeTestRatioTest extends TestCase
                 new ReflectionClass(ProjectsController::class),
             ]),
             'Models' => collect([
-                new ReflectionClass(Project::class)
+                new ReflectionClass(Project::class),
             ]),
             'PHPUnit Tests' => collect([
                 new ReflectionClass(DemoUnitTest::class),
             ]),
             'Dusk Tests' => collect([
                 new ReflectionClass(DemoDuskTest::class),
-            ])
+            ]),
         ]);
 
         $stats = new ProjectStatistics($components);
@@ -85,5 +84,4 @@ class CodeTestRatioTest extends TestCase
 
         $this->assertEquals(0.8, $ratio->getRatio());
     }
-
 }

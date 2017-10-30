@@ -19,7 +19,7 @@ class CodeTestRatio
     public function getTestLoc() : int
     {
         return collect($this->project->components())
-            ->filter(function($_, $key) {
+            ->filter(function ($_, $key) {
                 return str_contains($key, 'Test');
             })
             ->sum('loc');
@@ -28,10 +28,9 @@ class CodeTestRatio
     public function getCodeLoc() : int
     {
         return collect($this->project->components())
-            ->filter(function($_, $key) {
+            ->filter(function ($_, $key) {
                 return ! str_contains($key, 'Test');
             })
             ->sum('loc');
     }
-
 }
