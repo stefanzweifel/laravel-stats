@@ -89,6 +89,7 @@ The package scans the files defined in the `paths`-array in the configuration fi
 | Policy | The Policy must be registered in your `AuthServiceProvider` |
 | Middleware | The Middleware must be registered in your Http-Kernel  |
 | Event | Must use `Illuminate\Foundation\Events\Dispatchable`-Trait |
+| Event | Must be registered for an Event in `EventServiceProvider` |
 | Mail | Must extend `Illuminate\Mail\Mailable` |
 | Notification | Must extend `Illuminate\Notifications\Notification` |
 | Job | Must use `Illuminate\Foundation\Bus\Dispatchable`-Trait |
@@ -98,6 +99,7 @@ The package scans the files defined in the `paths`-array in the configuration fi
 | Seeder | Must extend `Illuminate\Database\Seeder` |
 | ServiceProvider | Must extend `Illuminate\Support\ServiceProvider` |
 | Dusk Tests | Must extend `Laravel\Dusk\TestCase` |
+| BrowserKit Test | Must extend `Laravel\BrowserKitTesting\TestCase` |
 | PHPUnit Test | Must extend `PHPUnit\Framework\TestCase` |
 
 
