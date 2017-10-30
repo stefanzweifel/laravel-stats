@@ -60,4 +60,18 @@ class ProjectStatisticsTest extends TestCase
         $this->assertEquals($controller['loc'], $total[5]);
         $this->assertEquals($controller['loc_per_method'], $total[6]);
     }
+
+    /** @test */
+    public function it_sorts_components_by_name()
+    {
+        $components = collect([
+            'b' => collect(),
+            'd' => collect(),
+            'a' => collect(),
+        ]);
+
+        $stats = new ProjectStatistics($components);
+
+        $this->assertEquals(['a', 'b', 'd'], array_keys($stats->components()));
+    }
 }
