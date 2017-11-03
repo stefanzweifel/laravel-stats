@@ -39,7 +39,7 @@ class CodeTestRatio
         return [
             "Code LOC: {$this->getCodeLoc()}",
             "Test LOC: {$this->getTestLoc()}",
-            "Code to Test Ratio: 1:{$this->getRatio()}"
+            "Code to Test Ratio: 1:{$this->getRatio()}",
         ];
     }
 }
