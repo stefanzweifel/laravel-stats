@@ -4,9 +4,10 @@ namespace Wnx\LaravelStats\Formatters;
 
 use Illuminate\Console\OutputStyle;
 use Symfony\Component\Console\Helper\Table;
-use Symfony\Component\Console\Helper\TableStyle;
-use Wnx\LaravelStats\Statistics\ProjectStatistics;
 use Symfony\Component\Console\Helper\TableSeparator;
+use Symfony\Component\Console\Helper\TableStyle;
+use Wnx\LaravelStats\Statistics\CodeTestRatio;
+use Wnx\LaravelStats\Statistics\ProjectStatistics;
 
 class TableOutput
 {
@@ -49,5 +50,9 @@ class TableOutput
         }
 
         $table->render();
+
+        $this->output->text(
+            implode('    ', (new CodeTestRatio($statistics))->summary())
+        );
     }
 }

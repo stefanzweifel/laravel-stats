@@ -33,4 +33,13 @@ class CodeTestRatio
             })
             ->sum('loc');
     }
+
+    public function summary() : array
+    {
+        return [
+            "Code LOC: {$this->getCodeLoc()}",
+            "Test LOC: {$this->getTestLoc()}",
+            "Code to Test Ratio: 1:{$this->getRatio()}"
+        ];
+    }
 }
