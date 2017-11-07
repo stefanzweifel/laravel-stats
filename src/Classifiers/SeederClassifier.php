@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Classifiers;
 
+use Illuminate\Database\Seeder;
 use Wnx\LaravelStats\ReflectionClass;
 
 class SeederClassifier extends Classifier
@@ -13,6 +14,6 @@ class SeederClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        return $class->isSubclassOf(\Illuminate\Database\Seeder::class);
+        return $class->isSubclassOf(Seeder::class);
     }
 }

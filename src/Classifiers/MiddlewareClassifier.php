@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
+use Illuminate\Contracts\Http\Kernel;
 
 class MiddlewareClassifier extends Classifier
 {
@@ -13,7 +14,7 @@ class MiddlewareClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        $kernel = resolve(\Illuminate\Contracts\Http\Kernel::class);
+        $kernel = resolve(Kernel::class);
 
         if ($kernel->hasMiddleware($class->getName())) {
             return true;

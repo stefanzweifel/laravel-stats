@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Classifiers;
 
+use Illuminate\Console\Command;
 use Wnx\LaravelStats\ReflectionClass;
 
 class CommandClassifier extends Classifier
@@ -13,6 +14,6 @@ class CommandClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        return $class->isSubclassOf(\Illuminate\Console\Command::class);
+        return $class->isSubclassOf(Command::class);
     }
 }

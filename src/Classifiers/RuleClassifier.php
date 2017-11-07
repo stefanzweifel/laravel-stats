@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
+use Illuminate\Contracts\Validation\Rule;
 
 class RuleClassifier extends Classifier
 {
@@ -13,6 +14,6 @@ class RuleClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        return $class->implementsInterface(\Illuminate\Contracts\Validation\Rule::class);
+        return $class->implementsInterface(Rule::class);
     }
 }

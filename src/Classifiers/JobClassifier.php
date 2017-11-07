@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
+use Illuminate\Foundation\Bus\Dispatchable;
 
 class JobClassifier extends Classifier
 {
@@ -13,6 +14,6 @@ class JobClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        return $class->usesTrait(\Illuminate\Foundation\Bus\Dispatchable::class);
+        return $class->usesTrait(Dispatchable::class);
     }
 }

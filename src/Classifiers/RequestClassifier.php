@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
+use Illuminate\Foundation\Http\FormRequest;
 
 class RequestClassifier extends Classifier
 {
@@ -13,6 +14,6 @@ class RequestClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        return $class->isSubclassOf(\Illuminate\Foundation\Http\FormRequest::class);
+        return $class->isSubclassOf(FormRequest::class);
     }
 }

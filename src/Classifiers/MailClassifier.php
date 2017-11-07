@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
+use Illuminate\Contracts\Mail\Mailable;
 
 class MailClassifier extends Classifier
 {
@@ -13,6 +14,6 @@ class MailClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        return $class->isSubclassOf(\Illuminate\Mail\Mailable::class);
+        return $class->isSubclassOf(Mailable::class);
     }
 }

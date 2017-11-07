@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
+use Illuminate\Database\Eloquent\Model;
 
 class ModelClassifier extends Classifier
 {
@@ -13,6 +14,6 @@ class ModelClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        return $class->isSubclassOf(\Illuminate\Database\Eloquent\Model::class);
+        return $class->isSubclassOf(Model::class);
     }
 }

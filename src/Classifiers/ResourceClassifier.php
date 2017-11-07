@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
+use Illuminate\Http\Resources\Json\Resource;
 
 class ResourceClassifier extends Classifier
 {
@@ -13,6 +14,6 @@ class ResourceClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        return $class->isSubclassOf(\Illuminate\Http\Resources\Json\Resource::class);
+        return $class->isSubclassOf(Resource::class);
     }
 }

@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
+use Illuminate\Notifications\Notification;
 
 class NotificationClassifier extends Classifier
 {
@@ -13,6 +14,6 @@ class NotificationClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        return $class->isSubclassOf(\Illuminate\Notifications\Notification::class);
+        return $class->isSubclassOf(Notification::class);
     }
 }

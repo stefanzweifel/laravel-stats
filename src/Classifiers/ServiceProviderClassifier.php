@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
+use Illuminate\Support\ServiceProvider;
 
 class ServiceProviderClassifier extends Classifier
 {
@@ -13,6 +14,6 @@ class ServiceProviderClassifier extends Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        return $class->isSubclassOf(\Illuminate\Support\ServiceProvider::class);
+        return $class->isSubclassOf(ServiceProvider::class);
     }
 }
