@@ -2,8 +2,8 @@
 
 namespace Wnx\LaravelStats\Classifiers;
 
-use Wnx\LaravelStats\ReflectionClass;
 use Illuminate\Contracts\Http\Kernel;
+use Wnx\LaravelStats\ReflectionClass;
 
 class MiddlewareClassifier extends Classifier
 {
