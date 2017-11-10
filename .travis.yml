@@ -11,7 +11,7 @@ before_script:
   - phpenv config-rm xdebug.ini
   - travis_retry composer install --prefer-dist --no-interaction
 
-script: phpunit --coverage-clover build/logs/clover.xml
+script: phpunit
 
 after_success:
   - travis_retry php vendor/bin/coveralls
