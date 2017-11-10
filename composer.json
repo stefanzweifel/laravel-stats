@@ -23,6 +23,7 @@
         "laravel/browser-kit-testing": "^2.0",
         "laravel/dusk": "^2.0",
         "orchestra/testbench": "^3.5",
+        "php-coveralls/php-coveralls": "^1.0",
         "phpunit/phpunit": "6.*"
     },
     "autoload": {
