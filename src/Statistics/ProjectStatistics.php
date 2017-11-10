@@ -85,7 +85,7 @@ class ProjectStatistics
                     return (new ComponentStatistics($name, $classes))->toArray();
                 })
                 ->sortBy('component')
-                ->sortBy(function($component, $_) {
+                ->sortBy(function ($component, $_) {
                     return str_contains($component['component'], 'Test') ? 1 : 0;
                 });
         }
