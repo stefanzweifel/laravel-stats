@@ -111,6 +111,27 @@ The package has tests written in phpunit. You can run them with the following co
 ./vendor/bin/phpunit
 ```
 
+## Running the command in a local test project
+
+If you're working on the package locally and want to just run the command in a demo project you can use the [composer path-repository format](https://getcomposer.org/doc/05-repositories.md#path).
+Add the following snippet to the `composer.json` in your demo project.
+
+```json
+{
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/path/to/laravel-stats/",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+}
+```
+
+And "install" the package with `composer require wnx/laravel-stats`. The package should now be symlinked in your demo project.
+
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/stefanzweifel/laravel-stats/tags).
