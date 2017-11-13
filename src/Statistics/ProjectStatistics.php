@@ -86,8 +86,7 @@ class ProjectStatistics
                 })
                 ->sortBy(function ($component, $_) {
                     return str_contains($component['component'], 'Test') ? 1 : $component['component'];
-                })
-                ;
+                });
         }
 
         return $this->cache;
