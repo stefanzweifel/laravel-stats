@@ -84,10 +84,10 @@ class ProjectStatistics
                 ->map(function ($classes, $name) {
                     return (new ComponentStatistics($name, $classes))->toArray();
                 })
-                ->sortBy('component')
                 ->sortBy(function ($component, $_) {
-                    return str_contains($component['component'], 'Test') ? 1 : 0;
-                });
+                    return str_contains($component['component'], 'Test') ? 1 : $component['component'];
+                })
+                ;
         }
 
         return $this->cache;
