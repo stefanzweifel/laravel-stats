@@ -8,11 +8,27 @@ use Illuminate\Support\Facades\Artisan;
 
 class StatsListCommandTest extends TestCase
 {
+    /**
+     * Override stats.path confiugration to not include `tests` folder
+     * This fixes the issue, that orchestra does not ship with the
+     * default `tests` folder and would throw an error, because
+     * the path does not exist
+     */
+    public function overrideConfig()
+    {
+        config()->set('stats.paths', [
+            base_path('app'),
+            base_path('database'),
+        ]);
+    }
+
     /** @test */
     public function it_works()
     {
         Route::get('projects', 'Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController@index');
         Route::get('users', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@index');
+
+        $this->overrideConfig();
 
         $this->artisan('stats');
         $resultAsText = Artisan::output();
@@ -26,6 +42,8 @@ class StatsListCommandTest extends TestCase
     /** @test */
     public function it_displays_all_headers()
     {
+        $this->overrideConfig();
+
         $this->artisan('stats');
         $result = Artisan::output();
 
