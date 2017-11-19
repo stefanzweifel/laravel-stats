@@ -3,10 +3,10 @@
 namespace Wnx\LaravelStats\Tests\Filters;
 
 use Illuminate\Encryption\Encrypter;
+use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Classifiers\ModelClassifier;
 use Wnx\LaravelStats\Filters\RejectVendorClasses;
-use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Tests\TestCase;
 
 class RejectVendorClassesTest extends TestCase
 {

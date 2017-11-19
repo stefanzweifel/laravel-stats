@@ -2,10 +2,10 @@
 
 namespace Wnx\LaravelStats\Tests\Filters;
 
+use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Classifiers\ModelClassifier;
 use Wnx\LaravelStats\Filters\RejectInternalClasses;
-use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Tests\TestCase;
 
 class RejectInternalClassesTest extends TestCase
 {

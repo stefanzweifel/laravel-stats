@@ -19,7 +19,7 @@ return [
         // base_path('app/Services'),
     ],
 
-    /**
+    /*
      * The Filter Strategy used when searching for Classes
      * in your list of paths.
      * For most project the default is fine, but if you want

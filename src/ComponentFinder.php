@@ -3,8 +3,8 @@
 namespace Wnx\LaravelStats;
 
 use Exception;
-use Illuminate\Support\Collection;
 use SplFileInfo;
+use Illuminate\Support\Collection;
 use Symfony\Component\Finder\Finder;
 use Wnx\LaravelStats\Classifiers\Classifier;
 use Wnx\LaravelStats\Filters\RejectVendorClasses;

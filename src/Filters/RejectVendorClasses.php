@@ -2,8 +2,8 @@
 
 namespace Wnx\LaravelStats\Filters;
 
-use Wnx\LaravelStats\Contracts\Filter;
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Contracts\Filter;
 
 class RejectVendorClasses implements Filter
 {
