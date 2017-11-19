@@ -3,10 +3,11 @@
 namespace Wnx\LaravelStats;
 
 use Exception;
-use SplFileInfo;
 use Illuminate\Support\Collection;
+use SplFileInfo;
 use Symfony\Component\Finder\Finder;
 use Wnx\LaravelStats\Classifiers\Classifier;
+use Wnx\LaravelStats\Filters\RejectVendorClasses;
 
 class ComponentFinder
 {
@@ -22,7 +23,9 @@ class ComponentFinder
                 return new ReflectionClass($class);
             })
             ->reject(function ($class) {
-                return $class->isInternal() || $class->isVendorProvided();
+                $filter = config('stats.filter', RejectVendorClasses::class);
+
+                return (resolve($filter))->shouldBeRejected($class);
             })
             ->groupBy(function ($class) {
                 return (new Classifier)->classify($class);
