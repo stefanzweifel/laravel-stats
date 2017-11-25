@@ -20,16 +20,19 @@ return [
     ],
 
     /*
-     * The Filter Strategy used when searching for Classes
-     * in your list of paths.
-     * For most project the default is fine, but if you want
-     * to customize which files should count to your statistics,
-     * you can customize this here.
+     * The Strategy used to reject Classes from the project statistics.
+     * 
+     * By default all Classes located in
+     * the vendor directory are being rejected and don't
+     * count to the statistics.
      *
-     * The package ships with 2 filters:
-     * - \Wnx\LaravelStats\Filters\RejectVendorClasses
-     * - \Wnx\LaravelStats\Filters\RejectInternalClasses
+     * The package ships with 2 strategies:
+     * - \Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses::class
+     * - \Wnx\LaravelStats\RejectionStrategies\RejectInternalClasses::class
+     * 
+     * If none of the default strategies fit for your usecase, you can 
+     * write your own class which implements the RejectionStrategy Contract.
      */
-    'filter' => \Wnx\LaravelStats\Filters\RejectVendorClasses::class,
+    'rejection_strategy' => \Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses::class,
 
 ];
