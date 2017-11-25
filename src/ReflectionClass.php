@@ -8,7 +8,7 @@ use ReflectionClass as NativeReflectionClass;
 class ReflectionClass extends NativeReflectionClass
 {
     /**
-     * Determine if class is located in the vendor directory
+     * Determine if class is located in the vendor directory.
      *
      * @return bool
      */

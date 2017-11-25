@@ -9,7 +9,7 @@ class RejectVendorClasses implements RejectionStrategy
 {
     public function shouldClassBeRejected(ReflectionClass $class) : bool
     {
-        return $class->isInternal() || 
+        return $class->isInternal() ||
                 $class->isVendorProvided();
     }
 }

@@ -8,8 +8,8 @@ interface RejectionStrategy
 {
     /**
      * Determine if the given Class should be rejected
-     * A rejected Class does not count to the 
-     * project statistics
+     * A rejected Class does not count to the
+     * project statistics.
      *
      * @param ReflectionClass $class
      * @return bool
