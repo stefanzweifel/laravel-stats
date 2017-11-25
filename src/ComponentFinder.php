@@ -7,9 +7,22 @@ use SplFileInfo;
 use Illuminate\Support\Collection;
 use Symfony\Component\Finder\Finder;
 use Wnx\LaravelStats\Classifiers\Classifier;
+use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
 
 class ComponentFinder
 {
+    /**
+     * @var RejectionStrategy
+     */
+    protected $rejectionStrategy;
+
+    public function __construct()
+    {
+        $rejectionStrategy = config('stats.rejection_strategy', RejectVendorClasses::class);
+
+        $this->rejectionStrategy = resolve($rejectionStrategy);
+    }
+
     /**
      * Sort classes into Laravel Component.
      *
@@ -22,7 +35,7 @@ class ComponentFinder
                 return new ReflectionClass($class);
             })
             ->reject(function ($class) {
-                return $class->isInternal() || $class->isVendorProvided();
+                return $this->rejectionStrategy->shouldClassBeRejected($class);
             })
             ->groupBy(function ($class) {
                 return (new Classifier)->classify($class);

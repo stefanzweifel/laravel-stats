@@ -7,7 +7,12 @@ use ReflectionClass as NativeReflectionClass;
 
 class ReflectionClass extends NativeReflectionClass
 {
-    public function isVendorProvided()
+    /**
+     * Determine if class is located in the vendor directory.
+     *
+     * @return bool
+     */
+    public function isVendorProvided() : bool
     {
         return str_contains($this->getFileName(), '/vendor/');
     }
