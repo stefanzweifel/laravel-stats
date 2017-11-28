@@ -35,7 +35,7 @@ return [
      */
     'rejection_strategy' => \Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses::class,
 
-    /**
+    /*
      * Namespaces which should be ignored.
      * Laravel Stats uses the `starts_with`-string helper, to
      * check if a Namespace should be ignored.
@@ -46,7 +46,7 @@ return [
     'ignored_namespaces' => [
         'Wnx\LaravelStats',
         'Illuminate',
-        'Symfony'
-    ]
+        'Symfony',
+    ],
 
 ];
