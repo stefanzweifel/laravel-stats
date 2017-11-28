@@ -37,6 +37,15 @@ class ComponentFinder
             ->reject(function ($class) {
                 return $this->rejectionStrategy->shouldClassBeRejected($class);
             })
+            ->reject(function ($class) {
+                foreach (config('stats.ignored_namespaces', []) as $namespace) {
+                    if (starts_with($class->getNamespaceName(), $namespace)) {
+                        return true;
+                    }
+                }
+
+                return false;
+            })
             ->groupBy(function ($class) {
                 return (new Classifier)->classify($class);
             });

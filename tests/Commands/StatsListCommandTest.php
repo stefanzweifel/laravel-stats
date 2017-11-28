@@ -20,6 +20,7 @@ class StatsListCommandTest extends TestCase
             base_path('app'),
             base_path('database'),
         ]);
+        config()->set('stats.ignored_namespaces', []);
     }
 
     /** @test */

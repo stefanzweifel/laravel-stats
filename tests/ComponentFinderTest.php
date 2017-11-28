@@ -17,6 +17,7 @@ class ComponentFinderTest extends TestCase
             'exclude' => [
                 __DIR__.'/../tests/Stubs/ExcludedFile.php',
             ],
+            'ignored_namespaces' => [],
         ]);
 
         $this->classes = resolve(ComponentFinder::class)->get()->flatten()->pluck('name');
