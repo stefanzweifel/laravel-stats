@@ -19,6 +19,18 @@ return [
         // base_path('app/Services'),
     ],
 
+    /**
+     * List of custom Component Classifiers.
+     *
+     * Your application may contain classes which follow a certain pattern.
+     * With custom Component Classifier you can classifiy those
+     * classes and treat them as first-class citizens
+     * in the project analysis.
+     */
+    'custom_component_classifier' => [
+        // \App\Classifiers\CustomerExportClassifier::class
+    ],
+
     /*
      * The Strategy used to reject Classes from the project statistics.
      *
