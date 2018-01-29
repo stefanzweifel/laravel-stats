@@ -6,7 +6,7 @@ use Wnx\LaravelStats\ReflectionClass;
 
 class Classifier
 {
-    const CLASSIFIERS = [
+    const DEFAULT_CLASSIFIER = [
         ControllerClassifier::class,
         ModelClassifier::class,
         CommandClassifier::class,
@@ -30,7 +30,10 @@ class Classifier
 
     public function classify(ReflectionClass $class)
     {
-        foreach (self::CLASSIFIERS as $classifier) {
+        $customClassifiers = config('stats.custom_component_classifier', []);
+        $mergedClassifiers = array_merge(self::DEFAULT_CLASSIFIER, $customClassifiers);
+
+        foreach ($mergedClassifiers as $classifier) {
             $c = new $classifier();
 
             if ($c->satisfies($class)) {
