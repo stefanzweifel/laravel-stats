@@ -2,8 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs;
 
-class MyCustomComponentClass {
-
+class MyCustomComponentClass
+{
     public $foo = 'bar';
-
 }

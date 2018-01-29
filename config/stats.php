@@ -19,7 +19,7 @@ return [
         // base_path('app/Services'),
     ],
 
-    /**
+    /*
      * List of custom Component Classifiers.
      *
      * Your application may contain classes which follow a certain pattern.

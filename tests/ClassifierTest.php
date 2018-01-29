@@ -8,9 +8,9 @@ use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Classifiers\Classifier;
 use Wnx\LaravelStats\Tests\Stubs\Tests\DemoDuskTest;
 use Wnx\LaravelStats\Tests\Stubs\Tests\DemoBrowserKit;
-use Wnx\LaravelStats\Tests\Stubs\EventListeners\DemoEventListener;
 use Wnx\LaravelStats\Tests\Stubs\MyCustomComponentClass;
 use Wnx\LaravelStats\Tests\Stubs\MyCustomComponentClassifier;
+use Wnx\LaravelStats\Tests\Stubs\EventListeners\DemoEventListener;
 
 class ClassifierTest extends TestCase
 {
@@ -203,7 +203,7 @@ class ClassifierTest extends TestCase
     public function it_detects_custom_components()
     {
         config()->set('stats.custom_component_classifier', [
-            MyCustomComponentClassifier::class
+            MyCustomComponentClassifier::class,
         ]);
 
         $this->assertSame(
@@ -211,5 +211,4 @@ class ClassifierTest extends TestCase
             $this->classifier->classify(new ReflectionClass(MyCustomComponentClass::class))
         );
     }
-
 }

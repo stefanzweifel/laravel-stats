@@ -7,15 +7,15 @@ use Wnx\LaravelStats\ReflectionClass;
 interface Classifier
 {
     /**
-     * Component Name displayed in the results
+     * Component Name displayed in the results.
      *
-     * @return String
+     * @return string
      */
     public function getName() : String;
 
     /**
      * Determine if the given Class should be classified
-     * as the component the Classifier Class represents
+     * as the component the Classifier Class represents.
      *
      * @param ReflectionClass $class
      * @return bool
