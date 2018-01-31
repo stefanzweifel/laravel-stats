@@ -5,9 +5,8 @@ namespace Wnx\LaravelStats\Classifiers;
 use Wnx\LaravelStats\ReflectionClass;
 use Illuminate\Notifications\Notification;
 use Wnx\LaravelStats\Contracts\Classifier;
-use Wnx\LaravelStats\Classifier as BaseClassifier;
 
-class NotificationClassifier extends BaseClassifier implements Classifier
+class NotificationClassifier implements Classifier
 {
     public function getName() : string
     {

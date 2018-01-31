@@ -5,9 +5,8 @@ namespace Wnx\LaravelStats\Classifiers;
 use Wnx\LaravelStats\ReflectionClass;
 use Illuminate\Support\ServiceProvider;
 use Wnx\LaravelStats\Contracts\Classifier;
-use Wnx\LaravelStats\Classifier as BaseClassifier;
 
-class ServiceProviderClassifier extends BaseClassifier implements Classifier
+class ServiceProviderClassifier implements Classifier
 {
     public function getName() : string
     {

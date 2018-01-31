@@ -5,9 +5,8 @@ namespace Wnx\LaravelStats\Classifiers;
 use Wnx\LaravelStats\ReflectionClass;
 use Illuminate\Database\Eloquent\Model;
 use Wnx\LaravelStats\Contracts\Classifier;
-use Wnx\LaravelStats\Classifier as BaseClassifier;
 
-class ModelClassifier extends BaseClassifier implements Classifier
+class ModelClassifier implements Classifier
 {
     public function getName() : string
     {

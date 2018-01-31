@@ -4,10 +4,9 @@ namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\Classifier;
-use Wnx\LaravelStats\Classifier as BaseClassifier;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider;
 
-class EventListenerClassifier extends BaseClassifier implements Classifier
+class EventListenerClassifier implements Classifier
 {
     public function getName() : string
     {

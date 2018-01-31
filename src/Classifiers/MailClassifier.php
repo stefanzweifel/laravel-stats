@@ -5,9 +5,8 @@ namespace Wnx\LaravelStats\Classifiers;
 use Wnx\LaravelStats\ReflectionClass;
 use Illuminate\Contracts\Mail\Mailable;
 use Wnx\LaravelStats\Contracts\Classifier;
-use Wnx\LaravelStats\Classifier as BaseClassifier;
 
-class MailClassifier extends BaseClassifier implements Classifier
+class MailClassifier implements Classifier
 {
     public function getName() : string
     {
