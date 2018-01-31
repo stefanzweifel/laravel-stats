@@ -21,6 +21,8 @@ use Wnx\LaravelStats\Classifiers\NotificationClassifier;
 use Wnx\LaravelStats\Classifiers\EventListenerClassifier;
 use Wnx\LaravelStats\Classifiers\BrowserKitTestClassifier;
 use Wnx\LaravelStats\Classifiers\ServiceProviderClassifier;
+use Wnx\LaravelStats\Contracts\Classifier as ClassifierContract;
+use Exception;
 
 class Classifier
 {
@@ -46,13 +48,25 @@ class Classifier
         PhpUnitClassifier::class,
     ];
 
+    /**
+     * Classify a given Class by an available Classifier Strategy
+     *
+     * @param ReflectionClass $class
+     * @return string
+     */
     public function classify(ReflectionClass $class)
     {
-        $customClassifiers = config('stats.custom_component_classifier', []);
-        $mergedClassifiers = array_merge(self::DEFAULT_CLASSIFIER, $customClassifiers);
+        $mergedClassifiers = array_merge(
+            self::DEFAULT_CLASSIFIER,
+            config('stats.custom_component_classifier', [])
+        );
 
         foreach ($mergedClassifiers as $classifier) {
             $c = new $classifier();
+
+            if (!$this->implementsContract($classifier)) {
+                throw new Exception("Classifier {$classifier} does not implement " . ClassifierContract::class . ".");
+            }
 
             if ($c->satisfies($class)) {
                 return $c->getName();
@@ -60,5 +74,15 @@ class Classifier
         }
 
         return 'Other';
+    }
+
+    /**
+     * Check if a class implements our Classifier Contract
+     * @param  class $classifier
+     * @return bool
+     */
+    protected function implementsContract($classifier) : bool
+    {
+        return (new \ReflectionClass($classifier))->implementsInterface(ClassifierContract::class);
     }
 }

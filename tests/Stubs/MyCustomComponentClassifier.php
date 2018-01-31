@@ -2,11 +2,13 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs;
 
+use Wnx\LaravelStats\Classifier as BaseClassifier;
+use Wnx\LaravelStats\Contracts\Classifier;
 use Wnx\LaravelStats\ReflectionClass;
 
-class MyCustomComponentClassifier
+class MyCustomComponentClassifier extends BaseClassifier implements Classifier
 {
-    public function getName()
+    public function getName() : string
     {
         return 'My Custom Component';
     }
