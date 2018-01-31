@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats;
 
+use Exception;
 use Wnx\LaravelStats\Classifiers\JobClassifier;
 use Wnx\LaravelStats\Classifiers\DuskClassifier;
 use Wnx\LaravelStats\Classifiers\MailClassifier;
@@ -22,7 +23,6 @@ use Wnx\LaravelStats\Classifiers\EventListenerClassifier;
 use Wnx\LaravelStats\Classifiers\BrowserKitTestClassifier;
 use Wnx\LaravelStats\Classifiers\ServiceProviderClassifier;
 use Wnx\LaravelStats\Contracts\Classifier as ClassifierContract;
-use Exception;
 
 class Classifier
 {
@@ -49,7 +49,7 @@ class Classifier
     ];
 
     /**
-     * Classify a given Class by an available Classifier Strategy
+     * Classify a given Class by an available Classifier Strategy.
      *
      * @param ReflectionClass $class
      * @return string
@@ -64,8 +64,8 @@ class Classifier
         foreach ($mergedClassifiers as $classifier) {
             $c = new $classifier();
 
-            if (!$this->implementsContract($classifier)) {
-                throw new Exception("Classifier {$classifier} does not implement " . ClassifierContract::class . ".");
+            if (! $this->implementsContract($classifier)) {
+                throw new Exception("Classifier {$classifier} does not implement ".ClassifierContract::class.'.');
             }
 
             if ($c->satisfies($class)) {
@@ -77,7 +77,7 @@ class Classifier
     }
 
     /**
-     * Check if a class implements our Classifier Contract
+     * Check if a class implements our Classifier Contract.
      * @param  class $classifier
      * @return bool
      */
