@@ -11,7 +11,7 @@ interface Classifier
      *
      * @return string
      */
-    public function getName() : String;
+    public function getName() : string;
 
     /**
      * Determine if the given Class should be classified

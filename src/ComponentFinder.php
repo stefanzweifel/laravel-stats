@@ -6,7 +6,7 @@ use Exception;
 use SplFileInfo;
 use Illuminate\Support\Collection;
 use Symfony\Component\Finder\Finder;
-use Wnx\LaravelStats\Classifiers\Classifier;
+use Wnx\LaravelStats\Classifier;
 use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
 
 class ComponentFinder

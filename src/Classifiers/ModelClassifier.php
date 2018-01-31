@@ -4,15 +4,17 @@ namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
 use Illuminate\Database\Eloquent\Model;
+use Wnx\LaravelStats\Contracts\Classifier;
+use Wnx\LaravelStats\Classifier as BaseClassifier;
 
-class ModelClassifier extends Classifier
+class ModelClassifier extends BaseClassifier implements Classifier
 {
-    public function getName()
+    public function getName() : string
     {
         return 'Models';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class) : bool
     {
         return $class->isSubclassOf(Model::class);
     }

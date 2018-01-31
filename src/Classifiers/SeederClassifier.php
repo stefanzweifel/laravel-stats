@@ -4,15 +4,17 @@ namespace Wnx\LaravelStats\Classifiers;
 
 use Illuminate\Database\Seeder;
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Contracts\Classifier;
+use Wnx\LaravelStats\Classifier as BaseClassifier;
 
-class SeederClassifier extends Classifier
+class SeederClassifier extends BaseClassifier implements Classifier
 {
-    public function getName()
+    public function getName() : string
     {
         return 'Seeders';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class) : bool
     {
         return $class->isSubclassOf(Seeder::class);
     }

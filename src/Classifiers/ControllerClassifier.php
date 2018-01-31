@@ -4,15 +4,17 @@ namespace Wnx\LaravelStats\Classifiers;
 
 use Illuminate\Routing\Router;
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Contracts\Classifier;
+use Wnx\LaravelStats\Classifier as BaseClassifier;
 
-class ControllerClassifier extends Classifier
+class ControllerClassifier extends BaseClassifier implements Classifier
 {
-    public function getName()
+    public function getName() : string
     {
         return 'Controllers';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class) : bool
     {
         return collect(resolve(Router::class)->getRoutes())
             ->reject(function ($route) {
