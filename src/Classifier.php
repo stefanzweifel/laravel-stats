@@ -2,26 +2,25 @@
 
 namespace Wnx\LaravelStats;
 
-use Wnx\LaravelStats\Classifiers\BrowserKitTestClassifier;
-use Wnx\LaravelStats\Classifiers\CommandClassifier;
-use Wnx\LaravelStats\Classifiers\ControllerClassifier;
-use Wnx\LaravelStats\Classifiers\DuskClassifier;
-use Wnx\LaravelStats\Classifiers\EventClassifier;
-use Wnx\LaravelStats\Classifiers\EventListenerClassifier;
 use Wnx\LaravelStats\Classifiers\JobClassifier;
+use Wnx\LaravelStats\Classifiers\DuskClassifier;
 use Wnx\LaravelStats\Classifiers\MailClassifier;
-use Wnx\LaravelStats\Classifiers\MiddlewareClassifier;
-use Wnx\LaravelStats\Classifiers\MigrationClassifier;
+use Wnx\LaravelStats\Classifiers\RuleClassifier;
+use Wnx\LaravelStats\Classifiers\EventClassifier;
 use Wnx\LaravelStats\Classifiers\ModelClassifier;
-use Wnx\LaravelStats\Classifiers\NotificationClassifier;
-use Wnx\LaravelStats\Classifiers\PhpUnitClassifier;
 use Wnx\LaravelStats\Classifiers\PolicyClassifier;
+use Wnx\LaravelStats\Classifiers\SeederClassifier;
+use Wnx\LaravelStats\Classifiers\CommandClassifier;
+use Wnx\LaravelStats\Classifiers\PhpUnitClassifier;
 use Wnx\LaravelStats\Classifiers\RequestClassifier;
 use Wnx\LaravelStats\Classifiers\ResourceClassifier;
-use Wnx\LaravelStats\Classifiers\RuleClassifier;
-use Wnx\LaravelStats\Classifiers\SeederClassifier;
+use Wnx\LaravelStats\Classifiers\MigrationClassifier;
+use Wnx\LaravelStats\Classifiers\ControllerClassifier;
+use Wnx\LaravelStats\Classifiers\MiddlewareClassifier;
+use Wnx\LaravelStats\Classifiers\NotificationClassifier;
+use Wnx\LaravelStats\Classifiers\EventListenerClassifier;
+use Wnx\LaravelStats\Classifiers\BrowserKitTestClassifier;
 use Wnx\LaravelStats\Classifiers\ServiceProviderClassifier;
-use Wnx\LaravelStats\ReflectionClass;
 
 class Classifier
 {

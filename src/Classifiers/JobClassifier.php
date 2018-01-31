@@ -3,8 +3,8 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
-use Illuminate\Foundation\Bus\Dispatchable;
 use Wnx\LaravelStats\Contracts\Classifier;
+use Illuminate\Foundation\Bus\Dispatchable;
 use Wnx\LaravelStats\Classifier as BaseClassifier;
 
 class JobClassifier extends BaseClassifier implements Classifier

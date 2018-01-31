@@ -3,8 +3,8 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
-use Illuminate\Http\Resources\Json\Resource;
 use Wnx\LaravelStats\Contracts\Classifier;
+use Illuminate\Http\Resources\Json\Resource;
 use Wnx\LaravelStats\Classifier as BaseClassifier;
 
 class ResourceClassifier extends BaseClassifier implements Classifier

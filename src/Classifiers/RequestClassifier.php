@@ -3,8 +3,8 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
-use Illuminate\Foundation\Http\FormRequest;
 use Wnx\LaravelStats\Contracts\Classifier;
+use Illuminate\Foundation\Http\FormRequest;
 use Wnx\LaravelStats\Classifier as BaseClassifier;
 
 class RequestClassifier extends BaseClassifier implements Classifier

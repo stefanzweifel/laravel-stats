@@ -3,9 +3,9 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider;
 use Wnx\LaravelStats\Contracts\Classifier;
 use Wnx\LaravelStats\Classifier as BaseClassifier;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider;
 
 class EventListenerClassifier extends BaseClassifier implements Classifier
 {

@@ -3,8 +3,8 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
-use Illuminate\Foundation\Events\Dispatchable;
 use Wnx\LaravelStats\Contracts\Classifier;
+use Illuminate\Foundation\Events\Dispatchable;
 use Wnx\LaravelStats\Classifier as BaseClassifier;
 
 class EventClassifier extends BaseClassifier implements Classifier
