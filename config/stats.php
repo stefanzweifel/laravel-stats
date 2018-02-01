@@ -20,12 +20,7 @@ return [
     ],
 
     /*
-     * List of custom Component Classifiers.
-     *
-     * Your application may contain classes which follow a certain pattern.
-     * With custom Component Classifier you can classifiy those
-     * classes and treat them as first-class citizens
-     * in the project analysis.
+     * List of your custom Classifiers
      */
     'custom_component_classifier' => [
         // \App\Classifiers\CustomerExportClassifier::class
