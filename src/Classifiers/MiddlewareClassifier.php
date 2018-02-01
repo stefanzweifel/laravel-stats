@@ -4,15 +4,16 @@ namespace Wnx\LaravelStats\Classifiers;
 
 use Illuminate\Contracts\Http\Kernel;
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Contracts\Classifier;
 
-class MiddlewareClassifier extends Classifier
+class MiddlewareClassifier implements Classifier
 {
-    public function getName()
+    public function getName() : string
     {
         return 'Middlewares';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class) : bool
     {
         $kernel = resolve(Kernel::class);
 

@@ -63,6 +63,13 @@ return [
     ],
 
     /*
+     * List of your custom Classifiers
+     */
+    'custom_component_classifier' => [
+        // \App\Classifiers\CustomerExportClassifier::class
+    ],
+
+    /*
      * The Strategy used to reject Classes from the project statistics.
      *
      * By default all Classes located in
@@ -132,6 +139,45 @@ The package scans the files defined in the `paths`-array in the configuration fi
 | BrowserKit Test | Must extend `Laravel\BrowserKitTesting\TestCase` |
 | PHPUnit Test | Must extend `PHPUnit\Framework\TestCase` |
 
+## Create your own Classifiers
+
+If your application has it's own components you would like to see in `laravel-stats` you can create your own `Classifiers`.
+Create your own Classifiers by implementing the [`Classifier`](https://github.com/stefanzweifel/laravel-stats/blob/master/src/Contracts/Classifier.php)-contract and adding the class to the `stats.custom_component_classifier` config array.
+
+For example:
+
+```php
+// app/Classifiers/RepositoryClassifier.php
+<?php
+
+namespace App\Classifiers;
+
+use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Contracts\Classifier;
+
+class RepositoryClassifier implements Classifier
+{
+    public function getName() : string
+    {
+        return 'Repository';
+    }
+
+    public function satisfies(ReflectionClass $class) : bool
+    {
+        return $class->isSubclassOf(\App\Repositories\BaseRepository::class);
+    }
+}
+```
+
+```php
+// config/stats.php
+<?php
+    ...
+    'custom_component_classifier' => [
+        \App\Classifiers\RepositoryClassifier::class
+    ],
+    ...
+```
 
 ## Running the tests
 

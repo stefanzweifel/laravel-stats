@@ -4,15 +4,16 @@ namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
 use Illuminate\Notifications\Notification;
+use Wnx\LaravelStats\Contracts\Classifier;
 
-class NotificationClassifier extends Classifier
+class NotificationClassifier implements Classifier
 {
-    public function getName()
+    public function getName() : string
     {
         return 'Notifications';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class) : bool
     {
         return $class->isSubclassOf(Notification::class);
     }

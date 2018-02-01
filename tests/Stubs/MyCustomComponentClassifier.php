@@ -1,20 +1,19 @@
 <?php
 
-namespace Wnx\LaravelStats\Classifiers;
+namespace Wnx\LaravelStats\Tests\Stubs;
 
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\Classifier;
-use Illuminate\Foundation\Bus\Dispatchable;
 
-class JobClassifier implements Classifier
+class MyCustomComponentClassifier implements Classifier
 {
     public function getName() : string
     {
-        return 'Jobs';
+        return 'My Custom Component';
     }
 
     public function satisfies(ReflectionClass $class) : bool
     {
-        return $class->usesTrait(Dispatchable::class);
+        return $class->hasProperty('foo');
     }
 }

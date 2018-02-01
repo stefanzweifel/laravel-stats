@@ -3,16 +3,17 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Contracts\Classifier;
 use Illuminate\Database\Migrations\Migration;
 
-class MigrationClassifier extends Classifier
+class MigrationClassifier implements Classifier
 {
-    public function getName()
+    public function getName() : string
     {
         return 'Migrations';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class) : bool
     {
         return $class->isSubclassOf(Migration::class);
     }

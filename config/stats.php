@@ -20,6 +20,13 @@ return [
     ],
 
     /*
+     * List of your custom Classifiers
+     */
+    'custom_component_classifier' => [
+        // \App\Classifiers\CustomerExportClassifier::class
+    ],
+
+    /*
      * The Strategy used to reject Classes from the project statistics.
      *
      * By default all Classes located in

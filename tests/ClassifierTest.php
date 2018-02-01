@@ -2,12 +2,15 @@
 
 namespace Wnx\LaravelStats\Tests;
 
+use Wnx\LaravelStats\Classifier;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Classifiers\Classifier;
+use Wnx\LaravelStats\StatsListCommand;
 use Wnx\LaravelStats\Tests\Stubs\Tests\DemoDuskTest;
 use Wnx\LaravelStats\Tests\Stubs\Tests\DemoBrowserKit;
+use Wnx\LaravelStats\Tests\Stubs\MyCustomComponentClass;
+use Wnx\LaravelStats\Tests\Stubs\MyCustomComponentClassifier;
 use Wnx\LaravelStats\Tests\Stubs\EventListeners\DemoEventListener;
 
 class ClassifierTest extends TestCase
@@ -195,5 +198,30 @@ class ClassifierTest extends TestCase
         $this->assertSame(
             'Event Listeners', $this->classifier->classify(new ReflectionClass(DemoEventListener::class))
         );
+    }
+
+    /** @test */
+    public function it_detects_custom_components()
+    {
+        config()->set('stats.custom_component_classifier', [
+            MyCustomComponentClassifier::class,
+        ]);
+
+        $this->assertSame(
+            'My Custom Component',
+            $this->classifier->classify(new ReflectionClass(MyCustomComponentClass::class))
+        );
+    }
+
+    /** @test */
+    public function it_throws_an_exception_if_a_custom_component_classifier_does_not_follow_the_contract()
+    {
+        $this->expectException(\Exception::class);
+
+        config()->set('stats.custom_component_classifier', [
+            StatsListCommand::class,
+        ]);
+
+        $this->classifier->classify(new ReflectionClass(MyCustomComponentClass::class));
     }
 }
