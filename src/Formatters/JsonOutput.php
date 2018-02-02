@@ -39,7 +39,7 @@ class JsonOutput
         $statsJson['meta'] = [
             'code_loc' => (new CodeTestRatio($statistics))->getCodeLoc(),
             'test_loc' => (new CodeTestRatio($statistics))->getTestLoc(),
-            'code_to_test_ratio' => '1:' . (new CodeTestRatio($statistics))->getRatio()
+            'code_to_test_ratio' => '1:'.(new CodeTestRatio($statistics))->getRatio(),
         ];
 
         // Build Components Block
