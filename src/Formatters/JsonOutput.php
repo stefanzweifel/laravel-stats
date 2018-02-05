@@ -17,7 +17,7 @@ class JsonOutput
     protected $output;
 
     /**
-     * Create new instance of TableOutput.
+     * Create new instance of JsonOutput.
      *
      * @param \Illuminate\Console\OutputStyle $output
      */
@@ -30,7 +30,7 @@ class JsonOutput
      * Render output from given statistics.
      *
      * @param  ProjectStatistics $statistics
-     * @return void
+     * @return string
      */
     public function render(ProjectStatistics $statistics)
     {
