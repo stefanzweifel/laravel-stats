@@ -4,8 +4,9 @@ namespace Wnx\LaravelStats\Classifiers;
 
 use Illuminate\Database\Seeder;
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Contracts\Classifier;
 
-class SeederClassifier extends Classifier
+class SeederClassifier implements Classifier
 {
     public function getName()
     {

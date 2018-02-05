@@ -3,9 +3,10 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Contracts\Classifier;
 use Illuminate\Http\Resources\Json\Resource;
 
-class ResourceClassifier extends Classifier
+class ResourceClassifier implements Classifier
 {
     public function getName()
     {

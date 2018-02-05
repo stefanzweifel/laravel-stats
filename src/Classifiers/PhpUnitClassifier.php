@@ -4,8 +4,9 @@ namespace Wnx\LaravelStats\Classifiers;
 
 use PHPUnit\Framework\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Contracts\Classifier;
 
-class PhpUnitClassifier extends Classifier
+class PhpUnitClassifier implements Classifier
 {
     public function getName()
     {

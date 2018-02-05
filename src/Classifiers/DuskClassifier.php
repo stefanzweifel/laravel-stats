@@ -4,8 +4,9 @@ namespace Wnx\LaravelStats\Classifiers;
 
 use Laravel\Dusk\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Contracts\Classifier;
 
-class DuskClassifier extends Classifier
+class DuskClassifier implements Classifier
 {
     public function getName()
     {

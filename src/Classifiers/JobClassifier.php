@@ -3,9 +3,10 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Contracts\Classifier;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class JobClassifier extends Classifier
+class JobClassifier implements Classifier
 {
     public function getName()
     {

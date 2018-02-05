@@ -56,4 +56,17 @@ class StatsListCommandTest extends TestCase
         $this->assertContains('LoC', $result);
         $this->assertContains('LoC/Method', $result);
     }
+
+    /** @test */
+    public function it_returns_stats_as_json()
+    {
+        $this->overrideConfig();
+
+        $this->artisan('stats', [
+            '--format' => 'json',
+        ]);
+        $result = Artisan::output();
+
+        $this->assertJson($result);
+    }
 }

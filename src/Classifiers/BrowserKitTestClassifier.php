@@ -4,8 +4,9 @@ namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
 use Laravel\BrowserKitTesting\TestCase;
+use Wnx\LaravelStats\Contracts\Classifier;
 
-class BrowserKitTestClassifier extends Classifier
+class BrowserKitTestClassifier implements Classifier
 {
     public function getName()
     {

@@ -4,8 +4,9 @@ namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
 use Illuminate\Contracts\Validation\Rule;
+use Wnx\LaravelStats\Contracts\Classifier;
 
-class RuleClassifier extends Classifier
+class RuleClassifier implements Classifier
 {
     public function getName()
     {

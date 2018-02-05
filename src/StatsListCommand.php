@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats;
 
 use Illuminate\Console\Command;
+use Wnx\LaravelStats\Formatters\JsonOutput;
 use Wnx\LaravelStats\Formatters\TableOutput;
 use Wnx\LaravelStats\Statistics\ProjectStatistics;
 
@@ -13,7 +14,7 @@ class StatsListCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'stats';
+    protected $signature = 'stats {--format=}';
 
     /**
      * The console command description.
@@ -32,6 +33,10 @@ class StatsListCommand extends Command
     {
         $statistics = new ProjectStatistics($finder->get());
 
-        (new TableOutput($this->output))->render($statistics);
+        if ($this->option('format') == 'json') {
+            return (new JsonOutput($this->output))->render($statistics);
+        }
+
+        return (new TableOutput($this->output))->render($statistics);
     }
 }

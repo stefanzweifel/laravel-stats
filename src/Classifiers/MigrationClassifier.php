@@ -3,9 +3,10 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Contracts\Classifier;
 use Illuminate\Database\Migrations\Migration;
 
-class MigrationClassifier extends Classifier
+class MigrationClassifier implements Classifier
 {
     public function getName()
     {

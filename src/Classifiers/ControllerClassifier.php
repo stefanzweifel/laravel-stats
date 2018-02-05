@@ -4,8 +4,9 @@ namespace Wnx\LaravelStats\Classifiers;
 
 use Illuminate\Routing\Router;
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Contracts\Classifier;
 
-class ControllerClassifier extends Classifier
+class ControllerClassifier implements Classifier
 {
     public function getName()
     {

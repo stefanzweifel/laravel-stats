@@ -4,8 +4,9 @@ namespace Wnx\LaravelStats\Classifiers;
 
 use Illuminate\Console\Command;
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Contracts\Classifier;
 
-class CommandClassifier extends Classifier
+class CommandClassifier implements Classifier
 {
     public function getName()
     {

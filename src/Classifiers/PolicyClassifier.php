@@ -4,8 +4,9 @@ namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
 use Illuminate\Contracts\Auth\Access\Gate;
+use Wnx\LaravelStats\Contracts\Classifier;
 
-class PolicyClassifier extends Classifier
+class PolicyClassifier implements Classifier
 {
     public function getName()
     {

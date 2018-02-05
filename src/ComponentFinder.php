@@ -6,7 +6,6 @@ use Exception;
 use SplFileInfo;
 use Illuminate\Support\Collection;
 use Symfony\Component\Finder\Finder;
-use Wnx\LaravelStats\Classifiers\Classifier;
 use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
 
 class ComponentFinder
@@ -24,7 +23,8 @@ class ComponentFinder
     }
 
     /**
-     * Sort classes into Laravel Component.
+     * Scan the Project for PHP Classes, turn them into ReflectionClasses,
+     * reject unwanted Classes and sort them into Components.
      *
      * @return Collection
      */
