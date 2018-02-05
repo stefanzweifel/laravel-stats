@@ -8,12 +8,12 @@ use Illuminate\Http\Resources\Json\Resource;
 
 class ResourceClassifier implements Classifier
 {
-    public function getName() : string
+    public function getName()
     {
         return 'Resources';
     }
 
-    public function satisfies(ReflectionClass $class) : bool
+    public function satisfies(ReflectionClass $class)
     {
         return $class->isSubclassOf(Resource::class);
     }

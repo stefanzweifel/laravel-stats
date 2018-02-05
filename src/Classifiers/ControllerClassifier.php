@@ -8,12 +8,12 @@ use Wnx\LaravelStats\Contracts\Classifier;
 
 class ControllerClassifier implements Classifier
 {
-    public function getName() : string
+    public function getName()
     {
         return 'Controllers';
     }
 
-    public function satisfies(ReflectionClass $class) : bool
+    public function satisfies(ReflectionClass $class)
     {
         return collect(resolve(Router::class)->getRoutes())
             ->reject(function ($route) {

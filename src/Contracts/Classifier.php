@@ -11,14 +11,14 @@ interface Classifier
      *
      * @return string
      */
-    public function getName() : string;
+    public function getName();
 
     /**
-     * Determine if the given Class should be classified
+     * Determine if the given ReflectionClass should be classified
      * as the component the Classifier Class represents.
      *
      * @param ReflectionClass $class
      * @return bool
      */
-    public function satisfies(ReflectionClass $class) : bool;
+    public function satisfies(ReflectionClass $class);
 }

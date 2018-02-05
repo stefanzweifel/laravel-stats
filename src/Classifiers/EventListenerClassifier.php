@@ -8,12 +8,12 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider;
 
 class EventListenerClassifier implements Classifier
 {
-    public function getName() : string
+    public function getName()
     {
         return 'Event Listeners';
     }
 
-    public function satisfies(ReflectionClass $class) : bool
+    public function satisfies(ReflectionClass $class)
     {
         return collect(app()->getProvider(EventServiceProvider::class)->listens())
             ->collapse()

@@ -8,12 +8,12 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class RequestClassifier implements Classifier
 {
-    public function getName() : string
+    public function getName()
     {
         return 'Requests';
     }
 
-    public function satisfies(ReflectionClass $class) : bool
+    public function satisfies(ReflectionClass $class)
     {
         return $class->isSubclassOf(FormRequest::class);
     }

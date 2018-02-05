@@ -8,12 +8,12 @@ use Wnx\LaravelStats\Contracts\Classifier;
 
 class CommandClassifier implements Classifier
 {
-    public function getName() : string
+    public function getName()
     {
         return 'Commands';
     }
 
-    public function satisfies(ReflectionClass $class) : bool
+    public function satisfies(ReflectionClass $class)
     {
         return $class->isSubclassOf(Command::class);
     }

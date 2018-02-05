@@ -8,12 +8,12 @@ use Wnx\LaravelStats\Contracts\Classifier;
 
 class RuleClassifier implements Classifier
 {
-    public function getName() : string
+    public function getName()
     {
         return 'Rules';
     }
 
-    public function satisfies(ReflectionClass $class) : bool
+    public function satisfies(ReflectionClass $class)
     {
         return $class->implementsInterface(Rule::class);
     }

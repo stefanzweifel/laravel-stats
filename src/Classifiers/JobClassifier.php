@@ -8,12 +8,12 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class JobClassifier implements Classifier
 {
-    public function getName() : string
+    public function getName()
     {
         return 'Jobs';
     }
 
-    public function satisfies(ReflectionClass $class) : bool
+    public function satisfies(ReflectionClass $class)
     {
         return $class->usesTrait(Dispatchable::class);
     }

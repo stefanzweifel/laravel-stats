@@ -8,12 +8,12 @@ use Wnx\LaravelStats\Contracts\Classifier;
 
 class PhpUnitClassifier implements Classifier
 {
-    public function getName() : string
+    public function getName()
     {
         return 'PHPUnit Tests';
     }
 
-    public function satisfies(ReflectionClass $class) : bool
+    public function satisfies(ReflectionClass $class)
     {
         return class_exists(TestCase::class) && $class->isSubclassOf(TestCase::class);
     }

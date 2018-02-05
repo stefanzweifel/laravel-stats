@@ -8,12 +8,12 @@ use Wnx\LaravelStats\Contracts\Classifier;
 
 class ServiceProviderClassifier implements Classifier
 {
-    public function getName() : string
+    public function getName()
     {
         return 'Service Providers';
     }
 
-    public function satisfies(ReflectionClass $class) : bool
+    public function satisfies(ReflectionClass $class)
     {
         return $class->isSubclassOf(ServiceProvider::class);
     }

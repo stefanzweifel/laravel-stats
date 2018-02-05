@@ -8,12 +8,12 @@ use Wnx\LaravelStats\Contracts\Classifier;
 
 class PolicyClassifier implements Classifier
 {
-    public function getName() : string
+    public function getName()
     {
         return 'Policies';
     }
 
-    public function satisfies(ReflectionClass $class) : bool
+    public function satisfies(ReflectionClass $class)
     {
         return in_array(
             $class->getName(), resolve(Gate::class)->policies()

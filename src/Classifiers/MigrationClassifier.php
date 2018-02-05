@@ -8,12 +8,12 @@ use Illuminate\Database\Migrations\Migration;
 
 class MigrationClassifier implements Classifier
 {
-    public function getName() : string
+    public function getName()
     {
         return 'Migrations';
     }
 
-    public function satisfies(ReflectionClass $class) : bool
+    public function satisfies(ReflectionClass $class)
     {
         return $class->isSubclassOf(Migration::class);
     }

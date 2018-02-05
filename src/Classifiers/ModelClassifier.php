@@ -8,12 +8,12 @@ use Wnx\LaravelStats\Contracts\Classifier;
 
 class ModelClassifier implements Classifier
 {
-    public function getName() : string
+    public function getName()
     {
         return 'Models';
     }
 
-    public function satisfies(ReflectionClass $class) : bool
+    public function satisfies(ReflectionClass $class)
     {
         return $class->isSubclassOf(Model::class);
     }

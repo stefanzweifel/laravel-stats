@@ -8,12 +8,12 @@ use Illuminate\Foundation\Events\Dispatchable;
 
 class EventClassifier implements Classifier
 {
-    public function getName() : string
+    public function getName()
     {
         return 'Events';
     }
 
-    public function satisfies(ReflectionClass $class) : bool
+    public function satisfies(ReflectionClass $class)
     {
         return $class->usesTrait(Dispatchable::class);
     }
