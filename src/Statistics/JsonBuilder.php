@@ -2,9 +2,6 @@
 
 namespace Wnx\LaravelStats\Statistics;
 
-use Wnx\LaravelStats\Statistics\CodeTestRatio;
-use Wnx\LaravelStats\Statistics\ProjectStatistics;
-
 class JsonBuilder
 {
     /**
@@ -54,5 +51,4 @@ class JsonBuilder
 
         return json_encode($statsJson, JSON_PRETTY_PRINT);
     }
-
 }

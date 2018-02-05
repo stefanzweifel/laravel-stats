@@ -63,7 +63,7 @@ class StatsListCommandTest extends TestCase
         $this->overrideConfig();
 
         $this->artisan('stats', [
-            '--format' => 'json'
+            '--format' => 'json',
         ]);
         $result = Artisan::output();
 

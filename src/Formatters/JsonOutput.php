@@ -3,7 +3,6 @@
 namespace Wnx\LaravelStats\Formatters;
 
 use Illuminate\Console\OutputStyle;
-use Wnx\LaravelStats\Statistics\CodeTestRatio;
 use Wnx\LaravelStats\Statistics\JsonBuilder;
 use Wnx\LaravelStats\Statistics\ProjectStatistics;
 
