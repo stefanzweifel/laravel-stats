@@ -84,4 +84,13 @@ class CodeTestRatioTest extends TestCase
 
         $this->assertEquals(0.8, $ratio->getRatio());
     }
+
+    /** @test */
+    public function it_returns_1_if_no_code_classes_are_available()
+    {
+        $stats = new ProjectStatistics(collect([]));
+        $ratio = new CodeTestRatio($stats);
+
+        $this->assertEquals(1, $ratio->getCodeLoc());
+    }
 }

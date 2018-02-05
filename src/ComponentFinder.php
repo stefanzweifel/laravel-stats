@@ -23,7 +23,8 @@ class ComponentFinder
     }
 
     /**
-     * Sort classes into Laravel Component.
+     * Scan the Project for PHP Classes, turn them into ReflectionClasses,
+     * reject unwanted Classes and sort them into Components.
      *
      * @return Collection
      */

@@ -112,6 +112,11 @@ After installing you can generate the statistics by running the following Artisa
 php artisan stats
 ```
 
+The statistics are also available as JSON.
+
+```shell
+php artisan stats --format=json
+```
 
 ## How does this package detect certain Laravel Components?
 
