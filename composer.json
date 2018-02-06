@@ -14,15 +14,15 @@
     ],
     "require": {
         "php": ">=7.0.0",
-        "illuminate/console": "5.5.*",
-        "illuminate/support": "5.5.*",
-        "phploc/phploc": "^4.0",
-        "symfony/finder": "^3.3"
+        "illuminate/console": "~5.5",
+        "illuminate/support": "~5.5",
+        "phploc/phploc": "~4.0",
+        "symfony/finder": "~3.3|~4.0"
     },
     "require-dev": {
-        "laravel/browser-kit-testing": "^2.0",
-        "laravel/dusk": "^2.0",
-        "orchestra/testbench": "^3.5",
+        "laravel/browser-kit-testing": "~2.0",
+        "laravel/dusk": "~2.0",
+        "orchestra/testbench": "~3.5",
         "phpunit/phpunit": "6.*"
     },
     "autoload": {
