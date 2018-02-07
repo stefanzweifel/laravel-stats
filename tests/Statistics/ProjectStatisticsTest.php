@@ -37,7 +37,7 @@ class ProjectStatisticsTest extends TestCase
         $stats = new ProjectStatistics($components);
 
         $this->assertCount(1, $stats->components());
-        $this->assertTrue(is_array($stats->other()));
+        $this->assertInternalType('array', $stats->other());
     }
 
     /** @test */
