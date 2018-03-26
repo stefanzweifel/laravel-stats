@@ -2,9 +2,11 @@
 
 namespace Wnx\LaravelStats\Classifiers;
 
+use Closure;
+use ReflectionFunction;
+use ReflectionProperty;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\Classifier;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider;
 
 class EventListenerClassifier implements Classifier
 {
@@ -15,8 +17,21 @@ class EventListenerClassifier implements Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        return collect(app()->getProvider(EventServiceProvider::class)->listens())
-            ->collapse()
+        $dispatcher = app('events');
+
+        $property = new ReflectionProperty($dispatcher, 'listeners');
+        $property->setAccessible(true);
+
+        return collect($property->getValue($dispatcher))
+            ->map(function ($listeners) {
+                $subscriber = collect($listeners)->map(function (Closure $closure) {
+                    $reflection = new ReflectionFunction($closure);
+
+                    return $reflection->getStaticVariables()['listener'];
+                })->toArray();
+
+                return $subscriber;
+            })->collapse()
             ->unique()
             ->contains($class->getName());
     }
