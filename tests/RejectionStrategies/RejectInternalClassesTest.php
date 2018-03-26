@@ -12,7 +12,7 @@ class RejectInternalClassesTest extends TestCase
     /** @test */
     public function it_returns_true_if_the_given_class_is_a_php_internal()
     {
-        $strategy = resolve(RejectInternalClasses::class);
+        $strategy = app(RejectInternalClasses::class);
         $class = new ReflectionClass(new \stdClass);
 
         $this->assertTrue($strategy->shouldClassBeRejected($class));
@@ -21,7 +21,7 @@ class RejectInternalClassesTest extends TestCase
     /** @test */
     public function it_returns_false_if_the_class_belongs_to_the_app()
     {
-        $strategy = resolve(RejectInternalClasses::class);
+        $strategy = app(RejectInternalClasses::class);
         $class = new ReflectionClass(ModelClassifier::class);
 
         $this->assertFalse($strategy->shouldClassBeRejected($class));

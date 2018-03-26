@@ -20,7 +20,7 @@ class ComponentFinderTest extends TestCase
             'ignored_namespaces' => [],
         ]);
 
-        $this->classes = resolve(ComponentFinder::class)->get()->flatten()->pluck('name');
+        $this->classes = app(ComponentFinder::class)->get()->flatten()->pluck('name');
     }
 
     /** @test */
@@ -136,7 +136,7 @@ class ComponentFinderTest extends TestCase
     /** @test */
     public function it_sorts_classes_into_components()
     {
-        $components = resolve(ComponentFinder::class)->get();
+        $components = app(ComponentFinder::class)->get();
 
         $this->assertTrue($components->has('Other'));
         $this->assertTrue($components->has('Models'));

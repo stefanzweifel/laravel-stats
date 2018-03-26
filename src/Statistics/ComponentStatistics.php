@@ -84,7 +84,7 @@ class ComponentStatistics implements Arrayable
                 return $class->getFileName();
             })
             ->pipe(function ($classes) {
-                return resolve(Analyser::class)->countFiles($classes->all(), false)['loc'];
+                return app(Analyser::class)->countFiles($classes->all(), false)['loc'];
             });
     }
 
@@ -100,7 +100,7 @@ class ComponentStatistics implements Arrayable
                 return $class->getFileName();
             })
             ->pipe(function ($classes) {
-                return resolve(Analyser::class)->countFiles($classes->all(), false)['lloc'];
+                return app(Analyser::class)->countFiles($classes->all(), false)['lloc'];
             });
     }
 
