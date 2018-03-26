@@ -6,18 +6,33 @@ use Illuminate\Support\ServiceProvider;
 
 class StatsServiceProvider extends ServiceProvider
 {
+    /**
+     * @var string
+     */
+    private $config = __DIR__.'/../config/stats.php';
+
+    /**
+     * Bootstrap the application events.
+     *
+     * @return void
+     */
     public function boot()
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/stats.php' => config_path('stats.php'),
+                $this->config => base_path('config/stats.php'),
             ], 'config');
         }
     }
 
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/stats.php', 'stats');
+        $this->mergeConfigFrom($this->config, 'stats');
 
         $this->commands([
             StatsListCommand::class,
