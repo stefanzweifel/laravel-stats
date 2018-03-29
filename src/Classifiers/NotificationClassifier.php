@@ -15,6 +15,10 @@ class NotificationClassifier implements Classifier
 
     public function satisfies(ReflectionClass $class)
     {
+        if (! class_exists(Notification::class)) {
+            return false;
+        }
+
         return $class->isSubclassOf(Notification::class);
     }
 }

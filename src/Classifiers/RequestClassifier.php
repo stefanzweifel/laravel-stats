@@ -15,6 +15,10 @@ class RequestClassifier implements Classifier
 
     public function satisfies(ReflectionClass $class)
     {
+        if (! class_exists(FormRequest::class)) {
+            return false;
+        }
+
         return $class->isSubclassOf(FormRequest::class);
     }
 }

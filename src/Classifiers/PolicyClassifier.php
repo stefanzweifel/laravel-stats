@@ -16,7 +16,7 @@ class PolicyClassifier implements Classifier
     public function satisfies(ReflectionClass $class)
     {
         return in_array(
-            $class->getName(), resolve(Gate::class)->policies()
+            $class->getName(), app(Gate::class)->policies()
         );
     }
 }

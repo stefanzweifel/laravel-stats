@@ -19,7 +19,7 @@ class ComponentFinder
     {
         $rejectionStrategy = config('stats.rejection_strategy', RejectVendorClasses::class);
 
-        $this->rejectionStrategy = resolve($rejectionStrategy);
+        $this->rejectionStrategy = app($rejectionStrategy);
     }
 
     /**
