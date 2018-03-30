@@ -5,8 +5,8 @@ namespace Wnx\LaravelStats\Classifiers;
 use Closure;
 use ReflectionFunction;
 use ReflectionProperty;
-use Wnx\LaravelStats\Contracts\Classifier;
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Contracts\Classifier;
 
 class EventListenerClassifier implements Classifier
 {
