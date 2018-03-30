@@ -18,21 +18,33 @@
 </a>
 </p>
 
-Get insights about your Laravel Project. (Inspired by [`rake stats`](https://robots.thoughtbot.com/simple-test-metrics-in-your-rails-app-and-what-they))
+Get insights about your Laravel or Lumen Project. (Inspired by [`rake stats`](https://robots.thoughtbot.com/simple-test-metrics-in-your-rails-app-and-what-they))
 
 ![Screenshot](https://raw.githubusercontent.com/stefanzweifel/laravel-stats/master/screenshot.png)
 
 ### Installing
 
-The easiest way to install the package is by using composer. The package requires PHP 7.0 and Laravel 5.5 or higher.
+The easiest way to install the package is by using composer. The package requires PHP 7.0, Laravel 5.5 or higher or Lumen 5.5 or higher.
 
 ```shell
 composer require "wnx/laravel-stats" --dev
 ```
 
-The package will automatically register itself.
+The package will automatically register itself. However if you prefer to register Service Provider by yourself, update your `config/app.php` file:
 
-Optionally, you can publish the config file of this package with this command:
+```php
+'providers' => [
+    \Wnx\LaravelStats\StatsServiceProvider
+]
+```
+
+If you're using Lumen you have to manually register the Service Provider in your `bootstrap/app.php` file:
+
+```php
+$app->register(\Wnx\LaravelStats\StatsServiceProvider::class);
+```
+
+Optionally, you can publish the config file of this package with this command (Laravel only):
 
 ```shell
 php artisan vendor:publish --provider="Wnx\LaravelStats\StatsServiceProvider"
