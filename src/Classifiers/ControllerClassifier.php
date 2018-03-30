@@ -17,16 +17,20 @@ class ControllerClassifier implements Classifier
         return collect(app('router')->getRoutes())
             ->reject(function ($route) {
                 if (method_exists($route, 'getActionName')) {
+                    // Laravel
                     return $route->getActionName() === 'Closure';
                 }
 
+                // Lumen
                 return data_get($route, 'action.uses') === null;
             })
             ->map(function ($route) {
                 if (method_exists($route, 'getController')) {
+                    // Laravel
                     return get_class($route->getController());
                 }
 
+                // Lumen
                 return str_before(data_get($route, 'action.uses'), '@');
             })
             ->unique()
