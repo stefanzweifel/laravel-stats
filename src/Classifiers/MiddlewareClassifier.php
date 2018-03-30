@@ -10,6 +10,8 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 
 class MiddlewareClassifier implements Classifier
 {
+    protected $httpKernel;
+
     public function getName()
     {
         return 'Middlewares';
@@ -17,31 +19,47 @@ class MiddlewareClassifier implements Classifier
 
     public function satisfies(ReflectionClass $class)
     {
-        try {
-            $router = app(Kernel::class);
-        } catch (BindingResolutionException $e) {
-            $router = app();
-        }
+        $this->httpKernel = $this->getHttpKernelInstance();
 
-        $reflection = new ReflectionProperty($router, 'middleware');
-        $reflection->setAccessible(true);
+        $middlewares = $this->getMiddlewares();
 
-        $middleware = $reflection->getValue($router);
-
-        if (in_array($class->getName(), $middleware)) {
+        if (in_array($class->getName(), $middlewares)) {
             return true;
         }
 
-        $property = property_exists($router, 'middlewareGroups')
+        return collect($middlewares)
+            ->merge($this->getMiddlewareGroupsFromKernel())
+            ->flatten()
+            ->contains($class->getName());
+    }
+
+    protected function getMiddlewares() : array
+    {
+        $reflection = new ReflectionProperty($this->httpKernel, 'middleware');
+        $reflection->setAccessible(true);
+
+        return $reflection->getValue($this->httpKernel);
+    }
+
+    protected function getMiddlewareGroupsFromKernel() : array
+    {
+        $property = property_exists($this->httpKernel, 'middlewareGroups')
             ? 'middlewareGroups'
             : 'routeMiddleware';
 
-        $reflection = new ReflectionProperty($router, $property);
+        $reflection = new ReflectionProperty($this->httpKernel, $property);
         $reflection->setAccessible(true);
 
-        return collect($middleware)
-            ->merge($reflection->getValue($router))
-            ->flatten()
-            ->contains($class->getName());
+        return $reflection->getValue($this->httpKernel);
+    }
+
+    protected function getHttpKernelInstance()
+    {
+        try {
+            return app(Kernel::class);
+        } catch (BindingResolutionException $e) {
+            // Lumen
+            return app();
+        }
     }
 }
