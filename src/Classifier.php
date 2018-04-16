@@ -68,7 +68,13 @@ class Classifier
                 throw new Exception("Classifier {$classifier} does not implement ".ClassifierContract::class.'.');
             }
 
-            if ($c->satisfies($class)) {
+            // Wrap the `satisfies` method call in the `resuce` helper to
+            // catch possible thrown Exceptions
+            $satisfied = rescue(function () use ($c, $class) {
+                return $c->satisfies($class);
+            }, false);
+
+            if ($satisfied) {
                 return $c->getName();
             }
         }
