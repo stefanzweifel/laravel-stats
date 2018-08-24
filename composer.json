@@ -23,7 +23,7 @@
         "laravel/browser-kit-testing": "~2.0|~3.0|~4.0",
         "laravel/dusk": "~2.0|~3.0|~4.0",
         "orchestra/testbench": "~3.5",
-        "phpunit/phpunit": "7.*"
+        "phpunit/phpunit": "6.*|7.*"
     },
     "autoload": {
         "psr-4": {
