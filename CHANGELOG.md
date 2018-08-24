@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v1.7.1...HEAD)
 
+### Changed
+- Changed Version Contraints in `composer.json` to support Laravel 5.7 [#125](https://github.com/stefanzweifel/laravel-stats/pull/125)
 
 ## [v1.7.1](https://github.com/stefanzweifel/laravel-stats/compare/v1.7.0...v1.7.1) - 2018-04-16
 
