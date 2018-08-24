@@ -20,8 +20,8 @@
         "symfony/finder": "~3.3|~4.0"
     },
     "require-dev": {
-        "laravel/dusk": "~2.0|~3.0",
         "laravel/browser-kit-testing": "~2.0|~3.0|~4.0",
+        "laravel/dusk": "~2.0|~3.0|~4.0",
         "orchestra/testbench": "~3.5",
         "phpunit/phpunit": "6.*"
     },
