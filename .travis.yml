@@ -8,10 +8,6 @@ sudo: false
 
 dist: trusty
 
-env:
-  global:
-    - COVERAGE=0
-
 matrix:
   include:
     - php: 7.0
@@ -43,6 +39,3 @@ install:
 
 script:
   - vendor/bin/phpunit
-
-after_success:
-  - if [[ $COVERAGE = 1 ]]; then ./bin/codeclimate report $TRAVIS_TEST_RESULT; fi
