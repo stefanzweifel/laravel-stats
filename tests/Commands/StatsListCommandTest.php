@@ -8,14 +8,21 @@ use Illuminate\Support\Facades\Artisan;
 
 class StatsListCommandTest extends TestCase
 {
-    /**
-     * Override stats.path confiugration to not include `tests` folder
-     * This fixes the issue, that orchestra does not ship with the
-     * default `tests` folder and would throw an error, because
-     * the path does not exist.
-     */
-    public function overrideConfig()
+    public function setUp()
     {
+        parent::setUp();
+
+        // See https://github.com/orchestral/testbench/issues/229#issuecomment-419716531
+        if (starts_with($this->app->version(), '5.7')) {
+            $this->withoutMockingConsoleOutput();
+        }
+
+        /*
+         * Override stats.path confiugration to not include `tests` folder
+         * This fixes the issue, that orchestra does not ship with the
+         * default `tests` folder and would throw an error, because
+         * the path does not exist.
+         */
         config()->set('stats.paths', [
             base_path('app'),
             base_path('database'),
@@ -29,8 +36,6 @@ class StatsListCommandTest extends TestCase
         Route::get('projects', 'Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController@index');
         Route::get('users', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@index');
 
-        $this->overrideConfig();
-
         $this->artisan('stats');
         $resultAsText = Artisan::output();
 
@@ -43,8 +48,6 @@ class StatsListCommandTest extends TestCase
     /** @test */
     public function it_displays_all_headers()
     {
-        $this->overrideConfig();
-
         $this->artisan('stats');
         $result = Artisan::output();
 
@@ -60,8 +63,6 @@ class StatsListCommandTest extends TestCase
     /** @test */
     public function it_returns_stats_as_json()
     {
-        $this->overrideConfig();
-
         $this->artisan('stats', [
             '--format' => 'json',
         ]);

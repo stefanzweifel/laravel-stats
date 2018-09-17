@@ -1,14 +1,41 @@
+cache:
+  directories:
+    - $HOME/.composer/cache
+
 language: php
+
 sudo: false
+
 dist: trusty
 
-php:
-  - 7.0
-  - 7.1
-  - 7.2
+matrix:
+  include:
+    - php: 7.0
+      env: LARAVEL='5.5.*' TESTBENCH='3.5.*'
+    - php: 7.1
+      env: LARAVEL='5.5.*' TESTBENCH='3.5.*'
+    - php: 7.1
+      env: LARAVEL='5.6.*' TESTBENCH='3.6.*'
+    - php: 7.1
+      env: LARAVEL='5.7.*' TESTBENCH='3.7.*'
+    - php: 7.2
+      env: LARAVEL='5.5.* 'TESTBENCH='3.5.*'
+    - php: 7.2
+      env: LARAVEL='5.6.*' 'TESTBENCH='3.6.*'
+    - php: 7.2
+      env: LARAVEL='5.7.*' 'TESTBENCH='3.7.*'
+  fast_finish: true
 
 before_script:
-  - phpenv config-rm xdebug.ini
-  - travis_retry composer install --prefer-dist --no-interaction
+    - phpenv config-rm xdebug.ini
+    - composer config discard-changes true
 
-script: phpunit
+before_install:
+  - travis_retry composer self-update
+  - travis_retry composer require "laravel/framework:${LARAVEL}" "orchestra/testbench:${TESTBENCH}" --no-interaction --no-update
+
+install:
+  - travis_retry composer install --prefer-dist --no-interaction --no-suggest
+
+script:
+  - vendor/bin/phpunit

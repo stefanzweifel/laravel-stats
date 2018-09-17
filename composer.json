@@ -22,7 +22,8 @@
     "require-dev": {
         "laravel/browser-kit-testing": "~2.0|~3.0|~4.0",
         "laravel/dusk": "~2.0|~3.0|~4.0",
-        "orchestra/testbench": "~3.5",
+        "mockery/mockery": "^1.1",
+        "orchestra/testbench": "^3.5|^3.6|^3.7",
         "phpunit/phpunit": "6.*|7.*"
     },
     "autoload": {
