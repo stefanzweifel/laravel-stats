@@ -146,6 +146,10 @@ The package scans the files defined in the `paths`-array in the configuration fi
 | Event Listener | Must be registered for an Event in `EventServiceProvider` |
 | Mail | Must extend `Illuminate\Mail\Mailable` |
 | Notification | Must extend `Illuminate\Notifications\Notification` |
+| Nova Action | Must extend `Laravel\Nova\Actions\Action` |
+| Nova Filter | Must extend `Laravel\Nova\Filters\Filter` |
+| Nova Lens | Must extend `Laravel\Nova\Lenses\Lens` |
+| Nova Resource | Must extend `Laravel\Nova\Resource` |
 | Job | Must use `Illuminate\Foundation\Bus\Dispatchable`-Trait |
 | Migration | Must extend `Illuminate\Database\Migrations\Migration` |
 | Request | Must extend `Illuminate\Foundation\Http\FormRequest` |
