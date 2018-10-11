@@ -4,10 +4,10 @@ namespace Wnx\LaravelStats;
 
 use Exception;
 use Wnx\LaravelStats\Classifiers\Nova\Lens;
-use Wnx\LaravelStats\Classifiers\Nova\Filter;
 use Wnx\LaravelStats\Classifiers\Nova\Action;
-use Wnx\LaravelStats\Classifiers\Nova\Resource;
+use Wnx\LaravelStats\Classifiers\Nova\Filter;
 use Wnx\LaravelStats\Classifiers\JobClassifier;
+use Wnx\LaravelStats\Classifiers\Nova\Resource;
 use Wnx\LaravelStats\Classifiers\DuskClassifier;
 use Wnx\LaravelStats\Classifiers\MailClassifier;
 use Wnx\LaravelStats\Classifiers\RuleClassifier;
@@ -55,7 +55,7 @@ class Classifier
         Action::class,
         Filter::class,
         Lens::class,
-        Resource::class
+        Resource::class,
     ];
 
     /**

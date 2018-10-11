@@ -3,7 +3,6 @@
 namespace Wnx\LaravelStats\Classifiers\Nova;
 
 use Wnx\LaravelStats\ReflectionClass;
-use Laravel\BrowserKitTesting\TestCase;
 use Wnx\LaravelStats\Contracts\Classifier;
 
 class Filter implements Classifier
