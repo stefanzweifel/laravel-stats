@@ -4,7 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v1.7.1...HEAD)
+## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v1.7.2...HEAD)
+
+### Added
+- Add Support for Laravel Nova Components [#127](https://github.com/stefanzweifel/laravel-stats/pull/127)
+
+### Changed
+- Automatically test package against multiple Laravel Versions [#126](https://github.com/stefanzweifel/laravel-stats/pull/126)
+
+## [v1.7.2](https://github.com/stefanzweifel/laravel-stats/compare/v1.7.1...v1.7.2) - 2018-08-24
 
 ### Changed
 - Changed Version Contraints in `composer.json` to support Laravel 5.7 [#125](https://github.com/stefanzweifel/laravel-stats/pull/125)
