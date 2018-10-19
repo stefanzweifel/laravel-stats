@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v1.7.2...HEAD)
 
-### Added
+### Added
 - Add Support for Laravel Nova Components [#127](https://github.com/stefanzweifel/laravel-stats/pull/127)
 
 ### Changed
