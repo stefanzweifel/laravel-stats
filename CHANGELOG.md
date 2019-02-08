@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v1.8.0...HEAD)
 
+### Changed
+- Replace `str_contains()` and `starts_with()` helper with `Str::contains()` and `Str::startsWith()` [#130](https://github.com/stefanzweifel/laravel-stats/pull/130)
 
 ## [v1.8.0](https://github.com/stefanzweifel/laravel-stats/compare/v1.7.2...v1.8.0) - 2018-10-20
 
