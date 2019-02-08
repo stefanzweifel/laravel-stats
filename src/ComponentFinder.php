@@ -4,6 +4,7 @@ namespace Wnx\LaravelStats;
 
 use Exception;
 use SplFileInfo;
+use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 use Symfony\Component\Finder\Finder;
 use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
@@ -39,7 +40,7 @@ class ComponentFinder
             })
             ->reject(function ($class) {
                 foreach (config('stats.ignored_namespaces', []) as $namespace) {
-                    if (starts_with($class->getNamespaceName(), $namespace)) {
+                    if (Str::startsWith($class->getNamespaceName(), $namespace)) {
                         return true;
                     }
                 }
@@ -104,7 +105,7 @@ class ComponentFinder
     protected function isExcluded(SplFileInfo $file, Collection $excludes)
     {
         return $excludes->contains(function ($exclude) use ($file) {
-            return starts_with($file->getPathname(), $exclude);
+            return Str::startsWith($file->getPathname(), $exclude);
         });
     }
 }

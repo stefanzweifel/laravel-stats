@@ -44,7 +44,7 @@ return [
 
     /*
      * Namespaces which should be ignored.
-     * Laravel Stats uses the `starts_with`-string helper, to
+     * Laravel Stats uses the `Str::startsWith()`class to
      * check if a Namespace should be ignored.
      *
      * You can use `Illuminate` to ignore the entire `Illuminate`-namespace

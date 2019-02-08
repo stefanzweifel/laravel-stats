@@ -2,6 +2,8 @@
 
 namespace Wnx\LaravelStats\Statistics;
 
+use Illuminate\Support\Str;
+
 class CodeTestRatio
 {
     protected $project;
@@ -20,7 +22,7 @@ class CodeTestRatio
     {
         return collect($this->project->components())
             ->filter(function ($_, $key) {
-                return str_contains($key, 'Test');
+                return Str::contains($key, 'Test');
             })
             ->sum('loc');
     }
@@ -29,7 +31,7 @@ class CodeTestRatio
     {
         $codeLoc = collect($this->project->components())
             ->filter(function ($_, $key) {
-                return ! str_contains($key, 'Test');
+                return ! Str::contains($key, 'Test');
             })
             ->sum('loc');
 

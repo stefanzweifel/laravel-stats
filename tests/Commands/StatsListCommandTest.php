@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\Commands;
 
+use Illuminate\Support\Str;
 use Wnx\LaravelStats\Tests\TestCase;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -13,7 +14,7 @@ class StatsListCommandTest extends TestCase
         parent::setUp();
 
         // See https://github.com/orchestral/testbench/issues/229#issuecomment-419716531
-        if (starts_with($this->app->version(), '5.7')) {
+        if (Str::startsWith($this->app->version(), '5.7')) {
             $this->withoutMockingConsoleOutput();
         }
 
