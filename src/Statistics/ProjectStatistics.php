@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats\Statistics;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class ProjectStatistics
 {
@@ -85,7 +86,7 @@ class ProjectStatistics
                     return (new ComponentStatistics($name, $classes))->toArray();
                 })
                 ->sortBy(function ($component, $_) {
-                    return str_contains($component['component'], 'Test') ? 1 : $component['component'];
+                    return Str::contains($component['component'], 'Test') ? 1 : $component['component'];
                 });
         }
 
