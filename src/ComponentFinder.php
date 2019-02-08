@@ -3,9 +3,9 @@
 namespace Wnx\LaravelStats;
 
 use Exception;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use SplFileInfo;
+use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
 use Symfony\Component\Finder\Finder;
 use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
 
