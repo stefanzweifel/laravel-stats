@@ -40,10 +40,10 @@ class StatsListCommandTest extends TestCase
         $this->artisan('stats');
         $resultAsText = Artisan::output();
 
-        $this->assertContains('Middlewares', $resultAsText);
-        $this->assertContains('Controllers', $resultAsText);
-        $this->assertContains('Other', $resultAsText);
-        $this->assertContains('Total', $resultAsText);
+        $this->assertStringContainsString('Middlewares', $resultAsText);
+        $this->assertStringContainsString('Controllers', $resultAsText);
+        $this->assertStringContainsString('Other', $resultAsText);
+        $this->assertStringContainsString('Total', $resultAsText);
     }
 
     /** @test */
@@ -52,13 +52,13 @@ class StatsListCommandTest extends TestCase
         $this->artisan('stats');
         $result = Artisan::output();
 
-        $this->assertContains('Name', $result);
-        $this->assertContains('Classes', $result);
-        $this->assertContains('Methods', $result);
-        $this->assertContains('Methods/Class', $result);
-        $this->assertContains('Lines', $result);
-        $this->assertContains('LoC', $result);
-        $this->assertContains('LoC/Method', $result);
+        $this->assertStringContainsString('Name', $result);
+        $this->assertStringContainsString('Classes', $result);
+        $this->assertStringContainsString('Methods', $result);
+        $this->assertStringContainsString('Methods/Class', $result);
+        $this->assertStringContainsString('Lines', $result);
+        $this->assertStringContainsString('LoC', $result);
+        $this->assertStringContainsString('LoC/Method', $result);
     }
 
     /** @test */
