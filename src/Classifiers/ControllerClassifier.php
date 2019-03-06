@@ -27,7 +27,11 @@ class ControllerClassifier implements Classifier
             ->map(function ($route) {
                 if (method_exists($route, 'getController')) {
                     // Laravel
-                    return get_class($route->getController());
+                    try {
+                        return get_class($route->getController());
+                    } catch (\Exception $e) {
+                        return '';
+                    }
                 }
 
                 // Lumen
