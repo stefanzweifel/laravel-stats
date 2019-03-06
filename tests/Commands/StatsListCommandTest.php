@@ -14,7 +14,7 @@ class StatsListCommandTest extends TestCase
         parent::setUp();
 
         // See https://github.com/orchestral/testbench/issues/229#issuecomment-419716531
-        if (Str::startsWith($this->app->version(), '5.7')) {
+        if ($this->isLaravel57OrNewer()) {
             $this->withoutMockingConsoleOutput();
         }
 
@@ -29,6 +29,17 @@ class StatsListCommandTest extends TestCase
             base_path('database'),
         ]);
         config()->set('stats.ignored_namespaces', []);
+    }
+
+    protected function isLaravel57OrNewer()
+    {
+        $laravelVersions = ['5.7', '5.8'];
+
+        foreach ($laravelVersions as $version) {
+            if (Str::startsWith($this->app->version(), $version)) {
+                return true;
+            }
+        }
     }
 
     /** @test */
