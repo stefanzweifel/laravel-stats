@@ -4,6 +4,7 @@ namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\Classifier;
+use Throwable;
 
 class ControllerClassifier implements Classifier
 {
@@ -29,8 +30,8 @@ class ControllerClassifier implements Classifier
                     // Laravel
                     try {
                         return get_class($route->getController());
-                    } catch (\Exception $e) {
-                        return '';
+                    } catch (Throwable $e) {
+                        return null;
                     }
                 }
 
@@ -38,6 +39,7 @@ class ControllerClassifier implements Classifier
                 return str_before(data_get($route, 'action.uses'), '@');
             })
             ->unique()
+            ->filter()
             ->contains($class->getName());
     }
 }
