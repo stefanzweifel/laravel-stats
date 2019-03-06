@@ -2,9 +2,9 @@
 
 namespace Wnx\LaravelStats\Classifiers;
 
+use Throwable;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\Classifier;
-use Throwable;
 
 class ControllerClassifier implements Classifier
 {
@@ -31,7 +31,7 @@ class ControllerClassifier implements Classifier
                     try {
                         return get_class($route->getController());
                     } catch (Throwable $e) {
-                        return null;
+                        return;
                     }
                 }
 
