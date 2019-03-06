@@ -21,10 +21,10 @@
     },
     "require-dev": {
         "laravel/browser-kit-testing": "~2.0|~3.0|~4.0|~5.0",
-        "laravel/dusk": "~2.0|~3.0|~4.0",
+        "laravel/dusk": "~2.0|~3.0|~4.0|~5.0",
         "mockery/mockery": "^1.1",
         "orchestra/testbench": "^3.5|^3.6|^3.7|^3.8",
-        "phpunit/phpunit": "6.*|7.*"
+        "phpunit/phpunit": "6.*|7.*|8.*"
     },
     "autoload": {
         "psr-4": {
