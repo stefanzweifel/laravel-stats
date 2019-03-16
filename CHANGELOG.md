@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v1.8.2...HEAD)
+## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v1.8.3...HEAD)
+
+## [v1.8.3](https://github.com/stefanzweifel/laravel-stats/compare/v1.8.2...v1.8.3) - 2019-03-16
+
+### Changes
+
+- Update phploc version contstraint to support PHP7.3 [#129](https://github.com/stefanzweifel/laravel-stats/pull/129)
 
 ## [v1.8.2](https://github.com/stefanzweifel/laravel-stats/compare/v1.8.1...v1.8.2) - 2019-03-06
 
