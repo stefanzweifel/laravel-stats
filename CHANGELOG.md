@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v1.8.3...HEAD)
 
+### Added
+
+- Add Number of Routes to Statistics [#136](https://github.com/stefanzweifel/laravel-stats/pull/136)
+
 ## [v1.8.3](https://github.com/stefanzweifel/laravel-stats/compare/v1.8.2...v1.8.3) - 2019-03-16
 
 ### Changes
