@@ -25,8 +25,6 @@ matrix:
     - php: 7.2
       env: LARAVEL='5.7.*' 'TESTBENCH='3.7.*'
     - php: 7.3
-      env: LARAVEL='5.5.* 'TESTBENCH='3.5.*'
-    - php: 7.3
       env: LARAVEL='5.6.*' 'TESTBENCH='3.6.*'
     - php: 7.3
       env: LARAVEL='5.7.*' 'TESTBENCH='3.7.*'
