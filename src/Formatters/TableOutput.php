@@ -5,6 +5,7 @@ namespace Wnx\LaravelStats\Formatters;
 use Illuminate\Console\OutputStyle;
 use Symfony\Component\Console\Helper\Table;
 use Wnx\LaravelStats\Statistics\CodeTestRatio;
+use Wnx\LaravelStats\Statistics\NumberOfRoutes;
 use Symfony\Component\Console\Helper\TableStyle;
 use Wnx\LaravelStats\Statistics\ProjectStatistics;
 use Symfony\Component\Console\Helper\TableSeparator;
@@ -51,8 +52,13 @@ class TableOutput
 
         $table->render();
 
+        $metaData = array_merge(
+            (new CodeTestRatio($statistics))->summary(),
+            ['Number of Routes: '.resolve(NumberOfRoutes::class)->get()]
+        );
+
         $this->output->text(
-            implode('    ', (new CodeTestRatio($statistics))->summary())
+            implode('    ', $metaData)
         );
     }
 }
