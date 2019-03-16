@@ -6,7 +6,7 @@ class NumberOfRoutes
 {
     public function get() : int
     {
-        return rescue(function ()  {
+        return rescue(function () {
             return collect(app('router')->getRoutes())->count();
         }, 0);
     }
