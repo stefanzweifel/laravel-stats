@@ -47,6 +47,7 @@ class JsonBuilder
             'code_loc' => (new CodeTestRatio($this->statistics))->getCodeLoc(),
             'test_loc' => (new CodeTestRatio($this->statistics))->getTestLoc(),
             'code_to_test_ratio' => '1:'.(new CodeTestRatio($this->statistics))->getRatio(),
+            'number_of_routes' => resolve(NumberOfRoutes::class)->get(),
         ];
 
         return json_encode($statsJson, JSON_PRETTY_PRINT);
