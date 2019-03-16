@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 use ReflectionClass as NativeReflectionClass;
 
@@ -14,7 +15,7 @@ class ReflectionClass extends NativeReflectionClass
      */
     public function isVendorProvided() : bool
     {
-        return str_contains($this->getFileName(), '/vendor/');
+        return Str::contains($this->getFileName(), '/vendor/');
     }
 
     /**

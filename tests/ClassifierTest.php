@@ -51,6 +51,18 @@ class ClassifierTest extends TestCase
     }
 
     /** @test */
+    public function it_does_not_throw_exception_if_controller_can_not_be_found()
+    {
+        Route::get('users', 'Wnx\LaravelStats\Tests\Stubs\Controllers\NotFoundController@index');
+
+        $this->assertSame(
+            'Other', $this->classifier->classify(
+                new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController::class)
+            )
+        );
+    }
+
+    /** @test */
     public function it_detects_controllers_which_do_not_extend_the_illuminate_base_controller()
     {
         Route::get('projects', 'Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController@index');
