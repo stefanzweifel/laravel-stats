@@ -11,7 +11,7 @@ class NumberOfRoutesTest extends TestCase
     /** @test */
     public function it_returns_0_if_no_routes_are_registered()
     {
-        $result = resolve(NumberOfRoutes::class)->get();
+        $result = app(NumberOfRoutes::class)->get();
 
         $this->assertEquals(0, $result);
     }
@@ -27,7 +27,7 @@ class NumberOfRoutesTest extends TestCase
         Route::patch('users/{user}', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@update');
         Route::delete('users/{user}', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@destroy');
 
-        $result = resolve(NumberOfRoutes::class)->get();
+        $result = app(NumberOfRoutes::class)->get();
 
         $this->assertEquals(7, $result);
     }
@@ -38,7 +38,7 @@ class NumberOfRoutesTest extends TestCase
         Route::get('users', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@index');
         Route::get('users', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@create');
 
-        $result = resolve(NumberOfRoutes::class)->get();
+        $result = app(NumberOfRoutes::class)->get();
 
         $this->assertEquals(1, $result);
     }
