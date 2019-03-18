@@ -54,7 +54,7 @@ class TableOutput
 
         $metaData = array_merge(
             (new CodeTestRatio($statistics))->summary(),
-            ['Number of Routes: '.resolve(NumberOfRoutes::class)->get()]
+            ['Number of Routes: '.app(NumberOfRoutes::class)->get()]
         );
 
         $this->output->text(
