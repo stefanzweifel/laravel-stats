@@ -2,12 +2,16 @@
 
 namespace Wnx\LaravelStats\Statistics;
 
+use Exception;
+
 class NumberOfRoutes
 {
     public function get() : int
     {
-        return rescue(function () {
+        try {
             return collect(app('router')->getRoutes())->count();
-        }, 0);
+        } catch (Exception $e) {
+            return 0;
+        }
     }
 }
