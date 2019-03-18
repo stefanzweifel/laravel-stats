@@ -78,7 +78,6 @@ class Classifier
                 throw new Exception("Classifier {$classifier} does not implement ".ClassifierContract::class.'.');
             }
 
-
             try {
                 $satisfied = $c->satisfies($class);
             } catch (Exception $e) {
