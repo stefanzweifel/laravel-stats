@@ -37,8 +37,13 @@ class MiddlewareClassifier implements Classifier
     {
         $reflection = new ReflectionProperty($this->httpKernel, 'middleware');
         $reflection->setAccessible(true);
+        $middlewares = $reflection->getValue($this->httpKernel);
 
-        return $reflection->getValue($this->httpKernel);
+        $reflection = new ReflectionProperty($this->httpKernel, 'routeMiddleware');
+        $reflection->setAccessible(true);
+        $routeMiddlwares = $reflection->getValue($this->httpKernel);
+
+        return array_values(array_unique(array_merge($middlewares, $routeMiddlwares)));
     }
 
     protected function getMiddlewareGroupsFromKernel() : array
