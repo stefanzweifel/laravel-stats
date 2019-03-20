@@ -105,6 +105,14 @@ class ClassifierTest extends TestCase
     }
 
     /** @test */
+    public function it_detects_route_middlewares()
+    {
+        $this->assertSame(
+            'Middlewares', $this->classifier->classify(new ReflectionClass(\Illuminate\Routing\Middleware\ThrottleRequests::class))
+        );
+    }
+
+    /** @test */
     public function it_detects_migrations()
     {
         require_once __DIR__.'/Stubs/Migrations/2014_10_12_000000_create_users_table.php';
