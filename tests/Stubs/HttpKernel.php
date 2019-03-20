@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats\Tests\Stubs;
 
 use Wnx\LaravelStats\Tests\Stubs\Middlewares\DemoMiddleware;
+use Wnx\LaravelStats\Tests\Stubs\Middlewares\RouteMiddleware;
 
 class HttpKernel extends \Illuminate\Foundation\Http\Kernel
 {
@@ -64,5 +65,6 @@ class HttpKernel extends \Illuminate\Foundation\Http\Kernel
         'can'        => \Illuminate\Auth\Middleware\Authorize::class,
         'guest'      => Middleware\RedirectIfAuthenticated::class,
         'throttle'   => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'route'      => RouteMiddleware::class,
     ];
 }

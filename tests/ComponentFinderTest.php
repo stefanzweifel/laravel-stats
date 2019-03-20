@@ -59,6 +59,12 @@ class ComponentFinderTest extends TestCase
     {
         $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Middlewares\DemoMiddleware::class));
     }
+    
+    /** @test */
+    public function it_finds_route_middlewares()
+    {
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Middlewares\RouteMiddleware::class));
+    }
 
     /** @test */
     public function it_finds_migrations()
