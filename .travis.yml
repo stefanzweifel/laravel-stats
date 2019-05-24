@@ -42,3 +42,4 @@ install:
 
 script:
   - vendor/bin/phpunit
+  - vendor/bin/phpinsights --min-quality=80 --min-complexity=80 --disable-security-check -n -v
