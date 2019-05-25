@@ -29,6 +29,7 @@ class JsonOutput
      * Render output from given statistics.
      *
      * @param  ProjectStatistics $statistics
+     *
      * @return string
      */
     public function render(ProjectStatistics $statistics)

@@ -18,6 +18,7 @@ interface Classifier
      * as the component the Classifier Class represents.
      *
      * @param ReflectionClass $class
+     *
      * @return bool
      */
     public function satisfies(ReflectionClass $class);

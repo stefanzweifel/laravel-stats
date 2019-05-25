@@ -12,6 +12,7 @@ interface RejectionStrategy
      * project statistics.
      *
      * @param ReflectionClass $class
+     *
      * @return bool
      */
     public function shouldClassBeRejected(ReflectionClass $class) : bool;

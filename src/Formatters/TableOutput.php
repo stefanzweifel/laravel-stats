@@ -33,6 +33,7 @@ class TableOutput
      * Render output from given statistics.
      *
      * @param  ProjectStatistics $statistics
+     *
      * @return void
      */
     public function render(ProjectStatistics $statistics)

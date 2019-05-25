@@ -27,6 +27,7 @@ class StatsListCommand extends Command
      * Execute the console command.
      *
      * @param $finder \Wnx\LaravelStats\ComponentFinder
+     *
      * @return Wnx\LaravelStats\Formatters\JsonOutput|Wnx\LaravelStats\Formatters\TableOutput
      */
     public function handle(ComponentFinder $finder)

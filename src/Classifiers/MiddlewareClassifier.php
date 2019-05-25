@@ -62,7 +62,7 @@ class MiddlewareClassifier implements Classifier
     {
         try {
             return app(Kernel::class);
-        } catch (BindingResolutionException $e) {
+        } catch (BindingResolutionException $exception) {
             // Lumen
             return app();
         }

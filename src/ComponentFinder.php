@@ -18,7 +18,10 @@ class ComponentFinder
 
     public function __construct()
     {
-        $rejectionStrategy = config('stats.rejection_strategy', RejectVendorClasses::class);
+        $rejectionStrategy = config(
+            'stats.rejection_strategy',
+            RejectVendorClasses::class
+        );
 
         $this->rejectionStrategy = app($rejectionStrategy);
     }
@@ -67,7 +70,7 @@ class ComponentFinder
             ->each(function ($file) {
                 try {
                     require_once $file->getRealPath();
-                } catch (Exception $e) {
+                } catch (Exception $exception) {
                     // Catch possible Exception to prevent the command from failing
                 }
             });
@@ -101,6 +104,7 @@ class ComponentFinder
      *
      * @param  SplFileInfo $file
      * @param  Collection  $excludes
+     *
      * @return bool
      */
     protected function isExcluded(SplFileInfo $file, Collection $excludes)

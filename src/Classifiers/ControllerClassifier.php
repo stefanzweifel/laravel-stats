@@ -30,7 +30,7 @@ class ControllerClassifier implements Classifier
                     // Laravel
                     try {
                         return get_class($route->getController());
-                    } catch (Throwable $e) {
+                    } catch (Throwable $exception) {
                         return;
                     }
                 }

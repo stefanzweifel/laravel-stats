@@ -30,7 +30,7 @@ use Wnx\LaravelStats\Contracts\Classifier as ClassifierContract;
 
 class Classifier
 {
-    const DEFAULT_CLASSIFIER = [
+    private const DEFAULT_CLASSIFIER = [
         ControllerClassifier::class,
         ModelClassifier::class,
         CommandClassifier::class,
@@ -62,6 +62,7 @@ class Classifier
      * Classify a given Class by an available Classifier Strategy.
      *
      * @param ReflectionClass $class
+     *
      * @return string
      */
     public function classify(ReflectionClass $class)
@@ -96,6 +97,7 @@ class Classifier
      * Check if a class implements our Classifier Contract.
      *
      * @param  class $classifier
+     *
      * @return bool
      */
     protected function implementsContract($classifier) : bool
