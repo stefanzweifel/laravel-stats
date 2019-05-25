@@ -34,7 +34,7 @@ class CodeTestRatioTest extends TestCase
         $stats = new ProjectStatistics($components);
         $ratio = new CodeTestRatio($stats);
 
-        $this->assertEquals(6, $ratio->getCodeLoc());
+        $this->assertEquals(8, $ratio->getCodeLoc());
     }
 
     /** @test */
@@ -58,7 +58,7 @@ class CodeTestRatioTest extends TestCase
         $stats = new ProjectStatistics($components);
         $ratio = new CodeTestRatio($stats);
 
-        $this->assertEquals(5, $ratio->getTestLoc());
+        $this->assertEquals(7, $ratio->getTestLoc());
     }
 
     /** @test */
@@ -82,7 +82,7 @@ class CodeTestRatioTest extends TestCase
         $stats = new ProjectStatistics($components);
         $ratio = new CodeTestRatio($stats);
 
-        $this->assertEquals(0.8, $ratio->getRatio());
+        $this->assertEquals(0.9, $ratio->getRatio());
     }
 
     /** @test */
