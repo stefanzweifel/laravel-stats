@@ -94,6 +94,7 @@ class Classifier
 
     /**
      * Check if a class implements our Classifier Contract.
+     *
      * @param  class $classifier
      * @return bool
      */
