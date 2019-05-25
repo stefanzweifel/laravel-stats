@@ -72,20 +72,20 @@ class Classifier
         );
 
         foreach ($mergedClassifiers as $classifier) {
-            $c = new $classifier();
+            $classifierInstance = new $classifier();
 
             if (! $this->implementsContract($classifier)) {
                 throw new Exception("Classifier {$classifier} does not implement ".ClassifierContract::class.'.');
             }
 
             try {
-                $satisfied = $c->satisfies($class);
-            } catch (Exception $e) {
+                $satisfied = $classifierInstance->satisfies($class);
+            } catch (Exception $exception) {
                 $satisfied = false;
             }
 
             if ($satisfied) {
-                return $c->getName();
+                return $classifierInstance->getName();
             }
         }
 

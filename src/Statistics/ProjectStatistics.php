@@ -85,7 +85,7 @@ class ProjectStatistics
                 ->map(function ($classes, $name) {
                     return (new ComponentStatistics($name, $classes))->toArray();
                 })
-                ->sortBy(function ($component, $key) {
+                ->sortBy(function ($component) {
                     return Str::contains($component['component'], 'Test') ? 1 : $component['component'];
                 });
         }

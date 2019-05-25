@@ -64,7 +64,7 @@ class ComponentStatistics implements Arrayable
      */
     public function getNumberOfMethodsPerClass() : float
     {
-        if ($this->getNumberOfClasses() == 0) {
+        if ($this->getNumberOfClasses() === 0) {
             return 0;
         }
 

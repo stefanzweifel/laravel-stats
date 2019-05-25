@@ -21,7 +21,7 @@ class CodeTestRatio
     public function getTestLoc() : float
     {
         return collect($this->project->components())
-            ->filter(function ($_, $key) {
+            ->filter(function ($component, $key) {
                 return Str::contains($key, 'Test');
             })
             ->sum('loc');
@@ -30,12 +30,12 @@ class CodeTestRatio
     public function getCodeLoc() : float
     {
         $codeLoc = collect($this->project->components())
-            ->filter(function ($_, $key) {
+            ->filter(function ($component, $key) {
                 return ! Str::contains($key, 'Test');
             })
             ->sum('loc');
 
-        if ($codeLoc == 0) {
+        if ($codeLoc === 0) {
             return 1;
         }
 

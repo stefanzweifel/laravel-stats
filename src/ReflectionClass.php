@@ -28,7 +28,7 @@ class ReflectionClass extends NativeReflectionClass
     {
         return collect($this->getTraits())
             ->contains(function ($trait) use ($name) {
-                return $trait->name == $name;
+                return $trait->name === $name;
             });
     }
 
@@ -42,7 +42,7 @@ class ReflectionClass extends NativeReflectionClass
     {
         return collect($this->getMethods())
             ->filter(function ($method) {
-                return $method->getFileName() == $this->getFileName();
+                return $method->getFileName() === $this->getFileName();
             });
     }
 }
