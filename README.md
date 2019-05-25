@@ -24,7 +24,7 @@ Get insights about your Laravel or Lumen Project. (Inspired by [`rake stats`](ht
 
 ### Installing
 
-The easiest way to install the package is by using composer. The package requires PHP 7.0, Laravel 5.5 or higher or Lumen 5.5 or higher.
+The easiest way to install the package is by using composer. The package requires PHP 7.1, Laravel 5.6 or higher or Lumen 5.6 or higher. If you're using an older version of Laravel, take a look at [the v1 branch](https://github.com/stefanzweifel/laravel-stats/tree/v1).
 
 ```shell
 composer require "wnx/laravel-stats" --dev
