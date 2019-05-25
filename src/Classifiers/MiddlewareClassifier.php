@@ -2,11 +2,11 @@
 
 namespace Wnx\LaravelStats\Classifiers;
 
-use ReflectionProperty;
-use Illuminate\Contracts\Http\Kernel;
-use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Contracts\Classifier;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Contracts\Http\Kernel;
+use ReflectionProperty;
+use Wnx\LaravelStats\Contracts\Classifier;
+use Wnx\LaravelStats\ReflectionClass;
 
 class MiddlewareClassifier implements Classifier
 {

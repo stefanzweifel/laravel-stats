@@ -2,9 +2,9 @@
 
 namespace Wnx\LaravelStats\Classifiers;
 
-use Wnx\LaravelStats\ReflectionClass;
 use Illuminate\Contracts\Mail\Mailable;
 use Wnx\LaravelStats\Contracts\Classifier;
+use Wnx\LaravelStats\ReflectionClass;
 
 class MailClassifier implements Classifier
 {

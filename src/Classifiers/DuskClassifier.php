@@ -3,8 +3,8 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Laravel\Dusk\TestCase;
-use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\Classifier;
+use Wnx\LaravelStats\ReflectionClass;
 
 class DuskClassifier implements Classifier
 {

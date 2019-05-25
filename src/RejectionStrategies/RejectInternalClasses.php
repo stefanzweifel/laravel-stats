@@ -2,8 +2,8 @@
 
 namespace Wnx\LaravelStats\RejectionStrategies;
 
-use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\RejectionStrategy;
+use Wnx\LaravelStats\ReflectionClass;
 
 class RejectInternalClasses implements RejectionStrategy
 {

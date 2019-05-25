@@ -2,10 +2,9 @@
 
 namespace Wnx\LaravelStats\Statistics;
 
-use Wnx\LaravelStats\Component;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
 use SebastianBergmann\PHPLOC\Analyser;
-use Illuminate\Contracts\Support\Arrayable;
 
 class ComponentStatistics implements Arrayable
 {

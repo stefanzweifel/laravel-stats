@@ -2,9 +2,9 @@
 
 namespace Wnx\LaravelStats\Classifiers;
 
-use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Contracts\Classifier;
 use Illuminate\Foundation\Events\Dispatchable;
+use Wnx\LaravelStats\Contracts\Classifier;
+use Wnx\LaravelStats\ReflectionClass;
 
 class EventClassifier implements Classifier
 {

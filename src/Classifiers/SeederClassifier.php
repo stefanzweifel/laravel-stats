@@ -3,8 +3,8 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Illuminate\Database\Seeder;
-use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\Classifier;
+use Wnx\LaravelStats\ReflectionClass;
 
 class SeederClassifier implements Classifier
 {

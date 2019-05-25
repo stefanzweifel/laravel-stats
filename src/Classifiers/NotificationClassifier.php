@@ -2,9 +2,9 @@
 
 namespace Wnx\LaravelStats\Classifiers;
 
-use Wnx\LaravelStats\ReflectionClass;
 use Illuminate\Notifications\Notification;
 use Wnx\LaravelStats\Contracts\Classifier;
+use Wnx\LaravelStats\ReflectionClass;
 
 class NotificationClassifier implements Classifier
 {

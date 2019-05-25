@@ -2,8 +2,8 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs;
 
-use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\Classifier;
+use Wnx\LaravelStats\ReflectionClass;
 
 class MyCustomComponentClassifier implements Classifier
 {

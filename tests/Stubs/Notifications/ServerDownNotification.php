@@ -3,8 +3,8 @@
 namespace Wnx\LaravelStats\Tests\Stubs\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class ServerDownNotification extends Notification
 {

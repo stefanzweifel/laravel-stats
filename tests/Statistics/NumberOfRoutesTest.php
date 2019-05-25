@@ -2,9 +2,9 @@
 
 namespace Wnx\LaravelStats\Tests\Statistics;
 
-use Wnx\LaravelStats\Tests\TestCase;
 use Illuminate\Support\Facades\Route;
 use Wnx\LaravelStats\Statistics\NumberOfRoutes;
+use Wnx\LaravelStats\Tests\TestCase;
 
 class NumberOfRoutesTest extends TestCase
 {

@@ -3,8 +3,8 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Throwable;
-use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\Classifier;
+use Wnx\LaravelStats\ReflectionClass;
 
 class ControllerClassifier implements Classifier
 {

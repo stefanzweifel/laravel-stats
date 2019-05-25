@@ -2,16 +2,16 @@
 
 namespace Wnx\LaravelStats\Tests;
 
-use Wnx\LaravelStats\Classifier;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
+use Wnx\LaravelStats\Classifier;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\StatsListCommand;
-use Wnx\LaravelStats\Tests\Stubs\Tests\DemoDuskTest;
-use Wnx\LaravelStats\Tests\Stubs\Tests\DemoBrowserKit;
+use Wnx\LaravelStats\Tests\Stubs\EventListeners\DemoEventListener;
 use Wnx\LaravelStats\Tests\Stubs\MyCustomComponentClass;
 use Wnx\LaravelStats\Tests\Stubs\MyCustomComponentClassifier;
-use Wnx\LaravelStats\Tests\Stubs\EventListeners\DemoEventListener;
+use Wnx\LaravelStats\Tests\Stubs\Tests\DemoBrowserKit;
+use Wnx\LaravelStats\Tests\Stubs\Tests\DemoDuskTest;
 
 class ClassifierTest extends TestCase
 {
