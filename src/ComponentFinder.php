@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Wnx\LaravelStats;
 
-use Exception;
+use Throwable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use SplFileInfo;
@@ -72,7 +72,7 @@ class ComponentFinder
             ->each(function ($file) {
                 try {
                     require_once $file->getRealPath();
-                } catch (Exception $exception) {
+                } catch (Throwable $exception) {
                     // Catch possible Exception to prevent the command from failing
                 }
             });

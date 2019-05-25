@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Wnx\LaravelStats\Statistics;
 
-use Exception;
+use Throwable;
 
 class NumberOfRoutes
 {
@@ -12,7 +12,7 @@ class NumberOfRoutes
     {
         try {
             return collect(app('router')->getRoutes())->count();
-        } catch (Exception $exception) {
+        } catch (Throwable $exception) {
             return 0;
         }
     }

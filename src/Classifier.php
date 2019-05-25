@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Wnx\LaravelStats;
 
+use Throwable;
 use Exception;
 use Wnx\LaravelStats\Classifiers\BrowserKitTestClassifier;
 use Wnx\LaravelStats\Classifiers\CommandClassifier;
@@ -83,7 +84,7 @@ class Classifier
 
             try {
                 $satisfied = $classifierInstance->satisfies($class);
-            } catch (Exception $exception) {
+            } catch (Throwable $exception) {
                 $satisfied = false;
             }
 
