@@ -20,6 +20,7 @@
         "symfony/finder": "~3.3|~4.0"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "~2.0",
         "laravel/browser-kit-testing": "~2.0|~3.0|~4.0|~5.0",
         "laravel/dusk": "~3.0|~4.0|~5.0",
         "mockery/mockery": "^1.1",
@@ -38,6 +39,7 @@
         }
     },
     "scripts": {
+        "format": "php-cs-fixer fix",
         "test": "phpunit"
     },
     "config": {
