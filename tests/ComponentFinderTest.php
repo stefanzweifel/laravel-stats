@@ -6,7 +6,7 @@ use Wnx\LaravelStats\ComponentFinder;
 
 class ComponentFinderTest extends TestCase
 {
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
