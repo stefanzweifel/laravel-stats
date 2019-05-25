@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Wnx\LaravelStats\Classifiers;
 
-use Illuminate\Contracts\Container\BindingResolutionException;
-use Illuminate\Contracts\Http\Kernel;
 use ReflectionProperty;
-use Wnx\LaravelStats\Contracts\Classifier;
+use Illuminate\Contracts\Http\Kernel;
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Contracts\Classifier;
+use Illuminate\Contracts\Container\BindingResolutionException;
 
 class MiddlewareClassifier implements Classifier
 {

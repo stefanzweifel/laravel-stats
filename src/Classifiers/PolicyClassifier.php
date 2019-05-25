@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Wnx\LaravelStats\Classifiers;
 
+use Wnx\LaravelStats\ReflectionClass;
 use Illuminate\Contracts\Auth\Access\Gate;
 use Wnx\LaravelStats\Contracts\Classifier;
-use Wnx\LaravelStats\ReflectionClass;
 
 class PolicyClassifier implements Classifier
 {

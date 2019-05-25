@@ -1,10 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Wnx\LaravelStats\Tests;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Tests\Stubs\Controllers\Controller;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
 
 class ReflectionClassTest extends TestCase

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Wnx\LaravelStats\Statistics;
 
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
 use SebastianBergmann\PHPLOC\Analyser;
+use Illuminate\Contracts\Support\Arrayable;
 
 class ComponentStatistics implements Arrayable
 {

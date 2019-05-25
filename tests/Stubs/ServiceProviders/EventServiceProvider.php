@@ -1,11 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Wnx\LaravelStats\Tests\Stubs\ServiceProviders;
 
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
-use Wnx\LaravelStats\Tests\Stubs\EventListeners\DemoEventListener;
 use Wnx\LaravelStats\Tests\Stubs\Events\DemoEvent;
+use Wnx\LaravelStats\Tests\Stubs\EventListeners\DemoEventListener;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
 {

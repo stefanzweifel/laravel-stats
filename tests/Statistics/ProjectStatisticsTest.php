@@ -1,12 +1,14 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Wnx\LaravelStats\Tests\Statistics;
 
+use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Tests\Stubs\ExcludedFile;
 use Wnx\LaravelStats\Statistics\ProjectStatistics;
 use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
-use Wnx\LaravelStats\Tests\Stubs\ExcludedFile;
-use Wnx\LaravelStats\Tests\TestCase;
 
 class ProjectStatisticsTest extends TestCase
 {

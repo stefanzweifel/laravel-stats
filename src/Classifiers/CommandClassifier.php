@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Wnx\LaravelStats\Classifiers;
 
 use Illuminate\Console\Command;
-use Wnx\LaravelStats\Contracts\Classifier;
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Contracts\Classifier;
 
 class CommandClassifier implements Classifier
 {

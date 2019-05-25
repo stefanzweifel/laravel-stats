@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Wnx\LaravelStats\Statistics;
 
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
 
 class ProjectStatistics
 {

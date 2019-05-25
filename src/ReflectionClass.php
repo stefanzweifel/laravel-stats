@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Wnx\LaravelStats;
 
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
 use ReflectionClass as NativeReflectionClass;
 
 class ReflectionClass extends NativeReflectionClass

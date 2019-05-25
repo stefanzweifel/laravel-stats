@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Wnx\LaravelStats\Classifiers;
 
-use Illuminate\Foundation\Bus\Dispatchable;
-use Wnx\LaravelStats\Contracts\Classifier;
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Contracts\Classifier;
+use Illuminate\Foundation\Bus\Dispatchable;
 
 class JobClassifier implements Classifier
 {

@@ -1,12 +1,14 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Wnx\LaravelStats\Tests\Filters;
 
 use Illuminate\Encryption\Encrypter;
-use Wnx\LaravelStats\Classifiers\ModelClassifier;
-use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
 use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Classifiers\ModelClassifier;
+use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
 
 class RejectVendorClassesTest extends TestCase
 {

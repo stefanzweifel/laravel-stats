@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Wnx\LaravelStats\Classifiers;
 
-use Illuminate\Foundation\Events\Dispatchable;
-use Wnx\LaravelStats\Contracts\Classifier;
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Contracts\Classifier;
+use Illuminate\Foundation\Events\Dispatchable;
 
 class EventClassifier implements Classifier
 {

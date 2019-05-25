@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Wnx\LaravelStats\Classifiers;
 
+use Wnx\LaravelStats\ReflectionClass;
 use Laravel\BrowserKitTesting\TestCase;
 use Wnx\LaravelStats\Contracts\Classifier;
-use Wnx\LaravelStats\ReflectionClass;
 
 class BrowserKitTestClassifier implements Classifier
 {
