@@ -2,3 +2,4 @@ composer.phar
 composer.lock
 build
 vendor
+.phpunit.result.cache

@@ -9,12 +9,12 @@ use Illuminate\Support\Facades\Artisan;
 
 class StatsListCommandTest extends TestCase
 {
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
         // See https://github.com/orchestral/testbench/issues/229#issuecomment-419716531
-        if (Str::startsWith($this->app->version(), '5.7')) {
+        if ($this->isLaravel57OrNewer()) {
             $this->withoutMockingConsoleOutput();
         }
 
@@ -31,6 +31,17 @@ class StatsListCommandTest extends TestCase
         config()->set('stats.ignored_namespaces', []);
     }
 
+    protected function isLaravel57OrNewer()
+    {
+        $laravelVersions = ['5.7', '5.8'];
+
+        foreach ($laravelVersions as $version) {
+            if (Str::startsWith($this->app->version(), $version)) {
+                return true;
+            }
+        }
+    }
+
     /** @test */
     public function it_works()
     {
@@ -40,11 +51,11 @@ class StatsListCommandTest extends TestCase
         $this->artisan('stats');
         $resultAsText = Artisan::output();
 
-        $this->assertContains('Middlewares', $resultAsText);
-        $this->assertContains('Controllers', $resultAsText);
-        $this->assertContains('Other', $resultAsText);
-        $this->assertContains('Total', $resultAsText);
-        $this->assertContains('Number of Routes:', $resultAsText);
+        $this->assertStringContainsString('Middlewares', $resultAsText);
+        $this->assertStringContainsString('Controllers', $resultAsText);
+        $this->assertStringContainsString('Other', $resultAsText);
+        $this->assertStringContainsString('Total', $resultAsText);
+        $this->assertStringContainsString('Number of Routes:', $resultAsText);
     }
 
     /** @test */
@@ -53,13 +64,13 @@ class StatsListCommandTest extends TestCase
         $this->artisan('stats');
         $result = Artisan::output();
 
-        $this->assertContains('Name', $result);
-        $this->assertContains('Classes', $result);
-        $this->assertContains('Methods', $result);
-        $this->assertContains('Methods/Class', $result);
-        $this->assertContains('Lines', $result);
-        $this->assertContains('LoC', $result);
-        $this->assertContains('LoC/Method', $result);
+        $this->assertStringContainsString('Name', $result);
+        $this->assertStringContainsString('Classes', $result);
+        $this->assertStringContainsString('Methods', $result);
+        $this->assertStringContainsString('Methods/Class', $result);
+        $this->assertStringContainsString('Lines', $result);
+        $this->assertStringContainsString('LoC', $result);
+        $this->assertStringContainsString('LoC/Method', $result);
     }
 
     /** @test */

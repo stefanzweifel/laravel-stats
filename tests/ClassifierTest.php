@@ -15,7 +15,7 @@ use Wnx\LaravelStats\Tests\Stubs\EventListeners\DemoEventListener;
 
 class ClassifierTest extends TestCase
 {
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
