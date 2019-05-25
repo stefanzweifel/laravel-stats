@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Wnx\LaravelStats;
 
@@ -11,9 +13,6 @@ class StatsServiceProvider extends ServiceProvider
      */
     private $config = __DIR__.'/../config/stats.php';
 
-    /**
-     * {@inheritDoc}
-     */
     public function boot(): void
     {
         if ($this->app->runningInConsole()) {
@@ -23,9 +22,6 @@ class StatsServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function register(): void
     {
         $this->mergeConfigFrom($this->config, 'stats');

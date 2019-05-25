@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Wnx\LaravelStats\Statistics;
 
@@ -13,14 +15,14 @@ class ComponentStatistics implements Arrayable
      *
      * @var string
      */
-    public $name;
+    private $name;
 
     /**
      * Collection of classes that belong to a given component.
      *
      * @var Illuminate\Support\Collection
      */
-    public $classes;
+    private $classes;
 
     /**
      * Create new ComponentStatistics instance.
