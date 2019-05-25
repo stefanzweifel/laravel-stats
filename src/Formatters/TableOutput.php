@@ -43,11 +43,11 @@ class TableOutput
             ->setHeaders(['Name', 'Classes', 'Methods', 'Methods/Class', 'Lines', 'LoC', 'LoC/Method'])
             ->setRows($statistics->components())
             ->addRow($statistics->other())
-            ->addRow(new TableSeparator)
+            ->addRow(new TableSeparator())
             ->addRow($statistics->total());
 
         for ($i = 1; $i <= 6; $i++) {
-            $table->setColumnStyle($i, (new TableStyle)->setPadType(STR_PAD_LEFT));
+            $table->setColumnStyle($i, (new TableStyle())->setPadType(STR_PAD_LEFT));
         }
 
         $table->render();

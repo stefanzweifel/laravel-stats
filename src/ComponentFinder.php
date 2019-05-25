@@ -48,7 +48,7 @@ class ComponentFinder
                 return false;
             })
             ->groupBy(function ($class) {
-                return (new Classifier)->classify($class);
+                return (new Classifier())->classify($class);
             });
     }
 
@@ -85,7 +85,7 @@ class ComponentFinder
     {
         $excludes = collect(config('stats.exclude', []));
 
-        $files = (new Finder)->files()
+        $files = (new Finder())->files()
             ->in(config('stats.paths', []))
             ->name('*.php');
 
