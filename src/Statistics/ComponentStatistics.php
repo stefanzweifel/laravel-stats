@@ -110,7 +110,7 @@ class ComponentStatistics implements Arrayable
      */
     public function getLinesOfCodePerMethod() : float
     {
-        if ($this->getNumberOfMethods() == 0) {
+        if ($this->getNumberOfMethods() === 0) {
             return 0;
         }
 

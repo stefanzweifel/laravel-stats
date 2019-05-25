@@ -49,7 +49,7 @@ class ProjectStatistics
     public function other() : array
     {
         return $this->generate()->first(function ($component) {
-            return $component['component'] == 'Other';
+            return $component['component'] === 'Other';
         }, []);
     }
 
@@ -85,7 +85,7 @@ class ProjectStatistics
                 ->map(function ($classes, $name) {
                     return (new ComponentStatistics($name, $classes))->toArray();
                 })
-                ->sortBy(function ($component, $_) {
+                ->sortBy(function ($component, $key) {
                     return Str::contains($component['component'], 'Test') ? 1 : $component['component'];
                 });
         }

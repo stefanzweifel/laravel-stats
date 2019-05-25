@@ -68,6 +68,7 @@ class ComponentFinder
                 try {
                     require_once $file->getRealPath();
                 } catch (Exception $e) {
+                    // Catch possible Exception to prevent the command from failing
                 }
             });
 

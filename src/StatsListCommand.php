@@ -33,7 +33,7 @@ class StatsListCommand extends Command
     {
         $statistics = new ProjectStatistics($finder->get());
 
-        if ($this->option('format') == 'json') {
+        if ($this->option('format') === 'json') {
             return (new JsonOutput($this->output))->render($statistics);
         }
 
