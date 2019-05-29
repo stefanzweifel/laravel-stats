@@ -34,7 +34,7 @@ The package will automatically register itself. However if you prefer to registe
 
 ```php
 'providers' => [
-    \Wnx\LaravelStats\StatsServiceProvider
+    \Wnx\LaravelStats\StatsServiceProvider::class,
 ]
 ```
 
