@@ -7,7 +7,7 @@ use Wnx\LaravelStats\Contracts\Classifier;
 
 class Lens implements Classifier
 {
-    public function getName()
+    public function name(): string
     {
         return 'Nova Lenses';
     }

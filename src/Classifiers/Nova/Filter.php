@@ -7,7 +7,7 @@ use Wnx\LaravelStats\Contracts\Classifier;
 
 class Filter implements Classifier
 {
-    public function getName()
+    public function name(): string
     {
         return 'Nova Filters';
     }

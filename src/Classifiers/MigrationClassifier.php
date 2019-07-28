@@ -8,7 +8,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class MigrationClassifier implements Classifier
 {
-    public function getName()
+    public function name(): string
     {
         return 'Migrations';
     }

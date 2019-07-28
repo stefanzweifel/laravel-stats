@@ -8,7 +8,7 @@ use Wnx\LaravelStats\Contracts\Classifier;
 
 class DuskClassifier implements Classifier
 {
-    public function getName()
+    public function name(): string
     {
         return 'DuskTests';
     }
