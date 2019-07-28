@@ -94,7 +94,7 @@ class ComponentStatistics implements Arrayable
      *
      * @return float
      */
-    public function getLinesOfCode(): float
+    public function getLogicalLinesOfCode(): float
     {
         return $this->classes
             ->map(function (ReflectionClass $class) {
@@ -110,13 +110,13 @@ class ComponentStatistics implements Arrayable
      *
      * @return float
      */
-    public function getLinesOfCodePerMethod(): float
+    public function getLogicalLinesOfCodePerMethod(): float
     {
         if ($this->getNumberOfMethods() == 0) {
             return 0;
         }
 
-        return round($this->getLinesOfCode() / $this->getNumberOfMethods(), 2);
+        return round($this->getLogicalLinesOfCode() / $this->getNumberOfMethods(), 2);
     }
 
     /**
@@ -132,8 +132,8 @@ class ComponentStatistics implements Arrayable
             'methods'           => $this->getNumberOfMethods(),
             'methods_per_class' => $this->getNumberOfMethodsPerClass(),
             'lines'             => $this->getLines(),
-            'loc'               => $this->getLinesOfCode(),
-            'loc_per_method'    => $this->getLinesOfCodePerMethod(),
+            'lloc'               => $this->getLogicalLinesOfCode(),
+            'lloc_per_method'    => $this->getLogicalLinesOfCodePerMethod(),
         ];
     }
 }

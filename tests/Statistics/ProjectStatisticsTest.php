@@ -57,8 +57,8 @@ class ProjectStatisticsTest extends TestCase
         $this->assertEquals($controller['methods'], $total[2]);
         $this->assertEquals($controller['methods_per_class'], $total[3]);
         $this->assertEquals($controller['lines'], $total[4]);
-        $this->assertEquals($controller['loc'], $total[5]);
-        $this->assertEquals($controller['loc_per_method'], $total[6]);
+        $this->assertEquals($controller['lloc'], $total[5]);
+        $this->assertEquals($controller['lloc_per_method'], $total[6]);
     }
 
     /** @test */

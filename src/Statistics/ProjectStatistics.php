@@ -68,8 +68,8 @@ class ProjectStatistics
             $stats->sum('methods'),
             round($stats->avg('methods_per_class'), 2),
             $stats->sum('lines'),
-            $stats->sum('loc'),
-            round($stats->avg('loc_per_method'), 2),
+            $stats->sum('lloc'),
+            round($stats->avg('lloc_per_method'), 2),
         ];
     }
 
