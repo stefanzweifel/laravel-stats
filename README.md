@@ -178,12 +178,12 @@ use Wnx\LaravelStats\Contracts\Classifier;
 
 class RepositoryClassifier implements Classifier
 {
-    public function getName()
+    public function name(): string
     {
         return 'Repository';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return $class->isSubclassOf(\App\Repositories\BaseRepository::class);
     }
