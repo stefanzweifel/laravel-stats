@@ -17,8 +17,8 @@ interface Classifier
      * Determine if the given ReflectionClass should be classified
      * as the component the Classifier Class represents.
      *
-     * @param ReflectionClass $class
+     * @param \Wnx\LaravelStats\ReflectionClass $class
      * @return bool
      */
-    public function satisfies(ReflectionClass $class);
+    public function satisfies(ReflectionClass $class): bool;
 }
