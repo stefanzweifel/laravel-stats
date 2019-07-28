@@ -1,6 +1,6 @@
 <?php
 
-namespace Wnx\LaravelStats\Classifiers;
+namespace Wnx\LaravelStats\Classifiers\Testing;
 
 use Laravel\Dusk\TestCase;
 use Wnx\LaravelStats\ReflectionClass;

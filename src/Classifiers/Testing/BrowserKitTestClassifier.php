@@ -1,16 +1,16 @@
 <?php
 
-namespace Wnx\LaravelStats\Classifiers;
+namespace Wnx\LaravelStats\Classifiers\Testing;
 
-use PHPUnit\Framework\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
+use Laravel\BrowserKitTesting\TestCase;
 use Wnx\LaravelStats\Contracts\Classifier;
 
-class PhpUnitClassifier implements Classifier
+class BrowserKitTestClassifier implements Classifier
 {
     public function name(): string
     {
-        return 'PHPUnit Tests';
+        return 'BrowserKit Tests';
     }
 
     public function satisfies(ReflectionClass $class): bool
