@@ -3,11 +3,7 @@
 namespace Wnx\LaravelStats;
 
 use Exception;
-use Wnx\LaravelStats\Classifiers\Nova\LensClassifier;
-use Wnx\LaravelStats\Classifiers\Nova\ActionClassifier;
-use Wnx\LaravelStats\Classifiers\Nova\FilterClassifier;
 use Wnx\LaravelStats\Classifiers\JobClassifier;
-use Wnx\LaravelStats\Classifiers\Nova\ResourceClassifier as NovaResourceClassifier;
 use Wnx\LaravelStats\Classifiers\DuskClassifier;
 use Wnx\LaravelStats\Classifiers\MailClassifier;
 use Wnx\LaravelStats\Classifiers\RuleClassifier;
@@ -20,13 +16,17 @@ use Wnx\LaravelStats\Classifiers\PhpUnitClassifier;
 use Wnx\LaravelStats\Classifiers\RequestClassifier;
 use Wnx\LaravelStats\Classifiers\ResourceClassifier;
 use Wnx\LaravelStats\Classifiers\MigrationClassifier;
+use Wnx\LaravelStats\Classifiers\Nova\LensClassifier;
 use Wnx\LaravelStats\Classifiers\ControllerClassifier;
 use Wnx\LaravelStats\Classifiers\MiddlewareClassifier;
+use Wnx\LaravelStats\Classifiers\Nova\ActionClassifier;
+use Wnx\LaravelStats\Classifiers\Nova\FilterClassifier;
 use Wnx\LaravelStats\Classifiers\NotificationClassifier;
 use Wnx\LaravelStats\Classifiers\EventListenerClassifier;
 use Wnx\LaravelStats\Classifiers\BrowserKitTestClassifier;
 use Wnx\LaravelStats\Classifiers\ServiceProviderClassifier;
 use Wnx\LaravelStats\Contracts\Classifier as ClassifierContract;
+use Wnx\LaravelStats\Classifiers\Nova\ResourceClassifier as NovaResourceClassifier;
 
 class Classifier
 {
