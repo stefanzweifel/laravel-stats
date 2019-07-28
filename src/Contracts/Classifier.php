@@ -11,7 +11,7 @@ interface Classifier
      *
      * @return string
      */
-    public function getName();
+    public function name(): string;
 
     /**
      * Determine if the given ReflectionClass should be classified

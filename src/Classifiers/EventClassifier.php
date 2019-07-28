@@ -8,7 +8,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 
 class EventClassifier implements Classifier
 {
-    public function getName()
+    public function name(): string
     {
         return 'Events';
     }

@@ -10,7 +10,7 @@ use Wnx\LaravelStats\Contracts\Classifier;
 
 class EventListenerClassifier implements Classifier
 {
-    public function getName()
+    public function name(): string
     {
         return 'Event Listeners';
     }

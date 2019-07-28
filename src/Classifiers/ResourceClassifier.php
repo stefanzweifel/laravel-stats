@@ -8,7 +8,7 @@ use Illuminate\Http\Resources\Json\Resource;
 
 class ResourceClassifier implements Classifier
 {
-    public function getName()
+    public function name(): string
     {
         return 'Resources';
     }

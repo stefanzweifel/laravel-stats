@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class RequestClassifier implements Classifier
 {
-    public function getName()
+    public function name(): string
     {
         return 'Requests';
     }

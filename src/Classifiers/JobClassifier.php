@@ -8,7 +8,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class JobClassifier implements Classifier
 {
-    public function getName()
+    public function name(): string
     {
         return 'Jobs';
     }

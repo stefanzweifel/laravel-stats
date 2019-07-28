@@ -7,7 +7,7 @@ use Wnx\LaravelStats\Contracts\Classifier;
 
 class Resource implements Classifier
 {
-    public function getName()
+    public function name(): string
     {
         return 'Nova Resources';
     }

@@ -7,7 +7,7 @@ use Wnx\LaravelStats\Contracts\Classifier;
 
 class MyCustomComponentClassifier implements Classifier
 {
-    public function getName() : string
+    public function name() : string
     {
         return 'My Custom Component';
     }

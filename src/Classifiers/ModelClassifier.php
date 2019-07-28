@@ -8,7 +8,7 @@ use Wnx\LaravelStats\Contracts\Classifier;
 
 class ModelClassifier implements Classifier
 {
-    public function getName()
+    public function name(): string
     {
         return 'Models';
     }

@@ -85,7 +85,7 @@ class Classifier
             }
 
             if ($satisfied) {
-                return $c->getName();
+                return $c->name();
             }
         }
 

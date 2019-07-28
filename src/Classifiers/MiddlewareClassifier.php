@@ -12,7 +12,7 @@ class MiddlewareClassifier implements Classifier
 {
     protected $httpKernel;
 
-    public function getName()
+    public function name(): string
     {
         return 'Middlewares';
     }
