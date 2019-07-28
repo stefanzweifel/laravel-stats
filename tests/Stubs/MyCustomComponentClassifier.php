@@ -7,12 +7,12 @@ use Wnx\LaravelStats\Contracts\Classifier;
 
 class MyCustomComponentClassifier implements Classifier
 {
-    public function name() : string
+    public function name(): string
     {
         return 'My Custom Component';
     }
 
-    public function satisfies(ReflectionClass $class) : bool
+    public function satisfies(ReflectionClass $class): bool
     {
         return $class->hasProperty('foo');
     }
