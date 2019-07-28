@@ -32,10 +32,10 @@ class TableOutput
     /**
      * Render output from given statistics.
      *
-     * @param  ProjectStatistics $statistics
+     * @param  \Wnx\LaravelStats\Statistics\ProjectStatistics $statistics
      * @return void
      */
-    public function render(ProjectStatistics $statistics)
+    public function render(ProjectStatistics $statistics): void
     {
         $table = new Table($this->output);
 

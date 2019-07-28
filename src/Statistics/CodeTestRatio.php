@@ -6,6 +6,9 @@ use Illuminate\Support\Str;
 
 class CodeTestRatio
 {
+    /**
+     * @var \Wnx\LaravelStats\Statistics\ProjectStatistics
+     */
     protected $project;
 
     public function __construct(ProjectStatistics $projectStatistics)
@@ -13,12 +16,12 @@ class CodeTestRatio
         $this->project = $projectStatistics;
     }
 
-    public function getRatio() : float
+    public function getRatio(): float
     {
         return round($this->getTestLoc() / $this->getCodeLoc(), 1);
     }
 
-    public function getTestLoc() : int
+    public function getTestLoc(): int
     {
         return collect($this->project->components())
             ->filter(function ($_, $key) {
@@ -27,7 +30,7 @@ class CodeTestRatio
             ->sum('loc');
     }
 
-    public function getCodeLoc() : int
+    public function getCodeLoc(): int
     {
         $codeLoc = collect($this->project->components())
             ->filter(function ($_, $key) {
@@ -42,7 +45,7 @@ class CodeTestRatio
         return $codeLoc;
     }
 
-    public function summary() : array
+    public function summary(): array
     {
         return [
             "Code LOC: {$this->getCodeLoc()}",

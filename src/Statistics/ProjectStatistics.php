@@ -10,21 +10,21 @@ class ProjectStatistics
     /**
      * List of components.
      *
-     * @var Collection
+     * @var \Illuminate\Support\Collection
      */
     protected $components;
 
     /**
      * Cache project statistics.
      *
-     * @var Collection
+     * @var \Illuminate\Support\Collection
      */
     protected $cache;
 
     /**
      * Create a new ProjectStatistics instance.
      *
-     * @param Collection $components
+     * @param \Illuminate\Support\Collection $components
      */
     public function __construct(Collection $components)
     {
@@ -36,7 +36,7 @@ class ProjectStatistics
      *
      * @return array
      */
-    public function components() : array
+    public function components(): array
     {
         return $this->generate()->except('Other')->all();
     }
@@ -46,7 +46,7 @@ class ProjectStatistics
      *
      * @return array
      */
-    public function other() : array
+    public function other(): array
     {
         return $this->generate()->first(function ($component) {
             return $component['component'] == 'Other';
@@ -58,7 +58,7 @@ class ProjectStatistics
      *
      * @return array
      */
-    public function total() : array
+    public function total(): array
     {
         $stats = $this->generate();
 
@@ -76,9 +76,9 @@ class ProjectStatistics
     /**
      * Generate Project Statistics.
      *
-     * @return Collection
+     * @return \Illuminate\Support\Collection
      */
-    private function generate() : Collection
+    private function generate(): Collection
     {
         if (! $this->cache) {
             $this->cache = $this->components

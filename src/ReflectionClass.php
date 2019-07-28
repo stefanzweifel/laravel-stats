@@ -13,7 +13,7 @@ class ReflectionClass extends NativeReflectionClass
      *
      * @return bool
      */
-    public function isVendorProvided() : bool
+    public function isVendorProvided(): bool
     {
         return Str::contains($this->getFileName(), '/vendor/');
     }
@@ -24,7 +24,7 @@ class ReflectionClass extends NativeReflectionClass
      * @param  string $name
      * @return bool
      */
-    public function usesTrait($name)
+    public function usesTrait($name): bool
     {
         return collect($this->getTraits())
             ->contains(function ($trait) use ($name) {
@@ -36,9 +36,9 @@ class ReflectionClass extends NativeReflectionClass
      * Return a collection of methods defined on the given class.
      * This ignores methods defined in parent class, traits etc.
      *
-     * @return Collection
+     * @return \Illuminate\Support\Collection
      */
-    public function getDefinedMethods() : Collection
+    public function getDefinedMethods(): Collection
     {
         return collect($this->getMethods())
             ->filter(function ($method) {

@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats;
 
 use Exception;
+use ReflectionClass as NativeReflectionClass;
 use Wnx\LaravelStats\Classifiers\JobClassifier;
 use Wnx\LaravelStats\Classifiers\MailClassifier;
 use Wnx\LaravelStats\Classifiers\RuleClassifier;
@@ -61,10 +62,10 @@ class Classifier
     /**
      * Classify a given Class by an available Classifier Strategy.
      *
-     * @param ReflectionClass $class
+     * @param \Wnx\LaravelStats\ReflectionClass $class
      * @return string
      */
-    public function classify(ReflectionClass $class)
+    public function classify(ReflectionClass $class): string
     {
         $mergedClassifiers = array_merge(
             self::DEFAULT_CLASSIFIER,
@@ -94,11 +95,11 @@ class Classifier
 
     /**
      * Check if a class implements our Classifier Contract.
-     * @param  class $classifier
+     * @param  string $classifier
      * @return bool
      */
-    protected function implementsContract($classifier) : bool
+    protected function implementsContract(string $classifier): bool
     {
-        return (new \ReflectionClass($classifier))->implementsInterface(ClassifierContract::class);
+        return (new NativeReflectionClass($classifier))->implementsInterface(ClassifierContract::class);
     }
 }

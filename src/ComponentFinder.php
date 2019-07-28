@@ -12,7 +12,7 @@ use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
 class ComponentFinder
 {
     /**
-     * @var RejectionStrategy
+     * @var \Wnx\LaravelStats\Contracts\RejectionStrategy
      */
     protected $rejectionStrategy;
 
@@ -27,9 +27,9 @@ class ComponentFinder
      * Scan the Project for PHP Classes, turn them into ReflectionClasses,
      * reject unwanted Classes and sort them into Components.
      *
-     * @return Collection
+     * @return \Illuminate\Support\Collection
      */
-    public function get()
+    public function get(): Collection
     {
         return $this->findAndLoadClasses()
             ->map(function ($class) {
@@ -57,9 +57,9 @@ class ComponentFinder
      * We need to use ob_* functions to ensure that
      * loaded files do not output anything.
      *
-     * @return Collection
+     * @return \Illuminate\Support\Collection
      */
-    protected function findAndLoadClasses()
+    protected function findAndLoadClasses(): Collection
     {
         ob_start();
 
@@ -79,9 +79,9 @@ class ComponentFinder
     /**
      * Find PHP Files which should be analyzed.
      *
-     * @return Collection
+     * @return Illuminate\Support\Collection
      */
-    protected function findFilesInProjectPath() : Collection
+    protected function findFilesInProjectPath(): Collection
     {
         $excludes = collect(config('stats.exclude', []));
 
@@ -99,10 +99,10 @@ class ComponentFinder
      * Determine if a file has been defined in the exclude configuration.
      *
      * @param  SplFileInfo $file
-     * @param  Collection  $excludes
+     * @param  \Illuminate\Support\Collection  $excludes
      * @return bool
      */
-    protected function isExcluded(SplFileInfo $file, Collection $excludes)
+    protected function isExcluded(SplFileInfo $file, Collection $excludes): bool
     {
         return $excludes->contains(function ($exclude) use ($file) {
             return Str::startsWith($file->getPathname(), $exclude);

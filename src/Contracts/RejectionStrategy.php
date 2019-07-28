@@ -11,8 +11,8 @@ interface RejectionStrategy
      * A rejected Class does not count to the
      * project statistics.
      *
-     * @param ReflectionClass $class
+     * @param \Wnx\LaravelStats\ReflectionClass $class
      * @return bool
      */
-    public function shouldClassBeRejected(ReflectionClass $class) : bool;
+    public function shouldClassBeRejected(ReflectionClass $class): bool;
 }

@@ -19,7 +19,7 @@ class ComponentStatistics implements Arrayable
     /**
      * Collection of classes that belong to a given component.
      *
-     * @var Illuminate\Support\Collection
+     * @var \Illuminate\Support\Collection
      */
     public $classes;
 
@@ -27,7 +27,7 @@ class ComponentStatistics implements Arrayable
      * Create new ComponentStatistics instance.
      *
      * @param string     $name
-     * @param Collection $classes
+     * @param \Illuminate\Support\Collection $classes
      */
     public function __construct(string $name, Collection $classes)
     {
@@ -40,7 +40,7 @@ class ComponentStatistics implements Arrayable
      *
      * @return int
      */
-    public function getNumberOfClasses() : int
+    public function getNumberOfClasses(): int
     {
         return $this->classes->count();
     }
@@ -50,7 +50,7 @@ class ComponentStatistics implements Arrayable
      *
      * @return int
      */
-    public function getNumberOfMethods() : int
+    public function getNumberOfMethods(): int
     {
         return $this->classes
             ->sum(function ($class) {
@@ -63,7 +63,7 @@ class ComponentStatistics implements Arrayable
      *
      * @return float
      */
-    public function getNumberOfMethodsPerClass() : float
+    public function getNumberOfMethodsPerClass(): float
     {
         if ($this->getNumberOfClasses() == 0) {
             return 0;
@@ -77,7 +77,7 @@ class ComponentStatistics implements Arrayable
      *
      * @return int
      */
-    public function getLines() : int
+    public function getLines(): int
     {
         return $this->classes
             ->map(function ($class) {
@@ -93,7 +93,7 @@ class ComponentStatistics implements Arrayable
      *
      * @return float
      */
-    public function getLinesOfCode() : float
+    public function getLinesOfCode(): float
     {
         return $this->classes
             ->map(function ($class) {
@@ -109,7 +109,7 @@ class ComponentStatistics implements Arrayable
      *
      * @return float
      */
-    public function getLinesOfCodePerMethod() : float
+    public function getLinesOfCodePerMethod(): float
     {
         if ($this->getNumberOfMethods() == 0) {
             return 0;
@@ -123,7 +123,7 @@ class ComponentStatistics implements Arrayable
      *
      * @return array
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         return [
             'component'         => $this->name,

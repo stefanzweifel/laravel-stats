@@ -28,13 +28,13 @@ class JsonOutput
     /**
      * Render output from given statistics.
      *
-     * @param  ProjectStatistics $statistics
-     * @return string
+     * @param  \Wnx\LaravelStats\Statistics\ProjectStatistics $statistics
+     * @return void
      */
-    public function render(ProjectStatistics $statistics)
+    public function render(ProjectStatistics $statistics): void
     {
         $statsJson = (new JsonBuilder($statistics))->get();
 
-        return $this->output->text($statsJson);
+        $this->output->text($statsJson);
     }
 }

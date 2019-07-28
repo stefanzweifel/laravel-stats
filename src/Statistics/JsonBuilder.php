@@ -5,7 +5,7 @@ namespace Wnx\LaravelStats\Statistics;
 class JsonBuilder
 {
     /**
-     * @var ProjectStatistics
+     * @var \Wnx\LaravelStats\Statistics\ProjectStatistics
      */
     protected $statistics;
 
@@ -14,7 +14,7 @@ class JsonBuilder
         $this->statistics = $statistics;
     }
 
-    public function get()
+    public function get(): string
     {
         $statsJson = [];
         $statsJson['components'] = [];
@@ -50,6 +50,6 @@ class JsonBuilder
             'number_of_routes' => app(NumberOfRoutes::class)->get(),
         ];
 
-        return json_encode($statsJson, JSON_PRETTY_PRINT);
+        return json_encode($statsJson);
     }
 }
