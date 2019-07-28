@@ -13,7 +13,7 @@ class ModelClassifier implements Classifier
         return 'Models';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return $class->isSubclassOf(Model::class);
     }

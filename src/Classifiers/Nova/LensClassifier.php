@@ -12,7 +12,7 @@ class LensClassifier implements Classifier
         return 'Nova Lenses';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return class_exists(\Laravel\Nova\Lenses\Lens::class) && $class->isSubclassOf(\Laravel\Nova\Lenses\Lens::class);
     }

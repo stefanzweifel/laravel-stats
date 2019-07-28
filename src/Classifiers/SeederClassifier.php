@@ -13,7 +13,7 @@ class SeederClassifier implements Classifier
         return 'Seeders';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return $class->isSubclassOf(Seeder::class);
     }

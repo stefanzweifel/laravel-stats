@@ -13,7 +13,7 @@ class ControllerClassifier implements Classifier
         return 'Controllers';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return collect(app('router')->getRoutes())
             ->reject(function ($route) {

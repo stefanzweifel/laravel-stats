@@ -13,7 +13,7 @@ class CommandClassifier implements Classifier
         return 'Commands';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return $class->isSubclassOf(Command::class);
     }

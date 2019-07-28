@@ -13,7 +13,7 @@ class NotificationClassifier implements Classifier
         return 'Notifications';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         if (! class_exists(Notification::class)) {
             return false;

@@ -13,7 +13,7 @@ class RequestClassifier implements Classifier
         return 'Requests';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         if (! class_exists(FormRequest::class)) {
             return false;

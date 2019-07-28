@@ -12,7 +12,7 @@ class ResourceClassifier implements Classifier
         return 'Nova Resources';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return class_exists(\Laravel\Nova\Resource::class) && $class->isSubclassOf(\Laravel\Nova\Resource::class);
     }

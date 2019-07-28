@@ -13,7 +13,7 @@ class ResourceClassifier implements Classifier
         return 'Resources';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return $class->isSubclassOf(Resource::class);
     }

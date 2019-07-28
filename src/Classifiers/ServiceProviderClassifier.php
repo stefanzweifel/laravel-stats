@@ -13,7 +13,7 @@ class ServiceProviderClassifier implements Classifier
         return 'Service Providers';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return $class->isSubclassOf(ServiceProvider::class);
     }

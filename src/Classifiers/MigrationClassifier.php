@@ -13,7 +13,7 @@ class MigrationClassifier implements Classifier
         return 'Migrations';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return $class->isSubclassOf(Migration::class);
     }

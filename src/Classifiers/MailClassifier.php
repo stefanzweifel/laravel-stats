@@ -13,7 +13,7 @@ class MailClassifier implements Classifier
         return 'Mails';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return $class->isSubclassOf(Mailable::class);
     }

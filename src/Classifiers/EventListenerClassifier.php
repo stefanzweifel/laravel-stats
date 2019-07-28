@@ -15,7 +15,7 @@ class EventListenerClassifier implements Classifier
         return 'Event Listeners';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return collect($this->getEvents())
             ->map(function ($listeners) {

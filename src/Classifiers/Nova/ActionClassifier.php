@@ -12,7 +12,7 @@ class ActionClassifier implements Classifier
         return 'Nova Actions';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return class_exists(\Laravel\Nova\Actions\Action::class) && $class->isSubclassOf(\Laravel\Nova\Actions\Action::class);
     }

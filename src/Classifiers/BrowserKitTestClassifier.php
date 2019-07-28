@@ -13,7 +13,7 @@ class BrowserKitTestClassifier implements Classifier
         return 'BrowserKit Tests';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return class_exists(TestCase::class) && $class->isSubclassOf(TestCase::class);
     }

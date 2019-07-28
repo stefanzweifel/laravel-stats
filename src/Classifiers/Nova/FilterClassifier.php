@@ -12,7 +12,7 @@ class FilterClassifier implements Classifier
         return 'Nova Filters';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return class_exists(\Laravel\Nova\Filters\Filter::class) && $class->isSubclassOf(\Laravel\Nova\Filters\Filter::class);
     }

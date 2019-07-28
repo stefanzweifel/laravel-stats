@@ -13,7 +13,7 @@ class RuleClassifier implements Classifier
         return 'Rules';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return $class->implementsInterface(Rule::class);
     }

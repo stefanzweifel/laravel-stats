@@ -13,7 +13,7 @@ class JobClassifier implements Classifier
         return 'Jobs';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return $class->usesTrait(Dispatchable::class);
     }

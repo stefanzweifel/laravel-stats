@@ -17,7 +17,7 @@ class MiddlewareClassifier implements Classifier
         return 'Middlewares';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         $this->httpKernel = $this->getHttpKernelInstance();
 

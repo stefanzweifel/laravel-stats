@@ -13,7 +13,7 @@ class PolicyClassifier implements Classifier
         return 'Policies';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return in_array(
             $class->getName(), app(Gate::class)->policies()
