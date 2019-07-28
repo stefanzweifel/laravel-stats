@@ -40,7 +40,7 @@ class TableOutput
         $table = new Table($this->output);
 
         $table
-            ->setHeaders(['Name', 'Classes', 'Methods', 'Methods/Class', 'Lines', 'LoC', 'LoC/Method'])
+            ->setHeaders(['Name', 'Classes', 'Methods', 'Methods/Class', 'Lines', 'LLoC', 'LLoC/Method'])
             ->setRows($statistics->components())
             ->addRow($statistics->other())
             ->addRow(new TableSeparator)

@@ -27,8 +27,8 @@ class JsonBuilder
                 'methods' => $component['methods'],
                 'methods_per_class' => $component['methods_per_class'],
                 'lines' => $component['lines'],
-                'loc' => $component['loc'],
-                'loc_per_method' => $component['loc_per_method'],
+                'lloc' => $component['lloc'],
+                'lloc_per_method' => $component['lloc_per_method'],
             ];
         }
 
@@ -38,8 +38,8 @@ class JsonBuilder
             'methods' => $this->statistics->total()[2],
             'methods_per_class' => $this->statistics->total()[3],
             'lines' => $this->statistics->total()[4],
-            'loc' => $this->statistics->total()[5],
-            'loc_per_method' => $this->statistics->total()[6],
+            'lloc' => $this->statistics->total()[5],
+            'lloc_per_method' => $this->statistics->total()[6],
         ];
 
         // Build Meta Block
