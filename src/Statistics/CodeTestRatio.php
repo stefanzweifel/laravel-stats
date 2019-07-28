@@ -27,7 +27,7 @@ class CodeTestRatio
             ->filter(function ($_, $key) {
                 return Str::contains($key, 'Test');
             })
-            ->sum('loc');
+            ->sum('lloc');
     }
 
     public function getCodeLoc(): int
@@ -36,7 +36,7 @@ class CodeTestRatio
             ->filter(function ($_, $key) {
                 return ! Str::contains($key, 'Test');
             })
-            ->sum('loc');
+            ->sum('lloc');
 
         if ($codeLoc == 0) {
             return 1;
