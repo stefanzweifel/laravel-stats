@@ -82,10 +82,10 @@ class ProjectStatistics
     {
         if (! $this->cache) {
             $this->cache = $this->components
-                ->map(function ($classes, $name) {
+                ->map(function (Collection $classes, string $name) {
                     return (new ComponentStatistics($name, $classes))->toArray();
                 })
-                ->sortBy(function ($component, $_) {
+                ->sortBy(function (array $component) {
                     return Str::contains($component['component'], 'Test') ? 1 : $component['component'];
                 });
         }

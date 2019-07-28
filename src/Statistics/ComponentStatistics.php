@@ -2,10 +2,11 @@
 
 namespace Wnx\LaravelStats\Statistics;
 
-use Wnx\LaravelStats\Component;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
 use SebastianBergmann\PHPLOC\Analyser;
-use Illuminate\Contracts\Support\Arrayable;
+use Wnx\LaravelStats\Component;
+use Wnx\LaravelStats\ReflectionClass;
 
 class ComponentStatistics implements Arrayable
 {
@@ -53,7 +54,7 @@ class ComponentStatistics implements Arrayable
     public function getNumberOfMethods(): int
     {
         return $this->classes
-            ->sum(function ($class) {
+            ->sum(function (ReflectionClass $class) {
                 return $class->getDefinedMethods()->count();
             });
     }
@@ -80,10 +81,10 @@ class ComponentStatistics implements Arrayable
     public function getLines(): int
     {
         return $this->classes
-            ->map(function ($class) {
+            ->map(function (ReflectionClass $class) {
                 return $class->getFileName();
             })
-            ->pipe(function ($classes) {
+            ->pipe(function (Collection $classes) {
                 return app(Analyser::class)->countFiles($classes->all(), false)['loc'];
             });
     }
@@ -96,10 +97,10 @@ class ComponentStatistics implements Arrayable
     public function getLinesOfCode(): float
     {
         return $this->classes
-            ->map(function ($class) {
+            ->map(function (ReflectionClass $class) {
                 return $class->getFileName();
             })
-            ->pipe(function ($classes) {
+            ->pipe(function (Collection $classes) {
                 return app(Analyser::class)->countFiles($classes->all(), false)['lloc'];
             });
     }

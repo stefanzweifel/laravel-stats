@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats;
 
+use ReflectionMethod;
 use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 use ReflectionClass as NativeReflectionClass;
@@ -27,7 +28,7 @@ class ReflectionClass extends NativeReflectionClass
     public function usesTrait($name): bool
     {
         return collect($this->getTraits())
-            ->contains(function ($trait) use ($name) {
+            ->contains(function (NativeReflectionClass $trait) use ($name) {
                 return $trait->name == $name;
             });
     }
@@ -41,7 +42,7 @@ class ReflectionClass extends NativeReflectionClass
     public function getDefinedMethods(): Collection
     {
         return collect($this->getMethods())
-            ->filter(function ($method) {
+            ->filter(function (ReflectionMethod $method) {
                 return $method->getFileName() == $this->getFileName();
             });
     }

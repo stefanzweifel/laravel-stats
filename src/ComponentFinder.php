@@ -35,10 +35,10 @@ class ComponentFinder
             ->map(function ($class) {
                 return new ReflectionClass($class);
             })
-            ->reject(function ($class) {
+            ->reject(function (ReflectionClass $class) {
                 return $this->rejectionStrategy->shouldClassBeRejected($class);
             })
-            ->reject(function ($class) {
+            ->reject(function (ReflectionClass $class) {
                 foreach (config('stats.ignored_namespaces', []) as $namespace) {
                     if (Str::startsWith($class->getNamespaceName(), $namespace)) {
                         return true;
@@ -64,7 +64,7 @@ class ComponentFinder
         ob_start();
 
         $this->findFilesInProjectPath()
-            ->each(function ($file) {
+            ->each(function (SplFileInfo $file) {
                 try {
                     require_once $file->getRealPath();
                 } catch (Exception $e) {
