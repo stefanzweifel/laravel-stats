@@ -5,15 +5,15 @@ namespace Wnx\LaravelStats\Classifiers\Nova;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\Classifier;
 
-class Filter implements Classifier
+class LensClassifier implements Classifier
 {
     public function name(): string
     {
-        return 'Nova Filters';
+        return 'Nova Lenses';
     }
 
     public function satisfies(ReflectionClass $class)
     {
-        return class_exists(\Laravel\Nova\Filters\Filter::class) && $class->isSubclassOf(\Laravel\Nova\Filters\Filter::class);
+        return class_exists(\Laravel\Nova\Lenses\Lens::class) && $class->isSubclassOf(\Laravel\Nova\Lenses\Lens::class);
     }
 }

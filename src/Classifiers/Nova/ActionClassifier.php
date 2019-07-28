@@ -5,15 +5,15 @@ namespace Wnx\LaravelStats\Classifiers\Nova;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\Classifier;
 
-class Resource implements Classifier
+class ActionClassifier implements Classifier
 {
     public function name(): string
     {
-        return 'Nova Resources';
+        return 'Nova Actions';
     }
 
     public function satisfies(ReflectionClass $class)
     {
-        return class_exists(\Laravel\Nova\Resource::class) && $class->isSubclassOf(\Laravel\Nova\Resource::class);
+        return class_exists(\Laravel\Nova\Actions\Action::class) && $class->isSubclassOf(\Laravel\Nova\Actions\Action::class);
     }
 }
