@@ -17,4 +17,14 @@ class SeederClassifier implements Classifier
     {
         return $class->isSubclassOf(Seeder::class);
     }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return true;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
+    }
 }

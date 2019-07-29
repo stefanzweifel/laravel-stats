@@ -17,4 +17,14 @@ class MigrationClassifier implements Classifier
     {
         return $class->isSubclassOf(Migration::class);
     }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return true;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
+    }
 }

@@ -16,4 +16,14 @@ class FilterClassifier implements Classifier
     {
         return class_exists(\Laravel\Nova\Filters\Filter::class) && $class->isSubclassOf(\Laravel\Nova\Filters\Filter::class);
     }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return false;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
+    }
 }

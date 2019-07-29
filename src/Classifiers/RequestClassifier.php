@@ -21,4 +21,14 @@ class RequestClassifier implements Classifier
 
         return $class->isSubclassOf(FormRequest::class);
     }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return true;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
+    }
 }

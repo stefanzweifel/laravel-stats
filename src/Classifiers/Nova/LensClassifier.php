@@ -16,4 +16,14 @@ class LensClassifier implements Classifier
     {
         return class_exists(\Laravel\Nova\Lenses\Lens::class) && $class->isSubclassOf(\Laravel\Nova\Lenses\Lens::class);
     }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return false;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
+    }
 }

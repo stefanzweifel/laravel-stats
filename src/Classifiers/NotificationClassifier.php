@@ -21,4 +21,14 @@ class NotificationClassifier implements Classifier
 
         return $class->isSubclassOf(Notification::class);
     }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return true;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
+    }
 }

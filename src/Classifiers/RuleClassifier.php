@@ -17,4 +17,14 @@ class RuleClassifier implements Classifier
     {
         return $class->implementsInterface(Rule::class);
     }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return true;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
+    }
 }

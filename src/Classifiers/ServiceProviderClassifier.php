@@ -17,4 +17,14 @@ class ServiceProviderClassifier implements Classifier
     {
         return $class->isSubclassOf(ServiceProvider::class);
     }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return true;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
+    }
 }

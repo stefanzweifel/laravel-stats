@@ -17,4 +17,14 @@ class ResourceClassifier implements Classifier
     {
         return $class->isSubclassOf(Resource::class);
     }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return true;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
+    }
 }

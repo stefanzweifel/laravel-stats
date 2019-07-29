@@ -17,4 +17,14 @@ class DuskClassifier implements Classifier
     {
         return class_exists(TestCase::class) && $class->isSubclassOf(TestCase::class);
     }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return false;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return true;
+    }
 }

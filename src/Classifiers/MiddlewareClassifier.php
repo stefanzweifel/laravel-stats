@@ -67,4 +67,14 @@ class MiddlewareClassifier implements Classifier
             return app();
         }
     }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return true;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
+    }
 }

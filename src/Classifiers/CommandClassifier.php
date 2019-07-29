@@ -17,4 +17,14 @@ class CommandClassifier implements Classifier
     {
         return $class->isSubclassOf(Command::class);
     }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return true;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
+    }
 }

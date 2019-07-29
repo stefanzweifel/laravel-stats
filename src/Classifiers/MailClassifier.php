@@ -17,4 +17,14 @@ class MailClassifier implements Classifier
     {
         return $class->isSubclassOf(Mailable::class);
     }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return true;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
+    }
 }

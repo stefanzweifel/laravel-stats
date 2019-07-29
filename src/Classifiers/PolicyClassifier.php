@@ -19,4 +19,14 @@ class PolicyClassifier implements Classifier
             $class->getName(), app(Gate::class)->policies()
         );
     }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return true;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
+    }
 }

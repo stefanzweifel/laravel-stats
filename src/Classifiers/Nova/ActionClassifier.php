@@ -16,4 +16,14 @@ class ActionClassifier implements Classifier
     {
         return class_exists(\Laravel\Nova\Actions\Action::class) && $class->isSubclassOf(\Laravel\Nova\Actions\Action::class);
     }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return false;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
+    }
 }
