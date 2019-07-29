@@ -16,4 +16,14 @@ class MyCustomComponentClassifier implements Classifier
     {
         return $class->hasProperty('foo');
     }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return true;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
+    }
 }
