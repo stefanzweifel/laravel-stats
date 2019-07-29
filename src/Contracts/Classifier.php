@@ -28,4 +28,11 @@ interface Classifier
      * @return bool
      */
     public function countsTowardsApplicationCode(): bool;
+
+    /**
+     * Determine if the lines of code of the component should count towards
+     * the total number of lines of code of the test suite.
+     * @return bool
+     */
+    public function countsTowardsTests(): bool;
 }
