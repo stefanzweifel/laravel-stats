@@ -2,7 +2,6 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs\Events;
 
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
