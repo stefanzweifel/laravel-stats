@@ -67,6 +67,11 @@ class Classifier
      */
     public function classify(ReflectionClass $class): string
     {
+        return optional($this->getClassifierForClassInstance($class))->name() ?? 'Other';
+    }
+
+    public function getClassifierForClassInstance(ReflectionClass $class): ?ClassifierContract
+    {
         $mergedClassifiers = array_merge(
             self::DEFAULT_CLASSIFIER,
             config('stats.custom_component_classifier', [])
@@ -86,11 +91,11 @@ class Classifier
             }
 
             if ($satisfied) {
-                return $c->name();
+                return $c;
             }
         }
 
-        return 'Other';
+        return null;
     }
 
     /**
