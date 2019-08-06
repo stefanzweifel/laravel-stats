@@ -1,6 +1,6 @@
 <?php
 
-namespace Wnx\LaravelStats\Tests\Commands;
+namespace Wnx\LaravelStats\Tests\Console;
 
 use Illuminate\Support\Str;
 use Wnx\LaravelStats\Tests\TestCase;
@@ -68,9 +68,9 @@ class StatsListCommandTest extends TestCase
         $this->assertStringContainsString('Classes', $result);
         $this->assertStringContainsString('Methods', $result);
         $this->assertStringContainsString('Methods/Class', $result);
-        $this->assertStringContainsString('Lines', $result);
         $this->assertStringContainsString('LoC', $result);
-        $this->assertStringContainsString('LoC/Method', $result);
+        $this->assertStringContainsString('LLoC', $result);
+        $this->assertStringContainsString('LLoC/Method', $result);
     }
 
     /** @test */

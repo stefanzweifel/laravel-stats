@@ -1,8 +1,9 @@
 <?php
 
-namespace Wnx\LaravelStats;
+namespace Wnx\LaravelStats\Console;
 
 use Illuminate\Console\Command;
+use Wnx\LaravelStats\ComponentFinder;
 use Wnx\LaravelStats\Formatters\JsonOutput;
 use Wnx\LaravelStats\Formatters\TableOutput;
 use Wnx\LaravelStats\Statistics\ProjectStatistics;
