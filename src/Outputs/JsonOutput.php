@@ -1,6 +1,6 @@
 <?php
 
-namespace Wnx\LaravelStats\Formatters;
+namespace Wnx\LaravelStats\Outputs;
 
 use Illuminate\Console\OutputStyle;
 use Wnx\LaravelStats\Statistics\JsonBuilder;

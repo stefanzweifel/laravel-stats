@@ -1,6 +1,6 @@
 <?php
 
-namespace Wnx\LaravelStats\Formatters;
+namespace Wnx\LaravelStats\Outputs;
 
 use Illuminate\Console\OutputStyle;
 use Symfony\Component\Console\Helper\Table;
@@ -40,7 +40,7 @@ class TableOutput
         $table = new Table($this->output);
 
         $table
-            ->setHeaders(['Name', 'Classes', 'Methods', 'Methods/Class', 'Lines', 'LLoC', 'LLoC/Method'])
+            ->setHeaders(['Name', 'Classes', 'Methods', 'Methods/Class', 'LoC', 'LLoC', 'LLoC/Method'])
             ->setRows($statistics->components())
             ->addRow($statistics->other())
             ->addRow(new TableSeparator)
