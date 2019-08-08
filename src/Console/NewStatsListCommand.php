@@ -82,31 +82,24 @@ class NewStatsListCommand extends Command
         $table
             ->setHeaders(['Name', 'Classes', 'Methods', 'Methods/Class', 'LoC', 'LLoC', 'LLoC/Method']);
 
-        foreach ($groupedByComponent as $componentName => $classifiedClasses) {
-            $this->addComponentTableRow($table, $componentName, $classifiedClasses);
 
-            if ($this->option('verbose') === true) {
-                foreach ($classifiedClasses as $classifiedClass) {
-                    $this->addClassifiedClassTableRow($table, $classifiedClass);
-                }
-                $table->addRow(new TableSeparator);
-            }
+        $components = $groupedByComponent->filter(function ($value, $key) {
+            return $key !== 'Other' && ! Str::contains($key, 'Test');
+        });
+        $tests = $groupedByComponent->filter(function ($value, $key) {
+            return Str::contains($key, 'Test');
+        });
+        $other = $groupedByComponent->filter(function ($value, $key) {
+            return $key == 'Other';
+        });
 
-        }
-
-        $table->addRow(new TableSeparator);
-
-        $table->addRow([
-            'name' => 'Total',
-            'number_of_classes' => 0,
-            'number_of_methods' => 0,
-            'methods_per_class' => 0,
-            'loc' => 0,
-            'lloc' => 0,
-            'lloc_per_method' => 0
-        ]);
+        $this->renderComponents($table, $components);
+        $this->renderComponents($table, $tests);
+        $this->renderComponents($table, $other);
 
         $table->addRow(new TableSeparator);
+
+        $this->addTotalRow($table, $project->classifiedClasses());
 
         $table->setFooterTitle(implode(" • ", [
             'Code LoC: 1000',
@@ -137,17 +130,34 @@ class NewStatsListCommand extends Command
         }
     }
 
+    public function renderComponents($table, $groupedByComponent)
+    {
+        foreach ($groupedByComponent as $componentName => $classifiedClasses) {
+            $this->addComponentTableRow($table, $componentName, $classifiedClasses);
+
+            if ($this->option('verbose') === true) {
+                foreach ($classifiedClasses as $classifiedClass) {
+                    $this->addClassifiedClassTableRow($table, $classifiedClass);
+                }
+                $table->addRow(new TableSeparator);
+            }
+
+        }
+    }
+
     private function addComponentTableRow($table, $componentName, $classifiedClasses): void
     {
-
         $numberOfClasses = $classifiedClasses->count();
+
         $numberOfMethods = $classifiedClasses->sum(function (ClassifiedClass $class) {
             return $class->getNumberOfMethods();
         });
         $methodsPerClass = round($numberOfMethods / $numberOfClasses, 2);
+
         $linesOfCode = $classifiedClasses->sum(function (ClassifiedClass $class) {
             return $class->getLines();
         });
+
         $logicalLinesOfCode = $classifiedClasses->sum(function (ClassifiedClass $class) {
             return $class->getLogicalLinesOfCode();
         });
@@ -167,18 +177,44 @@ class NewStatsListCommand extends Command
     private function addClassifiedClassTableRow($table, $classifiedClass)
     {
         $table->addRow([
-            // new TableCell(
-            //     '- ' . $classifiedClass->reflectionClass->getName()
-            // ),
-
-            new TableCell( '- ' . $classifiedClass->reflectionClass->getName(), ['colspan' => 2]),
-
-            // null,
+            new TableCell(
+                '- ' . $classifiedClass->reflectionClass->getName(),
+                ['colspan' => 2]
+            ),
             $classifiedClass->getNumberOfMethods(),
             $classifiedClass->getNumberOfMethods(),
             $classifiedClass->getLines(),
             $classifiedClass->getLogicalLinesOfCode(),
             $classifiedClass->getLogicalLinesOfCodePerMethod(),
+        ]);
+    }
+
+    public function addTotalRow($table, $classifiedClasses)
+    {
+        $numberOfClasses = $classifiedClasses->count();
+
+        $numberOfMethods = $classifiedClasses->sum(function (ClassifiedClass $class) {
+            return $class->getNumberOfMethods();
+        });
+        $methodsPerClass = round($numberOfMethods / $numberOfClasses, 2);
+
+        $linesOfCode = $classifiedClasses->sum(function (ClassifiedClass $class) {
+            return $class->getLines();
+        });
+
+        $logicalLinesOfCode = $classifiedClasses->sum(function (ClassifiedClass $class) {
+            return $class->getLogicalLinesOfCode();
+        });
+        $logicalLinesOfCodePerMethod = $numberOfMethods === 0 ? 0 : round($logicalLinesOfCode / $numberOfMethods, 2);
+
+        $table->addRow([
+            'name' => 'Total',
+            'number_of_classes' => $numberOfClasses,
+            'number_of_methods' => $numberOfMethods,
+            'methods_per_class' => $methodsPerClass,
+            'loc' => $linesOfCode,
+            'lloc' => $logicalLinesOfCode,
+            'lloc_per_method' => $logicalLinesOfCodePerMethod
         ]);
     }
 }
