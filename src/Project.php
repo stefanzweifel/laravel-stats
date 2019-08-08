@@ -7,6 +7,7 @@ use Wnx\LaravelStats\Classifier;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Statistics\ComponentStatistics;
 use Wnx\LaravelStats\Statistics\ProjectStatistics;
+use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
 use Wnx\LaravelStats\ValueObjects\ComponentClass;
 
 class Project
@@ -18,27 +19,21 @@ class Project
      */
     private $classes;
 
+    private $classifiedClasses;
+
+
     public function __construct(Collection $classes)
     {
         $this->classes = $classes;
-    }
 
-    public static function fromReflectionClasses(Collection $classes): self
-    {
-        // $classes = $classes->each(function (ReflectionClass $class) {
-        //     $class->setClassifier(
-        //         app(Classifier::class)->getClassifierForClassInstance($class)
-        //     );
-        // });
-
-        $classes = $classes->map(function (ReflectionClass $class) {
-            return new ComponentClass(
-                $class,
-                app(Classifier::class)->getClassifierForClassInstance($class)
+        // Loop through ReflectionClasses and classifiy them.
+        // Creates a new Collection of ClassifiedClasses
+        $this->classifiedClasses = $classes->map(function (ReflectionClass $reflectionClass) {
+            return new ClassifiedClass(
+                $reflectionClass,
+                app(Classifier::class)->getClassifierForClassInstance($reflectionClass)
             );
         });
-
-        return new self($classes);
     }
 
     public function classes(): Collection
@@ -47,28 +42,15 @@ class Project
         return $this->classes;
     }
 
+    public function classifiedClasses(): Collection
+    {
+        // Maybe return a "ClassesCollection" ?
+        return $this->classifiedClasses;
+    }
+
     public function statistics()
     {
         return new ProjectStatistics($this->classes);
-    }
-
-
-    public function groupByComponentName()
-    {
-        return $this->classes()
-            ->groupBy(function (ComponentClass $class) {
-                return optional($class->getClassifier())->name() ?? 'Other';
-            })
-            ->map(function (Collection $classes, string $name) {
-                return (new ComponentStatistics($name, $classes))->toArray();
-            });
-
-            // ->dd();
-    }
-
-    public function groupComponentsIntoBuckets()
-    {
-        // code
     }
 
 

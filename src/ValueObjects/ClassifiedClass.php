@@ -2,39 +2,33 @@
 
 namespace Wnx\LaravelStats\ValueObjects;
 
-use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Collection;
 use SebastianBergmann\PHPLOC\Analyser;
 use Wnx\LaravelStats\Contracts\Classifier;
 use Wnx\LaravelStats\ReflectionClass;
 
-class ComponentClass implements Arrayable
+class ClassifiedClass
 {
     /**
      * @var \Wnx\LaravelStats\ReflectionClass
      */
-    private $reflectionClassInstance;
+    public $reflectionClass;
 
     /**
-     * ahdjkashd
+     * Classifier Instance related to the Reflection Class
+     *
      * @var \Wnx\LaravelStats\Contracts\Classifier
      */
-    private $classifier;
+    public $classifier;
 
-    public function __construct(ReflectionClass $reflectionClassInstance, Classifier $classifier)
+    public function __construct(ReflectionClass $reflectionClass, Classifier $classifier)
     {
-        $this->reflectionClassInstance = $reflectionClassInstance;
+        $this->reflectionClass = $reflectionClass;
         $this->classifier = $classifier;
     }
 
-    public function getReflectionClass(): ReflectionClass
-    {
-        return $this->reflectionClassInstance;
-    }
 
-    public function getClassifier(): Classifier
-    {
-        return $this->classifier;
-    }
+
 
     /**
      * Return the total number of Methods declared in all declared classes.
@@ -43,7 +37,7 @@ class ComponentClass implements Arrayable
      */
     public function getNumberOfMethods(): int
     {
-        return $this->reflectionClassInstance->getDefinedMethods()->count();
+        return $this->reflectionClass->getDefinedMethods()->count();
 
         return $this->classes
             ->sum(function (ReflectionClass $class) {
@@ -59,7 +53,7 @@ class ComponentClass implements Arrayable
     public function getLines(): int
     {
         return app(Analyser::class)
-            ->countFiles([$this->reflectionClassInstance->getFileName()], false)['loc'];
+            ->countFiles([$this->reflectionClass->getFileName()], false)['loc'];
     }
 
     /**
@@ -70,7 +64,7 @@ class ComponentClass implements Arrayable
     public function getLogicalLinesOfCode(): float
     {
         return app(Analyser::class)
-            ->countFiles([$this->reflectionClassInstance->getFileName()], false)['lloc'];
+            ->countFiles([$this->reflectionClass->getFileName()], false)['lloc'];
 
         return $this->classes
             ->map(function (ReflectionClass $class) {
@@ -93,17 +87,6 @@ class ComponentClass implements Arrayable
         }
 
         return round($this->getLogicalLinesOfCode() / $this->getNumberOfMethods(), 2);
-    }
-
-    public function toArray(): array
-    {
-        return [
-            'component_name' => $this->classifier->name(),
-            'methods' => $this->getNumberOfMethods(),
-            'loc' => $this->getLines(),
-            'lloc' => $this->getLogicalLinesOfCode(),
-            'lloc_per_method' => $this->getLogicalLinesOfCodePerMethod()
-        ];
     }
 
 }
