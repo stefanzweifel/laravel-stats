@@ -27,6 +27,8 @@ class AsciiTable
      */
     protected $isVerbose = false;
 
+    protected $project;
+
     /**
      * Create new instance of JsonOutput.
      *
@@ -44,19 +46,9 @@ class AsciiTable
     public function render(Project $project, bool $isVerbose = false)
     {
         $this->isVerbose = $isVerbose;
+        $this->project = $project;
 
-        $groupedByComponent = $project
-            ->classifiedClasses()
-            ->groupBy(function ($classifiedClass) {
-                return $classifiedClass->classifier->name();
-            })
-            ->sortBy(function ($_, $componentName) {
-                return $componentName;
-            });
-
-        $codeLloc = $project->getAppCodeLogicalLinesOfCode();
-        $testsLloc = $project->getTestsCodeLogicalLinesOfCode();
-
+        $groupedByComponent = $this->groupClassesByComponentName();
 
         $components = $groupedByComponent->filter(function ($value, $key) {
             return $key !== 'Other' && ! Str::contains($key, 'Test');
@@ -70,29 +62,31 @@ class AsciiTable
 
 
         $table = new Table($this->output);
+        $this->rightAlignNumbers($table);
+
         $table
             ->setHeaders(['Name', 'Classes', 'Methods', 'Methods/Class', 'LoC', 'LLoC', 'LLoC/Method']);
 
         $this->renderComponents($table, $components);
         $this->renderComponents($table, $tests);
         $this->renderComponents($table, $other);
-
         $table->addRow(new TableSeparator);
-
-        $this->addTotalRow($table, $project->classifiedClasses());
-
-        $table->setFooterTitle(implode(" • ", [
-            "Code LoC: {$codeLloc}",
-            "Test LoC: {$testsLloc}",
-            "Code/Test Ratio: 1:" . round($testsLloc/$codeLloc, 1),
-            'Routes: ' . app(NumberOfRoutes::class)->get()
-        ]));
-
-        for ($i = 1; $i <= 6; $i++) {
-            $table->setColumnStyle($i, (new TableStyle)->setPadType(STR_PAD_LEFT));
-        }
+        $this->addTotalRow($table);
+        $this->addMetaRow($table);
 
         $table->render();
+    }
+
+    private function groupClassesByComponentName()
+    {
+        return $this->project
+            ->classifiedClasses()
+            ->groupBy(function ($classifiedClass) {
+                return $classifiedClass->classifier->name();
+            })
+            ->sortBy(function ($_, $componentName) {
+                return $componentName;
+            });
     }
 
 
@@ -155,33 +149,37 @@ class AsciiTable
         ]);
     }
 
-    private function addTotalRow(Table $table, Collection $classifiedClasses)
+    private function addTotalRow(Table $table)
     {
-        $numberOfClasses = $classifiedClasses->count();
-
-        $numberOfMethods = $classifiedClasses->sum(function (ClassifiedClass $class) {
-            return $class->getNumberOfMethods();
-        });
-        $methodsPerClass = round($numberOfMethods / $numberOfClasses, 2);
-
-        $linesOfCode = $classifiedClasses->sum(function (ClassifiedClass $class) {
-            return $class->getLines();
-        });
-
-        $logicalLinesOfCode = $classifiedClasses->sum(function (ClassifiedClass $class) {
-            return $class->getLogicalLinesOfCode();
-        });
-        $logicalLinesOfCodePerMethod = $numberOfMethods === 0 ? 0 : round($logicalLinesOfCode / $numberOfMethods, 2);
-
         $table->addRow([
             'name' => 'Total',
-            'number_of_classes' => $numberOfClasses,
-            'number_of_methods' => $numberOfMethods,
-            'methods_per_class' => $methodsPerClass,
-            'loc' => $linesOfCode,
-            'lloc' => $logicalLinesOfCode,
-            'lloc_per_method' => $logicalLinesOfCodePerMethod
+            'number_of_classes' => $this->project->getNumberOfClasses(),
+            'number_of_methods' => $this->project->getNumberOfMethods(),
+            'methods_per_class' => $this->project->getNumberOfMethodsPerClass(),
+            'loc' => $this->project->getLinesOfCode(),
+            'lloc' => $this->project->getLogicalLinesOfCode(),
+            'lloc_per_method' => $this->project->getLogicalLinesOfCodePerMethod()
         ]);
+    }
+
+    private function addMetaRow(Table $table)
+    {
+        $codeLloc = $this->project->getAppCodeLogicalLinesOfCode();
+        $testsLloc = $this->project->getTestsCodeLogicalLinesOfCode();
+
+        $table->setFooterTitle(implode(" • ", [
+            "Code LoC: {$codeLloc}",
+            "Test LoC: {$testsLloc}",
+            "Code/Test Ratio: 1:" . round($testsLloc/$codeLloc, 1),
+            'Routes: ' . app(NumberOfRoutes::class)->get()
+        ]));
+    }
+
+    private function rightAlignNumbers(Table $table)
+    {
+        for ($i = 1; $i <= 6; $i++) {
+            $table->setColumnStyle($i, (new TableStyle)->setPadType(STR_PAD_LEFT));
+        }
     }
 
 }

@@ -4,6 +4,9 @@ namespace Wnx\LaravelStats\Statistics;
 
 use Illuminate\Support\Str;
 
+/**
+ * @deprecated
+ */
 class CodeTestRatio
 {
     /**
