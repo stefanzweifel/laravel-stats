@@ -55,7 +55,7 @@ class StatsListCommandTest extends TestCase
         $this->assertStringContainsString('Controllers', $resultAsText);
         $this->assertStringContainsString('Other', $resultAsText);
         $this->assertStringContainsString('Total', $resultAsText);
-        $this->assertStringContainsString('Number of Routes:', $resultAsText);
+        $this->assertStringContainsString('Routes:', $resultAsText);
     }
 
     /** @test */
