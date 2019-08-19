@@ -10,9 +10,9 @@ use Symfony\Component\Console\Helper\TableSeparator;
 use Symfony\Component\Console\Helper\TableStyle;
 use Wnx\LaravelStats\ClassesFinder;
 use Wnx\LaravelStats\ComponentFinder;
-use Wnx\LaravelStats\Formatters\JsonOutput;
 use Wnx\LaravelStats\Formatters\TableOutput;
 use Wnx\LaravelStats\Outputs\AsciiTable;
+use Wnx\LaravelStats\Outputs\JsonOutput;
 use Wnx\LaravelStats\Project;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
@@ -70,10 +70,11 @@ class NewStatsListCommand extends Command
 
         if ($this->option('format') === 'json') {
             // Output Statistics as JSON
+            (new JsonOutput($this->output))->render(
+                $project,
+                $this->option('verbose')
+            );
 
-            if ($this->option('verbose') === true) {
-                // Output Statistics as Versboe JSON
-            }
         } else {
             // Output Statistics as ASCII Table
             (new AsciiTable($this->output))->render(

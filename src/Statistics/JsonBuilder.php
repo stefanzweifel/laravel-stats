@@ -53,6 +53,6 @@ class JsonBuilder
             'number_of_routes' => app(NumberOfRoutes::class)->get(),
         ];
 
-        return json_encode($statsJson);
+        return json_encode($statsJson, JSON_PRETTY_PRINT);
     }
 }
