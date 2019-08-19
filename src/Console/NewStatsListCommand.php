@@ -27,7 +27,7 @@ class NewStatsListCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'stats-neo {--format=}';
+    protected $signature = 'stats {--format=}';
 
     /**
      * The console command description.
@@ -52,7 +52,8 @@ class NewStatsListCommand extends Command
         $reflectionClasses = $classes->map(function ($class) {
                 return new ReflectionClass($class);
             })->reject(function (ReflectionClass $class) {
-                return app(config('stats.rejection_strategy', RejectVendorClasses::class))->shouldClassBeRejected($class);
+                return app(config('stats.rejection_strategy', RejectVendorClasses::class))
+                    ->shouldClassBeRejected($class);
             })
             ->reject(function (ReflectionClass $class) {
                 foreach (config('stats.ignored_namespaces', []) as $namespace) {
@@ -76,23 +77,8 @@ class NewStatsListCommand extends Command
                 return Str::contains($componentName, 'Test') ? 1 : $componentName;
             });
 
-        $codeLloc = $project
-            ->classifiedClasses()
-            ->filter(function (ClassifiedClass $classifiedClass) {
-                return $classifiedClass->classifier->countsTowardsApplicationCode();
-            })
-            ->sum(function (ClassifiedClass $class) {
-                return $class->getLogicalLinesOfCode();
-            });
-
-        $testsLloc = $project
-            ->classifiedClasses()
-            ->filter(function (ClassifiedClass $classifiedClass) {
-                return $classifiedClass->classifier->countsTowardsTests();
-            })
-            ->sum(function (ClassifiedClass $class) {
-                return $class->getLogicalLinesOfCode();
-            });
+        $codeLloc = $project->getAppCodeLogicalLinesOfCode();
+        $testsLloc = $project->getTestsCodeLogicalLinesOfCode();
 
 
         $table = new Table($this->output);

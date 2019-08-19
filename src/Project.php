@@ -19,8 +19,10 @@ class Project
      */
     private $classes;
 
+    /**
+     * @var \Illuminate\Support\Collection<\Wnx\LaravelStats\ValueObjects\ClassifiedClass>
+     */
     private $classifiedClasses;
-
 
     public function __construct(Collection $classes)
     {
@@ -36,23 +38,36 @@ class Project
         });
     }
 
-    public function classes(): Collection
-    {
-        // Maybe return a "ClassesCollection" ?
-        return $this->classes;
-    }
-
     public function classifiedClasses(): Collection
     {
         // Maybe return a "ClassesCollection" ?
         return $this->classifiedClasses;
     }
 
-    public function statistics()
+
+
+    public function getAppCodeLogicalLinesOfCode(): int
     {
-        return new ProjectStatistics($this->classes);
+        return $this
+            ->classifiedClasses()
+            ->filter(function (ClassifiedClass $classifiedClass) {
+                return $classifiedClass->classifier->countsTowardsApplicationCode();
+            })
+            ->sum(function (ClassifiedClass $class) {
+                return $class->getLogicalLinesOfCode();
+            });
     }
 
-
+    public function getTestsCodeLogicalLinesOfCode(): int
+    {
+        return $this
+            ->classifiedClasses()
+            ->filter(function (ClassifiedClass $classifiedClass) {
+                return $classifiedClass->classifier->countsTowardsTests();
+            })
+            ->sum(function (ClassifiedClass $class) {
+                return $class->getLogicalLinesOfCode();
+            });
+    }
 
 }
