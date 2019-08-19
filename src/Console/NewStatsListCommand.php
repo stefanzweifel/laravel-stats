@@ -15,6 +15,7 @@ use Wnx\LaravelStats\Formatters\TableOutput;
 use Wnx\LaravelStats\Project;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
+use Wnx\LaravelStats\Statistics\NumberOfRoutes;
 use Wnx\LaravelStats\Statistics\ProjectStatistics;
 use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
 use Wnx\LaravelStats\ValueObjects\ComponentClass;
@@ -75,6 +76,24 @@ class NewStatsListCommand extends Command
                 return Str::contains($componentName, 'Test') ? 1 : $componentName;
             });
 
+        $codeLloc = $project
+            ->classifiedClasses()
+            ->filter(function (ClassifiedClass $classifiedClass) {
+                return $classifiedClass->classifier->countsTowardsApplicationCode();
+            })
+            ->sum(function (ClassifiedClass $class) {
+                return $class->getLogicalLinesOfCode();
+            });
+
+        $testsLloc = $project
+            ->classifiedClasses()
+            ->filter(function (ClassifiedClass $classifiedClass) {
+                return $classifiedClass->classifier->countsTowardsTests();
+            })
+            ->sum(function (ClassifiedClass $class) {
+                return $class->getLogicalLinesOfCode();
+            });
+
 
         $table = new Table($this->output);
 
@@ -102,10 +121,10 @@ class NewStatsListCommand extends Command
         $this->addTotalRow($table, $project->classifiedClasses());
 
         $table->setFooterTitle(implode(" • ", [
-            'Code LoC: 1000',
-            'Test LoC: 1000',
-            'Code/Test Ratio: 1:1',
-            'Routes: 999'
+            "Code LoC: {$codeLloc}",
+            "Test LoC: {$testsLloc}",
+            "Code/Test Ratio: 1:" . round($testsLloc/$codeLloc, 1),
+            'Routes: ' . app(NumberOfRoutes::class)->get()
         ]));
 
         for ($i = 1; $i <= 6; $i++) {
