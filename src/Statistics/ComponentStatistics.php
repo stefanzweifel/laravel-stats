@@ -10,6 +10,9 @@ use Wnx\LaravelStats\Component;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\ValueObjects\ComponentClass;
 
+/**
+ * @deprecated
+ */
 class ComponentStatistics implements Arrayable
 {
     /**

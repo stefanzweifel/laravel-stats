@@ -5,6 +5,9 @@ namespace Wnx\LaravelStats\Statistics;
 use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 
+/**
+ * @deprecated
+ */
 class ProjectStatistics
 {
     /**
@@ -66,6 +69,7 @@ class ProjectStatistics
             'Total',
             $stats->sum('number_of_classes'),
             $stats->sum('methods'),
+            // round($stats->sum('methods') / $stats->sum('number_of_classes'), 2),
             round($stats->avg('methods_per_class'), 2),
             $stats->sum('lines'),
             $stats->sum('lloc'),

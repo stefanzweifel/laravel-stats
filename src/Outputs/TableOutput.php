@@ -10,6 +10,9 @@ use Symfony\Component\Console\Helper\TableStyle;
 use Wnx\LaravelStats\Statistics\ProjectStatistics;
 use Symfony\Component\Console\Helper\TableSeparator;
 
+/**
+ * @deprecated
+ */
 class TableOutput
 {
     /**

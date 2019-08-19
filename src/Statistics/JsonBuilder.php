@@ -2,6 +2,9 @@
 
 namespace Wnx\LaravelStats\Statistics;
 
+/**
+ * @deprecated
+ */
 class JsonBuilder
 {
     /**

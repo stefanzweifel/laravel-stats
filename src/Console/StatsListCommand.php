@@ -8,6 +8,9 @@ use Wnx\LaravelStats\Outputs\JsonOutput;
 use Wnx\LaravelStats\Outputs\TableOutput;
 use Wnx\LaravelStats\Statistics\ProjectStatistics;
 
+/**
+ * @deprecated
+ */
 class StatsListCommand extends Command
 {
     /**
@@ -15,7 +18,7 @@ class StatsListCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'stats {--format=}';
+    protected $signature = 'stats-old {--format=}';
 
     /**
      * The console command description.
