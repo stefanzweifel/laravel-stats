@@ -44,11 +44,6 @@ class ComponentClass implements Arrayable
     public function getNumberOfMethods(): int
     {
         return $this->reflectionClassInstance->getDefinedMethods()->count();
-
-        return $this->classes
-            ->sum(function (ReflectionClass $class) {
-                return $class->getDefinedMethods()->count();
-            });
     }
 
     /**
@@ -71,14 +66,6 @@ class ComponentClass implements Arrayable
     {
         return app(Analyser::class)
             ->countFiles([$this->reflectionClassInstance->getFileName()], false)['lloc'];
-
-        return $this->classes
-            ->map(function (ReflectionClass $class) {
-                return $class->getFileName();
-            })
-            ->pipe(function (Collection $classes) {
-                return app(Analyser::class)->countFiles($classes->all(), false)['lloc'];
-            });
     }
 
     /**
