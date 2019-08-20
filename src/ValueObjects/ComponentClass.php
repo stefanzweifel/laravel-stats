@@ -15,7 +15,6 @@ class ComponentClass implements Arrayable
     private $reflectionClassInstance;
 
     /**
-     * ahdjkashd
      * @var \Wnx\LaravelStats\Contracts\Classifier
      */
     private $classifier;

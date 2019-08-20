@@ -27,9 +27,6 @@ class ClassifiedClass
         $this->classifier = $classifier;
     }
 
-
-
-
     /**
      * Return the total number of Methods declared in all declared classes.
      *
@@ -38,11 +35,6 @@ class ClassifiedClass
     public function getNumberOfMethods(): int
     {
         return $this->reflectionClass->getDefinedMethods()->count();
-
-        return $this->classes
-            ->sum(function (ReflectionClass $class) {
-                return $class->getDefinedMethods()->count();
-            });
     }
 
     /**
@@ -65,14 +57,6 @@ class ClassifiedClass
     {
         return app(Analyser::class)
             ->countFiles([$this->reflectionClass->getFileName()], false)['lloc'];
-
-        return $this->classes
-            ->map(function (ReflectionClass $class) {
-                return $class->getFileName();
-            })
-            ->pipe(function (Collection $classes) {
-                return app(Analyser::class)->countFiles($classes->all(), false)['lloc'];
-            });
     }
 
     /**

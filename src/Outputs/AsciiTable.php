@@ -50,26 +50,27 @@ class AsciiTable
 
         $groupedByComponent = $this->groupClassesByComponentName();
 
-        $components = $groupedByComponent->filter(function ($value, $key) {
-            return $key !== 'Other' && ! Str::contains($key, 'Test');
-        });
-        $tests = $groupedByComponent->filter(function ($value, $key) {
-            return Str::contains($key, 'Test');
-        });
-        $other = $groupedByComponent->filter(function ($value, $key) {
-            return $key == 'Other';
-        });
-
-
         $table = new Table($this->output);
         $this->rightAlignNumbers($table);
 
         $table
             ->setHeaders(['Name', 'Classes', 'Methods', 'Methods/Class', 'LoC', 'LLoC', 'LLoC/Method']);
 
-        $this->renderComponents($table, $components);
-        $this->renderComponents($table, $tests);
-        $this->renderComponents($table, $other);
+        // Render "Core" components
+        $this->renderComponents($table, $groupedByComponent->filter(function ($value, $key) {
+            return $key !== 'Other' && ! Str::contains($key, 'Test');
+        }));
+
+        // Render Test components
+        $this->renderComponents($table, $groupedByComponent->filter(function ($value, $key) {
+            return Str::contains($key, 'Test');
+        }));
+
+        // Render "Other" component
+        $this->renderComponents($table, $groupedByComponent->filter(function ($value, $key) {
+            return $key == 'Other';
+        }));
+
         $table->addRow(new TableSeparator);
         $this->addTotalRow($table);
         $this->addMetaRow($table);
@@ -77,7 +78,7 @@ class AsciiTable
         $table->render();
     }
 
-    private function groupClassesByComponentName()
+    private function groupClassesByComponentName(): Collection
     {
         return $this->project
             ->classifiedClasses()
@@ -95,6 +96,8 @@ class AsciiTable
         foreach ($groupedByComponent as $componentName => $classifiedClasses) {
             $this->addComponentTableRow($table, $componentName, $classifiedClasses);
 
+            // If the verbose option has been passed, also display each
+            // classified Class in it's own row
             if ($this->isVerbose === true) {
                 foreach ($classifiedClasses as $classifiedClass) {
                     $this->addClassifiedClassTableRow($table, $classifiedClass);
