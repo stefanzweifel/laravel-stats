@@ -171,8 +171,8 @@ class AsciiTable
         $testsLloc = $this->project->getTestsCodeLogicalLinesOfCode();
 
         $table->setFooterTitle(implode(" • ", [
-            "Code LoC: {$codeLloc}",
-            "Test LoC: {$testsLloc}",
+            "Code LLoC: {$codeLloc}",
+            "Test LLoC: {$testsLloc}",
             "Code/Test Ratio: 1:" . round($testsLloc/$codeLloc, 1),
             'Routes: ' . app(NumberOfRoutes::class)->get()
         ]));
