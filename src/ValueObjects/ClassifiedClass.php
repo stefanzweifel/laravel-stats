@@ -2,10 +2,9 @@
 
 namespace Wnx\LaravelStats\ValueObjects;
 
-use Illuminate\Support\Collection;
+use Wnx\LaravelStats\ReflectionClass;
 use SebastianBergmann\PHPLOC\Analyser;
 use Wnx\LaravelStats\Contracts\Classifier;
-use Wnx\LaravelStats\ReflectionClass;
 
 class ClassifiedClass
 {
@@ -15,7 +14,7 @@ class ClassifiedClass
     public $reflectionClass;
 
     /**
-     * Classifier Instance related to the Reflection Class
+     * Classifier Instance related to the Reflection Class.
      *
      * @var \Wnx\LaravelStats\Contracts\Classifier
      */
@@ -72,5 +71,4 @@ class ClassifiedClass
 
         return round($this->getLogicalLinesOfCode() / $this->getNumberOfMethods(), 2);
     }
-
 }

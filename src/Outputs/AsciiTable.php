@@ -2,16 +2,16 @@
 
 namespace Wnx\LaravelStats\Outputs;
 
-use Illuminate\Console\OutputStyle;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Wnx\LaravelStats\Project;
+use Illuminate\Support\Collection;
+use Illuminate\Console\OutputStyle;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableCell;
-use Symfony\Component\Console\Helper\TableSeparator;
-use Symfony\Component\Console\Helper\TableStyle;
-use Wnx\LaravelStats\Project;
 use Wnx\LaravelStats\Statistics\NumberOfRoutes;
+use Symfony\Component\Console\Helper\TableStyle;
 use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
+use Symfony\Component\Console\Helper\TableSeparator;
 
 class AsciiTable
 {
@@ -23,7 +23,7 @@ class AsciiTable
     protected $output;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $isVerbose = false;
 
@@ -90,7 +90,6 @@ class AsciiTable
             });
     }
 
-
     private function renderComponents($table, $groupedByComponent)
     {
         foreach ($groupedByComponent as $componentName => $classifiedClasses) {
@@ -104,7 +103,6 @@ class AsciiTable
                 }
                 $table->addRow(new TableSeparator);
             }
-
         }
     }
 
@@ -133,7 +131,7 @@ class AsciiTable
             'methods_per_class' => $methodsPerClass,
             'loc' => $linesOfCode,
             'lloc' => $logicalLinesOfCode,
-            'lloc_per_method' => $logicalLinesOfCodePerMethod
+            'lloc_per_method' => $logicalLinesOfCodePerMethod,
         ]);
     }
 
@@ -141,7 +139,7 @@ class AsciiTable
     {
         $table->addRow([
             new TableCell(
-                '- ' . $classifiedClass->reflectionClass->getName(),
+                '- '.$classifiedClass->reflectionClass->getName(),
                 ['colspan' => 2]
             ),
             $classifiedClass->getNumberOfMethods(),
@@ -161,7 +159,7 @@ class AsciiTable
             'methods_per_class' => $this->project->getNumberOfMethodsPerClass(),
             'loc' => $this->project->getLinesOfCode(),
             'lloc' => $this->project->getLogicalLinesOfCode(),
-            'lloc_per_method' => $this->project->getLogicalLinesOfCodePerMethod()
+            'lloc_per_method' => $this->project->getLogicalLinesOfCodePerMethod(),
         ]);
     }
 
@@ -170,11 +168,11 @@ class AsciiTable
         $codeLloc = $this->project->getAppCodeLogicalLinesOfCode();
         $testsLloc = $this->project->getTestsCodeLogicalLinesOfCode();
 
-        $table->setFooterTitle(implode(" • ", [
+        $table->setFooterTitle(implode(' • ', [
             "Code LLoC: {$codeLloc}",
             "Test LLoC: {$testsLloc}",
-            "Code/Test Ratio: 1:" . round($testsLloc/$codeLloc, 1),
-            'Routes: ' . app(NumberOfRoutes::class)->get()
+            'Code/Test Ratio: 1:'.round($testsLloc / $codeLloc, 1),
+            'Routes: '.app(NumberOfRoutes::class)->get(),
         ]));
     }
 
@@ -184,5 +182,4 @@ class AsciiTable
             $table->setColumnStyle($i, (new TableStyle)->setPadType(STR_PAD_LEFT));
         }
     }
-
 }

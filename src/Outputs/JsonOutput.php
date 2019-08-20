@@ -2,9 +2,9 @@
 
 namespace Wnx\LaravelStats\Outputs;
 
-use Illuminate\Console\OutputStyle;
-use Illuminate\Support\Collection;
 use Wnx\LaravelStats\Project;
+use Illuminate\Support\Collection;
+use Illuminate\Console\OutputStyle;
 use Wnx\LaravelStats\Statistics\JsonBuilder;
 use Wnx\LaravelStats\Statistics\NumberOfRoutes;
 use Wnx\LaravelStats\Statistics\ProjectStatistics;
@@ -42,12 +42,12 @@ class JsonOutput
                 'methods_per_class' => $project->getNumberOfMethodsPerClass(),
                 'loc' => $project->getLinesOfCode(),
                 'lloc' => $project->getLogicalLinesOfCode(),
-                'lloc_per_method' => $project->getLogicalLinesOfCodePerMethod()
+                'lloc_per_method' => $project->getLogicalLinesOfCodePerMethod(),
             ],
             'meta' => [
                 'code_lloc' => $codeLloc,
                 'test_lloc' => $testsLloc,
-                'code_to_test_ratio' => ($testsLloc/$codeLloc),
+                'code_to_test_ratio' => ($testsLloc / $codeLloc),
                 'number_of_routes' => app(NumberOfRoutes::class)->get(),
             ],
         ];
@@ -55,7 +55,6 @@ class JsonOutput
         $groupedByComponent = $this->groupClassesByComponentName($project);
 
         foreach ($groupedByComponent as $componentName => $classifiedClasses) {
-
             $numberOfClasses = $classifiedClasses->count();
 
             $numberOfMethods = $classifiedClasses->sum(function (ClassifiedClass $class) {
@@ -72,7 +71,6 @@ class JsonOutput
             });
             $logicalLinesOfCodePerMethod = $numberOfMethods === 0 ? 0 : round($logicalLinesOfCode / $numberOfMethods, 2);
 
-
             $singleComponent = [
                 'name' => $componentName,
                 'number_of_classes' => $numberOfClasses,
@@ -84,7 +82,6 @@ class JsonOutput
             ];
 
             if ($isVerbose === true) {
-
                 $arrayOfClasses = [];
 
                 foreach ($classifiedClasses as $classifiedClass) {
@@ -118,7 +115,6 @@ class JsonOutput
                 return $componentName;
             });
     }
-
 
     /**
      * Render output from given statistics.

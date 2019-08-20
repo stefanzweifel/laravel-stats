@@ -3,12 +3,7 @@
 namespace Wnx\LaravelStats;
 
 use Illuminate\Support\Collection;
-use Wnx\LaravelStats\Classifier;
-use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Statistics\ComponentStatistics;
-use Wnx\LaravelStats\Statistics\ProjectStatistics;
 use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
-use Wnx\LaravelStats\ValueObjects\ComponentClass;
 
 class Project
 {
@@ -43,8 +38,6 @@ class Project
         // Maybe return a "ClassesCollection" ?
         return $this->classifiedClasses;
     }
-
-
 
     public function getNumberOfClasses(): int
     {
@@ -109,5 +102,4 @@ class Project
                 return $class->getLogicalLinesOfCode();
             });
     }
-
 }

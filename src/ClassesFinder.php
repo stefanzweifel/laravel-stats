@@ -66,5 +66,4 @@ class ClassesFinder
             return Str::startsWith($file->getPathname(), $exclude);
         });
     }
-
 }

@@ -2,10 +2,10 @@
 
 namespace Wnx\LaravelStats\ValueObjects;
 
-use Illuminate\Contracts\Support\Arrayable;
+use Wnx\LaravelStats\ReflectionClass;
 use SebastianBergmann\PHPLOC\Analyser;
 use Wnx\LaravelStats\Contracts\Classifier;
-use Wnx\LaravelStats\ReflectionClass;
+use Illuminate\Contracts\Support\Arrayable;
 
 class ComponentClass implements Arrayable
 {
@@ -88,8 +88,7 @@ class ComponentClass implements Arrayable
             'methods' => $this->getNumberOfMethods(),
             'loc' => $this->getLines(),
             'lloc' => $this->getLogicalLinesOfCode(),
-            'lloc_per_method' => $this->getLogicalLinesOfCodePerMethod()
+            'lloc_per_method' => $this->getLogicalLinesOfCodePerMethod(),
         ];
     }
-
 }

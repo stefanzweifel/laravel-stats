@@ -2,15 +2,14 @@
 
 namespace Wnx\LaravelStats\Tests\ValueObjects;
 
-use Wnx\LaravelStats\Classifiers\ControllerClassifier;
-use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController;
 use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\ValueObjects\ComponentClass;
+use Wnx\LaravelStats\Classifiers\ControllerClassifier;
+use Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController;
 
 class ComponentClassTest extends TestCase
 {
-
     public function getInstance()
     {
         $reflectionClass = new ReflectionClass(UsersController::class);
@@ -38,7 +37,6 @@ class ComponentClassTest extends TestCase
     /** @test */
     public function calculates_number_of_logical_lines_of_code_for_a_single_class()
     {
-
         $componentClass = $this->getInstance();
 
         $this->assertEquals(8, $componentClass->getLogicalLinesOfCode());
@@ -62,9 +60,8 @@ class ComponentClassTest extends TestCase
             'methods' => 7,
             'loc' => 41,
             'lloc' => 8,
-            'lloc_per_method' => 1.14
+            'lloc_per_method' => 1.14,
 
         ], $componentClass->toArray());
     }
-
 }
