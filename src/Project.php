@@ -8,13 +8,15 @@ use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
 class Project
 {
     /**
-     * Collection of Classes which represent a project.
+     * Collection of ReflectionClasses.
      *
-     * @var \Illuminate\Support\Collection
+     * @var \Illuminate\Support\Collection<\Wnx\LaravelStats\ReflectionClass>
      */
     private $classes;
 
     /**
+     * Collection of ClassifiedClasses.
+     *
      * @var \Illuminate\Support\Collection<\Wnx\LaravelStats\ValueObjects\ClassifiedClass>
      */
     private $classifiedClasses;
@@ -24,7 +26,6 @@ class Project
         $this->classes = $classes;
 
         // Loop through ReflectionClasses and classifiy them.
-        // Creates a new Collection of ClassifiedClasses
         $this->classifiedClasses = $classes->map(function (ReflectionClass $reflectionClass) {
             return new ClassifiedClass(
                 $reflectionClass,
