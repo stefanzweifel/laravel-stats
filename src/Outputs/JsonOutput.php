@@ -5,9 +5,7 @@ namespace Wnx\LaravelStats\Outputs;
 use Wnx\LaravelStats\Project;
 use Illuminate\Support\Collection;
 use Illuminate\Console\OutputStyle;
-use Wnx\LaravelStats\Statistics\JsonBuilder;
 use Wnx\LaravelStats\Statistics\NumberOfRoutes;
-use Wnx\LaravelStats\Statistics\ProjectStatistics;
 use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
 
 class JsonOutput
@@ -119,19 +117,5 @@ class JsonOutput
             ->sortBy(function ($_, $componentName) {
                 return $componentName;
             });
-    }
-
-    /**
-     * Render output from given statistics.
-     *
-     * @deprecated
-     * @param  \Wnx\LaravelStats\Statistics\ProjectStatistics $statistics
-     * @return void
-     */
-    public function renderOld(ProjectStatistics $statistics): void
-    {
-        $statsJson = (new JsonBuilder($statistics))->get();
-
-        $this->output->text($statsJson);
     }
 }

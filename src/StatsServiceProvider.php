@@ -38,7 +38,6 @@ class StatsServiceProvider extends ServiceProvider
 
         $this->commands([
             StatsListCommand::class,
-            NewStatsListCommand::class,
         ]);
     }
 }
