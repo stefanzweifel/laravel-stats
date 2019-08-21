@@ -170,14 +170,11 @@ class AsciiTable
 
     private function addMetaRow(Table $table)
     {
-        $codeLloc = $this->project->getAppCodeLogicalLinesOfCode();
-        $testsLloc = $this->project->getTestsCodeLogicalLinesOfCode();
-
         $table->setFooterTitle(implode(' • ', [
-            "Code LLoC: {$codeLloc}",
-            "Test LLoC: {$testsLloc}",
-            'Code/Test Ratio: 1:'.round($testsLloc / $codeLloc, 1),
-            'Routes: '.app(NumberOfRoutes::class)->get(),
+            "Code LLoC: {$this->project->statistic()->getLogicalLinesOfCodeForApplicationCode()}",
+            "Test LLoC: {$this->project->statistic()->getLogicalLinesOfCodeForTestCode()}",
+            'Code/Test Ratio: 1:' . $this->project->statistic()->getApplicationCodeToTestCodeRatio(),
+            'Routes: ' . app(NumberOfRoutes::class)->get(),
         ]));
     }
 
