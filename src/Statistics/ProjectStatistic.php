@@ -57,5 +57,38 @@ class ProjectStatistic
         return round($this->getLogicalLinesOfCode() / $this->getNumberOfMethods(), 2);
     }
 
+    public function getLogicalLinesOfCodeForApplicationCode(): int
+    {
+        return $this
+            ->project
+            ->classifiedClasses()
+            ->filter(function (ClassifiedClass $classifiedClass) {
+                return $classifiedClass->classifier->countsTowardsApplicationCode();
+            })
+            ->sum(function (ClassifiedClass $class) {
+                return $class->getLogicalLinesOfCode();
+            });
+    }
+
+    public function getLogicalLinesOfCodeForTestCode(): int
+    {
+        return $this
+            ->project
+            ->classifiedClasses()
+            ->filter(function (ClassifiedClass $classifiedClass) {
+                return $classifiedClass->classifier->countsTowardsTests();
+            })
+            ->sum(function (ClassifiedClass $class) {
+                return $class->getLogicalLinesOfCode();
+            });
+    }
+
+    public function getApplicationCodeToTestCodeRatio(): float
+    {
+        return round(
+            $this->getLogicalLinesOfCodeForTestCode() / $this->getLogicalLinesOfCodeForApplicationCode(),
+            1
+        );
+    }
 
 }

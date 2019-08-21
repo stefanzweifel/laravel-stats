@@ -8,6 +8,8 @@ use Wnx\LaravelStats\Statistics\ProjectStatistic;
 use Wnx\LaravelStats\Tests\Stubs\Events\DemoEvent;
 use Wnx\LaravelStats\Tests\Stubs\Mails\DemoMail;
 use Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule;
+use Wnx\LaravelStats\Tests\Stubs\Tests\DemoDuskTest;
+use Wnx\LaravelStats\Tests\Stubs\Tests\DemoUnitTest;
 use Wnx\LaravelStats\Tests\TestCase;
 
 class ProjectStatisticsTest extends TestCase
@@ -18,6 +20,8 @@ class ProjectStatisticsTest extends TestCase
             new ReflectionClass(DemoRule::class),
             new ReflectionClass(DemoEvent::class),
             new ReflectionClass(DemoMail::class),
+            new ReflectionClass(DemoUnitTest::class),
+            new ReflectionClass(DemoDuskTest::class),
         ]));
     }
 
@@ -26,7 +30,7 @@ class ProjectStatisticsTest extends TestCase
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 
-        $this->assertEquals(3, $statistic->getNumberOfClasses());
+        $this->assertEquals(5, $statistic->getNumberOfClasses());
     }
 
     /** @test */
@@ -34,7 +38,7 @@ class ProjectStatisticsTest extends TestCase
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 
-        $this->assertEquals(7, $statistic->getNumberOfMethods());
+        $this->assertEquals(9, $statistic->getNumberOfMethods());
     }
 
     /** @test */
@@ -42,7 +46,7 @@ class ProjectStatisticsTest extends TestCase
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 
-        $this->assertEquals(2.33, $statistic->getNumberOfMethodsPerClass());
+        $this->assertEquals(1.8, $statistic->getNumberOfMethodsPerClass());
         $this->assertEquals(
             round($statistic->getNumberOfMethods() / $statistic->getNumberOfClasses(), 2),
             $statistic->getNumberOfMethodsPerClass()
@@ -54,7 +58,7 @@ class ProjectStatisticsTest extends TestCase
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 
-        $this->assertEquals(106, $statistic->getLinesOfCode());
+        $this->assertEquals(136, $statistic->getLinesOfCode());
     }
 
     /** @test */
@@ -62,7 +66,7 @@ class ProjectStatisticsTest extends TestCase
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 
-        $this->assertEquals(16, $statistic->getLogicalLinesOfCode());
+        $this->assertEquals(21, $statistic->getLogicalLinesOfCode());
     }
 
     /** @test */
@@ -70,13 +74,37 @@ class ProjectStatisticsTest extends TestCase
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 
-        $this->assertEquals(2.29, $statistic->getLogicalLinesOfCodePerMethod());
+        $this->assertEquals(2.33, $statistic->getLogicalLinesOfCodePerMethod());
         $this->assertEquals(
             round($statistic->getLogicalLinesOfCode() / $statistic->getNumberOfMethods(), 2),
             $statistic->getLogicalLinesOfCodePerMethod()
         );
-
     }
+
+    /** @test */
+    public function it_returns_total_number_of_logical_lines_of_code_for_application_code()
+    {
+        $statistic = new ProjectStatistic($this->getTestProject());
+
+        $this->assertEquals(16, $statistic->getLogicalLinesOfCodeForApplicationCode());
+    }
+
+    /** @test */
+    public function it_returns_total_number_of_logical_lines_of_code_for_test_code()
+    {
+        $statistic = new ProjectStatistic($this->getTestProject());
+
+        $this->assertEquals(5, $statistic->getLogicalLinesOfCodeForTestCode());
+    }
+
+    /** @test */
+    public function it_returns_application_code_to_test_code_ratio()
+    {
+        $statistic = new ProjectStatistic($this->getTestProject());
+
+        $this->assertEquals(0.3, $statistic->getApplicationCodeToTestCodeRatio());
+    }
+
 
     /** @test */
     public function it_returns_total_statistics()
