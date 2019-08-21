@@ -2,42 +2,80 @@
 
 namespace Wnx\LaravelStats\Tests\Statistics;
 
-use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\Project;
 use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Tests\Stubs\ExcludedFile;
-use Wnx\LaravelStats\Statistics\ProjectStatistics;
-use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
+use Wnx\LaravelStats\Statistics\ProjectStatistic;
+use Wnx\LaravelStats\Tests\Stubs\Events\DemoEvent;
+use Wnx\LaravelStats\Tests\Stubs\Mails\DemoMail;
+use Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule;
+use Wnx\LaravelStats\Tests\TestCase;
 
 class ProjectStatisticsTest extends TestCase
 {
-    /** @test */
-    public function it_can_generate_statistics_for_given_components()
+    public function getTestProject()
     {
-        $components = collect([
-            'foo' => collect(),
-            'bar' => collect(),
-            'baz' => collect(),
-        ]);
-
-        $stats = new ProjectStatistics($components);
-
-        $this->assertCount(3, $stats->components());
+        return new Project(collect([
+            new ReflectionClass(DemoRule::class),
+            new ReflectionClass(DemoEvent::class),
+            new ReflectionClass(DemoMail::class),
+        ]));
     }
 
     /** @test */
-    public function it_treats_unknown_components_separatelly()
+    public function it_returns_total_number_of_classes_for_given_project()
     {
-        $components = collect([
-            'foo' => collect(),
-            'Other' => collect([
-                new ReflectionClass(ExcludedFile::class),
-            ]),
-        ]);
+        $statistic = new ProjectStatistic($this->getTestProject());
 
-        $stats = new ProjectStatistics($components);
+        $this->assertEquals(3, $statistic->getNumberOfClasses());
+    }
 
-        $this->assertCount(1, $stats->components());
-        $this->assertIsArray($stats->other());
+    /** @test */
+    public function it_returns_total_number_of_method_for_a_given_project()
+    {
+        $statistic = new ProjectStatistic($this->getTestProject());
+
+        $this->assertEquals(7, $statistic->getNumberOfMethods());
+    }
+
+    /** @test */
+    public function it_returns_average_number_of_methods_per_class_for_a_given_project()
+    {
+        $statistic = new ProjectStatistic($this->getTestProject());
+
+        $this->assertEquals(2.33, $statistic->getNumberOfMethodsPerClass());
+        $this->assertEquals(
+            round($statistic->getNumberOfMethods() / $statistic->getNumberOfClasses(), 2),
+            $statistic->getNumberOfMethodsPerClass()
+        );
+    }
+
+    /** @test */
+    public function it_returns_total_number_of_lines_of_code_for_a_given_project()
+    {
+        $statistic = new ProjectStatistic($this->getTestProject());
+
+        $this->assertEquals(106, $statistic->getLinesOfCode());
+    }
+
+    /** @test */
+    public function it_returns_total_number_of_logical_lines_of_code_for_a_given_project()
+    {
+        $statistic = new ProjectStatistic($this->getTestProject());
+
+        $this->assertEquals(16, $statistic->getLogicalLinesOfCode());
+    }
+
+    /** @test */
+    public function it_returns_average_number_of_logical_lines_of_code_per_method_for_a_given_project()
+    {
+        $statistic = new ProjectStatistic($this->getTestProject());
+
+        $this->assertEquals(2.29, $statistic->getLogicalLinesOfCodePerMethod());
+        $this->assertEquals(
+            round($statistic->getLogicalLinesOfCode() / $statistic->getNumberOfMethods(), 2),
+            $statistic->getLogicalLinesOfCodePerMethod()
+        );
+
     }
 
     /** @test */
