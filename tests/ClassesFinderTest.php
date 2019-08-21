@@ -3,7 +3,6 @@
 namespace Wnx\LaravelStats\Tests;
 
 use Wnx\LaravelStats\ClassesFinder;
-use Wnx\LaravelStats\ComponentFinder;
 
 class ClassesFinderTest extends TestCase
 {
@@ -138,15 +137,5 @@ class ClassesFinderTest extends TestCase
     public function it_includes_vendored_classes()
     {
         $this->assertTrue($this->classes->contains(\Symfony\Component\Finder\Finder::class));
-    }
-
-    /** @test */
-    public function it_sorts_classes_into_components()
-    {
-        $components = app(ComponentFinder::class)->get();
-
-        $this->assertTrue($components->has('Other'));
-        $this->assertTrue($components->has('Models'));
-        $this->assertTrue($components->has('Commands'));
     }
 }
