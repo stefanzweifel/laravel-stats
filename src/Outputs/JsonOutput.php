@@ -29,7 +29,7 @@ class JsonOutput
         $this->output = $output;
     }
 
-    public function render(Project $project, bool $isVerbose = false)
+    public function render(Project $project, bool $isVerbose = false, string $filterByComponentName = null)
     {
         $codeLloc = $project->getAppCodeLogicalLinesOfCode();
         $testsLloc = $project->getTestsCodeLogicalLinesOfCode();
@@ -52,7 +52,12 @@ class JsonOutput
             ],
         ];
 
-        $groupedByComponent = $this->groupClassesByComponentName($project);
+        $groupedByComponent = $this->groupClassesByComponentName($project)
+            ->when($filterByComponentName, function ($components) use ($filterByComponentName) {
+                return $components->filter(function ($item, $key) use ($filterByComponentName) {
+                    return $key === $filterByComponentName;
+                });
+            });
 
         foreach ($groupedByComponent as $componentName => $classifiedClasses) {
             $numberOfClasses = $classifiedClasses->count();

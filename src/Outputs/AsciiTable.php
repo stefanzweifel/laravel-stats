@@ -43,12 +43,17 @@ class AsciiTable
      * @param  Project $project
      * @return void
      */
-    public function render(Project $project, bool $isVerbose = false)
+    public function render(Project $project, bool $isVerbose = false, $filterByComponentName = null)
     {
         $this->isVerbose = $isVerbose;
         $this->project = $project;
 
-        $groupedByComponent = $this->groupClassesByComponentName();
+        $groupedByComponent = $this->groupClassesByComponentName()
+            ->when($filterByComponentName, function ($components) use ($filterByComponentName) {
+                return $components->filter(function ($item, $key) use ($filterByComponentName) {
+                    return $key === $filterByComponentName;
+                });
+            });
 
         $table = new Table($this->output);
         $this->rightAlignNumbers($table);
