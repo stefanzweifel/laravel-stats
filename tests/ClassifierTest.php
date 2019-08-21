@@ -39,38 +39,6 @@ class ClassifierTest extends TestCase
     }
 
     /** @test */
-    public function it_detects_phpunit_tests()
-    {
-        $this->assertSame(
-            'PHPUnit Tests', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Tests\DemoUnitTest::class))
-        );
-    }
-
-    /** @test */
-    public function it_detects_dusk_tests()
-    {
-        $this->assertSame(
-            'DuskTests', $this->classifier->classify(new ReflectionClass(DemoDuskTest::class))
-        );
-    }
-
-    /** @test */
-    public function it_detects_browserkit_tests()
-    {
-        $this->assertSame(
-            'BrowserKit Tests', $this->classifier->classify(new ReflectionClass(DemoBrowserKit::class))
-        );
-    }
-
-    /** @test */
-    public function it_detects_event_listeners()
-    {
-        $this->assertSame(
-            'Event Listeners', $this->classifier->classify(new ReflectionClass(DemoEventListener::class))
-        );
-    }
-
-    /** @test */
     public function it_detects_custom_components()
     {
         config()->set('stats.custom_component_classifier', [
