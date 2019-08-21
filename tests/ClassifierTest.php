@@ -2,16 +2,16 @@
 
 namespace Wnx\LaravelStats\Tests;
 
-use Wnx\LaravelStats\Classifier;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
-use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Classifier;
 use Wnx\LaravelStats\Console\StatsListCommand;
-use Wnx\LaravelStats\Tests\Stubs\Tests\DemoDuskTest;
-use Wnx\LaravelStats\Tests\Stubs\Tests\DemoBrowserKit;
+use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Tests\Stubs\EventListeners\DemoEventListener;
 use Wnx\LaravelStats\Tests\Stubs\MyCustomComponentClass;
 use Wnx\LaravelStats\Tests\Stubs\MyCustomComponentClassifier;
-use Wnx\LaravelStats\Tests\Stubs\EventListeners\DemoEventListener;
+use Wnx\LaravelStats\Tests\Stubs\Tests\DemoBrowserKit;
+use Wnx\LaravelStats\Tests\Stubs\Tests\DemoDuskTest;
 
 class ClassifierTest extends TestCase
 {
@@ -22,169 +22,19 @@ class ClassifierTest extends TestCase
         $this->classifier = new Classifier();
     }
 
-    /** @test */
-    public function it_returns_other_for_unidentified_class()
+    public function getClassifier($args)
     {
-        $this->assertEquals(
-            'Other',
-            $this->classifier->classify(new ReflectionClass(new class() {
-            }))
-        );
+        return (new Classifier())->getClassifierForClassInstance(new ReflectionClass($args));
     }
 
     /** @test */
-    public function it_detects_commands()
+    public function it_returns_null_classifier_instance_for_unidentified_class()
     {
-        $this->assertSame(
-            'Commands', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Commands\DemoCommand::class))
-        );
-    }
-
-    /** @test */
-    public function it_detects_controllers()
-    {
-        Route::get('users', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@index');
-
-        $this->assertSame(
-            'Controllers', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController::class))
-        );
-    }
-
-    /** @test */
-    public function it_does_not_throw_exception_if_controller_can_not_be_found()
-    {
-        Route::get('users', 'Wnx\LaravelStats\Tests\Stubs\Controllers\NotFoundController@index');
-
-        $this->assertSame(
-            'Other', $this->classifier->classify(
-                new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController::class)
+        $this->assertInstanceOf(
+            \Wnx\LaravelStats\Classifiers\NullClassifier::class,
+            $this->getClassifier(
+                new class() {}
             )
-        );
-    }
-
-    /** @test */
-    public function it_detects_controllers_which_do_not_extend_the_illuminate_base_controller()
-    {
-        Route::get('projects', 'Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController@index');
-
-        $this->assertSame(
-            'Controllers', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController::class))
-        );
-    }
-
-    /** @test */
-    public function it_detects_events()
-    {
-        $this->assertSame(
-            'Events', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Events\DemoEvent::class))
-        );
-    }
-
-    /** @test */
-    public function it_detects_jobs()
-    {
-        $this->assertSame(
-            'Jobs', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Jobs\DemoJob::class))
-        );
-    }
-
-    /** @test */
-    public function it_detects_mails()
-    {
-        $this->assertSame(
-            'Mails', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Mails\DemoMail::class))
-        );
-    }
-
-    /** @test */
-    public function it_detects_middlewares()
-    {
-        $this->assertSame(
-            'Middlewares', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Middlewares\DemoMiddleware::class))
-        );
-    }
-
-    /** @test */
-    public function it_detects_route_middlewares()
-    {
-        $this->assertSame(
-            'Middlewares', $this->classifier->classify(new ReflectionClass(\Illuminate\Routing\Middleware\ThrottleRequests::class))
-        );
-    }
-
-    /** @test */
-    public function it_detects_migrations()
-    {
-        require_once __DIR__.'/Stubs/Migrations/2014_10_12_000000_create_users_table.php';
-
-        $this->assertSame(
-            'Migrations', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Migrations\CreateUsersTable::class))
-        );
-    }
-
-    /** @test */
-    public function it_detects_models()
-    {
-        $this->assertSame(
-            'Models', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Models\Project::class))
-        );
-    }
-
-    /** @test */
-    public function it_detects_notifications()
-    {
-        $this->assertSame(
-            'Notifications', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Notifications\ServerDownNotification::class))
-        );
-    }
-
-    /** @test */
-    public function it_detects_policies()
-    {
-        Gate::policy(Project::class, \Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy::class);
-
-        $this->assertSame(
-            'Policies', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy::class))
-        );
-    }
-
-    /** @test */
-    public function it_detects_requests()
-    {
-        $this->assertSame(
-            'Requests', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Requests\UserRequest::class))
-        );
-    }
-
-    /** @test */
-    public function it_detects_resources()
-    {
-        $this->assertSame(
-            'Resources', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Resources\DemoResource::class))
-        );
-    }
-
-    /** @test */
-    public function it_detects_rules()
-    {
-        $this->assertSame(
-            'Rules', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule::class))
-        );
-    }
-
-    /** @test */
-    public function it_detects_seeders()
-    {
-        $this->assertSame(
-            'Seeders', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\Seeders\DemoSeeder::class))
-        );
-    }
-
-    /** @test */
-    public function it_detects_service_providers()
-    {
-        $this->assertSame(
-            'Service Providers', $this->classifier->classify(new ReflectionClass(\Wnx\LaravelStats\Tests\Stubs\ServiceProviders\DemoProvider::class))
         );
     }
 
