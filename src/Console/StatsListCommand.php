@@ -19,7 +19,7 @@ class StatsListCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'stats {--format=}';
+    protected $signature = 'stats {--format=} {--component=}';
 
     /**
      * The console command description.
@@ -63,13 +63,15 @@ class StatsListCommand extends Command
             // Output Statistics as JSON
             (new JsonOutput($this->output))->render(
                 $project,
-                $this->option('verbose')
+                $this->option('verbose'),
+                $this->option('component')
             );
         } else {
             // Output Statistics as ASCII Table
             (new AsciiTable($this->output))->render(
                 $project,
-                $this->option('verbose')
+                $this->option('verbose'),
+                $this->option('component')
             );
         }
     }
