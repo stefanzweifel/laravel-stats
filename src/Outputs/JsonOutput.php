@@ -35,12 +35,12 @@ class JsonOutput
         $jsonStructure = [
             'components' => [],
             'total' => [
-                'number_of_classes' => $project->getNumberOfClasses(),
-                'number_of_methods' => $project->getNumberOfMethods(),
-                'methods_per_class' => $project->getNumberOfMethodsPerClass(),
-                'loc' => $project->getLinesOfCode(),
-                'lloc' => $project->getLogicalLinesOfCode(),
-                'lloc_per_method' => $project->getLogicalLinesOfCodePerMethod(),
+                'number_of_classes' => $project->statistic()->getNumberOfClasses(),
+                'number_of_methods' => $project->statistic()->getNumberOfMethods(),
+                'methods_per_class' => $project->statistic()->getNumberOfMethodsPerClass(),
+                'loc' => $project->statistic()->getLinesOfCode(),
+                'lloc' => $project->statistic()->getLogicalLinesOfCode(),
+                'lloc_per_method' => $project->statistic()->getLogicalLinesOfCodePerMethod(),
             ],
             'meta' => [
                 'code_lloc' => $codeLloc,

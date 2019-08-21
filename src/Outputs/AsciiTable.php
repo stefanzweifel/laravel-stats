@@ -159,12 +159,12 @@ class AsciiTable
     {
         $table->addRow([
             'name' => 'Total',
-            'number_of_classes' => $this->project->getNumberOfClasses(),
-            'number_of_methods' => $this->project->getNumberOfMethods(),
-            'methods_per_class' => $this->project->getNumberOfMethodsPerClass(),
-            'loc' => $this->project->getLinesOfCode(),
-            'lloc' => $this->project->getLogicalLinesOfCode(),
-            'lloc_per_method' => $this->project->getLogicalLinesOfCodePerMethod(),
+            'number_of_classes' => $this->project->statistic()->getNumberOfClasses(),
+            'number_of_methods' => $this->project->statistic()->getNumberOfMethods(),
+            'methods_per_class' => $this->project->statistic()->getNumberOfMethodsPerClass(),
+            'loc' => $this->project->statistic()->getLinesOfCode(),
+            'lloc' => $this->project->statistic()->getLogicalLinesOfCode(),
+            'lloc_per_method' => $this->project->statistic()->getLogicalLinesOfCodePerMethod(),
         ]);
     }
 
