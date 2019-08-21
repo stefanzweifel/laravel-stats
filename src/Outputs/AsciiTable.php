@@ -48,7 +48,7 @@ class AsciiTable
         $this->isVerbose = $isVerbose;
         $this->project = $project;
 
-        $groupedByComponent = $this->groupClassesByComponentName()
+        $groupedByComponent = $project->classifiedClassesGroupedByComponentName()
             ->when($filterByComponentName, function ($components) use ($filterByComponentName) {
                 return $components->filter(function ($item, $key) use ($filterByComponentName) {
                     return $key === $filterByComponentName;
@@ -81,18 +81,6 @@ class AsciiTable
         $this->addMetaRow($table);
 
         $table->render();
-    }
-
-    private function groupClassesByComponentName(): Collection
-    {
-        return $this->project
-            ->classifiedClasses()
-            ->groupBy(function ($classifiedClass) {
-                return $classifiedClass->classifier->name();
-            })
-            ->sortBy(function ($_, $componentName) {
-                return $componentName;
-            });
     }
 
     private function renderComponents($table, $groupedByComponent)
@@ -159,25 +147,22 @@ class AsciiTable
     {
         $table->addRow([
             'name' => 'Total',
-            'number_of_classes' => $this->project->getNumberOfClasses(),
-            'number_of_methods' => $this->project->getNumberOfMethods(),
-            'methods_per_class' => $this->project->getNumberOfMethodsPerClass(),
-            'loc' => $this->project->getLinesOfCode(),
-            'lloc' => $this->project->getLogicalLinesOfCode(),
-            'lloc_per_method' => $this->project->getLogicalLinesOfCodePerMethod(),
+            'number_of_classes' => $this->project->statistic()->getNumberOfClasses(),
+            'number_of_methods' => $this->project->statistic()->getNumberOfMethods(),
+            'methods_per_class' => $this->project->statistic()->getNumberOfMethodsPerClass(),
+            'loc' => $this->project->statistic()->getLinesOfCode(),
+            'lloc' => $this->project->statistic()->getLogicalLinesOfCode(),
+            'lloc_per_method' => $this->project->statistic()->getLogicalLinesOfCodePerMethod(),
         ]);
     }
 
     private function addMetaRow(Table $table)
     {
-        $codeLloc = $this->project->getAppCodeLogicalLinesOfCode();
-        $testsLloc = $this->project->getTestsCodeLogicalLinesOfCode();
-
         $table->setFooterTitle(implode(' • ', [
-            "Code LLoC: {$codeLloc}",
-            "Test LLoC: {$testsLloc}",
-            'Code/Test Ratio: 1:'.round($testsLloc / $codeLloc, 1),
-            'Routes: '.app(NumberOfRoutes::class)->get(),
+            "Code LLoC: {$this->project->statistic()->getLogicalLinesOfCodeForApplicationCode()}",
+            "Test LLoC: {$this->project->statistic()->getLogicalLinesOfCodeForTestCode()}",
+            'Code/Test Ratio: 1:' . $this->project->statistic()->getApplicationCodeToTestCodeRatio(),
+            'Routes: ' . app(NumberOfRoutes::class)->get(),
         ]));
     }
 

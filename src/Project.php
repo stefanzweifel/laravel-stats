@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats;
 
 use Illuminate\Support\Collection;
+use Wnx\LaravelStats\Statistics\ProjectStatistic;
 use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
 
 class Project
@@ -40,67 +41,19 @@ class Project
         return $this->classifiedClasses;
     }
 
-    public function getNumberOfClasses(): int
+    public function classifiedClassesGroupedByComponentName(): Collection
     {
-        return $this->classifiedClasses->count();
-    }
-
-    public function getNumberOfMethods(): int
-    {
-        return $this->classifiedClasses->sum(function (ClassifiedClass $class) {
-            return $class->getNumberOfMethods();
-        });
-    }
-
-    public function getNumberOfMethodsPerClass(): float
-    {
-        return round($this->getNumberOfMethods() / $this->getNumberOfClasses(), 2);
-    }
-
-    public function getLinesOfCode(): int
-    {
-        return $this->classifiedClasses->sum(function (ClassifiedClass $class) {
-            return $class->getLines();
-        });
-    }
-
-    public function getLogicalLinesOfCode(): int
-    {
-        return $this->classifiedClasses->sum(function (ClassifiedClass $class) {
-            return $class->getLogicalLinesOfCode();
-        });
-    }
-
-    public function getLogicalLinesOfCodePerMethod(): float
-    {
-        if ($this->getNumberOfMethods() === 0) {
-            return 0;
-        }
-
-        return round($this->getLogicalLinesOfCode() / $this->getNumberOfMethods(), 2);
-    }
-
-    public function getAppCodeLogicalLinesOfCode(): int
-    {
-        return $this
-            ->classifiedClasses()
-            ->filter(function (ClassifiedClass $classifiedClass) {
-                return $classifiedClass->classifier->countsTowardsApplicationCode();
+        return $this->classifiedClasses()
+            ->groupBy(function (ClassifiedClass $classifiedClass) {
+                return $classifiedClass->classifier->name();
             })
-            ->sum(function (ClassifiedClass $class) {
-                return $class->getLogicalLinesOfCode();
+            ->sortBy(function ($_, string $componentName) {
+                return $componentName;
             });
     }
 
-    public function getTestsCodeLogicalLinesOfCode(): int
+    public function statistic()
     {
-        return $this
-            ->classifiedClasses()
-            ->filter(function (ClassifiedClass $classifiedClass) {
-                return $classifiedClass->classifier->countsTowardsTests();
-            })
-            ->sum(function (ClassifiedClass $class) {
-                return $class->getLogicalLinesOfCode();
-            });
+        return new ProjectStatistic($this);
     }
 }
