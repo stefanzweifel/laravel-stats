@@ -2,10 +2,10 @@
 
 namespace Wnx\LaravelStats\Tests\Classifiers;
 
-use Wnx\LaravelStats\Classifiers\MigrationClassifier;
-use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Tests\Stubs\Migrations\CreateUsersTable;
 use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Classifiers\MigrationClassifier;
+use Wnx\LaravelStats\Tests\Stubs\Migrations\CreateUsersTable;
 
 class MigrationClassifierTest extends TestCase
 {

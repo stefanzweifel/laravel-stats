@@ -2,10 +2,10 @@
 
 namespace Wnx\LaravelStats\Tests\Classifiers;
 
-use Wnx\LaravelStats\Classifiers\Testing\DuskClassifier;
+use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Tests\Stubs\Tests\DemoDuskTest;
-use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\Classifiers\Testing\DuskClassifier;
 
 class DuskClassifierTest extends TestCase
 {

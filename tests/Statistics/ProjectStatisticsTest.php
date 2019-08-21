@@ -3,14 +3,14 @@
 namespace Wnx\LaravelStats\Tests\Statistics;
 
 use Wnx\LaravelStats\Project;
+use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Statistics\ProjectStatistic;
-use Wnx\LaravelStats\Tests\Stubs\Events\DemoEvent;
 use Wnx\LaravelStats\Tests\Stubs\Mails\DemoMail;
 use Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule;
+use Wnx\LaravelStats\Statistics\ProjectStatistic;
+use Wnx\LaravelStats\Tests\Stubs\Events\DemoEvent;
 use Wnx\LaravelStats\Tests\Stubs\Tests\DemoDuskTest;
 use Wnx\LaravelStats\Tests\Stubs\Tests\DemoUnitTest;
-use Wnx\LaravelStats\Tests\TestCase;
 
 class ProjectStatisticsTest extends TestCase
 {

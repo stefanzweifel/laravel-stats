@@ -161,8 +161,8 @@ class AsciiTable
         $table->setFooterTitle(implode(' • ', [
             "Code LLoC: {$this->project->statistic()->getLogicalLinesOfCodeForApplicationCode()}",
             "Test LLoC: {$this->project->statistic()->getLogicalLinesOfCodeForTestCode()}",
-            'Code/Test Ratio: 1:' . $this->project->statistic()->getApplicationCodeToTestCodeRatio(),
-            'Routes: ' . app(NumberOfRoutes::class)->get(),
+            'Code/Test Ratio: 1:'.$this->project->statistic()->getApplicationCodeToTestCodeRatio(),
+            'Routes: '.app(NumberOfRoutes::class)->get(),
         ]));
     }
 

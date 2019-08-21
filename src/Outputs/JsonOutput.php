@@ -123,5 +123,4 @@ class JsonOutput
             'lloc_per_method' => $classifiedClass->getLogicalLinesOfCodePerMethod(),
         ];
     }
-
 }

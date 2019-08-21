@@ -2,12 +2,12 @@
 
 namespace Wnx\LaravelStats\Tests\Classifiers;
 
-use Illuminate\Support\Facades\Route;
-use Wnx\LaravelStats\Classifiers\ControllerClassifier;
-use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
-use Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController;
 use Wnx\LaravelStats\Tests\TestCase;
+use Illuminate\Support\Facades\Route;
+use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Classifiers\ControllerClassifier;
+use Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController;
+use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
 
 class ControllerClassifierTest extends TestCase
 {

@@ -3,9 +3,9 @@
 namespace Wnx\LaravelStats\Tests;
 
 use Wnx\LaravelStats\Classifier;
-use Wnx\LaravelStats\Classifiers\NullClassifier;
-use Wnx\LaravelStats\Console\StatsListCommand;
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Console\StatsListCommand;
+use Wnx\LaravelStats\Classifiers\NullClassifier;
 use Wnx\LaravelStats\Tests\Stubs\MyCustomComponentClass;
 use Wnx\LaravelStats\Tests\Stubs\MyCustomComponentClassifier;
 use Wnx\LaravelStats\Tests\Stubs\ThrowExceptionCustomComponentClassifier;
@@ -23,7 +23,8 @@ class ClassifierTest extends TestCase
         $this->assertInstanceOf(
             NullClassifier::class,
             $this->getClassifier(
-                new class() {}
+                new class() {
+                }
             )
         );
     }

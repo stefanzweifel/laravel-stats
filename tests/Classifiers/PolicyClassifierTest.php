@@ -3,11 +3,11 @@
 namespace Wnx\LaravelStats\Tests\Classifiers;
 
 use Illuminate\Support\Facades\Gate;
-use Wnx\LaravelStats\Classifiers\PolicyClassifier;
+use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Tests\Stubs\Models\Project;
+use Wnx\LaravelStats\Classifiers\PolicyClassifier;
 use Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy;
-use Wnx\LaravelStats\Tests\TestCase;
 
 class PolicyClassifierTest extends TestCase
 {
@@ -31,6 +31,5 @@ class PolicyClassifierTest extends TestCase
                 new ReflectionClass(DemoPolicy::class)
             )
         );
-
     }
 }

@@ -2,11 +2,11 @@
 
 namespace Wnx\LaravelStats\Tests\Classifiers;
 
+use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\ReflectionClass;
 use Illuminate\Routing\Middleware\ThrottleRequests;
 use Wnx\LaravelStats\Classifiers\MiddlewareClassifier;
-use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Tests\Stubs\Middlewares\DemoMiddleware;
-use Wnx\LaravelStats\Tests\TestCase;
 
 class MiddlewareClassifierTest extends TestCase
 {

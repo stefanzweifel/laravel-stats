@@ -2,10 +2,10 @@
 
 namespace Wnx\LaravelStats\Tests\Classifiers;
 
-use Wnx\LaravelStats\Classifiers\ServiceProviderClassifier;
-use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Tests\Stubs\ServiceProviders\DemoProvider;
 use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Classifiers\ServiceProviderClassifier;
+use Wnx\LaravelStats\Tests\Stubs\ServiceProviders\DemoProvider;
 
 class ServiceProviderClassifierTest extends TestCase
 {

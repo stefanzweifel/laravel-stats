@@ -2,10 +2,10 @@
 
 namespace Wnx\LaravelStats\Tests\Classifiers;
 
-use Wnx\LaravelStats\Classifiers\NotificationClassifier;
-use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Tests\Stubs\Notifications\ServerDownNotification;
 use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Classifiers\NotificationClassifier;
+use Wnx\LaravelStats\Tests\Stubs\Notifications\ServerDownNotification;
 
 class NotificationClassifierTest extends TestCase
 {

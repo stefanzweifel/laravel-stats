@@ -2,9 +2,9 @@
 
 namespace Wnx\LaravelStats\Tests\Classifiers\Nova;
 
-use Wnx\LaravelStats\Classifiers\Nova\ActionClassifier;
-use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Classifiers\Nova\ActionClassifier;
 
 class ActionClassifierTest extends TestCase
 {

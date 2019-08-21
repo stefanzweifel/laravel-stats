@@ -2,10 +2,10 @@
 
 namespace Wnx\LaravelStats\Tests\Classifiers;
 
-use Wnx\LaravelStats\Classifiers\MailClassifier;
-use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Tests\Stubs\Mails\DemoMail;
 use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Classifiers\MailClassifier;
+use Wnx\LaravelStats\Tests\Stubs\Mails\DemoMail;
 
 class MailClassifierTest extends TestCase
 {

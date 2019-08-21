@@ -144,5 +144,4 @@ class ProjectStatistic
             1
         );
     }
-
 }

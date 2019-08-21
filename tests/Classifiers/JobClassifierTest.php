@@ -2,10 +2,10 @@
 
 namespace Wnx\LaravelStats\Tests\Classifiers;
 
-use Wnx\LaravelStats\Classifiers\JobClassifier;
+use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Tests\Stubs\Jobs\DemoJob;
-use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\Classifiers\JobClassifier;
 
 class JobClassifierTest extends TestCase
 {

@@ -2,10 +2,10 @@
 
 namespace Wnx\LaravelStats\Tests\Classifiers;
 
-use Wnx\LaravelStats\Classifiers\ModelClassifier;
+use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Tests\Stubs\Models\Project;
-use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\Classifiers\ModelClassifier;
 
 class ModelClassifierTest extends TestCase
 {

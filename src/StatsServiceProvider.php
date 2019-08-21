@@ -4,7 +4,6 @@ namespace Wnx\LaravelStats;
 
 use Illuminate\Support\ServiceProvider;
 use Wnx\LaravelStats\Console\StatsListCommand;
-use Wnx\LaravelStats\Console\NewStatsListCommand;
 
 class StatsServiceProvider extends ServiceProvider
 {
