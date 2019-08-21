@@ -104,40 +104,4 @@ class ProjectStatisticsTest extends TestCase
 
         $this->assertEquals(0.3, $statistic->getApplicationCodeToTestCodeRatio());
     }
-
-
-    /** @test */
-    public function it_returns_total_statistics()
-    {
-        $components = collect([
-            'Controllers' => collect([
-                new ReflectionClass(ProjectsController::class),
-            ]),
-        ]);
-
-        $stats = new ProjectStatistics($components);
-        $controller = $stats->components()['Controllers'];
-        $total = $stats->total();
-
-        $this->assertEquals($controller['number_of_classes'], $total[1]);
-        $this->assertEquals($controller['methods'], $total[2]);
-        $this->assertEquals($controller['methods_per_class'], $total[3]);
-        $this->assertEquals($controller['lines'], $total[4]);
-        $this->assertEquals($controller['lloc'], $total[5]);
-        $this->assertEquals($controller['lloc_per_method'], $total[6]);
-    }
-
-    /** @test */
-    public function it_sorts_components_by_name()
-    {
-        $components = collect([
-            'b' => collect(),
-            'd' => collect(),
-            'a' => collect(),
-        ]);
-
-        $stats = new ProjectStatistics($components);
-
-        $this->assertEquals(['a', 'b', 'd'], array_keys($stats->components()));
-    }
 }
