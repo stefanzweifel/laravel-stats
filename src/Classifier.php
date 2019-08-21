@@ -60,18 +60,7 @@ class Classifier
         NovaResourceClassifier::class,
     ];
 
-    /**
-     * Classify a given Class by an available Classifier Strategy.
-     *
-     * @param \Wnx\LaravelStats\ReflectionClass $class
-     * @return string
-     */
-    public function classify(ReflectionClass $class): string
-    {
-        return optional($this->getClassifierForClassInstance($class))->name();
-    }
-
-    public function getClassifierForClassInstance(ReflectionClass $class): ?ClassifierContract
+    public function getClassifierForClassInstance(ReflectionClass $class): ClassifierContract
     {
         $mergedClassifiers = array_merge(
             self::DEFAULT_CLASSIFIER,
@@ -79,20 +68,20 @@ class Classifier
         );
 
         foreach ($mergedClassifiers as $classifier) {
-            $c = new $classifier();
+            $classifierInstance = new $classifier();
 
             if (! $this->implementsContract($classifier)) {
                 throw new Exception("Classifier {$classifier} does not implement ".ClassifierContract::class.'.');
             }
 
             try {
-                $satisfied = $c->satisfies($class);
+                $satisfied = $classifierInstance->satisfies($class);
             } catch (Exception $e) {
                 $satisfied = false;
             }
 
             if ($satisfied) {
-                return $c;
+                return $classifierInstance;
             }
         }
 

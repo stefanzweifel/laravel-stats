@@ -2,33 +2,21 @@
 
 namespace Wnx\LaravelStats\Tests;
 
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Route;
 use Wnx\LaravelStats\Classifier;
 use Wnx\LaravelStats\Console\StatsListCommand;
 use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Tests\Stubs\EventListeners\DemoEventListener;
 use Wnx\LaravelStats\Tests\Stubs\MyCustomComponentClass;
 use Wnx\LaravelStats\Tests\Stubs\MyCustomComponentClassifier;
-use Wnx\LaravelStats\Tests\Stubs\Tests\DemoBrowserKit;
-use Wnx\LaravelStats\Tests\Stubs\Tests\DemoDuskTest;
 
 class ClassifierTest extends TestCase
 {
-    public function setUp() : void
-    {
-        parent::setUp();
-
-        $this->classifier = new Classifier();
-    }
-
     public function getClassifier($args)
     {
         return (new Classifier())->getClassifierForClassInstance(new ReflectionClass($args));
     }
 
     /** @test */
-    public function it_returns_null_classifier_instance_for_unidentified_class()
+    public function it_returns_instance_of_null_classifier_if_given_class_could_not_be_associated_with_a_component()
     {
         $this->assertInstanceOf(
             \Wnx\LaravelStats\Classifiers\NullClassifier::class,
@@ -39,15 +27,17 @@ class ClassifierTest extends TestCase
     }
 
     /** @test */
-    public function it_detects_custom_components()
+    public function it_returns_instance_of_custom_classifier_if_the_custom_classifier_has_been_registered_correctly()
     {
         config()->set('stats.custom_component_classifier', [
             MyCustomComponentClassifier::class,
         ]);
 
-        $this->assertSame(
-            'My Custom Component',
-            $this->classifier->classify(new ReflectionClass(MyCustomComponentClass::class))
+        $this->assertInstanceOf(
+            MyCustomComponentClassifier::class,
+            $this->getClassifier(
+                MyCustomComponentClass::class
+            )
         );
     }
 
@@ -60,6 +50,6 @@ class ClassifierTest extends TestCase
             StatsListCommand::class,
         ]);
 
-        $this->classifier->classify(new ReflectionClass(MyCustomComponentClass::class));
+        $this->getClassifier(new ReflectionClass(MyCustomComponentClass::class));
     }
 }
