@@ -60,14 +60,22 @@ class Classifier
         NovaResourceClassifier::class,
     ];
 
-    public function getClassifierForClassInstance(ReflectionClass $class): ClassifierContract
+    /**
+     * @var array
+     */
+    private $availableClassifiers = [];
+
+    public function __construct()
     {
-        $mergedClassifiers = array_merge(
+        $this->availableClassifiers = array_merge(
             self::DEFAULT_CLASSIFIER,
             config('stats.custom_component_classifier', [])
         );
+    }
 
-        foreach ($mergedClassifiers as $classifier) {
+    public function getClassifierForClassInstance(ReflectionClass $class): ClassifierContract
+    {
+        foreach ($this->availableClassifiers as $classifier) {
             $classifierInstance = new $classifier();
 
             if (! $this->implementsContract($classifier)) {

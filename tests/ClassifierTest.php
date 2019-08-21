@@ -3,10 +3,12 @@
 namespace Wnx\LaravelStats\Tests;
 
 use Wnx\LaravelStats\Classifier;
+use Wnx\LaravelStats\Classifiers\NullClassifier;
 use Wnx\LaravelStats\Console\StatsListCommand;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Tests\Stubs\MyCustomComponentClass;
 use Wnx\LaravelStats\Tests\Stubs\MyCustomComponentClassifier;
+use Wnx\LaravelStats\Tests\Stubs\ThrowExceptionCustomComponentClassifier;
 
 class ClassifierTest extends TestCase
 {
@@ -19,7 +21,7 @@ class ClassifierTest extends TestCase
     public function it_returns_instance_of_null_classifier_if_given_class_could_not_be_associated_with_a_component()
     {
         $this->assertInstanceOf(
-            \Wnx\LaravelStats\Classifiers\NullClassifier::class,
+            NullClassifier::class,
             $this->getClassifier(
                 new class() {}
             )
@@ -35,6 +37,21 @@ class ClassifierTest extends TestCase
 
         $this->assertInstanceOf(
             MyCustomComponentClassifier::class,
+            $this->getClassifier(
+                MyCustomComponentClass::class
+            )
+        );
+    }
+
+    /** @test */
+    public function it_returns_an_instance_of_null_classifier_if_during_the_satisfy_check_an_exception_is_thrown()
+    {
+        config()->set('stats.custom_component_classifier', [
+            ThrowExceptionCustomComponentClassifier::class,
+        ]);
+
+        $this->assertInstanceOf(
+            NullClassifier::class,
             $this->getClassifier(
                 MyCustomComponentClass::class
             )
