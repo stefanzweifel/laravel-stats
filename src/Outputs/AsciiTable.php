@@ -48,7 +48,7 @@ class AsciiTable
         $this->isVerbose = $isVerbose;
         $this->project = $project;
 
-        $groupedByComponent = $this->groupClassesByComponentName()
+        $groupedByComponent = $project->classifiedClassesGroupedByComponentName()
             ->when($filterByComponentName, function ($components) use ($filterByComponentName) {
                 return $components->filter(function ($item, $key) use ($filterByComponentName) {
                     return $key === $filterByComponentName;
@@ -81,18 +81,6 @@ class AsciiTable
         $this->addMetaRow($table);
 
         $table->render();
-    }
-
-    private function groupClassesByComponentName(): Collection
-    {
-        return $this->project
-            ->classifiedClasses()
-            ->groupBy(function ($classifiedClass) {
-                return $classifiedClass->classifier->name();
-            })
-            ->sortBy(function ($_, $componentName) {
-                return $componentName;
-            });
     }
 
     private function renderComponents($table, $groupedByComponent)

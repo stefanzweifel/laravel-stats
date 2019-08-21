@@ -41,32 +41,19 @@ class Project
         return $this->classifiedClasses;
     }
 
+    public function classifiedClassesGroupedByComponentName(): Collection
+    {
+        return $this->classifiedClasses()
+            ->groupBy(function (ClassifiedClass $classifiedClass) {
+                return $classifiedClass->classifier->name();
+            })
+            ->sortBy(function ($_, string $componentName) {
+                return $componentName;
+            });
+    }
+
     public function statistic()
     {
         return new ProjectStatistic($this);
-    }
-
-    public function getAppCodeLogicalLinesOfCode(): int
-    {
-        return $this
-            ->classifiedClasses()
-            ->filter(function (ClassifiedClass $classifiedClass) {
-                return $classifiedClass->classifier->countsTowardsApplicationCode();
-            })
-            ->sum(function (ClassifiedClass $class) {
-                return $class->getLogicalLinesOfCode();
-            });
-    }
-
-    public function getTestsCodeLogicalLinesOfCode(): int
-    {
-        return $this
-            ->classifiedClasses()
-            ->filter(function (ClassifiedClass $classifiedClass) {
-                return $classifiedClass->classifier->countsTowardsTests();
-            })
-            ->sum(function (ClassifiedClass $class) {
-                return $class->getLogicalLinesOfCode();
-            });
     }
 }
