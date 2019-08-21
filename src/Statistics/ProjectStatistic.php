@@ -12,6 +12,36 @@ class ProjectStatistic
      */
     private $project;
 
+    /**
+     * @var int
+     */
+    private $numberOfClasses;
+
+    /**
+     * @var int
+     */
+    private $numberOfMethods;
+
+    /**
+     * @var float
+     */
+    private $numberOfMethodsPerClass;
+
+    /**
+     * @var int
+     */
+    private $linesOfCode;
+
+    /**
+     * @var int
+     */
+    private $logicalLinesOfCode;
+
+    /**
+     * @var float
+     */
+    private $logicalLinesOfCodePerMethod;
+
     public function __construct(Project $project)
     {
         $this->project = $project;
@@ -19,42 +49,66 @@ class ProjectStatistic
 
     public function getNumberOfClasses(): int
     {
-        return $this->project->classifiedClasses()->count();
+        if ($this->numberOfClasses === null) {
+            $this->numberOfClasses = $this->project->classifiedClasses()->count();
+        }
+
+        return $this->numberOfClasses;
     }
 
     public function getNumberOfMethods(): int
     {
-        return $this->project->classifiedClasses()->sum(function (ClassifiedClass $class) {
-            return $class->getNumberOfMethods();
-        });
+        if ($this->numberOfMethods === null) {
+            $this->numberOfMethods = $this->project->classifiedClasses()->sum(function (ClassifiedClass $class) {
+                return $class->getNumberOfMethods();
+            });
+        }
+
+        return $this->numberOfMethods;
     }
 
     public function getNumberOfMethodsPerClass(): float
     {
-        return round($this->getNumberOfMethods() / $this->getNumberOfClasses(), 2);
+        if ($this->numberOfMethodsPerClass === null) {
+            $this->numberOfMethodsPerClass = round($this->getNumberOfMethods() / $this->getNumberOfClasses(), 2);
+        }
+
+        return $this->numberOfMethodsPerClass;
     }
 
     public function getLinesOfCode(): int
     {
-        return $this->project->classifiedClasses()->sum(function (ClassifiedClass $class) {
-            return $class->getLines();
-        });
+        if ($this->linesOfCode === null) {
+            $this->linesOfCode = $this->project->classifiedClasses()->sum(function (ClassifiedClass $class) {
+                return $class->getLines();
+            });
+        }
+
+        return $this->linesOfCode;
     }
 
     public function getLogicalLinesOfCode(): int
     {
-        return $this->project->classifiedClasses()->sum(function (ClassifiedClass $class) {
-            return $class->getLogicalLinesOfCode();
-        });
+        if ($this->logicalLinesOfCode === null) {
+            $this->logicalLinesOfCode = $this->project->classifiedClasses()->sum(function (ClassifiedClass $class) {
+                return $class->getLogicalLinesOfCode();
+            });
+        }
+
+        return $this->logicalLinesOfCode;
     }
 
     public function getLogicalLinesOfCodePerMethod(): float
     {
-        if ($this->getNumberOfMethods() === 0) {
-            return 0;
+        if ($this->logicalLinesOfCodePerMethod === null) {
+            if ($this->getNumberOfMethods() === 0) {
+                $this->logicalLinesOfCodePerMethod = 0;
+            } else {
+                $this->logicalLinesOfCodePerMethod = round($this->getLogicalLinesOfCode() / $this->getNumberOfMethods(), 2);
+            }
         }
 
-        return round($this->getLogicalLinesOfCode() / $this->getNumberOfMethods(), 2);
+        return $this->logicalLinesOfCodePerMethod;
     }
 
     public function getLogicalLinesOfCodeForApplicationCode(): int
