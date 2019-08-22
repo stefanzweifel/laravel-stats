@@ -2,11 +2,13 @@
 
 namespace Wnx\LaravelStats\Tests;
 
-use Wnx\LaravelStats\Project;
 use Illuminate\Support\Facades\Gate;
+use Wnx\LaravelStats\Project;
 use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy;
+use Wnx\LaravelStats\Statistics\ProjectStatistic;
 use Wnx\LaravelStats\Tests\Stubs\Models\Project as ProjectModel;
+use Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy;
+use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
 
 class ProjectTest extends TestCase
 {
@@ -19,11 +21,24 @@ class ProjectTest extends TestCase
 
         $project = new Project($classes);
 
-        // $this->assertTrue(
-        //     $project->classes()->map(function ($class) {
-        //         return $class->getReflectionClass();
-        //     })->contains($projectModel)
-        // );
+        $this->assertTrue(
+            $project->classifiedClasses()->map(function ($class) {
+                return $class->reflectionClass;
+            })->contains($projectModel)
+        );
+        $this->assertInstanceOf(ClassifiedClass::class, $project->classifiedClasses()->first());
+    }
+
+    /** @test */
+    public function returns_instance_of_project_statistics_when_accessing_project_statistics()
+    {
+        $classes = collect([
+            $projectModel = new ReflectionClass(ProjectModel::class),
+        ]);
+
+        $project = new Project($classes);
+
+        $this->assertInstanceOf(ProjectStatistic::class, $project->statistic());
     }
 
     /** @test */
@@ -37,32 +52,9 @@ class ProjectTest extends TestCase
 
         $project = new Project($classes);
 
-        // $groupedByName = $project->groupByComponentName();
+        $groupedByName = $project->classifiedClassesGroupedByComponentName();
 
-        // $this->assertEquals('Policies', $groupedByName->keys()[0]);
-    }
-
-    /** @test */
-    public function groups_components_into_buckets()
-    {
-        // groups components into buckets
-    }
-
-    /** @test */
-    public function calculates_total_numbers_for_stats_for_classes()
-    {
-        // calculates total numbers for stats for classes
-    }
-
-    /** @test */
-    public function calculates_code_to_test_ratio_for_the_project()
-    {
-        // calculates code to test ratio for classes
-    }
-
-    /** @test */
-    public function calculates_number_of_routes_for_the_project()
-    {
-        // calculates number of routes for a project
+        $this->assertEquals('Policies', $groupedByName->keys()[0]);
+        $this->assertCount(1, $groupedByName['Policies']);
     }
 }
