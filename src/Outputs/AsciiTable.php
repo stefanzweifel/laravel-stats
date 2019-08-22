@@ -2,16 +2,17 @@
 
 namespace Wnx\LaravelStats\Outputs;
 
-use Illuminate\Support\Str;
-use Wnx\LaravelStats\Project;
-use Illuminate\Support\Collection;
 use Illuminate\Console\OutputStyle;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableCell;
-use Wnx\LaravelStats\Statistics\NumberOfRoutes;
-use Symfony\Component\Console\Helper\TableStyle;
-use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
 use Symfony\Component\Console\Helper\TableSeparator;
+use Symfony\Component\Console\Helper\TableStyle;
+use Wnx\LaravelStats\Project;
+use Wnx\LaravelStats\Statistics\NumberOfRoutes;
+use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
+use Wnx\LaravelStats\ValueObjects\Component;
 
 class AsciiTable
 {
@@ -86,7 +87,10 @@ class AsciiTable
     private function renderComponents($table, $groupedByComponent)
     {
         foreach ($groupedByComponent as $componentName => $classifiedClasses) {
-            $this->addComponentTableRow($table, $componentName, $classifiedClasses);
+
+            $component = new Component($componentName, $classifiedClasses);
+
+            $this->addComponentTableRow($table, $component);
 
             // If the verbose option has been passed, also display each
             // classified Class in it's own row
@@ -99,32 +103,16 @@ class AsciiTable
         }
     }
 
-    private function addComponentTableRow(Table $table, string $componentName, Collection $classifiedClasses): void
+    private function addComponentTableRow(Table $table, Component $component): void
     {
-        $numberOfClasses = $classifiedClasses->count();
-
-        $numberOfMethods = $classifiedClasses->sum(function (ClassifiedClass $class) {
-            return $class->getNumberOfMethods();
-        });
-        $methodsPerClass = round($numberOfMethods / $numberOfClasses, 2);
-
-        $linesOfCode = $classifiedClasses->sum(function (ClassifiedClass $class) {
-            return $class->getLines();
-        });
-
-        $logicalLinesOfCode = $classifiedClasses->sum(function (ClassifiedClass $class) {
-            return $class->getLogicalLinesOfCode();
-        });
-        $logicalLinesOfCodePerMethod = $numberOfMethods === 0 ? 0 : round($logicalLinesOfCode / $numberOfMethods, 2);
-
         $table->addRow([
-            'name' => $componentName,
-            'number_of_classes' => $numberOfClasses,
-            'number_of_methods' => $numberOfMethods,
-            'methods_per_class' => $methodsPerClass,
-            'loc' => $linesOfCode,
-            'lloc' => $logicalLinesOfCode,
-            'lloc_per_method' => $logicalLinesOfCodePerMethod,
+            'name' => $component->name,
+            'number_of_classes' => $component->getNumberOfClasses(),
+            'number_of_methods' => $component->getNumberOfMethods(),
+            'methods_per_class' => $component->getNumberOfMethodsPerClass(),
+            'loc' => $component->getLinesOfCode(),
+            'lloc' => $component->getLogicalLinesOfCode(),
+            'lloc_per_method' => $component->getLogicalLinesOfCodePerMethod(),
         ]);
     }
 
