@@ -33,7 +33,7 @@ class StatsListCommandTest extends TestCase
 
     protected function isLaravel57OrNewer()
     {
-        $laravelVersions = ['5.7', '5.8'];
+        $laravelVersions = ['5.7', '5.8', '6.0'];
 
         foreach ($laravelVersions as $version) {
             if (Str::startsWith($this->app->version(), $version)) {
