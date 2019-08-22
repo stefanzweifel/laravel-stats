@@ -2,17 +2,16 @@
 
 namespace Wnx\LaravelStats\Outputs;
 
-use Illuminate\Console\OutputStyle;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Symfony\Component\Console\Helper\Table;
-use Symfony\Component\Console\Helper\TableCell;
-use Symfony\Component\Console\Helper\TableSeparator;
-use Symfony\Component\Console\Helper\TableStyle;
 use Wnx\LaravelStats\Project;
-use Wnx\LaravelStats\Statistics\NumberOfRoutes;
-use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
+use Illuminate\Console\OutputStyle;
+use Symfony\Component\Console\Helper\Table;
 use Wnx\LaravelStats\ValueObjects\Component;
+use Symfony\Component\Console\Helper\TableCell;
+use Wnx\LaravelStats\Statistics\NumberOfRoutes;
+use Symfony\Component\Console\Helper\TableStyle;
+use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
+use Symfony\Component\Console\Helper\TableSeparator;
 
 class AsciiTable
 {
@@ -87,7 +86,6 @@ class AsciiTable
     private function renderComponents($table, $groupedByComponent)
     {
         foreach ($groupedByComponent as $componentName => $classifiedClasses) {
-
             $component = new Component($componentName, $classifiedClasses);
 
             $this->addComponentTableRow($table, $component);

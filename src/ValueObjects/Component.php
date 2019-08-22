@@ -3,7 +3,6 @@
 namespace Wnx\LaravelStats\ValueObjects;
 
 use Illuminate\Support\Collection;
-use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
 
 class Component
 {
@@ -22,7 +21,6 @@ class Component
         $this->name = $name;
         $this->classifiedClasses = $classifiedClasses;
     }
-
 
     public function getNumberOfClasses(): int
     {
@@ -71,5 +69,4 @@ class Component
 
         return $this->getNumberOfMethods() === 0 ? 0 : round($this->getLogicalLinesOfCode() / $this->getNumberOfMethods(), 2);
     }
-
 }

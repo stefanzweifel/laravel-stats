@@ -2,18 +2,17 @@
 
 namespace Wnx\LaravelStats\Tests\Outputs;
 
-use Wnx\LaravelStats\Outputs\JsonOutput;
 use Wnx\LaravelStats\Project;
+use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
-use Wnx\LaravelStats\Tests\Stubs\Models\Project as ProjectModel;
+use Wnx\LaravelStats\Outputs\JsonOutput;
 use Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule;
 use Wnx\LaravelStats\Tests\Stubs\Tests\DemoUnitTest;
-use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
+use Wnx\LaravelStats\Tests\Stubs\Models\Project as ProjectModel;
 
 class JsonOutputTest extends TestCase
 {
-
     public function getTestProject()
     {
         $classes = collect([
@@ -40,7 +39,7 @@ class JsonOutputTest extends TestCase
                     'methods_per_class' => 0,
                     'loc' => 10,
                     'lloc' => 2,
-                    'lloc_per_method' => 0
+                    'lloc_per_method' => 0,
                 ],
                 [
                     'name' => 'Other',
@@ -49,7 +48,7 @@ class JsonOutputTest extends TestCase
                     'methods_per_class' => 3,
                     'loc' => 21,
                     'lloc' => 4,
-                    'lloc_per_method' => 1.33
+                    'lloc_per_method' => 1.33,
                 ],
                 [
                     'name' => 'PHPUnit Tests',
@@ -58,7 +57,7 @@ class JsonOutputTest extends TestCase
                     'methods_per_class' => 1,
                     'loc' => 18,
                     'lloc' => 3,
-                    'lloc_per_method' => 3
+                    'lloc_per_method' => 3,
                 ],
                 [
                     'name' => 'Rules',
@@ -67,8 +66,8 @@ class JsonOutputTest extends TestCase
                     'methods_per_class' => 3,
                     'loc' => 41,
                     'lloc' => 3,
-                    'lloc_per_method' => 1
-                ]
+                    'lloc_per_method' => 1,
+                ],
             ],
             'total' => [
                 'number_of_classes' => 4,
@@ -82,8 +81,8 @@ class JsonOutputTest extends TestCase
                 'code_lloc' => 9,
                 'test_lloc' => 3,
                 'code_to_test_ratio' => 0.3,
-                'number_of_routes' => 0
-            ]
+                'number_of_routes' => 0,
+            ],
         ];
 
         $this->assertEquals($expected, $json);
@@ -107,7 +106,7 @@ class JsonOutputTest extends TestCase
             'methods_per_class' => 0,
             'loc' => 10,
             'lloc' => 2.0,
-            'lloc_per_method' => 0.0
+            'lloc_per_method' => 0.0,
         ];
 
         $this->assertEquals($expected, $classes[0]);
@@ -130,5 +129,4 @@ class JsonOutputTest extends TestCase
         $this->assertCount(0, $components->where('name', 'Others'));
         $this->assertCount(0, $components->where('name', 'PHPUnit Tests'));
     }
-
 }

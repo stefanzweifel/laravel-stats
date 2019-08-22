@@ -2,15 +2,15 @@
 
 namespace Wnx\LaravelStats\Tests\ValueObjects;
 
-use Wnx\LaravelStats\Classifiers\ControllerClassifier;
-use Wnx\LaravelStats\Classifiers\RuleClassifier;
-use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
-use Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController;
-use Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule;
 use Wnx\LaravelStats\Tests\TestCase;
-use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
+use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\ValueObjects\Component;
+use Wnx\LaravelStats\Classifiers\RuleClassifier;
+use Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule;
+use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
+use Wnx\LaravelStats\Classifiers\ControllerClassifier;
+use Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController;
+use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
 
 class ComponentTest extends TestCase
 {
@@ -19,7 +19,7 @@ class ComponentTest extends TestCase
         return new Component('Test Component', collect([
             new ClassifiedClass(new ReflectionClass(DemoRule::class), new RuleClassifier),
             new ClassifiedClass(new ReflectionClass(UsersController::class), new ControllerClassifier),
-            new ClassifiedClass(new ReflectionClass(ProjectsController::class), new ControllerClassifier)
+            new ClassifiedClass(new ReflectionClass(ProjectsController::class), new ControllerClassifier),
         ]));
     }
 

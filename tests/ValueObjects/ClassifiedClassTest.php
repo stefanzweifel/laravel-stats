@@ -2,11 +2,11 @@
 
 namespace Wnx\LaravelStats\Tests\ValueObjects;
 
-use Wnx\LaravelStats\Classifiers\ControllerClassifier;
-use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController;
 use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
+use Wnx\LaravelStats\Classifiers\ControllerClassifier;
+use Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController;
 
 class ClassifiedClassTest extends TestCase
 {
@@ -43,7 +43,6 @@ class ClassifiedClassTest extends TestCase
             8,
             $this->getClassifiedClass()->getLogicalLinesOfCode()
         );
-
     }
 
     /** @test */
@@ -54,5 +53,4 @@ class ClassifiedClassTest extends TestCase
             $this->getClassifiedClass()->getLogicalLinesOfCodePerMethod()
         );
     }
-
 }

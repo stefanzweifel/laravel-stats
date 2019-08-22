@@ -68,7 +68,6 @@ class StatsListCommand extends Command
             );
 
             $this->output->text(json_encode($json));
-
         } else {
             // Output Statistics as ASCII Table
             (new AsciiTable($this->output))->render(

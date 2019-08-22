@@ -2,12 +2,11 @@
 
 namespace Wnx\LaravelStats\Outputs;
 
-use Illuminate\Console\OutputStyle;
-use Illuminate\Support\Collection;
 use Wnx\LaravelStats\Project;
+use Illuminate\Support\Collection;
+use Wnx\LaravelStats\ValueObjects\Component;
 use Wnx\LaravelStats\Statistics\NumberOfRoutes;
 use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
-use Wnx\LaravelStats\ValueObjects\Component;
 
 class JsonOutput
 {
