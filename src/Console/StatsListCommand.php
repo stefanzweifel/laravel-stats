@@ -61,11 +61,14 @@ class StatsListCommand extends Command
 
         if ($this->option('format') === 'json') {
             // Output Statistics as JSON
-            (new JsonOutput($this->output))->render(
+            $json = (new JsonOutput())->render(
                 $project,
                 $this->option('verbose'),
                 $this->option('component')
             );
+
+            $this->output->text(json_encode($json));
+
         } else {
             // Output Statistics as ASCII Table
             (new AsciiTable($this->output))->render(

@@ -11,23 +11,6 @@ use Wnx\LaravelStats\ValueObjects\Component;
 
 class JsonOutput
 {
-    /**
-     * Console output.
-     *
-     * @var \Illuminate\Console\OutputStyle
-     */
-    protected $output;
-
-    /**
-     * Create new instance of JsonOutput.
-     *
-     * @param \Illuminate\Console\OutputStyle $output
-     */
-    public function __construct(OutputStyle $output)
-    {
-        $this->output = $output;
-    }
-
     public function render(Project $project, bool $isVerbose = false, string $filterByComponentName = null)
     {
         $jsonStructure = [
@@ -59,7 +42,7 @@ class JsonOutput
             $jsonStructure['components'][] = $singleComponent;
         }
 
-        $this->output->text(json_encode($jsonStructure));
+        return $jsonStructure;
     }
 
     private function getTotalArray(Project $project): array
