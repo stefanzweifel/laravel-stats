@@ -52,6 +52,18 @@ class Project
             });
     }
 
+    public function classifiedClassesGroupedAndFilteredByComponentNames(array $componentNamesToFilter = []): Collection
+    {
+        $shouldCollectionBeFiltered = ! empty(array_filter($componentNamesToFilter));
+
+        return $this->classifiedClassesGroupedByComponentName()
+            ->when($shouldCollectionBeFiltered, function ($components) use ($componentNamesToFilter) {
+                return $components->filter(function ($item, $key) use ($componentNamesToFilter) {
+                    return in_array($key, $componentNamesToFilter);
+                });
+            });
+    }
+
     public function statistic()
     {
         return new ProjectStatistic($this);

@@ -2,13 +2,14 @@
 
 namespace Wnx\LaravelStats\Tests;
 
-use Wnx\LaravelStats\Project;
 use Illuminate\Support\Facades\Gate;
+use Wnx\LaravelStats\Project;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Statistics\ProjectStatistic;
-use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
-use Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy;
 use Wnx\LaravelStats\Tests\Stubs\Models\Project as ProjectModel;
+use Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy;
+use Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule;
+use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
 
 class ProjectTest extends TestCase
 {
@@ -48,13 +49,55 @@ class ProjectTest extends TestCase
 
         $classes = collect([
             new ReflectionClass(DemoPolicy::class),
+            new ReflectionClass(DemoRule::class),
         ]);
 
         $project = new Project($classes);
 
         $groupedByName = $project->classifiedClassesGroupedByComponentName();
 
-        $this->assertEquals('Policies', $groupedByName->keys()[0]);
+        $this->assertArrayHasKey('Policies', $groupedByName);
         $this->assertCount(1, $groupedByName['Policies']);
+
+        $this->assertArrayHasKey('Rules', $groupedByName);
+        $this->assertCount(1, $groupedByName['Rules']);
+    }
+
+    /** @test */
+    public function groups_classes_into_components_and_filters_by_component_name()
+    {
+        Gate::policy(\Wnx\LaravelStats\Tests\Stubs\Models\Project::class, \Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy::class);
+
+        $classes = collect([
+            new ReflectionClass(DemoPolicy::class),
+            new ReflectionClass(DemoRule::class),
+        ]);
+
+        $project = new Project($classes);
+        $filter = ['Rules'];
+
+        $groupedByName = $project->classifiedClassesGroupedAndFilteredByComponentNames($filter);
+
+        $this->assertArrayNotHasKey('Policies', $groupedByName);
+        $this->assertArrayHasKey('Rules', $groupedByName);
+    }
+
+    /** @test */
+    public function groups_classes_into_component_and_does_not_apply_filter_if_array_is_empty()
+    {
+        Gate::policy(\Wnx\LaravelStats\Tests\Stubs\Models\Project::class, \Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy::class);
+
+        $classes = collect([
+            new ReflectionClass(DemoPolicy::class),
+            new ReflectionClass(DemoRule::class),
+        ]);
+
+        $project = new Project($classes);
+        $filter = [];
+
+        $groupedByName = $project->classifiedClassesGroupedAndFilteredByComponentNames($filter);
+
+        $this->assertArrayHasKey('Policies', $groupedByName);
+        $this->assertArrayHasKey('Rules', $groupedByName);
     }
 }
