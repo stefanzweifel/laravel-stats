@@ -43,15 +43,15 @@ class AsciiTable
      * @param  Project $project
      * @return void
      */
-    public function render(Project $project, bool $isVerbose = false, $filterByComponentName = null)
+    public function render(Project $project, bool $isVerbose = false, $filterByComponentName = [])
     {
         $this->isVerbose = $isVerbose;
         $this->project = $project;
 
         $groupedByComponent = $project->classifiedClassesGroupedByComponentName()
-            ->when($filterByComponentName, function ($components) use ($filterByComponentName) {
+            ->when(! empty(array_filter($filterByComponentName)), function ($components) use ($filterByComponentName) {
                 return $components->filter(function ($item, $key) use ($filterByComponentName) {
-                    return $key === $filterByComponentName;
+                    return in_array($key, $filterByComponentName);
                 });
             });
 

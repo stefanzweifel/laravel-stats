@@ -10,7 +10,7 @@ use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
 
 class JsonOutput
 {
-    public function render(Project $project, bool $isVerbose = false, string $filterByComponentName = null)
+    public function render(Project $project, bool $isVerbose = false, array $filterByComponentName = [])
     {
         $jsonStructure = [
             'components' => [],
@@ -19,9 +19,9 @@ class JsonOutput
         ];
 
         $groupedByComponent = $project->classifiedClassesGroupedByComponentName()
-            ->when($filterByComponentName, function ($components) use ($filterByComponentName) {
+            ->when(! empty(array_filter($filterByComponentName)), function ($components) use ($filterByComponentName) {
                 return $components->filter(function ($item, $key) use ($filterByComponentName) {
-                    return $key === $filterByComponentName;
+                    return in_array($key, $filterByComponentName);
                 });
             });
 

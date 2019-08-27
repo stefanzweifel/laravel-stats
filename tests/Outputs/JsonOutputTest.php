@@ -118,15 +118,15 @@ class JsonOutputTest extends TestCase
         $json = (new JsonOutput)->render(
             $this->getTestProject(),
             $isVerbose = true,
-            'Rules'
+            ['Rules', 'Other']
         );
 
         $components = collect($json['components']);
 
-        $this->assertCount(1, $components);
+        $this->assertCount(2, $components);
         $this->assertCount(1, $components->where('name', 'Rules'));
         $this->assertCount(0, $components->where('name', 'Models'));
-        $this->assertCount(0, $components->where('name', 'Others'));
+        $this->assertCount(1, $components->where('name', 'Other'));
         $this->assertCount(0, $components->where('name', 'PHPUnit Tests'));
     }
 }

@@ -64,7 +64,7 @@ class StatsListCommand extends Command
             $json = (new JsonOutput())->render(
                 $project,
                 $this->option('verbose'),
-                $this->option('component')
+                explode(',', $this->option('component'))
             );
 
             $this->output->text(json_encode($json));
@@ -73,7 +73,7 @@ class StatsListCommand extends Command
             (new AsciiTable($this->output))->render(
                 $project,
                 $this->option('verbose'),
-                $this->option('component')
+                explode(',', $this->option('component'))
             );
         }
     }
