@@ -2,10 +2,10 @@
 
 namespace Wnx\LaravelStats\Tests\Classifiers\Nova;
 
-use Wnx\LaravelStats\Classifiers\Nova\FilterClassifier;
+use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Tests\Stubs\Nova\DemoFilter;
-use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\Classifiers\Nova\FilterClassifier;
 
 class FilterClassifierTest extends TestCase
 {

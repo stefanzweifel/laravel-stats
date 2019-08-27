@@ -2,10 +2,10 @@
 
 namespace Wnx\LaravelStats\Tests\Classifiers\Nova;
 
-use Wnx\LaravelStats\Classifiers\Nova\LensClassifier;
+use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Tests\Stubs\Nova\DemoLens;
-use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\Classifiers\Nova\LensClassifier;
 
 class LensClassifierTest extends TestCase
 {
