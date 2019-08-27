@@ -48,12 +48,7 @@ class AsciiTable
         $this->isVerbose = $isVerbose;
         $this->project = $project;
 
-        $groupedByComponent = $project->classifiedClassesGroupedByComponentName()
-            ->when(! empty(array_filter($filterByComponentName)), function ($components) use ($filterByComponentName) {
-                return $components->filter(function ($item, $key) use ($filterByComponentName) {
-                    return in_array($key, $filterByComponentName);
-                });
-            });
+        $groupedByComponent = $project->classifiedClassesGroupedAndFilteredByComponentNames($filterByComponentName);
 
         $table = new Table($this->output);
         $this->rightAlignNumbers($table);
