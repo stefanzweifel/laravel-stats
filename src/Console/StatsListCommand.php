@@ -46,16 +46,15 @@ class StatsListCommand extends Command
         })->reject(function (ReflectionClass $class) {
             return app(config('stats.rejection_strategy', RejectVendorClasses::class))
                     ->shouldClassBeRejected($class);
-        })
-            ->reject(function (ReflectionClass $class) {
-                foreach (config('stats.ignored_namespaces', []) as $namespace) {
-                    if (Str::startsWith($class->getNamespaceName(), $namespace)) {
-                        return true;
-                    }
+        })->reject(function (ReflectionClass $class) {
+            foreach (config('stats.ignored_namespaces', []) as $namespace) {
+                if (Str::startsWith($class->getNamespaceName(), $namespace)) {
+                    return true;
                 }
+            }
 
-                return false;
-            });
+            return false;
+        });
 
         $project = new Project($reflectionClasses);
 
