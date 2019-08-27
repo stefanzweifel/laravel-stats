@@ -16,6 +16,36 @@ class Component
      */
     private $classifiedClasses;
 
+    /**
+     * @var int
+     */
+    private $numberOfClasses;
+
+    /**
+     * @var int
+     */
+    private $numberOfMethods;
+
+    /**
+     * @var float
+     */
+    private $numberOfMethodsPerClass;
+
+    /**
+     * @var int
+     */
+    private $linesOfCode;
+
+    /**
+     * @var int
+     */
+    private $logicalLinesOfCode;
+
+    /**
+     * @var float
+     */
+    private $logicalLinesOfCodePerMethod;
+
     public function __construct(string $name, Collection $classifiedClasses)
     {
         $this->name = $name;
@@ -24,49 +54,66 @@ class Component
 
     public function getNumberOfClasses(): int
     {
-        // TODO: Add Caching
+        if ($this->numberOfClasses === null) {
+            $this->numberOfClasses = $this->classifiedClasses->count();
+        }
 
-        return $this->classifiedClasses->count();
+        return $this->numberOfClasses;
     }
 
     public function getNumberOfMethods(): int
     {
-        // TODO: Add Caching
+        if ($this->numberOfMethods === null) {
+            $this->numberOfMethods = $this->classifiedClasses->sum(function (ClassifiedClass $class) {
+                return $class->getNumberOfMethods();
+            });
+        }
 
-        return $this->classifiedClasses->sum(function (ClassifiedClass $class) {
-            return $class->getNumberOfMethods();
-        });
+        return $this->numberOfMethods;
     }
 
     public function getNumberOfMethodsPerClass(): float
     {
-        // TODO: Add Caching
+        if ($this->numberOfMethodsPerClass === null) {
+            $this->numberOfMethodsPerClass = round($this->getNumberOfMethods() / $this->getNumberOfClasses(), 2);
+        }
 
-        return round($this->getNumberOfMethods() / $this->getNumberOfClasses(), 2);
+        return $this->numberOfMethodsPerClass;
     }
 
     public function getLinesOfCode(): int
     {
-        // TODO: Add Caching
+        if ($this->linesOfCode === null) {
+            $this->linesOfCode = $this->classifiedClasses->sum(function (ClassifiedClass $class) {
+                return $class->getLines();
+            });
+        }
 
-        return $this->classifiedClasses->sum(function (ClassifiedClass $class) {
-            return $class->getLines();
-        });
+        return $this->linesOfCode;
     }
 
     public function getLogicalLinesOfCode(): int
     {
-        // TODO: Add Caching
 
-        return $this->classifiedClasses->sum(function (ClassifiedClass $class) {
-            return $class->getLogicalLinesOfCode();
-        });
+        if ($this->logicalLinesOfCode === null) {
+            $this->logicalLinesOfCode = $this->classifiedClasses->sum(function (ClassifiedClass $class) {
+                return $class->getLogicalLinesOfCode();
+            });
+        }
+
+        return $this->logicalLinesOfCode;
     }
 
     public function getLogicalLinesOfCodePerMethod(): float
     {
-        // TODO: Add Caching
+        if ($this->logicalLinesOfCodePerMethod === null) {
+            if ($this->getNumberOfMethods() === 0) {
+                $this->logicalLinesOfCodePerMethod = 0;
+            } else {
+                $this->logicalLinesOfCodePerMethod = round($this->getLogicalLinesOfCode() / $this->getNumberOfMethods(), 2);
+            }
+        }
 
-        return $this->getNumberOfMethods() === 0 ? 0 : round($this->getLogicalLinesOfCode() / $this->getNumberOfMethods(), 2);
+        return $this->logicalLinesOfCodePerMethod;
     }
 }
