@@ -20,6 +20,31 @@ class ClassifiedClass
      */
     public $classifier;
 
+    /**
+     * @var int
+     */
+    private $numberOfMethods;
+
+    /**
+     * @var float
+     */
+    private $numberOfMethodsPerClass;
+
+    /**
+     * @var int
+     */
+    private $linesOfCode;
+
+    /**
+     * @var int
+     */
+    private $logicalLinesOfCode;
+
+    /**
+     * @var float
+     */
+    private $logicalLinesOfCodePerMethod;
+
     public function __construct(ReflectionClass $reflectionClass, Classifier $classifier)
     {
         $this->reflectionClass = $reflectionClass;
@@ -33,7 +58,11 @@ class ClassifiedClass
      */
     public function getNumberOfMethods(): int
     {
-        return $this->reflectionClass->getDefinedMethods()->count();
+        if ($this->numberOfMethods === null) {
+            $this->numberOfMethods = $this->reflectionClass->getDefinedMethods()->count();
+        }
+
+        return $this->numberOfMethods;
     }
 
     /**
@@ -43,8 +72,12 @@ class ClassifiedClass
      */
     public function getLines(): int
     {
-        return app(Analyser::class)
-            ->countFiles([$this->reflectionClass->getFileName()], false)['loc'];
+        if ($this->linesOfCode === null) {
+            $this->linesOfCode = app(Analyser::class)
+                ->countFiles([$this->reflectionClass->getFileName()], false)['loc'];
+        }
+
+        return $this->linesOfCode;
     }
 
     /**
@@ -54,8 +87,12 @@ class ClassifiedClass
      */
     public function getLogicalLinesOfCode(): float
     {
-        return app(Analyser::class)
-            ->countFiles([$this->reflectionClass->getFileName()], false)['lloc'];
+        if ($this->logicalLinesOfCode === null) {
+            $this->logicalLinesOfCode = app(Analyser::class)
+                ->countFiles([$this->reflectionClass->getFileName()], false)['lloc'];
+        }
+
+        return $this->logicalLinesOfCode;
     }
 
     /**
@@ -65,10 +102,14 @@ class ClassifiedClass
      */
     public function getLogicalLinesOfCodePerMethod(): float
     {
-        if ($this->getNumberOfMethods() === 0) {
-            return 0;
+        if ($this->logicalLinesOfCodePerMethod === null) {
+            if ($this->getNumberOfMethods() === 0) {
+                $this->logicalLinesOfCodePerMethod = $this->logicalLinesOfCodePerMethod = 0;
+            } else {
+                $this->logicalLinesOfCodePerMethod = round($this->getLogicalLinesOfCode() / $this->getNumberOfMethods(), 2);
+            }
         }
 
-        return round($this->getLogicalLinesOfCode() / $this->getNumberOfMethods(), 2);
+        return $this->logicalLinesOfCodePerMethod;
     }
 }
