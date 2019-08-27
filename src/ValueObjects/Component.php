@@ -94,7 +94,6 @@ class Component
 
     public function getLogicalLinesOfCode(): int
     {
-
         if ($this->logicalLinesOfCode === null) {
             $this->logicalLinesOfCode = $this->classifiedClasses->sum(function (ClassifiedClass $class) {
                 return $class->getLogicalLinesOfCode();

@@ -2,14 +2,14 @@
 
 namespace Wnx\LaravelStats\Tests;
 
-use Illuminate\Support\Facades\Gate;
 use Wnx\LaravelStats\Project;
+use Illuminate\Support\Facades\Gate;
 use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Statistics\ProjectStatistic;
-use Wnx\LaravelStats\Tests\Stubs\Models\Project as ProjectModel;
-use Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy;
 use Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule;
+use Wnx\LaravelStats\Statistics\ProjectStatistic;
 use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
+use Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy;
+use Wnx\LaravelStats\Tests\Stubs\Models\Project as ProjectModel;
 
 class ProjectTest extends TestCase
 {
