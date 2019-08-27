@@ -33,7 +33,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Wnx\\LaravelStats\\Tests\\": "tests/"
+            "Wnx\\LaravelStats\\Tests\\": "tests/",
+            "Laravel\\Nova\\": "test-stubs-nova/"
         }
     },
     "scripts": {
