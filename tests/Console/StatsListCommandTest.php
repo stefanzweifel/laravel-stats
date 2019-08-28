@@ -77,7 +77,7 @@ class StatsListCommandTest extends TestCase
     public function it_returns_stats_as_json()
     {
         $this->artisan('stats', [
-            '--format' => 'json',
+            '--json' => true,
         ]);
         $result = Artisan::output();
 

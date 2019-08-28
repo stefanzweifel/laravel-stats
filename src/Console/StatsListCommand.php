@@ -19,7 +19,7 @@ class StatsListCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'stats {--format=} {--component=}';
+    protected $signature = 'stats {--json : Output the statistics as JSON} {-c|--components= : Comma separated list of components which should be displayed}';
 
     /**
      * The console command description.
@@ -58,21 +58,19 @@ class StatsListCommand extends Command
 
         $project = new Project($reflectionClasses);
 
-        if ($this->option('format') === 'json') {
-            // Output Statistics as JSON
+        if ($this->option('json') === true) {
             $json = (new JsonOutput())->render(
                 $project,
                 $this->option('verbose'),
-                explode(',', $this->option('component'))
+                explode(',', $this->option('components'))
             );
 
             $this->output->text(json_encode($json));
         } else {
-            // Output Statistics as ASCII Table
             (new AsciiTable($this->output))->render(
                 $project,
                 $this->option('verbose'),
-                explode(',', $this->option('component'))
+                explode(',', $this->option('components'))
             );
         }
     }
