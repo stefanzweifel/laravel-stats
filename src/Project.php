@@ -37,7 +37,6 @@ class Project
 
     public function classifiedClasses(): Collection
     {
-        // Maybe return a "ClassesCollection" ?
         return $this->classifiedClasses;
     }
 
@@ -64,7 +63,7 @@ class Project
             });
     }
 
-    public function statistic()
+    public function statistic(): ProjectStatistic
     {
         return new ProjectStatistic($this);
     }
