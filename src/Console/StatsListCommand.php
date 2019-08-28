@@ -9,7 +9,6 @@ use Wnx\LaravelStats\ClassesFinder;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Outputs\AsciiTable;
 use Wnx\LaravelStats\Outputs\JsonOutput;
-use Symfony\Component\Console\Helper\Table;
 use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
 
 class StatsListCommand extends Command
