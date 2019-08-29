@@ -70,6 +70,7 @@ return [
      * List of files/folders to be excluded from analysis.
      */
     'exclude' => [
+        base_path('tests/bootstrap.php'),
         // base_path('app/helpers.php'),
         // base_path('app/Services'),
     ],
@@ -127,8 +128,22 @@ php artisan stats
 The statistics are also available as JSON.
 
 ```shell
-php artisan stats --format=json
+php artisan stats --json
 ```
+
+If you want a more detailed report and see which classes have been grouped into which component, you can use the `--verbose`-option.
+
+```
+php artisan stats --verbose
+```
+
+The verbose option is also available for the JSON format.
+
+```
+php artisan stats --json --verbose
+```
+
+
 
 ## How does this package detect certain Laravel Components?
 
@@ -162,7 +177,7 @@ The package scans the files defined in the `paths`-array in the configuration fi
 
 ## Create your own Classifiers
 
-If your application has it's own components you would like to see in `laravel-stats` you can create your own `Classifiers`.
+If your application has it's own components you would like to see in `laravel-stats` you can create your own "Classifiers".
 Create your own Classifiers by implementing the [`Classifier`](https://github.com/stefanzweifel/laravel-stats/blob/master/src/Contracts/Classifier.php)-contract and adding the class to the `stats.custom_component_classifier` config array.
 
 For example:
@@ -180,12 +195,22 @@ class RepositoryClassifier implements Classifier
 {
     public function name(): string
     {
-        return 'Repository';
+        return 'Repositories';
     }
 
     public function satisfies(ReflectionClass $class): bool
     {
         return $class->isSubclassOf(\App\Repositories\BaseRepository::class);
+    }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return true;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
     }
 }
 ```
