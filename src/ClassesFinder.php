@@ -37,7 +37,7 @@ class ClassesFinder
     /**
      * Find PHP Files which should be analyzed.
      *
-     * @return Illuminate\Support\Collection
+     * @return \Illuminate\Support\Collection
      */
     protected function findFilesInProjectPath(): Collection
     {

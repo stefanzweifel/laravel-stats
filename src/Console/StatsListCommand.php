@@ -34,10 +34,9 @@ class StatsListCommand extends Command
      */
     public function handle()
     {
-        // Find and load all Classes within a Project. Returns a Collection
         $classes = app(ClassesFinder::class)->findAndLoadClasses();
 
-        // Transform those Classes into ReflectionClass instances
+        // Transform  Classes into ReflectionClass instances
         // Remove Classes based on the RejectionStrategy
         // Remove Classes based on the namespace
         $reflectionClasses = $classes->map(function ($class) {

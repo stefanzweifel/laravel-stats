@@ -8,7 +8,7 @@ use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
 class ProjectStatistic
 {
     /**
-     * @var Wnx\LaravelStats\Project
+     * @var \Wnx\LaravelStats\Project
      */
     private $project;
 
