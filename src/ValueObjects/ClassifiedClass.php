@@ -26,11 +26,6 @@ class ClassifiedClass
     private $numberOfMethods;
 
     /**
-     * @var float
-     */
-    private $numberOfMethodsPerClass;
-
-    /**
      * @var int
      */
     private $linesOfCode;
