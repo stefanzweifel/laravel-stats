@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - Drop support for Laravel 5.5, Lumen 5.5 and PHP 7.0 [#133](https://github.com/stefanzweifel/laravel-stats/pull/133)
+- Drop support for Laravel 5.6, 5.7 and PHP 7.1 [#151](https://github.com/stefanzweifel/laravel-stats/pull/151)
 
 ## [v1.9.2](https://github.com/stefanzweifel/laravel-stats/compare/v1.9.1...v1.9.2) - 2019-03-20
 
