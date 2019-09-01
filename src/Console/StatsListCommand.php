@@ -7,8 +7,8 @@ use Wnx\LaravelStats\Project;
 use Illuminate\Console\Command;
 use Wnx\LaravelStats\ClassesFinder;
 use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Outputs\AsciiTableOutput;
 use Wnx\LaravelStats\Outputs\JsonOutput;
+use Wnx\LaravelStats\Outputs\AsciiTableOutput;
 use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
 
 class StatsListCommand extends Command

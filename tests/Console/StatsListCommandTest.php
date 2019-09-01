@@ -2,7 +2,6 @@
 
 namespace Wnx\LaravelStats\Tests\Console;
 
-use Illuminate\Support\Str;
 use Wnx\LaravelStats\Tests\TestCase;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
