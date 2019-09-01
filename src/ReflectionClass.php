@@ -23,9 +23,10 @@ class ReflectionClass extends NativeReflectionClass
      * Determine whether the class uses the given trait.
      *
      * @param  string $name
+     *
      * @return bool
      */
-    public function usesTrait($name): bool
+    public function usesTrait(string $name): bool
     {
         return collect($this->getTraits())
             ->contains(function (NativeReflectionClass $trait) use ($name) {

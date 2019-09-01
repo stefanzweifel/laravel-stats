@@ -39,10 +39,6 @@ class AsciiTableOutput
         $this->output = $output;
     }
 
-    /**
-     * @param  Project $project
-     * @return void
-     */
     public function render(Project $project, bool $isVerbose = false, $filterByComponentName = [])
     {
         $this->isVerbose = $isVerbose;
@@ -57,17 +53,17 @@ class AsciiTableOutput
             ->setHeaders(['Name', 'Classes', 'Methods', 'Methods/Class', 'LoC', 'LLoC', 'LLoC/Method']);
 
         // Render "Core" components
-        $this->renderComponents($table, $groupedByComponent->filter(function ($value, $key) {
+        $this->renderComponents($table, $groupedByComponent->filter(function ($_, $key) {
             return $key !== 'Other' && ! Str::contains($key, 'Test');
         }));
 
         // Render Test components
-        $this->renderComponents($table, $groupedByComponent->filter(function ($value, $key) {
+        $this->renderComponents($table, $groupedByComponent->filter(function ($_, $key) {
             return Str::contains($key, 'Test');
         }));
 
         // Render "Other" component
-        $this->renderComponents($table, $groupedByComponent->filter(function ($value, $key) {
+        $this->renderComponents($table, $groupedByComponent->filter(function ($_, $key) {
             return $key == 'Other';
         }));
 

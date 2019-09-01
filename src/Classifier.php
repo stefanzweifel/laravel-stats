@@ -32,7 +32,7 @@ use Wnx\LaravelStats\Classifiers\Nova\ResourceClassifier as NovaResourceClassifi
 
 class Classifier
 {
-    const DEFAULT_CLASSIFIER = [
+    private const DEFAULT_CLASSIFIER = [
         ControllerClassifier::class,
         ModelClassifier::class,
         CommandClassifier::class,
@@ -98,7 +98,9 @@ class Classifier
 
     /**
      * Check if a class implements our Classifier Contract.
+     *
      * @param  string $classifier
+     *
      * @return bool
      */
     protected function implementsContract(string $classifier): bool

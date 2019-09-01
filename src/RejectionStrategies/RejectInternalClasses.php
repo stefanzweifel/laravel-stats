@@ -7,7 +7,7 @@ use Wnx\LaravelStats\Contracts\RejectionStrategy;
 
 class RejectInternalClasses implements RejectionStrategy
 {
-    public function shouldClassBeRejected(ReflectionClass $class) : bool
+    public function shouldClassBeRejected(ReflectionClass $class): bool
     {
         return $class->isInternal();
     }

@@ -18,6 +18,7 @@ interface Classifier
      * as the component the Classifier Class represents.
      *
      * @param \Wnx\LaravelStats\ReflectionClass $class
+     *
      * @return bool
      */
     public function satisfies(ReflectionClass $class): bool;
@@ -25,6 +26,7 @@ interface Classifier
     /**
      * Determine if the lines of code of the component should count towards
      * the total number of lines of code of the application.
+     *
      * @return bool
      */
     public function countsTowardsApplicationCode(): bool;
@@ -32,6 +34,7 @@ interface Classifier
     /**
      * Determine if the lines of code of the component should count towards
      * the total number of lines of code of the test suite.
+     *
      * @return bool
      */
     public function countsTowardsTests(): bool;

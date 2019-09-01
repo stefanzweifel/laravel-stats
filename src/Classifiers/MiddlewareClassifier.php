@@ -33,7 +33,7 @@ class MiddlewareClassifier implements Classifier
             ->contains($class->getName());
     }
 
-    protected function getMiddlewares() : array
+    protected function getMiddlewares(): array
     {
         $reflection = new ReflectionProperty($this->httpKernel, 'middleware');
         $reflection->setAccessible(true);
@@ -46,7 +46,7 @@ class MiddlewareClassifier implements Classifier
         return array_values(array_unique(array_merge($middlewares, $routeMiddlwares)));
     }
 
-    protected function getMiddlewareGroupsFromKernel() : array
+    protected function getMiddlewareGroupsFromKernel(): array
     {
         $property = property_exists($this->httpKernel, 'middlewareGroups')
             ? 'middlewareGroups'

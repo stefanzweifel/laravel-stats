@@ -58,6 +58,7 @@ class ClassesFinder
      *
      * @param  SplFileInfo $file
      * @param  \Illuminate\Support\Collection  $excludes
+     *
      * @return bool
      */
     protected function isExcluded(SplFileInfo $file, Collection $excludes): bool
