@@ -4,14 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v1.9.2...HEAD)
+## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.0.0...HEAD)
+
+
+## [v2.0.0](https://github.com/stefanzweifel/laravel-stats/compare/v1.9.2...v2.0.0) - 2019-09-01
 
 ### Added
+- Add Verbose Mode
+- Add ability to filter output by one or multiple component names
 
 ### Changed
 - Rename `getName()` to `name()` [#147](https://github.com/stefanzweifel/laravel-stats/pull/147)
 - Rename "LOC" to "LLOC" [#148](https://github.com/stefanzweifel/laravel-stats/pull/148)
-- Refactored Internal [#150](https://github.com/stefanzweifel/laravel-stats/pull/150)
+- Refactored Internal Classes [#150](https://github.com/stefanzweifel/laravel-stats/pull/150)
     + Move some of the logic from `ComponentFinder` to `ClassesFinder`
     + Update `Classifier`-contract and update existing Classifiers to implement new contract
     + Move tests for each existing Classifier into their own test files
@@ -25,6 +30,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Add additional support to detect Route Middlewares [#140](https://github.com/stefanzweifel/laravel-stats/pull/140)
+
 
 ## [v1.9.1](https://github.com/stefanzweifel/laravel-stats/compare/v1.9.0...v1.9.1) - 2019-03-18
 
