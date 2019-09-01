@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats;
 
+use ReflectionMethod;
 use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 use ReflectionClass as NativeReflectionClass;
@@ -13,7 +14,7 @@ class ReflectionClass extends NativeReflectionClass
      *
      * @return bool
      */
-    public function isVendorProvided() : bool
+    public function isVendorProvided(): bool
     {
         return Str::contains($this->getFileName(), '/vendor/');
     }
@@ -22,12 +23,13 @@ class ReflectionClass extends NativeReflectionClass
      * Determine whether the class uses the given trait.
      *
      * @param  string $name
+     *
      * @return bool
      */
-    public function usesTrait($name)
+    public function usesTrait(string $name): bool
     {
         return collect($this->getTraits())
-            ->contains(function ($trait) use ($name) {
+            ->contains(function (NativeReflectionClass $trait) use ($name) {
                 return $trait->name == $name;
             });
     }
@@ -36,12 +38,12 @@ class ReflectionClass extends NativeReflectionClass
      * Return a collection of methods defined on the given class.
      * This ignores methods defined in parent class, traits etc.
      *
-     * @return Collection
+     * @return \Illuminate\Support\Collection
      */
-    public function getDefinedMethods() : Collection
+    public function getDefinedMethods(): Collection
     {
         return collect($this->getMethods())
-            ->filter(function ($method) {
+            ->filter(function (ReflectionMethod $method) {
                 return $method->getFileName() == $this->getFileName();
             });
     }

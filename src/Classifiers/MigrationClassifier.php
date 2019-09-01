@@ -8,13 +8,23 @@ use Illuminate\Database\Migrations\Migration;
 
 class MigrationClassifier implements Classifier
 {
-    public function getName()
+    public function name(): string
     {
         return 'Migrations';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return $class->isSubclassOf(Migration::class);
+    }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return true;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
     }
 }

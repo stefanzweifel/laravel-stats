@@ -10,12 +10,12 @@ use Wnx\LaravelStats\Contracts\Classifier;
 
 class EventListenerClassifier implements Classifier
 {
-    public function getName()
+    public function name(): string
     {
         return 'Event Listeners';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return collect($this->getEvents())
             ->map(function ($listeners) {
@@ -44,5 +44,15 @@ class EventListenerClassifier implements Classifier
         $reflection = new ReflectionFunction($closure);
 
         return $reflection->getStaticVariables()['listener'];
+    }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return true;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
     }
 }

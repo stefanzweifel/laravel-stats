@@ -12,12 +12,12 @@ class MiddlewareClassifier implements Classifier
 {
     protected $httpKernel;
 
-    public function getName()
+    public function name(): string
     {
         return 'Middlewares';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         $this->httpKernel = $this->getHttpKernelInstance();
 
@@ -33,7 +33,7 @@ class MiddlewareClassifier implements Classifier
             ->contains($class->getName());
     }
 
-    protected function getMiddlewares() : array
+    protected function getMiddlewares(): array
     {
         $reflection = new ReflectionProperty($this->httpKernel, 'middleware');
         $reflection->setAccessible(true);
@@ -46,7 +46,7 @@ class MiddlewareClassifier implements Classifier
         return array_values(array_unique(array_merge($middlewares, $routeMiddlwares)));
     }
 
-    protected function getMiddlewareGroupsFromKernel() : array
+    protected function getMiddlewareGroupsFromKernel(): array
     {
         $property = property_exists($this->httpKernel, 'middlewareGroups')
             ? 'middlewareGroups'
@@ -66,5 +66,15 @@ class MiddlewareClassifier implements Classifier
             // Lumen
             return app();
         }
+    }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return true;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
     }
 }

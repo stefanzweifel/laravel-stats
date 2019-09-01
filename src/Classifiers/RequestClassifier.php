@@ -8,17 +8,27 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class RequestClassifier implements Classifier
 {
-    public function getName()
+    public function name(): string
     {
         return 'Requests';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         if (! class_exists(FormRequest::class)) {
             return false;
         }
 
         return $class->isSubclassOf(FormRequest::class);
+    }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return true;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
     }
 }

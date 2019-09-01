@@ -6,7 +6,7 @@ use Exception;
 
 class NumberOfRoutes
 {
-    public function get() : int
+    public function get(): int
     {
         try {
             return collect(app('router')->getRoutes())->count();

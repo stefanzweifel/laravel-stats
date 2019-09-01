@@ -8,12 +8,12 @@ use Wnx\LaravelStats\Contracts\Classifier;
 
 class ControllerClassifier implements Classifier
 {
-    public function getName()
+    public function name(): string
     {
         return 'Controllers';
     }
 
-    public function satisfies(ReflectionClass $class)
+    public function satisfies(ReflectionClass $class): bool
     {
         return collect(app('router')->getRoutes())
             ->reject(function ($route) {
@@ -41,5 +41,15 @@ class ControllerClassifier implements Classifier
             ->unique()
             ->filter()
             ->contains($class->getName());
+    }
+
+    public function countsTowardsApplicationCode(): bool
+    {
+        return true;
+    }
+
+    public function countsTowardsTests(): bool
+    {
+        return false;
     }
 }

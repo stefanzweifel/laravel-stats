@@ -3,34 +3,36 @@
 namespace Wnx\LaravelStats;
 
 use Exception;
-use Wnx\LaravelStats\Classifiers\Nova\Lens;
-use Wnx\LaravelStats\Classifiers\Nova\Action;
-use Wnx\LaravelStats\Classifiers\Nova\Filter;
+use ReflectionClass as NativeReflectionClass;
 use Wnx\LaravelStats\Classifiers\JobClassifier;
-use Wnx\LaravelStats\Classifiers\Nova\Resource;
-use Wnx\LaravelStats\Classifiers\DuskClassifier;
 use Wnx\LaravelStats\Classifiers\MailClassifier;
+use Wnx\LaravelStats\Classifiers\NullClassifier;
 use Wnx\LaravelStats\Classifiers\RuleClassifier;
 use Wnx\LaravelStats\Classifiers\EventClassifier;
 use Wnx\LaravelStats\Classifiers\ModelClassifier;
 use Wnx\LaravelStats\Classifiers\PolicyClassifier;
 use Wnx\LaravelStats\Classifiers\SeederClassifier;
 use Wnx\LaravelStats\Classifiers\CommandClassifier;
-use Wnx\LaravelStats\Classifiers\PhpUnitClassifier;
 use Wnx\LaravelStats\Classifiers\RequestClassifier;
 use Wnx\LaravelStats\Classifiers\ResourceClassifier;
 use Wnx\LaravelStats\Classifiers\MigrationClassifier;
+use Wnx\LaravelStats\Classifiers\Nova\LensClassifier;
 use Wnx\LaravelStats\Classifiers\ControllerClassifier;
 use Wnx\LaravelStats\Classifiers\MiddlewareClassifier;
+use Wnx\LaravelStats\Classifiers\Nova\ActionClassifier;
+use Wnx\LaravelStats\Classifiers\Nova\FilterClassifier;
 use Wnx\LaravelStats\Classifiers\NotificationClassifier;
+use Wnx\LaravelStats\Classifiers\Testing\DuskClassifier;
 use Wnx\LaravelStats\Classifiers\EventListenerClassifier;
-use Wnx\LaravelStats\Classifiers\BrowserKitTestClassifier;
 use Wnx\LaravelStats\Classifiers\ServiceProviderClassifier;
+use Wnx\LaravelStats\Classifiers\Testing\PhpUnitClassifier;
 use Wnx\LaravelStats\Contracts\Classifier as ClassifierContract;
+use Wnx\LaravelStats\Classifiers\Testing\BrowserKitTestClassifier;
+use Wnx\LaravelStats\Classifiers\Nova\ResourceClassifier as NovaResourceClassifier;
 
 class Classifier
 {
-    const DEFAULT_CLASSIFIER = [
+    private const DEFAULT_CLASSIFIER = [
         ControllerClassifier::class,
         ModelClassifier::class,
         CommandClassifier::class,
@@ -52,53 +54,57 @@ class Classifier
         PhpUnitClassifier::class,
 
         // Nova Classifiers
-        Action::class,
-        Filter::class,
-        Lens::class,
-        Resource::class,
+        ActionClassifier::class,
+        FilterClassifier::class,
+        LensClassifier::class,
+        NovaResourceClassifier::class,
     ];
 
     /**
-     * Classify a given Class by an available Classifier Strategy.
-     *
-     * @param ReflectionClass $class
-     * @return string
+     * @var array
      */
-    public function classify(ReflectionClass $class)
+    private $availableClassifiers = [];
+
+    public function __construct()
     {
-        $mergedClassifiers = array_merge(
+        $this->availableClassifiers = array_merge(
             self::DEFAULT_CLASSIFIER,
             config('stats.custom_component_classifier', [])
         );
+    }
 
-        foreach ($mergedClassifiers as $classifier) {
-            $c = new $classifier();
+    public function getClassifierForClassInstance(ReflectionClass $class): ClassifierContract
+    {
+        foreach ($this->availableClassifiers as $classifier) {
+            $classifierInstance = new $classifier();
 
             if (! $this->implementsContract($classifier)) {
                 throw new Exception("Classifier {$classifier} does not implement ".ClassifierContract::class.'.');
             }
 
             try {
-                $satisfied = $c->satisfies($class);
+                $satisfied = $classifierInstance->satisfies($class);
             } catch (Exception $e) {
                 $satisfied = false;
             }
 
             if ($satisfied) {
-                return $c->getName();
+                return $classifierInstance;
             }
         }
 
-        return 'Other';
+        return new NullClassifier;
     }
 
     /**
      * Check if a class implements our Classifier Contract.
-     * @param  class $classifier
+     *
+     * @param  string $classifier
+     *
      * @return bool
      */
-    protected function implementsContract($classifier) : bool
+    protected function implementsContract(string $classifier): bool
     {
-        return (new \ReflectionClass($classifier))->implementsInterface(ClassifierContract::class);
+        return (new NativeReflectionClass($classifier))->implementsInterface(ClassifierContract::class);
     }
 }
