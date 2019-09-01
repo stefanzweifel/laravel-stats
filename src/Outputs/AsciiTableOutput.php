@@ -13,7 +13,7 @@ use Symfony\Component\Console\Helper\TableStyle;
 use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
 use Symfony\Component\Console\Helper\TableSeparator;
 
-class AsciiTable
+class AsciiTableOutput
 {
     /**
      * Console output.

@@ -7,7 +7,7 @@ use Wnx\LaravelStats\Project;
 use Illuminate\Console\Command;
 use Wnx\LaravelStats\ClassesFinder;
 use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Outputs\AsciiTable;
+use Wnx\LaravelStats\Outputs\AsciiTableOutput;
 use Wnx\LaravelStats\Outputs\JsonOutput;
 use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
 
@@ -65,7 +65,7 @@ class StatsListCommand extends Command
 
             $this->output->text(json_encode($json));
         } else {
-            (new AsciiTable($this->output))->render(
+            (new AsciiTableOutput($this->output))->render(
                 $project,
                 $this->option('verbose'),
                 explode(',', $this->option('components'))
