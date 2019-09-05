@@ -11,13 +11,21 @@ dist: trusty
 matrix:
   include:
     - php: 7.2
-      env: LARAVEL='5.8.*' 'TESTBENCH='3.8.*'
-    - php: 7.3
-      env: LARAVEL='5.8.*' 'TESTBENCH='3.8.*'
+      env: LARAVEL='5.8.*' 'TESTBENCH='3.8.*' 'COMPOSER_FLAGS="--prefer-lowest"'
     - php: 7.2
-      env: LARAVEL='^6.0' 'TESTBENCH='^4.0'
+      env: LARAVEL='5.8.*' 'TESTBENCH='3.8.*' 'COMPOSER_FLAGS="--prefer-stable"'
     - php: 7.3
-      env: LARAVEL='^6.0' 'TESTBENCH='^4.0'
+      env: LARAVEL='5.8.*' 'TESTBENCH='3.8.*' 'COMPOSER_FLAGS="--prefer-lowest"'
+    - php: 7.3
+      env: LARAVEL='5.8.*' 'TESTBENCH='3.8.*' 'COMPOSER_FLAGS="--prefer-stable"'
+    - php: 7.2
+      env: LARAVEL='^6.0' 'TESTBENCH='^4.0' 'COMPOSER_FLAGS="--prefer-lowest"'
+    - php: 7.2
+      env: LARAVEL='^6.0' 'TESTBENCH='^4.0' 'COMPOSER_FLAGS="--prefer-stable"'
+    - php: 7.3
+      env: LARAVEL='^6.0' 'TESTBENCH='^4.0' 'COMPOSER_FLAGS="--prefer-lowest"'
+    - php: 7.3
+      env: LARAVEL='^6.0' 'TESTBENCH='^4.0' 'COMPOSER_FLAGS="--prefer-stable"'
   fast_finish: true
 
 before_script:
@@ -28,7 +36,7 @@ before_install:
   - travis_retry composer require "laravel/framework:${LARAVEL}" "orchestra/testbench:${TESTBENCH}" --no-interaction --no-update
 
 install:
-  - travis_retry composer install --prefer-dist --no-interaction --no-suggest
+  - travis_retry composer install ${COMPOSER_FLAGS} --prefer-dist --no-interaction --no-suggest
 
 script:
   - vendor/bin/phpunit
