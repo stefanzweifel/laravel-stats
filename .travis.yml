@@ -39,4 +39,4 @@ install:
   - travis_retry composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction --no-suggest
 
 script:
-  - vendor/bin/phpunit
+  - vendor/bin/phpunit --coverage-text
