@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Throwable;
+use Illuminate\Support\Str;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\Classifier;
 
@@ -36,7 +37,7 @@ class ControllerClassifier implements Classifier
                 }
 
                 // Lumen
-                return str_before(data_get($route, 'action.uses'), '@');
+                return Str::before(data_get($route, 'action.uses'), '@');
             })
             ->unique()
             ->filter()
