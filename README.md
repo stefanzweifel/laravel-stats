@@ -7,6 +7,9 @@
 <a href="https://travis-ci.org/stefanzweifel/laravel-stats">
     <img src="https://travis-ci.org/stefanzweifel/laravel-stats.svg" alt="">
 </a>
+<a href="https://scrutinizer-ci.com/g/stefanzweifel/laravel-stats/?branch=master">
+    <img src="https://scrutinizer-ci.com/g/stefanzweifel/laravel-stats/badges/quality-score.png?b=master" alt="">
+</a>
 <a href="https://packagist.org/packages/wnx/laravel-stats">
     <img src="https://poser.pugx.org/wnx/laravel-stats/v/stable" alt="">
 </a>
