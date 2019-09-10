@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [v2.0.0](https://github.com/stefanzweifel/laravel-stats/compare/v1.9.2...v2.0.0) - 2019-09-01
 
+Checkout the [Release and Upgrade Guide](https://github.com/stefanzweifel/laravel-stats/releases/tag/v2.0.0) for more.
+
 ### Added
 - Add Verbose Mode
 - Add ability to filter output by one or multiple component names
