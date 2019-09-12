@@ -13,3 +13,4 @@
 /phpunit.xml        export-ignore
 /screenshot.png     export-ignore
 /tests              export-ignore
+/test-stubs-nova    export-ignore
