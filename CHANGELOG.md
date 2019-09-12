@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.0.0...HEAD)
 
+### Changed
+- Test Package against Laravel 6.0 [#155](https://github.com/stefanzweifel/laravel-stats/pull/155)
+
+### Fixed
+- Make `ControllerClassifier` compatible with Lumen 6.0 [2462fe](https://github.com/stefanzweifel/laravel-stats/commit/2462fe1c597bcc8b39190dedf511ab60a8935fea)
+- Fix an Issue in `ResourceClassifier` where not all kinds of Resources were correctly identified as API Resources [#156](https://github.com/stefanzweifel/laravel-stats/pull/156)
+
 
 ## [v2.0.0](https://github.com/stefanzweifel/laravel-stats/compare/v1.9.2...v2.0.0) - 2019-09-01
 
@@ -48,7 +55,7 @@ Checkout the [Release and Upgrade Guide](https://github.com/stefanzweifel/larave
 
 ## [v1.8.3](https://github.com/stefanzweifel/laravel-stats/compare/v1.8.2...v1.8.3) - 2019-03-16
 
-### Changes
+### Changed
 
 - Update phploc version contstraint to support PHP7.3 [#129](https://github.com/stefanzweifel/laravel-stats/pull/129)
 
