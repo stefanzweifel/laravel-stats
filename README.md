@@ -7,20 +7,11 @@
 <a href="https://travis-ci.org/stefanzweifel/laravel-stats">
     <img src="https://travis-ci.org/stefanzweifel/laravel-stats.svg" alt="">
 </a> 
-<a href="https://styleci.io/repos/104390273">
-    <img src="https://styleci.io/repos/104390273/shield?branch=master" alt="">
-</a>
-<a href="https://scrutinizer-ci.com/g/stefanzweifel/laravel-stats/?branch=master">
-    <img src="https://scrutinizer-ci.com/g/stefanzweifel/laravel-stats/badges/quality-score.png?b=master" alt="">
-</a>
-</p>
-
-<p align="center">
 <a href="https://packagist.org/packages/wnx/laravel-stats">
     <img src="https://poser.pugx.org/wnx/laravel-stats/downloads" alt="">
-</a>
-<a href="https://packagist.org/packages/wnx/laravel-stats">
-    <img src="https://poser.pugx.org/wnx/laravel-stats/d/monthly" alt="">
+</a> 
+<a href="https://scrutinizer-ci.com/g/stefanzweifel/laravel-stats/?branch=master">
+    <img src="https://scrutinizer-ci.com/g/stefanzweifel/laravel-stats/badges/quality-score.png?b=master" alt="">
 </a>
 </p>
 
