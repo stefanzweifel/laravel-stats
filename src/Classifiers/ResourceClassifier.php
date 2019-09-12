@@ -2,11 +2,11 @@
 
 namespace Wnx\LaravelStats\Classifiers;
 
-use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Resources\Json\Resource;
-use Illuminate\Http\Resources\Json\ResourceCollection;
-use Wnx\LaravelStats\Contracts\Classifier;
 use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Contracts\Classifier;
+use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class ResourceClassifier implements Classifier
 {

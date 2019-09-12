@@ -2,12 +2,12 @@
 
 namespace Wnx\LaravelStats\Tests\Classifiers;
 
-use Wnx\LaravelStats\Classifiers\ResourceClassifier;
-use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Tests\Stubs\Resources\DemoCollectionResource;
-use Wnx\LaravelStats\Tests\Stubs\Resources\DemoJsonResource;
-use Wnx\LaravelStats\Tests\Stubs\Resources\DemoResource;
 use Wnx\LaravelStats\Tests\TestCase;
+use Wnx\LaravelStats\ReflectionClass;
+use Wnx\LaravelStats\Classifiers\ResourceClassifier;
+use Wnx\LaravelStats\Tests\Stubs\Resources\DemoResource;
+use Wnx\LaravelStats\Tests\Stubs\Resources\DemoJsonResource;
+use Wnx\LaravelStats\Tests\Stubs\Resources\DemoCollectionResource;
 
 class ResourceClassifierTest extends TestCase
 {
