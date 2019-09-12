@@ -1,30 +1,32 @@
 <h1 align="center">Laravel Stats</h1>
 
 <p align="center">
-<a href="https://styleci.io/repos/104390273">
-    <img src="https://styleci.io/repos/104390273/shield?branch=master" alt="">
+<a href="https://packagist.org/packages/wnx/laravel-stats">
+    <img src="https://poser.pugx.org/wnx/laravel-stats/v/stable" alt="">
 </a>
 <a href="https://travis-ci.org/stefanzweifel/laravel-stats">
     <img src="https://travis-ci.org/stefanzweifel/laravel-stats.svg" alt="">
+</a> 
+<a href="https://styleci.io/repos/104390273">
+    <img src="https://styleci.io/repos/104390273/shield?branch=master" alt="">
 </a>
 <a href="https://scrutinizer-ci.com/g/stefanzweifel/laravel-stats/?branch=master">
     <img src="https://scrutinizer-ci.com/g/stefanzweifel/laravel-stats/badges/quality-score.png?b=master" alt="">
 </a>
-<a href="https://packagist.org/packages/wnx/laravel-stats">
-    <img src="https://poser.pugx.org/wnx/laravel-stats/v/stable" alt="">
-</a>
+</p>
+
+<p align="center">
 <a href="https://packagist.org/packages/wnx/laravel-stats">
     <img src="https://poser.pugx.org/wnx/laravel-stats/downloads" alt="">
 </a>
 <a href="https://packagist.org/packages/wnx/laravel-stats">
     <img src="https://poser.pugx.org/wnx/laravel-stats/d/monthly" alt="">
 </a>
-<a href="https://packagist.org/packages/wnx/laravel-stats">
-    <img src="https://poser.pugx.org/wnx/laravel-stats/license" alt="">
-</a>
 </p>
 
-Get insights about your Laravel or Lumen Project. (Inspired by [`rake stats`](https://robots.thoughtbot.com/simple-test-metrics-in-your-rails-app-and-what-they))
+<p align="center">
+    Get insights about your Laravel or Lumen Project.
+</p>
 
 ![Screenshot](https://raw.githubusercontent.com/stefanzweifel/laravel-stats/master/screenshot.png)
 
