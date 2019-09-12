@@ -6,6 +6,8 @@ use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Classifiers\ResourceClassifier;
 use Wnx\LaravelStats\Tests\Stubs\Resources\DemoResource;
+use Wnx\LaravelStats\Tests\Stubs\Resources\DemoJsonResource;
+use Wnx\LaravelStats\Tests\Stubs\Resources\DemoCollectionResource;
 
 class ResourceClassifierTest extends TestCase
 {
@@ -15,6 +17,26 @@ class ResourceClassifierTest extends TestCase
         $this->assertTrue(
             (new ResourceClassifier())->satisfies(
                 new ReflectionClass(DemoResource::class)
+            )
+        );
+    }
+
+    /** @test */
+    public function it_returns_true_if_given_class_is_a_json_resoure()
+    {
+        $this->assertTrue(
+            (new ResourceClassifier())->satisfies(
+                new ReflectionClass(DemoJsonResource::class)
+            )
+        );
+    }
+
+    /** @test */
+    public function it_returns_true_if_given_class_is_a_resource_collection()
+    {
+        $this->assertTrue(
+            (new ResourceClassifier())->satisfies(
+                new ReflectionClass(DemoCollectionResource::class)
             )
         );
     }
