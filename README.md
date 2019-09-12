@@ -17,6 +17,9 @@
     <img src="https://poser.pugx.org/wnx/laravel-stats/downloads" alt="">
 </a>
 <a href="https://packagist.org/packages/wnx/laravel-stats">
+    <img src="https://poser.pugx.org/wnx/laravel-stats/d/monthly" alt="">
+</a>
+<a href="https://packagist.org/packages/wnx/laravel-stats">
     <img src="https://poser.pugx.org/wnx/laravel-stats/license" alt="">
 </a>
 </p>
