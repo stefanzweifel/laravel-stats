@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Nova\Dashboards;
+namespace Laravel\Nova;
 
 class Dashboard
 {

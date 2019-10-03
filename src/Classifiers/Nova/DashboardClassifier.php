@@ -14,7 +14,7 @@ class DashboardClassifier implements Classifier
 
     public function satisfies(ReflectionClass $class): bool
     {
-        return class_exists(\Laravel\Nova\Dashboards\Dashboard::class) && $class->isSubclassOf(\Laravel\Nova\Dashboards\Dashboard::class);
+        return class_exists(\Laravel\Nova\Dashboard::class) && $class->isSubclassOf(\Laravel\Nova\Dashboard::class);
     }
 
     public function countsTowardsApplicationCode(): bool
