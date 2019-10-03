@@ -24,6 +24,7 @@ use Wnx\LaravelStats\Classifiers\Nova\FilterClassifier;
 use Wnx\LaravelStats\Classifiers\NotificationClassifier;
 use Wnx\LaravelStats\Classifiers\Testing\DuskClassifier;
 use Wnx\LaravelStats\Classifiers\EventListenerClassifier;
+use Wnx\LaravelStats\Classifiers\Nova\DashboardClassifier;
 use Wnx\LaravelStats\Classifiers\ServiceProviderClassifier;
 use Wnx\LaravelStats\Classifiers\Testing\PhpUnitClassifier;
 use Wnx\LaravelStats\Contracts\Classifier as ClassifierContract;
@@ -55,6 +56,7 @@ class Classifier
 
         // Nova Classifiers
         ActionClassifier::class,
+        DashboardClassifier::class,
         FilterClassifier::class,
         LensClassifier::class,
         NovaResourceClassifier::class,
