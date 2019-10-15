@@ -92,7 +92,7 @@ class Component
         return $this->linesOfCode;
     }
 
-    public function getLogicalLinesOfCode(): int
+    public function getLogicalLinesOfCode(): float
     {
         if ($this->logicalLinesOfCode === null) {
             $this->logicalLinesOfCode = $this->classifiedClasses->sum(function (ClassifiedClass $class) {
