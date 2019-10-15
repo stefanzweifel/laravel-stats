@@ -2,6 +2,8 @@
 
 $finder = Symfony\Component\Finder\Finder::create()
     ->notPath('vendor')
+    ->notPath('test-stubs-nova')
+    ->notPath('tests/Stubs')
     ->in(__DIR__)
     ->name('*.php');
 
