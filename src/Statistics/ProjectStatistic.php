@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Wnx\LaravelStats\Statistics;
 
@@ -87,7 +87,7 @@ class ProjectStatistic
         return $this->linesOfCode;
     }
 
-    public function getLogicalLinesOfCode(): int
+    public function getLogicalLinesOfCode(): float
     {
         if ($this->logicalLinesOfCode === null) {
             $this->logicalLinesOfCode = $this->project->classifiedClasses()->sum(function (ClassifiedClass $class) {
@@ -111,7 +111,7 @@ class ProjectStatistic
         return $this->logicalLinesOfCodePerMethod;
     }
 
-    public function getLogicalLinesOfCodeForApplicationCode(): int
+    public function getLogicalLinesOfCodeForApplicationCode(): float
     {
         return $this
             ->project
@@ -124,7 +124,7 @@ class ProjectStatistic
             });
     }
 
-    public function getLogicalLinesOfCodeForTestCode(): int
+    public function getLogicalLinesOfCodeForTestCode(): float
     {
         return $this
             ->project

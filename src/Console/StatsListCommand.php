@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Wnx\LaravelStats\Console;
 
@@ -60,7 +60,7 @@ class StatsListCommand extends Command
             $json = (new JsonOutput())->render(
                 $project,
                 $this->option('verbose'),
-                explode(',', $this->option('components'))
+                $this->getArrayOfComponentsToDisplay()
             );
 
             $this->output->text(json_encode($json));
@@ -68,8 +68,17 @@ class StatsListCommand extends Command
             (new AsciiTableOutput($this->output))->render(
                 $project,
                 $this->option('verbose'),
-                explode(',', $this->option('components'))
+                $this->getArrayOfComponentsToDisplay()
             );
         }
+    }
+
+    private function getArrayOfComponentsToDisplay(): array
+    {
+        if (is_null($this->option('components'))) {
+            return [];
+        }
+
+        return  explode(',', $this->option('components'));
     }
 }
