@@ -6,8 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.0.0...HEAD)
 
+## Added
+- Add Laravel Nova Dashboard Classifier [#158](https://github.com/stefanzweifel/laravel-stats/pull/158), [#159](https://github.com/stefanzweifel/laravel-stats/pull/159)
+- Add `php-cs-fixer` GitHub Actions workflow [#160](https://github.com/stefanzweifel/laravel-stats/pull/160)
+
 ### Changed
 - Test Package against Laravel 6.0 [#155](https://github.com/stefanzweifel/laravel-stats/pull/155)
+- Set `declare(strict_types=1)` everywhere [#161](https://github.com/stefanzweifel/laravel-stats/pull/161)
+
 
 ### Fixed
 - Make `ControllerClassifier` compatible with Lumen 6.0 [2462fe](https://github.com/stefanzweifel/laravel-stats/commit/2462fe1c597bcc8b39190dedf511ab60a8935fea)
