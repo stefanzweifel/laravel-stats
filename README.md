@@ -161,6 +161,7 @@ The package scans the files defined in the `paths`-array in the configuration fi
 | Mail | Must extend `Illuminate\Mail\Mailable` |
 | Notification | Must extend `Illuminate\Notifications\Notification` |
 | Nova Action | Must extend `Laravel\Nova\Actions\Action` |
+| Nova Dashboard | Must extend `Laravel\Nova\Dashboard` |
 | Nova Filter | Must extend `Laravel\Nova\Filters\Filter` |
 | Nova Lens | Must extend `Laravel\Nova\Lenses\Lens` |
 | Nova Resource | Must extend `Laravel\Nova\Resource` |
