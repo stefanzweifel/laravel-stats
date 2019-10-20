@@ -6,10 +6,10 @@
 </a>
 <a href="https://travis-ci.org/stefanzweifel/laravel-stats">
     <img src="https://travis-ci.org/stefanzweifel/laravel-stats.svg" alt="">
-</a> 
+</a>
 <a href="https://packagist.org/packages/wnx/laravel-stats">
     <img src="https://poser.pugx.org/wnx/laravel-stats/downloads" alt="">
-</a> 
+</a>
 <a href="https://scrutinizer-ci.com/g/stefanzweifel/laravel-stats/?branch=master">
     <img src="https://scrutinizer-ci.com/g/stefanzweifel/laravel-stats/badges/quality-score.png?b=master" alt="">
 </a>
@@ -111,6 +111,24 @@ return [
         'Symfony',
     ],
 
+    /*
+     * Methods which are used to satisfy a Class as an Observer.
+     */
+    'observable_events' => [
+        'retrieved',
+        'creating',
+        'created',
+        'updating',
+        'updated',
+        'saving',
+        'saved',
+        'restoring',
+        'restored',
+        'deleting',
+        'deleted',
+        'forceDeleted',
+    ],
+
 ];
 
 ```
@@ -167,6 +185,7 @@ The package scans the files defined in the `paths`-array in the configuration fi
 | Nova Resource | Must extend `Laravel\Nova\Resource` |
 | Job | Must use `Illuminate\Foundation\Bus\Dispatchable`-Trait |
 | Migration | Must extend `Illuminate\Database\Migrations\Migration` |
+| Observer | Must define on of the observable events |
 | Request | Must extend `Illuminate\Foundation\Http\FormRequest` |
 | Resource | Must extend `Illuminate\Http\Resources\Json\Resource`, `Illuminate\Http\Resources\Json\JsonResource` or `Illuminate\Http\Resources\Json\ResourceCollection` |
 | Seeder | Must extend `Illuminate\Database\Seeder` |

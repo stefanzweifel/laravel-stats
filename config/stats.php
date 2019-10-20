@@ -57,4 +57,22 @@ return [
         'Symfony',
     ],
 
+    /*
+     * Methods which are used to satisfy a Class as an Observer.
+     */
+    'observable_events' => [
+        'retrieved',
+        'creating',
+        'created',
+        'updating',
+        'updated',
+        'saving',
+        'saved',
+        'restoring',
+        'restored',
+        'deleting',
+        'deleted',
+        'forceDeleted',
+    ],
+
 ];
