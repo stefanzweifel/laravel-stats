@@ -14,7 +14,7 @@ class ObserverClassifier implements Classifier
 
     public function satisfies(ReflectionClass $class): bool
     {
-        return $class->getDefinedMethods()->contains(function($method){
+        return $class->getDefinedMethods()->contains(function ($method) {
             return in_array($method->name, config('stats.observable_events'));
         });
     }
