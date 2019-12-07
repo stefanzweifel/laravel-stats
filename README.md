@@ -4,8 +4,8 @@
 <a href="https://packagist.org/packages/wnx/laravel-stats">
     <img src="https://poser.pugx.org/wnx/laravel-stats/v/stable" alt="">
 </a>
-<a href="https://travis-ci.org/stefanzweifel/laravel-stats">
-    <img src="https://travis-ci.org/stefanzweifel/laravel-stats.svg" alt="">
+<a href="https://github.com/stefanzweifel/laravel-stats/actions?query=workflow%3A%22tests%22">
+    <img src="https://github.com/stefanzweifel/laravel-stats/workflows/tests/badge.svg" alt="">
 </a> 
 <a href="https://packagist.org/packages/wnx/laravel-stats">
     <img src="https://poser.pugx.org/wnx/laravel-stats/downloads" alt="">
