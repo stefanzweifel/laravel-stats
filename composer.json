@@ -25,7 +25,7 @@
         "laravel/dusk": "~5.0",
         "mockery/mockery": "^1.1",
         "orchestra/testbench": "^3.8|^4.0|^5.0",
-        "phpunit/phpunit": "8.*"
+        "phpunit/phpunit": "8.*|9.*"
     },
     "autoload": {
         "psr-4": {
