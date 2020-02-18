@@ -4,7 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.0.0...HEAD)
+## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.0.1...HEAD)
+
+## [v2.0.1](https://github.com/stefanzweifel/laravel-stats/compare/v2.0.0...v2.0.1) - 2020-02-18
 
 ## Added
 - Add Laravel Nova Dashboard Classifier [#158](https://github.com/stefanzweifel/laravel-stats/pull/158), [#159](https://github.com/stefanzweifel/laravel-stats/pull/159)
@@ -13,6 +15,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Test Package against Laravel 6.0 [#155](https://github.com/stefanzweifel/laravel-stats/pull/155)
 - Set `declare(strict_types=1)` everywhere [#161](https://github.com/stefanzweifel/laravel-stats/pull/161)
+- Changed Version Contraints in composer.json to support Laravel 7.0
+- Changed Version Contraints for `phpunit/phpunit` to support `9.0`
 
 
 ### Fixed
