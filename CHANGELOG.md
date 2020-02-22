@@ -4,10 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.0.1...HEAD)
+## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.0.2...HEAD)
+
+
+## [v2.0.2](https://github.com/stefanzweifel/laravel-stats/compare/v2.0.1...v2.0.2) - 2020-02-22
 
 ### Changed
 - Changed Version Contraints for `phploc/phploc` to support `6.0` [#167](https://github.com/stefanzweifel/laravel-stats/pull/167)
+
 
 ## [v2.0.1](https://github.com/stefanzweifel/laravel-stats/compare/v2.0.0...v2.0.1) - 2020-02-18
 
@@ -20,7 +24,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Set `declare(strict_types=1)` everywhere [#161](https://github.com/stefanzweifel/laravel-stats/pull/161)
 - Changed Version Contraints in composer.json to support Laravel 7.0
 - Changed Version Contraints for `phpunit/phpunit` to support `9.0`
-
 
 ### Fixed
 - Make `ControllerClassifier` compatible with Lumen 6.0 [2462fe](https://github.com/stefanzweifel/laravel-stats/commit/2462fe1c597bcc8b39190dedf511ab60a8935fea)
