@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.0.1...HEAD)
 
 ### Changed
-- Changed Version Contraints for `phploc/phploc` to support `6.0`
+- Changed Version Contraints for `phploc/phploc` to support `6.0` [#167](https://github.com/stefanzweifel/laravel-stats/pull/167)
 
 ## [v2.0.1](https://github.com/stefanzweifel/laravel-stats/compare/v2.0.0...v2.0.1) - 2020-02-18
 
