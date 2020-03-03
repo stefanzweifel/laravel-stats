@@ -16,7 +16,7 @@
         "php": ">=7.2.0",
         "illuminate/console": "^6.0|^7.0",
         "illuminate/support": "^6.0|^7.0",
-        "phploc/phploc": "~5.0|~6.0",
+        "phploc/phploc": "~6.0",
         "symfony/finder": "~4.0|~5.0"
     },
     "require-dev": {
