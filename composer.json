@@ -14,17 +14,17 @@
     ],
     "require": {
         "php": ">=7.3.0",
-        "illuminate/console": "^6.0|^7.0",
-        "illuminate/support": "^6.0|^7.0",
+        "illuminate/console": "^7.0",
+        "illuminate/support": "^7.0",
         "phploc/phploc": "~6.0",
-        "symfony/finder": "~4.0|~5.0"
+        "symfony/finder": "~5.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.15",
-        "laravel/browser-kit-testing": "^5.1.3|~6.0",
+        "laravel/browser-kit-testing": "~6.0",
         "laravel/dusk": "~5.0",
         "mockery/mockery": "^1.1",
-        "orchestra/testbench": "^4.0|^5.0",
+        "orchestra/testbench": "^5.0",
         "phpunit/phpunit": "8.*|9.*"
     },
     "autoload": {
