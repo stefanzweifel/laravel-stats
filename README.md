@@ -26,7 +26,7 @@
 
 ### Installing
 
-The easiest way to install the package is by using composer. The package requires PHP 7.2, Laravel 5.8 or higher or Lumen 5.8 or higher. If you're using an older version of Laravel, take a look at [the v1 branch](https://github.com/stefanzweifel/laravel-stats/tree/v1).
+The easiest way to install the package is by using composer. The package requires PHP 7.3, Laravel 7.0 or higher or Lumen 7.0 or higher. If you're using an older version of Laravel, take a look at [the v1 branch](https://github.com/stefanzweifel/laravel-stats/tree/v1).
 
 ```shell
 composer require "wnx/laravel-stats" --dev
