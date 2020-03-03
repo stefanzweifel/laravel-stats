@@ -2,9 +2,9 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs\Resources;
 
-use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class DemoResource extends Resource
+class DemoResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

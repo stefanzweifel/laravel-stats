@@ -13,18 +13,18 @@
         }
     ],
     "require": {
-        "php": ">=7.2.0",
-        "illuminate/console": "~5.8.0|^6.0|^7.0",
-        "illuminate/support": "~5.8.0|^6.0|^7.0",
-        "phploc/phploc": "~5.0|~6.0",
-        "symfony/finder": "~4.0"
+        "php": ">=7.3.0",
+        "illuminate/console": "^7.0",
+        "illuminate/support": "^7.0",
+        "phploc/phploc": "~6.0",
+        "symfony/finder": "~5.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.15",
-        "laravel/browser-kit-testing": "~5.0",
+        "laravel/browser-kit-testing": "~6.0",
         "laravel/dusk": "~5.0",
         "mockery/mockery": "^1.1",
-        "orchestra/testbench": "^3.8|^4.0|^5.0",
+        "orchestra/testbench": "^5.0",
         "phpunit/phpunit": "8.*|9.*"
     },
     "autoload": {

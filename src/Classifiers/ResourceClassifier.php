@@ -4,7 +4,6 @@ namespace Wnx\LaravelStats\Classifiers;
 
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\Classifier;
-use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
@@ -17,10 +16,6 @@ class ResourceClassifier implements Classifier
 
     public function satisfies(ReflectionClass $class): bool
     {
-        if ($class->isSubclassOf(Resource::class)) {
-            return true;
-        }
-
         if ($class->isSubclassOf(JsonResource::class)) {
             return true;
         }
