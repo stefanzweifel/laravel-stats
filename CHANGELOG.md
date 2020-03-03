@@ -4,8 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.0.2...HEAD)
+## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.1.0...HEAD)
 
+
+## [v2.1.0](https://github.com/stefanzweifel/laravel-stats/compare/v2.0.2...v2.1.0) - 2020-03-03
+
+Note: Due to underlying changes to the `phploc`-dependency, the numbers for "loc" and "lloc" in your project may change.
+
+### Changed
+- Run test suite against Laravel 7 [#170](https://github.com/stefanzweifel/laravel-stats/pull/170)
+
+### Removed
+- Removed support to detect `Illuminate\Http\Resources\Json\Resource` as an API resource [#170](https://github.com/stefanzweifel/laravel-stats/pull/170)
+- Dropped support for Laravel 5.8 [#170](https://github.com/stefanzweifel/laravel-stats/pull/170)
+- Dropped support for Laravel 6.0 [#170](https://github.com/stefanzweifel/laravel-stats/pull/170)
+- Dropped support for PHP 7.2 [#170](https://github.com/stefanzweifel/laravel-stats/pull/170)
 
 ## [v2.0.2](https://github.com/stefanzweifel/laravel-stats/compare/v2.0.1...v2.0.2) - 2020-02-22
 
