@@ -68,7 +68,7 @@ class ComponentTest extends TestCase
     {
         $component = $this->getTestComponent();
 
-        $this->assertEquals(15, $component->getLogicalLinesOfCode());
+        $this->assertEquals(11, $component->getLogicalLinesOfCode());
     }
 
     /** @test */
@@ -76,6 +76,6 @@ class ComponentTest extends TestCase
     {
         $component = $this->getTestComponent();
 
-        $this->assertEquals(1.15, $component->getLogicalLinesOfCodePerMethod());
+        $this->assertEquals(0.85, $component->getLogicalLinesOfCodePerMethod());
     }
 }

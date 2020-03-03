@@ -66,7 +66,7 @@ class ProjectStatisticsTest extends TestCase
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 
-        $this->assertEquals(21, $statistic->getLogicalLinesOfCode());
+        $this->assertEquals(5, $statistic->getLogicalLinesOfCode());
     }
 
     /** @test */
@@ -74,7 +74,7 @@ class ProjectStatisticsTest extends TestCase
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 
-        $this->assertEquals(2.33, $statistic->getLogicalLinesOfCodePerMethod());
+        $this->assertEquals(0.56, $statistic->getLogicalLinesOfCodePerMethod());
         $this->assertEquals(
             round($statistic->getLogicalLinesOfCode() / $statistic->getNumberOfMethods(), 2),
             $statistic->getLogicalLinesOfCodePerMethod()
@@ -86,7 +86,7 @@ class ProjectStatisticsTest extends TestCase
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 
-        $this->assertEquals(16, $statistic->getLogicalLinesOfCodeForApplicationCode());
+        $this->assertEquals(3, $statistic->getLogicalLinesOfCodeForApplicationCode());
     }
 
     /** @test */
@@ -94,7 +94,7 @@ class ProjectStatisticsTest extends TestCase
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 
-        $this->assertEquals(5, $statistic->getLogicalLinesOfCodeForTestCode());
+        $this->assertEquals(2.0, $statistic->getLogicalLinesOfCodeForTestCode());
     }
 
     /** @test */
@@ -102,6 +102,6 @@ class ProjectStatisticsTest extends TestCase
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 
-        $this->assertEquals(0.3, $statistic->getApplicationCodeToTestCodeRatio());
+        $this->assertEquals(0.7, $statistic->getApplicationCodeToTestCodeRatio());
     }
 }
