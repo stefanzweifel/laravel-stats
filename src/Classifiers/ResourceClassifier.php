@@ -16,10 +16,6 @@ class ResourceClassifier implements Classifier
 
     public function satisfies(ReflectionClass $class): bool
     {
-        if (class_exists(\Illuminate\Http\Resources\Json\Resource::class) && $class->isSubclassOf(\Illuminate\Http\Resources\Json\Resource::class)) {
-            return true;
-        }
-
         if ($class->isSubclassOf(JsonResource::class)) {
             return true;
         }
