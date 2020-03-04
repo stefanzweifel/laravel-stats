@@ -27,6 +27,7 @@
 ### Installing
 
 The easiest way to install the package is by using composer. The package requires PHP 7.3, Laravel 7.0 or higher or Lumen 7.0 or higher.
+Due to version conflicts, `stats` can't be installed in Laravel 7 projects which are running with phpunit 8. Phpunit 9 is required.
 
 ```shell
 composer require "wnx/laravel-stats" --dev
