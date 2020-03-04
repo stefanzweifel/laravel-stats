@@ -171,7 +171,7 @@ The package scans the files defined in the `paths`-array in the configuration fi
 | Job | Must use `Illuminate\Foundation\Bus\Dispatchable`-Trait |
 | Migration | Must extend `Illuminate\Database\Migrations\Migration` |
 | Request | Must extend `Illuminate\Foundation\Http\FormRequest` |
-| Resource | Must extend `Illuminate\Http\Resources\Json\Resource`, `Illuminate\Http\Resources\Json\JsonResource` or `Illuminate\Http\Resources\Json\ResourceCollection` |
+| Resource | Must extend `Illuminate\Http\Resources\Json\JsonResource` or `Illuminate\Http\Resources\Json\ResourceCollection` |
 | Seeder | Must extend `Illuminate\Database\Seeder` |
 | ServiceProvider | Must extend `Illuminate\Support\ServiceProvider` |
 | Dusk Tests | Must extend `Laravel\Dusk\TestCase` |
