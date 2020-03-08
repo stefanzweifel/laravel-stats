@@ -6,17 +6,14 @@ jobs:
   php-cs-fixer:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-
-    - name: Install
-      run: composer install
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
 
     - name: Run php-cs-fixer
-      run: ./vendor/bin/php-cs-fixer fix
+      uses: docker://oskarstark/php-cs-fixer-ga
 
-    - uses: stefanzweifel/git-auto-commit-action@v2.1.0
+    - uses: stefanzweifel/git-auto-commit-action@v4.1.0
       with:
         commit_message: Apply php-cs-fixer changes
         branch: ${{ github.head_ref }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
