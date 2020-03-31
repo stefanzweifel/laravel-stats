@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.1.1...HEAD)
 
+### Added
+- Add Blade Components Classifier [#169](https://github.com/stefanzweifel/laravel-stats/issues/169), [#173](https://github.com/stefanzweifel/laravel-stats/pull/173)
 
 ## [v2.1.1](https://github.com/stefanzweifel/laravel-stats/compare/v2.1.0...v2.1.1) - 2020-03-03
 
