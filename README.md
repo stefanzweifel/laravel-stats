@@ -176,6 +176,7 @@ The package scans the files defined in the `paths`-array in the configuration fi
 | Resource | Must extend `Illuminate\Http\Resources\Json\JsonResource` or `Illuminate\Http\Resources\Json\ResourceCollection` |
 | Seeder | Must extend `Illuminate\Database\Seeder` |
 | ServiceProvider | Must extend `Illuminate\Support\ServiceProvider` |
+| Blade Components | Must extend `Illuminate\View\Component` |
 | Dusk Tests | Must extend `Laravel\Dusk\TestCase` |
 | BrowserKit Test | Must extend `Laravel\BrowserKitTesting\TestCase` |
 | PHPUnit Test | Must extend `PHPUnit\Framework\TestCase` |
