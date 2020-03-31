@@ -10,10 +10,8 @@ use Wnx\LaravelStats\Tests\TestCase;
 class BladeComponentClassifierTest extends TestCase
 {
     /** @test */
-    public function it_returns_true_if_given_class_is_a_migration()
+    public function it_returns_true_if_given_class_is_a_blade_component()
     {
-        $bladeComponent = app(StubBladeComponent::class);
-
         $this->assertTrue(
             (new BladeComponentClassifier())->satisfies(
                 new ReflectionClass(StubBladeComponent::class)
