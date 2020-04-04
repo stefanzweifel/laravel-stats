@@ -4,11 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.1.1...HEAD)
+## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.2.0...HEAD)
+
+> TBD
+
+## [v2.2.0](https://github.com/stefanzweifel/laravel-stats/compare/v2.1.1...v2.2.0) - 2020-04-04
 
 ### Added
 - Add Blade Components Classifier [#169](https://github.com/stefanzweifel/laravel-stats/issues/169), [#173](https://github.com/stefanzweifel/laravel-stats/pull/173)
 - Add Custom Casts Classifier [#168](https://github.com/stefanzweifel/laravel-stats/issues/168), [#174](https://github.com/stefanzweifel/laravel-stats/pull/174)
+
 
 ## [v2.1.1](https://github.com/stefanzweifel/laravel-stats/compare/v2.1.0...v2.1.1) - 2020-03-03
 
