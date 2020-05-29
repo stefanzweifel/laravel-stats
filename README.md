@@ -34,13 +34,7 @@ Due to version conflicts, `stats` can't be installed in Laravel 7 projects which
 composer require "wnx/laravel-stats" --dev
 ```
 
-The package will automatically register itself. However if you prefer to register Service Provider by yourself, update your `config/app.php` file:
-
-```php
-'providers' => [
-    \Wnx\LaravelStats\StatsServiceProvider::class,
-]
-```
+The package will automatically register itself.
 
 If you're using Lumen you have to manually register the Service Provider in your `bootstrap/app.php` file:
 
