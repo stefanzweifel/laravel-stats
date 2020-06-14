@@ -35,7 +35,7 @@ use Wnx\LaravelStats\Contracts\Classifier as ClassifierContract;
 
 class Classifier
 {
-    private const DEFAULT_CLASSIFIER = [
+    public const DEFAULT_CLASSIFIER = [
         ControllerClassifier::class,
         ModelClassifier::class,
         CommandClassifier::class,
