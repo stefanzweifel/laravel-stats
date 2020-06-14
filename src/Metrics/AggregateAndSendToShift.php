@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Wnx\LaravelStats\Metrics;
 
@@ -156,5 +156,4 @@ class AggregateAndSendToShift
 
         dd($aggregatedStatistics);
     }
-
 }
