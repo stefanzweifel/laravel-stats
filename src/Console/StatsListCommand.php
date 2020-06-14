@@ -10,6 +10,7 @@ use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Outputs\JsonOutput;
 use Wnx\LaravelStats\Outputs\AsciiTableOutput;
 use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
+use Wnx\LaravelStats\Metrics\AggregateAndSendToShift;
 
 class StatsListCommand extends Command
 {
@@ -18,7 +19,7 @@ class StatsListCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'stats {--json : Output the statistics as JSON} {-c|--components= : Comma separated list of components which should be displayed}';
+    protected $signature = 'stats {--json : Output the statistics as JSON} {-c|--components= : Comma separated list of components which should be displayed} {--s|share : Share project statistic with Laravel community <link>}';
 
     /**
      * The console command description.
@@ -70,6 +71,12 @@ class StatsListCommand extends Command
                 $this->option('verbose'),
                 $this->getArrayOfComponentsToDisplay()
             );
+        }
+
+        if ($this->option('share') === true) {
+            if ($this->confirm("To you want to proceed and share your project statistics with the Laravel Community?", true)) {
+                app(AggregateAndSendToShift::class)->fire($project);
+            }
         }
     }
 
