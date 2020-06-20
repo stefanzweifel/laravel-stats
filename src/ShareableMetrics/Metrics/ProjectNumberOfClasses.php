@@ -6,11 +6,6 @@ use Wnx\LaravelStats\Contracts\CollectableMetric;
 
 class ProjectNumberOfClasses extends Metric implements CollectableMetric
 {
-    public function type(): string
-    {
-        return 'numeric';
-    }
-
     public function name(): string
     {
         return 'project_number_of_classes';

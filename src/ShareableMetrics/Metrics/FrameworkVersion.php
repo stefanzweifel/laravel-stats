@@ -6,11 +6,6 @@ use Wnx\LaravelStats\Contracts\CollectableMetric;
 
 class FrameworkVersion extends Metric implements CollectableMetric
 {
-    public function type(): string
-    {
-        return 'numeric';
-    }
-
     public function name(): string
     {
         return 'framework_version';

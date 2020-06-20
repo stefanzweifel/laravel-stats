@@ -7,11 +7,6 @@ use Wnx\LaravelStats\Statistics\NumberOfRoutes as NumberOfRoutesValue;
 
 class NumberOfRoutes extends Metric implements CollectableMetric
 {
-    public function type(): string
-    {
-        return 'numeric';
-    }
-
     public function name(): string
     {
         return 'number_of_routes';

@@ -10,11 +10,6 @@ use Wnx\LaravelStats\ValueObjects\Component;
 
 class NumberOfRelationships extends Metric implements CollectableMetric
 {
-    public function type(): string
-    {
-        return 'numeric';
-    }
-
     public function name(): string
     {
         return 'project_number_of_relationships';
