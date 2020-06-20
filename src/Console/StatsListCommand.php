@@ -2,15 +2,15 @@
 
 namespace Wnx\LaravelStats\Console;
 
-use Illuminate\Support\Str;
-use Wnx\LaravelStats\Project;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 use Wnx\LaravelStats\ClassesFinder;
-use Wnx\LaravelStats\ReflectionClass;
-use Wnx\LaravelStats\Outputs\JsonOutput;
 use Wnx\LaravelStats\Outputs\AsciiTableOutput;
+use Wnx\LaravelStats\Outputs\JsonOutput;
+use Wnx\LaravelStats\Project;
+use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
-use Wnx\LaravelStats\Metrics\AggregateAndSendToShift;
+use Wnx\LaravelStats\ShareableMetrics\AggregateAndSendToShift;
 
 class StatsListCommand extends Command
 {

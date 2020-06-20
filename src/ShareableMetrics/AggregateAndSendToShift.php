@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Wnx\LaravelStats\Metrics;
+namespace Wnx\LaravelStats\ShareableMetrics;
 
 use Illuminate\Support\Str;
 use Wnx\LaravelStats\Classifier;
 use Wnx\LaravelStats\Project;
-use Wnx\LaravelStats\Metrics\AvailableMetrics\FrameworkVersion;
-use Wnx\LaravelStats\Metrics\AvailableMetrics\ProjectLinesOfCode;
-use Wnx\LaravelStats\Metrics\AvailableMetrics\ProjectLogicalLinesOfCode;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\FrameworkVersion;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLinesOfCode;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLogicalLinesOfCode;
 use Wnx\LaravelStats\Statistics\NumberOfRoutes;
 use Wnx\LaravelStats\ValueObjects\Component;
 

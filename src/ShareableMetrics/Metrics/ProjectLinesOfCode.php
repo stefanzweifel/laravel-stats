@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Wnx\LaravelStats\Metrics\AvailableMetrics;
+namespace Wnx\LaravelStats\ShareableMetrics\Metrics;
 
 use Wnx\LaravelStats\Contracts\CollectableMetric;
 
-class FrameworkVersion extends Metric implements CollectableMetric
+class ProjectLinesOfCode extends Metric implements CollectableMetric
 {
     public function type(): string
     {
@@ -13,11 +13,11 @@ class FrameworkVersion extends Metric implements CollectableMetric
 
     public function name(): string
     {
-        return 'framework_version';
+        return 'project_lines_of_code';
     }
 
     public function value()
     {
-        return app()->version();
+        return $this->project->statistic()->getLinesOfCode();
     }
 }

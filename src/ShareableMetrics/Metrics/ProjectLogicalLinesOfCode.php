@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Wnx\LaravelStats\Metrics\AvailableMetrics;
+namespace Wnx\LaravelStats\ShareableMetrics\Metrics;
 
 use Wnx\LaravelStats\Contracts\CollectableMetric;
 
