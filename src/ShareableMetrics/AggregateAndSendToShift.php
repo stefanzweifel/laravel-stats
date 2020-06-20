@@ -6,34 +6,27 @@ use Illuminate\Support\Str;
 use Wnx\LaravelStats\Classifier;
 use Wnx\LaravelStats\Project;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\FrameworkVersion;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRelationships;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRoutes;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLinesOfCode;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLogicalLinesOfCode;
-use Wnx\LaravelStats\Statistics\NumberOfRoutes;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectNumberOfClasses;
 use Wnx\LaravelStats\ValueObjects\Component;
 
 class AggregateAndSendToShift
 {
     public function fire(Project $project)
     {
-        // Get the Names of "Core"-Components
-        $coreNames = array_map(function ($classifier) {
-            return (new $classifier)->name();
-        }, Classifier::DEFAULT_CLASSIFIER);
-
-        // Group Into Components
-        $groupedByComponent = $project->classifiedClassesGroupedAndFilteredByComponentNames($coreNames)
-            ->map(function ($classifiedClasses, $componentName) {
-                return new Component($componentName, $classifiedClasses);
-            });
-
-        $availableCollectableStats = collect([
+        $availableCollectibleStats = collect([
             FrameworkVersion::class,
+            ProjectNumberOfClasses::class,
             ProjectLinesOfCode::class,
-            ProjectLogicalLinesOfCode::class
+            ProjectLogicalLinesOfCode::class,
+            NumberOfRoutes::class,
+            NumberOfRelationships::class,
         ])->map(function ($statClass) use ($project) {
             return new $statClass($project);
         });
-
 
 
         $aggregatedStatistics = [];
@@ -47,18 +40,6 @@ class AggregateAndSendToShift
             'framework' => 'Laravel', // or Lumens
 
             'numeric' => [
-                [
-                    'name' => 'lloc',
-                    'value' => $project->statistic()->getLogicalLinesOfCode(),
-                ],
-                [
-                    'name' => 'number_of_classes',
-                    'value' => $project->statistic()->getNumberOfClasses(),
-                ],
-                [
-                    'name' => 'number_of_routes',
-                    'value' => app(NumberOfRoutes::class)->get(),
-                ],
                 [
                     'name' => 'number_of_relationships',
                     'value' => 12,
@@ -136,6 +117,33 @@ class AggregateAndSendToShift
             ]
         ];
 
+        $aggregatedStatistics['project']['from_classes'][] = $availableCollectibleStats->map->toArray();
+
+
+        $componentMetrics = $this->getComponentMetrics($project);
+
+
+
+        $aggregatedStatistics['project']['numeric'] = array_merge($aggregatedStatistics['project']['numeric'], $componentMetrics);
+
+        dd($aggregatedStatistics);
+    }
+
+    public function getComponentMetrics(Project $project)
+    {
+        // Get the Names of "Core"-Components
+        $coreNames = array_map(function ($classifier) {
+            return (new $classifier)->name();
+        }, Classifier::DEFAULT_CLASSIFIER);
+
+        // Group Into Components
+        $groupedByComponent = $project->classifiedClassesGroupedAndFilteredByComponentNames($coreNames)
+            ->map(function ($classifiedClasses, $componentName) {
+                return new Component($componentName, $classifiedClasses);
+            });
+
+
+        $aggregatedStatistics = [];
 
         // Loop through all available Core-Components and record
         // - Name
@@ -143,17 +151,15 @@ class AggregateAndSendToShift
 
         /** @var Component $component */
         foreach ($groupedByComponent as $component) {
-            $aggregatedStatistics['components'][] = [
-                'name' => $component->name,
-                'number_of_classes' => $component->getNumberOfClasses(),
-                'number_of_methods' => $component->getNumberOfMethods(),
-                'loc' => $component->getLogicalLinesOfCode(),
-                'loc_per_method' => $component->getLogicalLinesOfCodePerMethod(),
-            ];
+
+            $slug = Str::slug(strtolower($component->name), '_');
+
+            $aggregatedStatistics["{$slug}_number_of_classes"] = $component->getNumberOfClasses();
+            $aggregatedStatistics["{$slug}_number_of_methods"] = $component->getNumberOfMethods();
+            $aggregatedStatistics["{$slug}_loc"] = $component->getLogicalLinesOfCode();
+            $aggregatedStatistics["{$slug}_loc_per_method"] = $component->getLogicalLinesOfCodePerMethod();
         }
 
-        $aggregatedStatistics['project']['from_classes'][] = $availableCollectableStats->map->toArray();
-
-        dd($aggregatedStatistics);
+        return $aggregatedStatistics;
     }
 }
