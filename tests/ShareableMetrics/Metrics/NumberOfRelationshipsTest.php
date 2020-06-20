@@ -12,6 +12,16 @@ use Wnx\LaravelStats\Tests\TestCase;
 class NumberOfRelationshipsTest extends TestCase
 {
     /** @test */
+    public function it_returns_correct_metric_name()
+    {
+        $project = $this->createProjectFromClasses([]);
+
+        $metric = new NumberOfRelationships($project);
+
+        $this->assertEquals('project_number_of_relationships', $metric->name());
+    }
+
+    /** @test */
     public function it_returns_0_if_no_relationships_could_be_found_for_a_given_project()
     {
         $project = $this->createProjectFromClasses([]);
