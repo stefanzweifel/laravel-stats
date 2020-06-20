@@ -74,7 +74,7 @@ class StatsListCommand extends Command
         }
 
         if ($this->option('share') === true) {
-            if ($this->confirm("To you want to proceed and share your project statistics with the Laravel Community?", true)) {
+            if ($this->confirm("Do you want to share stats from your project with the Laravel Community to stats.laravelshift.com?", true)) {
                 app(AggregateAndSendToShift::class)->fire($project);
             }
         }
