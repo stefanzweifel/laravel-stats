@@ -19,9 +19,7 @@ abstract class Metric
     public function toArray()
     {
         return [
-            'type' => $this->type(),
-            'name' => $this->name(),
-            'value' => $this->value(),
+            $this->name() => $this->value()
         ];
     }
 }
