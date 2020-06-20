@@ -19,13 +19,16 @@ class AggregateAndSendToShift
 {
     public function fire(Project $project)
     {
-        $availableCollectibleStats = collect([
+        $availableMetrics = collect([
             FrameworkVersion::class,
-            ProjectNumberOfClasses::class,
+            NumberOfRelationships::class,
+            NumberOfRoutes::class,
             ProjectLinesOfCode::class,
             ProjectLogicalLinesOfCode::class,
-            NumberOfRoutes::class,
-            NumberOfRelationships::class,
+            ProjectNumberOfClasses::class,
+            // CodeLogicalLinesOfCode
+            // TestLogicalLinesOfCode
+            // CodeToTestRatio
         ])->map(function ($statClass) use ($project) {
             return new $statClass($project);
         });
@@ -37,12 +40,14 @@ class AggregateAndSendToShift
             'metrics' => [],
         ];
 
-        $projectMetrics = $availableCollectibleStats->map->toArray()->collapse();
+        $projectMetrics = $availableMetrics->map->toArray()->collapse();
         $componentMetrics = $this->getComponentMetrics($project);
 
         $metrics['metrics'] = $projectMetrics->merge($componentMetrics)->sortKeys();
 
-        $this->sendMetricsToApi($metrics);
+        dd($metrics);
+
+        // $this->sendMetricsToApi($metrics);
     }
 
     protected function getComponentMetrics(Project $project): array
@@ -67,8 +72,9 @@ class AggregateAndSendToShift
 
             $metrics["{$slug}_number_of_classes"] = $component->getNumberOfClasses();
             $metrics["{$slug}_number_of_methods"] = $component->getNumberOfMethods();
-            $metrics["{$slug}_loc"] = $component->getLogicalLinesOfCode();
-            $metrics["{$slug}_loc_per_method"] = $component->getLogicalLinesOfCodePerMethod();
+            $metrics["{$slug}_loc"] = $component->getLinesOfCode();
+            $metrics["{$slug}_lloc"] = $component->getLogicalLinesOfCode();
+            $metrics["{$slug}_lloc_per_method"] = $component->getLogicalLinesOfCodePerMethod();
         }
 
         return $metrics;
