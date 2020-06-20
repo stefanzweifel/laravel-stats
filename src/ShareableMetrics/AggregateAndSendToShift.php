@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\ShareableMetrics;
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Wnx\LaravelStats\Classifier;
 use Wnx\LaravelStats\Project;
@@ -11,6 +12,7 @@ use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRoutes;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLinesOfCode;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLogicalLinesOfCode;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectNumberOfClasses;
+use Wnx\LaravelStats\ShareableMetrics\ProjectId;
 use Wnx\LaravelStats\ValueObjects\Component;
 
 class AggregateAndSendToShift
@@ -28,138 +30,57 @@ class AggregateAndSendToShift
             return new $statClass($project);
         });
 
-
-        $aggregatedStatistics = [];
-
         // Top Level Information about a project
-        $aggregatedStatistics['project'] = [
-            // A UUID which identifies a project
-            // (maybe store the value in a `.config`-file)
-            'id' => Str::uuid()->toString(),
-
-            'framework' => 'Laravel', // or Lumens
-
-            'numeric' => [
-                [
-                    'name' => 'number_of_relationships',
-                    'value' => 12,
-                ],
-                [
-                    'name' => 'number_of_packages',
-                    'value' => 0,
-                ],
-                [
-                    'name' => 'number_of_tests',
-                    'value' => 10,
-                ],
-                [
-                    'name' => 'number_of_feature_tests',
-                    'value' => 7
-                ],
-                [
-                    'name' => 'number_of_unit_tests',
-                    'value' => 3
-                ],
-            ],
-            'flags' => [
-                [
-                    'name' => 'inherits_a_base_controller',
-                    'value' => true
-                ],
-                [
-                    'name' => 'inherits_a_base_model',
-                    'value' => false,
-                ],
-                [
-                    'name' => 'ungards_all_models',
-                    'value' => false,
-                ],
-                [
-                    'name' => 'uses_helpers_or_facades',
-                    'value' => false,
-                ],
-                [
-                    'name' => 'controller_request_injection',
-                    'value' => true,
-                ],
-                [
-                    'name' => 'schedules_tasks',
-                    'value' => true,
-                ],
-                [
-                    'name' => 'validation_vs_form_requests',
-                    'value' => false,
-                ],
-                [
-                    'name' => 'realtime_facades',
-                    'value' => false,
-                ],
-                [
-                    'name' => 'queues_jobs',
-                    'value' => true,
-                ],
-                [
-                    'name' => 'uses_app_models_folder',
-                    'value' => false,
-                ],
-                [
-                    'name' => 'uses_domain_structure',
-                    'value' => false,
-                ],
-                [
-                    'name' => 'has_additional_psr4_sources',
-                    'value' => false,
-                ],
-                [
-                    'name' => 'has_custom_psr4_namespace',
-                    'value' => true
-                ],
-            ]
+        $metrics = [
+            'id' => app(ProjectId::class)->get(),
+            'framework' => 'Laravel',
+            'metrics' => [],
         ];
 
-        $aggregatedStatistics['project']['from_classes'][] = $availableCollectibleStats->map->toArray();
-
-
+        $projectMetrics = $availableCollectibleStats->map->toArray()->collapse();
         $componentMetrics = $this->getComponentMetrics($project);
 
+        $metrics['metrics'] = $projectMetrics->merge($componentMetrics)->sortKeys();
 
-
-        $aggregatedStatistics['project']['numeric'] = array_merge($aggregatedStatistics['project']['numeric'], $componentMetrics);
-
-        dd($aggregatedStatistics);
+        $this->sendMetricsToApi($metrics);
     }
 
-    public function getComponentMetrics(Project $project)
+    protected function getComponentMetrics(Project $project): array
     {
         // Get the Names of "Core"-Components
-        $coreNames = array_map(function ($classifier) {
+        $coreClassifierNames = array_map(function ($classifier) {
             return (new $classifier)->name();
         }, Classifier::DEFAULT_CLASSIFIER);
 
         // Group Into Components
-        $groupedByComponent = $project->classifiedClassesGroupedAndFilteredByComponentNames($coreNames)
+        $groupedByComponent = $project->classifiedClassesGroupedAndFilteredByComponentNames($coreClassifierNames)
             ->map(function ($classifiedClasses, $componentName) {
                 return new Component($componentName, $classifiedClasses);
             });
 
 
-        $aggregatedStatistics = [];
-
-        // Loop through all available Core-Components and record
-        // - Name
-        // - Total Number of Classes (eg. 15 Models, 12 Controllers)
+        $metrics = [];
 
         /** @var Component $component */
         foreach ($groupedByComponent as $component) {
-
             $slug = Str::slug(strtolower($component->name), '_');
 
-            $aggregatedStatistics["{$slug}_number_of_classes"] = $component->getNumberOfClasses();
-            $aggregatedStatistics["{$slug}_number_of_methods"] = $component->getNumberOfMethods();
-            $aggregatedStatistics["{$slug}_loc"] = $component->getLogicalLinesOfCode();
-            $aggregatedStatistics["{$slug}_loc_per_method"] = $component->getLogicalLinesOfCodePerMethod();
+            $metrics["{$slug}_number_of_classes"] = $component->getNumberOfClasses();
+            $metrics["{$slug}_number_of_methods"] = $component->getNumberOfMethods();
+            $metrics["{$slug}_loc"] = $component->getLogicalLinesOfCode();
+            $metrics["{$slug}_loc_per_method"] = $component->getLogicalLinesOfCodePerMethod();
         }
 
-        return $aggregatedStatistics;
+        return $metrics;
+    }
+
+    private function sendMetricsToApi(array $payload): void
+    {
+        // TODO: Replace with URL to Stats API
+        $response = Http::post('http://127.0.0.1:8000/collect-stats', $payload);
+
+        if ($response->failed()) {
+            // TODO: Do something here?
+        }
     }
 }
