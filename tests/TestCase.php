@@ -3,9 +3,11 @@
 namespace Wnx\LaravelStats\Tests;
 
 use Illuminate\Contracts\Http\Kernel;
+use Orchestra\Testbench\TestCase as Orchestra;
+use Wnx\LaravelStats\Project;
+use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\StatsServiceProvider;
 use Wnx\LaravelStats\Tests\Stubs\HttpKernel;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Wnx\LaravelStats\Tests\Stubs\ServiceProviders\EventServiceProvider;
 
 abstract class TestCase extends Orchestra
@@ -40,5 +42,22 @@ abstract class TestCase extends Orchestra
     protected function resolveApplicationHttpKernel($app)
     {
         $app->singleton(Kernel::class, HttpKernel::class);
+    }
+
+    /**
+     * Create a new Project based on the passed FQDNs of Classes
+     *
+     * @param  array  $classes
+     *
+     * @return \Wnx\LaravelStats\Project
+     */
+    public function createProjectFromClasses(array $classes = [])
+    {
+        $classes = collect($classes)
+            ->map(function ($class) {
+                return new ReflectionClass($class);
+            });
+
+        return new Project($classes);
     }
 }
