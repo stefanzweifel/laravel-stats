@@ -1,8 +1,7 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Wnx\LaravelStats\Tests\ShareableMetrics\Metrics;
 
-use Wnx\LaravelStats\Project;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRelationships;
 use Wnx\LaravelStats\Tests\Stubs\Models\Group;
 use Wnx\LaravelStats\Tests\Stubs\Models\Post;
@@ -44,5 +43,4 @@ class NumberOfRelationshipsTest extends TestCase
 
         $this->assertEquals(5, $metric->value());
     }
-
 }

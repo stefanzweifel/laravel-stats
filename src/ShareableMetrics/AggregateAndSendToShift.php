@@ -12,7 +12,6 @@ use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRoutes;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLinesOfCode;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLogicalLinesOfCode;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectNumberOfClasses;
-use Wnx\LaravelStats\ShareableMetrics\ProjectId;
 use Wnx\LaravelStats\ValueObjects\Component;
 
 class AggregateAndSendToShift

@@ -3,10 +3,8 @@
 namespace Wnx\LaravelStats\ShareableMetrics\Metrics;
 
 use Illuminate\Support\Str;
-use Wnx\LaravelStats\Classifiers\ModelClassifier;
 use Wnx\LaravelStats\Contracts\CollectableMetric;
 use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
-use Wnx\LaravelStats\ValueObjects\Component;
 
 class NumberOfRelationships extends Metric implements CollectableMetric
 {

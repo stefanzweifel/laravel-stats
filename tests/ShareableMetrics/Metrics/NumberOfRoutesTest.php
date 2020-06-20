@@ -1,14 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Wnx\LaravelStats\Tests\ShareableMetrics\Metrics;
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
-use Wnx\LaravelStats\Project;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRoutes;
-use Wnx\LaravelStats\Tests\Stubs\Models\Group;
-use Wnx\LaravelStats\Tests\Stubs\Models\Post;
-use Wnx\LaravelStats\Tests\Stubs\Models\User;
 use Wnx\LaravelStats\Tests\TestCase;
 
 class NumberOfRoutesTest extends TestCase
