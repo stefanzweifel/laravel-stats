@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Wnx\LaravelStats\Classifier;
 use Wnx\LaravelStats\Project;
-use Wnx\LaravelStats\ShareableMetrics\Metrics\FrameworkVersion;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRelationships;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRoutes;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLinesOfCode;
@@ -19,7 +18,6 @@ class AggregateAndSendToShift
     public function fire(Project $project)
     {
         $availableMetrics = collect([
-            FrameworkVersion::class,
             NumberOfRelationships::class,
             NumberOfRoutes::class,
             ProjectLinesOfCode::class,
@@ -35,7 +33,6 @@ class AggregateAndSendToShift
         // Top Level Information about a project
         $metrics = [
             'id' => app(ProjectId::class)->get(),
-            'framework' => 'Laravel',
             'metrics' => [],
         ];
 
