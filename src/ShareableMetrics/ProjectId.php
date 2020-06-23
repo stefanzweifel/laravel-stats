@@ -11,6 +11,8 @@ class ProjectId
 
     public function get(): string
     {
+        return 'stefanzweifel/laravel-stats';
+
         $pathToRcFile = base_path(self::RC_FILE);
 
         if (File::exists($pathToRcFile)) {
