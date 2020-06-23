@@ -69,8 +69,8 @@ class AggregateAndSendToShift
         foreach ($groupedByComponent as $component) {
             $slug = Str::slug(strtolower($component->name), '_');
 
-            $metrics["{$slug}_number_of_classes"] = $component->getNumberOfClasses();
-            $metrics["{$slug}_number_of_methods"] = $component->getNumberOfMethods();
+            $metrics["{$slug}"] = $component->getNumberOfClasses();
+            $metrics["{$slug}_methods"] = $component->getNumberOfMethods();
             $metrics["{$slug}_loc"] = $component->getLinesOfCode();
             $metrics["{$slug}_lloc"] = $component->getLogicalLinesOfCode();
             $metrics["{$slug}_lloc_per_method"] = $component->getLogicalLinesOfCodePerMethod();
