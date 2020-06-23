@@ -37,7 +37,7 @@ class StatsListCommandTest extends TestCase
         $this->artisan('stats');
         $resultAsText = Artisan::output();
 
-        $this->assertStringContainsString('Middlewares', $resultAsText);
+        $this->assertStringContainsString('Middleware', $resultAsText);
         $this->assertStringContainsString('Controllers', $resultAsText);
         $this->assertStringContainsString('Other', $resultAsText);
         $this->assertStringContainsString('Total', $resultAsText);

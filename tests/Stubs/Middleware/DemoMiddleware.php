@@ -1,6 +1,6 @@
 <?php
 
-namespace Wnx\LaravelStats\Tests\Stubs\Middlewares;
+namespace Wnx\LaravelStats\Tests\Stubs\Middleware;
 
 use Closure;
 
