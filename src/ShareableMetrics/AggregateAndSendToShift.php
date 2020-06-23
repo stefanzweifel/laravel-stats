@@ -2,10 +2,12 @@
 
 namespace Wnx\LaravelStats\ShareableMetrics;
 
+use Composer\Composer;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Wnx\LaravelStats\Classifier;
 use Wnx\LaravelStats\Project;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfPackages;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRelationships;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRoutes;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLinesOfCode;
@@ -18,6 +20,7 @@ class AggregateAndSendToShift
     public function fire(Project $project)
     {
         $availableMetrics = collect([
+            NumberOfPackages::class,
             NumberOfRelationships::class,
             NumberOfRoutes::class,
             ProjectLinesOfCode::class,
@@ -32,7 +35,7 @@ class AggregateAndSendToShift
 
         // Top Level Information about a project
         $metrics = [
-            'id' => app(ProjectId::class)->get(),
+            'project' => app(ProjectId::class)->get(),
             'metrics' => [],
         ];
 
@@ -40,6 +43,8 @@ class AggregateAndSendToShift
         $componentMetrics = $this->getComponentMetrics($project);
 
         $metrics['metrics'] = $projectMetrics->merge($componentMetrics)->sortKeys();
+
+
 
         dd($metrics);
 
