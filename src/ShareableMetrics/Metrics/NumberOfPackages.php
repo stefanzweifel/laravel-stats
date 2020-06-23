@@ -20,6 +20,6 @@ class NumberOfPackages extends Metric implements CollectableMetric
         $dependencies = Arr::get($composerJson, 'require', []);
         $devDependencies = Arr::get($composerJson, 'require-dev', []);
 
-        return count($dependencies) + count ($devDependencies);
+        return count($dependencies) + count($devDependencies);
     }
 }

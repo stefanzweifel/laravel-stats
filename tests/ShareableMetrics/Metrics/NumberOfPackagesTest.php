@@ -3,11 +3,6 @@
 namespace Wnx\LaravelStats\Tests\ShareableMetrics\Metrics;
 
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfPackages;
-use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLinesOfCode;
-use Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController;
-use Wnx\LaravelStats\Tests\Stubs\Jobs\DemoJob;
-use Wnx\LaravelStats\Tests\Stubs\Models\User;
-use Wnx\LaravelStats\Tests\Stubs\Tests\DemoUnitTest;
 use Wnx\LaravelStats\Tests\TestCase;
 
 class NumberOfPackagesTest extends TestCase

@@ -2,7 +2,6 @@
 
 namespace Wnx\LaravelStats\ShareableMetrics;
 
-use Composer\Composer;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Wnx\LaravelStats\Classifier;
