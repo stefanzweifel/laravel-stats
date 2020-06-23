@@ -14,7 +14,7 @@ class MiddlewareClassifier implements Classifier
 
     public function name(): string
     {
-        return 'Middlewares';
+        return 'Middleware';
     }
 
     public function satisfies(ReflectionClass $class): bool
