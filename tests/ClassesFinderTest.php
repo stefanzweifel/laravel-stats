@@ -55,15 +55,15 @@ class ClassesFinderTest extends TestCase
     }
 
     /** @test */
-    public function it_finds_middlewares()
+    public function it_finds_middleware()
     {
-        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Middlewares\DemoMiddleware::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Middleware\DemoMiddleware::class));
     }
 
     /** @test */
-    public function it_finds_route_middlewares()
+    public function it_finds_route_middleware()
     {
-        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Middlewares\RouteMiddleware::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Middleware\RouteMiddleware::class));
     }
 
     /** @test */
