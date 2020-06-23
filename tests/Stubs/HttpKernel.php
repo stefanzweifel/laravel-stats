@@ -2,8 +2,8 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs;
 
-use Wnx\LaravelStats\Tests\Stubs\Middlewares\DemoMiddleware;
-use Wnx\LaravelStats\Tests\Stubs\Middlewares\RouteMiddleware;
+use Wnx\LaravelStats\Tests\Stubs\Middleware\DemoMiddleware;
+use Wnx\LaravelStats\Tests\Stubs\Middleware\RouteMiddleware;
 
 class HttpKernel extends \Illuminate\Foundation\Http\Kernel
 {
