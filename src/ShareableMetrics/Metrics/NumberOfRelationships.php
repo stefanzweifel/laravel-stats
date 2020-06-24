@@ -10,7 +10,7 @@ class NumberOfRelationships extends Metric implements CollectableMetric
 {
     public function name(): string
     {
-        return 'project_number_of_relationships';
+        return 'models_relationships';
     }
 
     public function value()

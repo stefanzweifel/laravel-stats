@@ -8,7 +8,7 @@ class ProjectNumberOfClasses extends Metric implements CollectableMetric
 {
     public function name(): string
     {
-        return 'project_number_of_classes';
+        return 'classes';
     }
 
     public function value()

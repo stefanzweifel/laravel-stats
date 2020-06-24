@@ -10,7 +10,7 @@ class NumberOfPackages extends Metric implements CollectableMetric
 {
     public function name(): string
     {
-        return 'number_of_packages';
+        return 'packages';
     }
 
     public function value()
@@ -20,6 +20,9 @@ class NumberOfPackages extends Metric implements CollectableMetric
         $dependencies = Arr::get($composerJson, 'require', []);
         $devDependencies = Arr::get($composerJson, 'require-dev', []);
 
-        return count($dependencies) + count($devDependencies);
+        return [
+            'require' => $dependencies,
+            'require-dev' => $devDependencies,
+        ];
     }
 }

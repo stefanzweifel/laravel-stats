@@ -8,7 +8,7 @@ class ProjectLogicalLinesOfCode extends Metric implements CollectableMetric
 {
     public function name(): string
     {
-        return 'project_logical_lines_of_code';
+        return 'lloc';
     }
 
     public function value()

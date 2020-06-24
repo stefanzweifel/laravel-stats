@@ -9,7 +9,7 @@ class NumberOfRoutes extends Metric implements CollectableMetric
 {
     public function name(): string
     {
-        return 'number_of_routes';
+        return 'routes';
     }
 
     public function value()
