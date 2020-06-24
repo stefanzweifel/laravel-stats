@@ -11,6 +11,8 @@ use Wnx\LaravelStats\Project;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
 use Wnx\LaravelStats\ShareableMetrics\AggregateAndSendToShift;
+use Wnx\LaravelStats\ShareableMetrics\CollectMetrics;
+use Wnx\LaravelStats\ShareableMetrics\SendToLaravelShift;
 
 class StatsListCommand extends Command
 {
@@ -80,8 +82,15 @@ class StatsListCommand extends Command
             // TODO: Show Collected Metrics to User
             // TODO: Ask user to confirm the project name
 
-            if ($this->confirm("Do you want to share stats from your project with the Laravel Community to stats.laravelshift.com?", true)) {
-                app(AggregateAndSendToShift::class)->fire($project);
+            $metrics = app(CollectMetrics::class)->get($project);
+
+            $this->table(
+                ['Name', 'Value'],
+                $metrics->toAsciiTableFormat()
+            );
+
+            if ($this->confirm("Do you want to share stats above from your project with the Laravel Community to stats.laravelshift.com?", true)) {
+                // app(SendToLaravelShift::class)->send($metrics);
             }
         }
     }

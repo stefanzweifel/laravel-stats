@@ -18,6 +18,10 @@ class MetricsCollection extends Collection
             return $metric;
         });
 
-        return $metrics->keys()->zip($metrics)->toArray();
+        return $metrics
+            ->keys()
+            ->zip($metrics)
+            ->push(['project', $this->items['project']])
+            ->toArray();
     }
 }
