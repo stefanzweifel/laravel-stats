@@ -10,7 +10,6 @@ use Wnx\LaravelStats\Outputs\JsonOutput;
 use Wnx\LaravelStats\Project;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
-use Wnx\LaravelStats\ShareableMetrics\AggregateAndSendToShift;
 use Wnx\LaravelStats\ShareableMetrics\CollectMetrics;
 use Wnx\LaravelStats\ShareableMetrics\SendToLaravelShift;
 

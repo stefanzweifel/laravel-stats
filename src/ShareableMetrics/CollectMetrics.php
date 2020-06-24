@@ -1,19 +1,16 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Wnx\LaravelStats\ShareableMetrics;
 
 use Illuminate\Support\Str;
 use Wnx\LaravelStats\Classifier;
 use Wnx\LaravelStats\Project;
-use Wnx\LaravelStats\ShareableMetrics\MetricsCollection;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfPackages;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRelationships;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRoutes;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLinesOfCode;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLogicalLinesOfCode;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectNumberOfClasses;
-use Wnx\LaravelStats\ShareableMetrics\MetrisCollection;
-use Wnx\LaravelStats\ShareableMetrics\ProjectId;
 use Wnx\LaravelStats\ValueObjects\Component;
 
 class CollectMetrics
@@ -93,5 +90,4 @@ class CollectMetrics
 
         return $metrics;
     }
-
 }

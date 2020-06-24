@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Wnx\LaravelStats\ShareableMetrics;
 
@@ -29,5 +29,4 @@ class SendToLaravelShift
             dd($response->json());
         }
     }
-
 }
