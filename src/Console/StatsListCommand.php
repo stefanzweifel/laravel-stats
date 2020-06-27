@@ -111,8 +111,6 @@ class StatsListCommand extends Command
 
                 $projectName = $this->ask("We've determined the following name for your project. Do you want to rename it?", $generatedProjectName);
 
-                $this->info();
-
                 app(ProjectName::class)->storeNameInRcFile($projectName);
             } else {
                 $projectName = app(ProjectName::class)->get();
@@ -122,6 +120,8 @@ class StatsListCommand extends Command
                 $this->error("Please provide a project name.");
                 return;
             }
+
+            $this->info("The project name '{$projectName}' will be used.");
 
             $response = app(SendToLaravelShift::class)->send($metrics->toHttpPayload($projectName));
 
