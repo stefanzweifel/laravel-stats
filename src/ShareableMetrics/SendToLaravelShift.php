@@ -2,31 +2,19 @@
 
 namespace Wnx\LaravelStats\ShareableMetrics;
 
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
 class SendToLaravelShift
 {
-    public function send(array $payload): void
+    public function send(array $payload): Response
     {
-        $httpPayload = [
-            'project' => $payload['project'],
-            'metrics' => $payload['metrics']->toArray()
-        ];
+        info('Send laravel-stats data to Laravel Shift', $payload);
 
-        info(json_encode($httpPayload));
+        dd($payload);
 
-        // TODO: Replace with URL to Stats API
-        $response = Http::withHeaders([
+        return Http::withHeaders([
             'Accept' => 'application/json'
-        ])->post('https://laravelshift.com/api/stat', $httpPayload);
-
-        dd(
-            $response->status(),
-            $response->body()
-        );
-
-        if ($response->failed()) {
-            dd($response->json());
-        }
+        ])->post('https://laravelshift.com/api/stat', $payload);
     }
 }

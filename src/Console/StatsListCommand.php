@@ -11,6 +11,7 @@ use Wnx\LaravelStats\Project;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
 use Wnx\LaravelStats\ShareableMetrics\CollectMetrics;
+use Wnx\LaravelStats\ShareableMetrics\ProjectName;
 use Wnx\LaravelStats\ShareableMetrics\SendToLaravelShift;
 
 class StatsListCommand extends Command
@@ -58,6 +59,24 @@ class StatsListCommand extends Command
 
         $project = new Project($reflectionClasses);
 
+        $this->renderOutput($project);
+
+        if ($this->option('share') === true) {
+            $this->shareDataWithShift($project);
+        }
+    }
+
+    private function getArrayOfComponentsToDisplay(): array
+    {
+        if (is_null($this->option('components'))) {
+            return [];
+        }
+
+        return  explode(',', $this->option('components'));
+    }
+
+    private function renderOutput(Project $project)
+    {
         if ($this->option('json') === true) {
             $json = (new JsonOutput())->render(
                 $project,
@@ -73,33 +92,54 @@ class StatsListCommand extends Command
                 $this->getArrayOfComponentsToDisplay()
             );
         }
-
-        if ($this->option('share') === true) {
-
-            // TODO: Collect the Metrics
-            // TODO: Get Project Name from local Git Repo
-            // TODO: Show Collected Metrics to User
-            // TODO: Ask user to confirm the project name
-
-            $metrics = app(CollectMetrics::class)->get($project);
-
-            $this->table(
-                ['Name', 'Value'],
-                $metrics->toAsciiTableFormat()
-            );
-
-            if ($this->confirm("Do you want to share stats above from your project with the Laravel Community to stats.laravelshift.com?", true)) {
-                // app(SendToLaravelShift::class)->send($metrics);
-            }
-        }
     }
 
-    private function getArrayOfComponentsToDisplay(): array
+    private function shareDataWithShift(Project $project): void
     {
-        if (is_null($this->option('components'))) {
-            return [];
-        }
+        $metrics = app(CollectMetrics::class)->collect($project);
 
-        return  explode(',', $this->option('components'));
+        $this->info("\n\n");
+        $this->info("The following metrics will be shared with stats.laravelshift.com.");
+        $this->table(
+            ['Name', 'Value'],
+            $metrics->toAsciiTableFormat()
+        );
+
+        if ($this->confirm("Do you want to share stats above from your project with the Laravel Community to stats.laravelshift.com?", true)) {
+
+            if (app(ProjectName::class)->hasStoredProjectName() === false) {
+
+                $generatedProjectName = app(ProjectName::class)->determineProjectNameFromGit();
+
+                $projectName = $this->ask("We've determined the following name for your project. Do you want to rename it?", $generatedProjectName);
+
+                $this->info();
+
+                app(ProjectName::class)->storeNameInRcFile($projectName);
+
+            } else {
+                $projectName = app(ProjectName::class)->get();
+            }
+
+            if ($projectName === null) {
+                $this->error("Please provide a project name.");
+                return;
+            }
+
+            $response = app(SendToLaravelShift::class)->send($metrics->toHttpPayload($projectName));
+
+            dd(
+                $response->status(),
+                $response->body()
+            );
+
+            if ($response->failed()) {
+                $this->error("An error occured while transmitting data to laravelshift.com. Please try again.");
+            }
+
+            if ($response->successful()) {
+                $this->info("Thanks for sharing your project data with the community!");
+            }
+        }
     }
 }

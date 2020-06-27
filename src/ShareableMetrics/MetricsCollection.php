@@ -18,6 +18,7 @@ class MetricsCollection extends Collection
             });
 
         return $metrics
+            ->forget('packages')
             ->keys()
             ->zip($metrics)
             ->toArray();
