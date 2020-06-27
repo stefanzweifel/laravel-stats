@@ -18,7 +18,7 @@ class ProjectNumberOfClassesTest extends TestCase
 
         $metric = new ProjectNumberOfClasses($project);
 
-        $this->assertEquals('project_number_of_classes', $metric->name());
+        $this->assertEquals('classes', $metric->name());
     }
 
     /** @test */

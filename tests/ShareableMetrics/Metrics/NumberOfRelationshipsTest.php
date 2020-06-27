@@ -17,7 +17,7 @@ class NumberOfRelationshipsTest extends TestCase
 
         $metric = new NumberOfRelationships($project);
 
-        $this->assertEquals('project_number_of_relationships', $metric->name());
+        $this->assertEquals('models_relationships', $metric->name());
     }
 
     /** @test */

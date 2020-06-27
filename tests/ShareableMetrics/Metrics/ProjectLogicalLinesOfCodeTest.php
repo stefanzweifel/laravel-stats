@@ -18,7 +18,7 @@ class ProjectLogicalLinesOfCodeTest extends TestCase
 
         $metric = new ProjectLogicalLinesOfCode($project);
 
-        $this->assertEquals('project_logical_lines_of_code', $metric->name());
+        $this->assertEquals('lloc', $metric->name());
     }
 
     /** @test */

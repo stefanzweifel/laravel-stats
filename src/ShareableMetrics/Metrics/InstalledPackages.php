@@ -6,7 +6,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 use Wnx\LaravelStats\Contracts\CollectableMetric;
 
-class NumberOfPackages extends Metric implements CollectableMetric
+class InstalledPackages extends Metric implements CollectableMetric
 {
     public function name(): string
     {
@@ -17,12 +17,12 @@ class NumberOfPackages extends Metric implements CollectableMetric
     {
         $composerJson = json_decode(File::get(base_path('composer.json')), true);
 
-        $dependencies = Arr::get($composerJson, 'require', []);
-        $devDependencies = Arr::get($composerJson, 'require-dev', []);
+        $packages = Arr::get($composerJson, 'require', []);
+        $devPackages = Arr::get($composerJson, 'require-dev', []);
 
         return [
-            'require' => $dependencies,
-            'require-dev' => $devDependencies,
+            'require' => $packages,
+            'require-dev' => $devPackages,
         ];
     }
 }

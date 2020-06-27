@@ -5,7 +5,8 @@ namespace Wnx\LaravelStats\ShareableMetrics;
 use Illuminate\Support\Str;
 use Wnx\LaravelStats\Classifier;
 use Wnx\LaravelStats\Project;
-use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfPackages;
+use Wnx\LaravelStats\ShareableMetrics\MetricsCollection;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\InstalledPackages;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRelationships;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRoutes;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLinesOfCode;
@@ -18,7 +19,7 @@ class CollectMetrics
     public function get(Project $project)
     {
         $availableMetrics = collect([
-            NumberOfPackages::class,
+            InstalledPackages::class,
             NumberOfRelationships::class,
             NumberOfRoutes::class,
             ProjectLinesOfCode::class,

@@ -15,7 +15,7 @@ class NumberOfRoutesTest extends TestCase
 
         $metric = new NumberOfRoutes($project);
 
-        $this->assertEquals('number_of_routes', $metric->name());
+        $this->assertEquals('routes', $metric->name());
     }
 
     /** @test */
