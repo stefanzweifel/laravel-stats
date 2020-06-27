@@ -22,7 +22,6 @@ class ProjectName
     public function determineProjectNameFromGit(): ?string
     {
         $process = Process::fromShellCommandline('/usr/local/bin/git config --get remote.origin.url');
-
         $process->run();
 
         if ($process->isSuccessful() === false) {

@@ -8,7 +8,7 @@ class MetricsCollection extends Collection
 {
     public function toAsciiTableFormat(): array
     {
-        $metrics = $this->items['project_metrics']
+        $projectMetrics = $this->items['project_metrics']
             ->map(function ($metric) {
                 if (is_array($metric)) {
                     return json_encode($metric, JSON_PRETTY_PRINT);
@@ -17,10 +17,10 @@ class MetricsCollection extends Collection
                 return $metric;
             });
 
-        return $metrics
+        return $projectMetrics
             ->forget('packages')
             ->keys()
-            ->zip($metrics)
+            ->zip($projectMetrics)
             ->toArray();
     }
 
@@ -37,5 +37,4 @@ class MetricsCollection extends Collection
                 ->toArray()
         ];
     }
-
 }
