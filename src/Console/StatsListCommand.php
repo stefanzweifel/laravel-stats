@@ -106,9 +106,7 @@ class StatsListCommand extends Command
         );
 
         if ($this->confirm("Do you want to share stats above from your project with the Laravel Community to stats.laravelshift.com?", true)) {
-
             if (app(ProjectName::class)->hasStoredProjectName() === false) {
-
                 $generatedProjectName = app(ProjectName::class)->determineProjectNameFromGit();
 
                 $projectName = $this->ask("We've determined the following name for your project. Do you want to rename it?", $generatedProjectName);
@@ -116,7 +114,6 @@ class StatsListCommand extends Command
                 $this->info();
 
                 app(ProjectName::class)->storeNameInRcFile($projectName);
-
             } else {
                 $projectName = app(ProjectName::class)->get();
             }
