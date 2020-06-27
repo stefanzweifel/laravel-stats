@@ -8,20 +8,33 @@ class MetricsCollection extends Collection
 {
     public function toAsciiTableFormat(): array
     {
-        $metrics = $this->items['metrics'];
+        $metrics = $this->items['project_metrics']
+            ->map(function ($metric) {
+                if (is_array($metric)) {
+                    return json_encode($metric, JSON_PRETTY_PRINT);
+                }
 
-        $metrics = $metrics->map(function ($metric) {
-            if (is_array($metric)) {
-                return json_encode($metric, JSON_PRETTY_PRINT);
-            }
-
-            return $metric;
-        });
+                return $metric;
+            });
 
         return $metrics
             ->keys()
             ->zip($metrics)
-            ->push(['project', $this->items['project']])
             ->toArray();
     }
+
+    public function toHttpPayload(string $projectName): array
+    {
+        $projectMetrics = $this->get('project_metrics');
+        $componentMetrics = $this->get('component_metrics');
+
+        return [
+            'project' => $projectName,
+            'metrics' => $projectMetrics
+                ->merge($componentMetrics)
+                ->sortKeys()
+                ->toArray()
+        ];
+    }
+
 }

@@ -2,10 +2,10 @@
 
 namespace Wnx\LaravelStats\ShareableMetrics;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Wnx\LaravelStats\Classifier;
 use Wnx\LaravelStats\Project;
-use Wnx\LaravelStats\ShareableMetrics\MetricsCollection;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\InstalledPackages;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRelationships;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRoutes;
@@ -16,7 +16,15 @@ use Wnx\LaravelStats\ValueObjects\Component;
 
 class CollectMetrics
 {
-    public function get(Project $project)
+    public function collect(Project $project): MetricsCollection
+    {
+        return new MetricsCollection([
+            'project_metrics' => $this->getProjectMetrics($project),
+            'component_metrics' => $this->getComponentMetrics($project)
+        ]);
+    }
+
+    protected function getProjectMetrics(Project $project): Collection
     {
         $availableMetrics = collect([
             InstalledPackages::class,
@@ -32,23 +40,10 @@ class CollectMetrics
             return new $statClass($project);
         });
 
-        // Top Level Information about a project
-        $metrics = [
-            'project' => app(ProjectId::class)->get(),
-            'metrics' => [],
-        ];
-
-        $projectMetrics = $availableMetrics->map->toArray()->collapse();
-        $componentMetrics = $this->getComponentMetrics($project);
-
-        $metrics['metrics'] = $projectMetrics->merge($componentMetrics)->sortKeys();
-
-
-        return new MetricsCollection($metrics);
+        return $availableMetrics->map->toArray()->collapse();
     }
 
-
-    protected function getComponentMetrics(Project $project): array
+    protected function getComponentMetrics(Project $project): Collection
     {
         // Get the Names of "Core"-Components
         $coreClassifierNames = array_map(function ($classifier) {
@@ -60,7 +55,6 @@ class CollectMetrics
             ->map(function ($classifiedClasses, $componentName) {
                 return new Component($componentName, $classifiedClasses);
             });
-
 
         $metrics = [];
 
@@ -75,20 +69,6 @@ class CollectMetrics
             $metrics["{$slug}_lloc_per_method"] = $component->getLogicalLinesOfCodePerMethod();
         }
 
-
-        // TODO: After collection the metrics, collapse the browserkit, dusk and phpunit values into "tests"
-        // $tests = [
-        //     'BrowserKit Tests',
-        //     'DuskTests',
-        //     'PHPUnit Tests'
-        // ];
-
-        // if (in_array($component->name, $tests)) {
-        //     $slug = 'tests';
-        // } else {
-        //     $slug = Str::slug(strtolower($component->name), '_');
-        // }
-
-        return $metrics;
+        return collect($metrics);
     }
 }
