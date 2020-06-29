@@ -37,8 +37,6 @@ class ControllerFormRequestInjectionTest extends TestCase
     /** @test */
     public function it_returns_false_if_controllers_do_not_use_form_request_injection()
     {
-        $this->markTestIncomplete("This test shouldn't fail.");
-
         Route::get('projects', [ProjectsController::class, 'index']);
 
         $project = $this->createProjectFromClasses([

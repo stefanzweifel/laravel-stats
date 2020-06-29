@@ -2,9 +2,9 @@
 
 namespace Wnx\LaravelStats\ShareableMetrics\Metrics;
 
-use Illuminate\Foundation\Http\FormRequest;
 use ReflectionMethod;
 use ReflectionParameter;
+use Wnx\LaravelStats\Classifiers\RequestClassifier;
 use Wnx\LaravelStats\Contracts\CollectableMetric;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
@@ -19,28 +19,28 @@ class ControllerFormRequestInjection extends Metric implements CollectableMetric
     public function value()
     {
         return $this->project
-            ->classifiedClasses()
-            ->filter(function (ClassifiedClass $classifiedClass) {
-                return $classifiedClass->classifier->name() === 'Controllers';
-            })
-            ->map(function (ClassifiedClass $classifiedClass) {
-                $methods = collect($classifiedClass->reflectionClass->getDefinedMethods());
-
-                return $methods->filter(function (ReflectionMethod $method) {
+                ->classifiedClasses()
+                ->filter(function (ClassifiedClass $classifiedClass) {
+                    return $classifiedClass->classifier->name() === 'Controllers';
+                })
+                ->flatMap(function (ClassifiedClass $classifiedClass) {
+                    return collect($classifiedClass->reflectionClass->getDefinedMethods());
+                })
+                ->filter(function (ReflectionMethod $method) {
                     return count($method->getParameters()) > 0;
                 })
-                    ->filter(function (ReflectionMethod $method) {
-                        return collect($method->getParameters())
-                            ->filter(function (ReflectionParameter $param) {
-                                return $param->hasType();
-                            })
-                            ->filter(function (ReflectionParameter $param) {
-                                $reflectionClass = new ReflectionClass($param->getType()->getName());
+                ->flatMap(function (ReflectionMethod $method) {
+                    return collect($method->getParameters());
+                })
+                ->filter(function (ReflectionParameter $param) {
+                    return $param->hasType();
+                })
+                ->filter(function (ReflectionParameter $param) {
 
-                                return $reflectionClass->isSubclassOf(FormRequest::class);
-                            });
-                    })
-                    ->count() > 0;
-            })->count() > 0;
+                    $reflectionClass = new ReflectionClass($param->getType()->getName());
+
+                    return app(RequestClassifier::class)->satisfies($reflectionClass);
+                })
+                ->count() > 0;
     }
 }
