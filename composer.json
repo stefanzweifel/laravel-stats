@@ -14,6 +14,7 @@
     ],
     "require": {
         "php": ">=7.3.0",
+        "ext-json": "*",
         "illuminate/console": "^7.0",
         "illuminate/support": "^7.0",
         "phploc/phploc": "~6.0",
