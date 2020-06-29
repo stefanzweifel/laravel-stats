@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Model
 {
+    protected $fillable = [];
+
     public function projects(): HasMany
     {
         return $this->hasMany(Project::class);
