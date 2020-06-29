@@ -33,6 +33,6 @@ class ProjectLinesOfCodeTest extends TestCase
 
         $metric = new ProjectLinesOfCode($project);
 
-        $this->assertEquals(118, $metric->value());
+        $this->assertEquals(120, $metric->value());
     }
 }
