@@ -31,7 +31,7 @@ class ClassifiedClassTest extends TestCase
     public function it_returns_number_of_lines_of_code_for_a_classified_class()
     {
         $this->assertEquals(
-            41,
+            43,
             $this->getClassifiedClass()->getLines()
         );
     }

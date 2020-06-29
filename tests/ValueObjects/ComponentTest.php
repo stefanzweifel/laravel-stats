@@ -60,7 +60,7 @@ class ComponentTest extends TestCase
     {
         $component = $this->getTestComponent();
 
-        $this->assertEquals(103, $component->getLinesOfCode());
+        $this->assertEquals(105, $component->getLinesOfCode());
     }
 
     /** @test */
