@@ -5,7 +5,6 @@ namespace Wnx\LaravelStats\ShareableMetrics\Metrics;
 use Illuminate\Foundation\Http\FormRequest;
 use ReflectionMethod;
 use ReflectionParameter;
-use ReflectionProperty;
 use Wnx\LaravelStats\Contracts\CollectableMetric;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
@@ -25,19 +24,17 @@ class ControllerFormRequestInjection extends Metric implements CollectableMetric
                 return $classifiedClass->classifier->name() === 'Controllers';
             })
             ->map(function (ClassifiedClass $classifiedClass) {
-
                 $methods = collect($classifiedClass->reflectionClass->getDefinedMethods());
 
                 return $methods->filter(function (ReflectionMethod $method) {
-                        return count($method->getParameters()) > 0;
-                    })
+                    return count($method->getParameters()) > 0;
+                })
                     ->filter(function (ReflectionMethod $method) {
                         return collect($method->getParameters())
                             ->filter(function (ReflectionParameter $param) {
                                 return $param->hasType();
                             })
                             ->filter(function (ReflectionParameter $param) {
-
                                 $reflectionClass = new ReflectionClass($param->getType()->getName());
 
                                 return $reflectionClass->isSubclassOf(FormRequest::class);
