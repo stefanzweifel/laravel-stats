@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Wnx\LaravelStats\Classifier;
 use Wnx\LaravelStats\Project;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\ControllerFormRequestInjection;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\InstalledPackages;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsUseGuardedOrFillable;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRelationships;
@@ -35,6 +36,7 @@ class CollectMetrics
             ProjectLogicalLinesOfCode::class,
             ProjectNumberOfClasses::class,
             ModelsUseGuardedOrFillable::class,
+            ControllerFormRequestInjection::class,
             // CodeLogicalLinesOfCode
             // TestLogicalLinesOfCode
             // CodeToTestRatio
