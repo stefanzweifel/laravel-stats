@@ -14,6 +14,14 @@ class MetricsCollection extends Collection
                     return json_encode($metric, JSON_PRETTY_PRINT);
                 }
 
+                if ($metric === true) {
+                    return 'true';
+                }
+
+                if ($metric === false) {
+                    return 'false';
+                }
+
                 return $metric;
             });
 
