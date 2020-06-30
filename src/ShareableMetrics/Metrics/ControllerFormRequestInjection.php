@@ -36,7 +36,6 @@ class ControllerFormRequestInjection extends Metric implements CollectableMetric
                     return $param->hasType();
                 })
                 ->filter(function (ReflectionParameter $param) {
-
                     $reflectionClass = new ReflectionClass($param->getType()->getName());
 
                     return app(RequestClassifier::class)->satisfies($reflectionClass);
