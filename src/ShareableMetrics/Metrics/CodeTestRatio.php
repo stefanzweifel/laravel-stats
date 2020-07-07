@@ -2,8 +2,6 @@
 
 namespace Wnx\LaravelStats\ShareableMetrics\Metrics;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\File;
 use Wnx\LaravelStats\Contracts\CollectableMetric;
 
 class CodeTestRatio extends Metric implements CollectableMetric

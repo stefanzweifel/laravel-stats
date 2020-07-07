@@ -2,11 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\ShareableMetrics\Metrics;
 
-use Illuminate\Support\Facades\Route;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsExtendOtherModel;
-use Wnx\LaravelStats\Tests\Stubs\Controllers\PostsController;
-use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
-use Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController;
 use Wnx\LaravelStats\Tests\Stubs\Models\Group;
 use Wnx\LaravelStats\Tests\Stubs\Models\User;
 use Wnx\LaravelStats\Tests\TestCase;

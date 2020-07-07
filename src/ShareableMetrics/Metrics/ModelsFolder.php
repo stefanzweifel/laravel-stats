@@ -2,8 +2,6 @@
 
 namespace Wnx\LaravelStats\ShareableMetrics\Metrics;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Wnx\LaravelStats\Contracts\CollectableMetric;
 use Wnx\LaravelStats\ValueObjects\ClassifiedClass;

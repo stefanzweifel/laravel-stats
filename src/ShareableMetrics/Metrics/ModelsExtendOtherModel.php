@@ -27,7 +27,6 @@ class ModelsExtendOtherModel extends Metric implements CollectableMetric
 
         return $models
                 ->reject(function (ClassifiedClass $classifiedClass) {
-
                     $parentClassName = $classifiedClass->reflectionClass->getParentClass()->getName();
 
                     // If a Model extends an Illuminate-class, remove it from the collection
