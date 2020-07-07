@@ -2,10 +2,9 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Group extends Model
+class Group extends BaseModel
 {
     public function users(): HasMany
     {

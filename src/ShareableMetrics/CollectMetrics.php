@@ -9,6 +9,7 @@ use Wnx\LaravelStats\Project;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\CodeTestRatio;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ControllersFormRequestInjection;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\InstalledPackages;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsExtendOtherModel;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsFolder;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsUseGuardedOrFillable;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRelationships;
@@ -41,6 +42,7 @@ class CollectMetrics
             ControllersFormRequestInjection::class,
             CodeTestRatio::class,
             ModelsFolder::class,
+            ModelsExtendOtherModel::class,
         ])->map(function ($statClass) use ($project) {
             return new $statClass($project);
         });
