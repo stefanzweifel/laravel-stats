@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 use Wnx\LaravelStats\Classifier;
 use Wnx\LaravelStats\Project;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\CodeTestRatio;
-use Wnx\LaravelStats\ShareableMetrics\Metrics\ControllerFormRequestInjection;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\ControllersFormRequestInjection;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\InstalledPackages;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsFolder;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsUseGuardedOrFillable;
@@ -38,7 +38,7 @@ class CollectMetrics
             ProjectLogicalLinesOfCode::class,
             ProjectNumberOfClasses::class,
             ModelsUseGuardedOrFillable::class,
-            ControllerFormRequestInjection::class,
+            ControllersFormRequestInjection::class,
             CodeTestRatio::class,
             ModelsFolder::class,
         ])->map(function ($statClass) use ($project) {

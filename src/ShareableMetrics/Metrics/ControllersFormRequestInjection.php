@@ -9,7 +9,7 @@ use Wnx\LaravelStats\Contracts\CollectableMetric;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
 
-class ControllerFormRequestInjection extends Metric implements CollectableMetric
+class ControllersFormRequestInjection extends Metric implements CollectableMetric
 {
     public function name(): string
     {

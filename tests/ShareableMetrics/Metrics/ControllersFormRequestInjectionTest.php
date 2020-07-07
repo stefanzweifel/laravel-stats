@@ -3,19 +3,19 @@
 namespace Wnx\LaravelStats\Tests\ShareableMetrics\Metrics;
 
 use Illuminate\Support\Facades\Route;
-use Wnx\LaravelStats\ShareableMetrics\Metrics\ControllerFormRequestInjection;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\ControllersFormRequestInjection;
 use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
 use Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController;
 use Wnx\LaravelStats\Tests\TestCase;
 
-class ControllerFormRequestInjectionTest extends TestCase
+class ControllersFormRequestInjectionTest extends TestCase
 {
     /** @test */
     public function it_returns_correct_metric_name()
     {
         $project = $this->createProjectFromClasses([]);
 
-        $metric = new ControllerFormRequestInjection($project);
+        $metric = new ControllersFormRequestInjection($project);
 
         $this->assertEquals('controllers_form_request_injection', $metric->name());
     }
@@ -29,7 +29,7 @@ class ControllerFormRequestInjectionTest extends TestCase
             UsersController::class
         ]);
 
-        $metric = new ControllerFormRequestInjection($project);
+        $metric = new ControllersFormRequestInjection($project);
 
         $this->assertTrue($metric->value());
     }
@@ -43,7 +43,7 @@ class ControllerFormRequestInjectionTest extends TestCase
             ProjectsController::class
         ]);
 
-        $metric = new ControllerFormRequestInjection($project);
+        $metric = new ControllersFormRequestInjection($project);
 
         $this->assertFalse($metric->value());
     }
