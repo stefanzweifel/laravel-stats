@@ -11,7 +11,7 @@ use Wnx\LaravelStats\ShareableMetrics\Metrics\ControllersFormRequestInjection;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\InstalledPackages;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsExtendOtherModel;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsFolder;
-use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsUseGuardedOrFillable;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsMassAssignment;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRelationships;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRoutes;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLinesOfCode;
@@ -38,7 +38,7 @@ class CollectMetrics
             ProjectLinesOfCode::class,
             ProjectLogicalLinesOfCode::class,
             ProjectNumberOfClasses::class,
-            ModelsUseGuardedOrFillable::class,
+            ModelsMassAssignment::class,
             ControllersFormRequestInjection::class,
             CodeTestRatio::class,
             ModelsFolder::class,

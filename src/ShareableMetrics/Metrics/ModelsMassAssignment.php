@@ -6,11 +6,11 @@ use ReflectionProperty;
 use Wnx\LaravelStats\Contracts\CollectableMetric;
 use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
 
-class ModelsUseGuardedOrFillable extends Metric implements CollectableMetric
+class ModelsMassAssignment extends Metric implements CollectableMetric
 {
     public function name(): string
     {
-        return 'models_guarded_fillable';
+        return 'models_mass_assignment';
     }
 
     public function value()

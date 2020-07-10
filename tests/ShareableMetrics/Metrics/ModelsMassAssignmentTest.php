@@ -2,22 +2,22 @@
 
 namespace Wnx\LaravelStats\Tests\ShareableMetrics\Metrics;
 
-use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsUseGuardedOrFillable;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsMassAssignment;
 use Wnx\LaravelStats\Tests\Stubs\Models\Group;
 use Wnx\LaravelStats\Tests\Stubs\Models\Post;
 use Wnx\LaravelStats\Tests\Stubs\Models\User;
 use Wnx\LaravelStats\Tests\TestCase;
 
-class ModelsUseGuardedOrFillableTest extends TestCase
+class ModelsMassAssignmentTest extends TestCase
 {
     /** @test */
     public function it_returns_correct_metric_name()
     {
         $project = $this->createProjectFromClasses([]);
 
-        $metric = new ModelsUseGuardedOrFillable($project);
+        $metric = new ModelsMassAssignment($project);
 
-        $this->assertEquals('models_guarded_fillable', $metric->name());
+        $this->assertEquals('models_mass_assignment', $metric->name());
     }
 
     /** @test */
@@ -25,7 +25,7 @@ class ModelsUseGuardedOrFillableTest extends TestCase
     {
         $project = $this->createProjectFromClasses([]);
 
-        $metric = new ModelsUseGuardedOrFillable($project);
+        $metric = new ModelsMassAssignment($project);
 
         $this->assertEquals([], $metric->value());
     }
@@ -39,7 +39,7 @@ class ModelsUseGuardedOrFillableTest extends TestCase
             Group::class
         ]);
 
-        $metric = new ModelsUseGuardedOrFillable($project);
+        $metric = new ModelsMassAssignment($project);
 
         $this->assertEquals([
             'guarded' => 1,
