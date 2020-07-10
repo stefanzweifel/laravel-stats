@@ -21,7 +21,11 @@ class StatsListCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'stats {--json : Output the statistics as JSON} {-c|--components= : Comma separated list of components which should be displayed} {--s|share : Share project statistic with Laravel community <link>}';
+    protected $signature = 'stats
+                            {--json : Output the statistics as JSON}
+                            {-c|--components= : Comma separated list of components which should be displayed}
+                            {--s|share : Share project statistic with Laravel community <link>}
+                            {--name= : The name used when sharing project statistics}';
 
     /**
      * The console command description.
@@ -46,7 +50,7 @@ class StatsListCommand extends Command
             return new ReflectionClass($class);
         })->reject(function (ReflectionClass $class) {
             return app(config('stats.rejection_strategy', RejectVendorClasses::class))
-                    ->shouldClassBeRejected($class);
+                ->shouldClassBeRejected($class);
         })->reject(function (ReflectionClass $class) {
             foreach (config('stats.ignored_namespaces', []) as $namespace) {
                 if (Str::startsWith($class->getNamespaceName(), $namespace)) {
@@ -72,7 +76,7 @@ class StatsListCommand extends Command
             return [];
         }
 
-        return  explode(',', $this->option('components'));
+        return explode(',', $this->option('components'));
     }
 
     private function renderOutput(Project $project)
@@ -98,7 +102,7 @@ class StatsListCommand extends Command
     {
         $metrics = app(CollectMetrics::class)->collect($project);
 
-        $this->info("\n\n");
+        $this->info("\n");
         $this->info("The following metrics will be shared with stats.laravelshift.com.");
         $this->table(
             ['Name', 'Value'],
@@ -106,15 +110,8 @@ class StatsListCommand extends Command
         );
 
         if ($this->confirm("Do you want to share stats above from your project with the Laravel Community to stats.laravelshift.com?", true)) {
-            if (app(ProjectName::class)->hasStoredProjectName() === false) {
-                $generatedProjectName = app(ProjectName::class)->determineProjectNameFromGit();
 
-                $projectName = $this->ask("We've determined the following name for your project. Do you want to rename it?", $generatedProjectName);
-
-                app(ProjectName::class)->storeNameInRcFile($projectName);
-            } else {
-                $projectName = app(ProjectName::class)->get();
-            }
+            $projectName = $this->getProjectName();
 
             if ($projectName === null) {
                 $this->error("Please provide a project name.");
@@ -138,5 +135,24 @@ class StatsListCommand extends Command
                 $this->info("Thanks for sharing your project data with the community!");
             }
         }
+    }
+
+    private function getProjectName(): ?string
+    {
+        if ($this->option('name')) {
+            return $this->option('name');
+        }
+
+        if (app(ProjectName::class)->hasStoredProjectName() === false) {
+            $generatedProjectName = app(ProjectName::class)->determineProjectNameFromGit();
+
+            $projectName = $this->ask("We've determined the following name for your project. Do you want to rename it?", $generatedProjectName);
+
+            app(ProjectName::class)->storeNameInRcFile($projectName);
+
+            return $projectName;
+        }
+
+        return app(ProjectName::class)->get();
     }
 }
