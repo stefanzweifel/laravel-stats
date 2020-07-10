@@ -23,7 +23,8 @@ class MetricsCollection extends Collection
                 }
 
                 return $metric;
-            });
+            })
+            ->sort();
 
         return $projectMetrics
             ->forget('packages')
