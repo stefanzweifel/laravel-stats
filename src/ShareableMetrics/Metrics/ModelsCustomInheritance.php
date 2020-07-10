@@ -30,13 +30,11 @@ class ModelsCustomInheritance extends Metric implements CollectableMetric
 
                 // Remove Models, which extend a Class which is located in the vendor folder
                 ->reject(function (ClassifiedClass $classifiedClass) {
-
                     $parentclass = new ReflectionClass($classifiedClass->reflectionClass->getParentClass()->getName());
 
                     return $parentclass->isVendorProvided();
                 })
                 ->reject(function (ClassifiedClass $classifiedClass) {
-
                     $parentClassName = $classifiedClass->reflectionClass->getParentClass()->getName();
 
                     // If a Model extends an Illuminate-class, remove it from the collection

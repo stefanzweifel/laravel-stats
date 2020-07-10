@@ -110,7 +110,6 @@ class StatsListCommand extends Command
         );
 
         if ($this->confirm("Do you want to share stats above from your project with the Laravel Community to stats.laravelshift.com?", true)) {
-
             $projectName = $this->getProjectName();
 
             if ($projectName === null) {
