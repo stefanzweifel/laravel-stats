@@ -11,8 +11,6 @@ class SendToLaravelShift
     {
         info('Send laravel-stats data to Laravel Shift', $payload);
 
-        dd($payload);
-
         return Http::withHeaders([
             'Accept' => 'application/json'
         ])->post('https://laravelshift.com/api/stat', $payload);

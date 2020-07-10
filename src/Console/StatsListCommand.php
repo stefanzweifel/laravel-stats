@@ -122,13 +122,10 @@ class StatsListCommand extends Command
 
             $response = app(SendToLaravelShift::class)->send($metrics->toHttpPayload($projectName));
 
-            dd(
-                $response->status(),
-                $response->body()
-            );
-
             if ($response->failed()) {
                 $this->error("An error occured while transmitting data to laravelshift.com. Please try again.");
+
+                dd($response->body());
             }
 
             if ($response->successful()) {
