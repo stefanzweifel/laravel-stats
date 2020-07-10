@@ -2,21 +2,21 @@
 
 namespace Wnx\LaravelStats\Tests\ShareableMetrics\Metrics;
 
-use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsExtendOtherModel;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsCustomInheritance;
 use Wnx\LaravelStats\Tests\Stubs\Models\Group;
 use Wnx\LaravelStats\Tests\Stubs\Models\User;
 use Wnx\LaravelStats\Tests\TestCase;
 
-class ModelsExtendOtherModelTest extends TestCase
+class ModelsCustomInheritanceTest extends TestCase
 {
     /** @test */
     public function it_returns_correct_metric_name()
     {
         $project = $this->createProjectFromClasses([]);
 
-        $metric = new ModelsExtendOtherModel($project);
+        $metric = new ModelsCustomInheritance($project);
 
-        $this->assertEquals('models_extend_model', $metric->name());
+        $this->assertEquals('models_custom_inheritance', $metric->name());
     }
 
     /** @test */
@@ -26,7 +26,7 @@ class ModelsExtendOtherModelTest extends TestCase
             //
         ]);
 
-        $metric = new ModelsExtendOtherModel($project);
+        $metric = new ModelsCustomInheritance($project);
 
         $this->assertNull($metric->value());
     }
@@ -39,7 +39,7 @@ class ModelsExtendOtherModelTest extends TestCase
             Group::class
         ]);
 
-        $metric = new ModelsExtendOtherModel($project);
+        $metric = new ModelsCustomInheritance($project);
 
         $this->assertTrue($metric->value());
     }
@@ -51,7 +51,7 @@ class ModelsExtendOtherModelTest extends TestCase
             User::class
         ]);
 
-        $metric = new ModelsExtendOtherModel($project);
+        $metric = new ModelsCustomInheritance($project);
 
         $this->assertFalse($metric->value());
     }
