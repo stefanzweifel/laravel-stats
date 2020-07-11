@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\Console;
 
+use Wnx\LaravelStats\Tests\Stubs\Mails\DemoMail;
 use Wnx\LaravelStats\Tests\TestCase;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -29,34 +30,57 @@ class StatsListCommandTest extends TestCase
     }
 
     /** @test */
-    public function it_works()
+    public function it_executes_stats_command_without_options_and_outputs_an_ascii_table()
     {
         Route::get('projects', 'Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController@index');
         Route::get('users', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@index');
 
         $this->artisan('stats');
-        $resultAsText = Artisan::output();
+        $output = Artisan::output();
 
-        $this->assertStringContainsString('Middleware', $resultAsText);
-        $this->assertStringContainsString('Controllers', $resultAsText);
-        $this->assertStringContainsString('Other', $resultAsText);
-        $this->assertStringContainsString('Total', $resultAsText);
-        $this->assertStringContainsString('Routes:', $resultAsText);
+        $this->assertStringContainsString('Middleware', $output);
+        $this->assertStringContainsString('Controllers', $output);
+        $this->assertStringContainsString('Other', $output);
+        $this->assertStringContainsString('Total', $output);
+        $this->assertStringContainsString('Routes:', $output);
+
+        $this->assertStringNotContainsString('UsersController', $output);
     }
 
     /** @test */
-    public function it_displays_all_headers()
+    public function it_executes_stats_command_with_verbose_option_and_displays_to_which_component_each_class_belongs_to()
+    {
+        Route::get('projects', 'Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController@index');
+        Route::get('users', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@index');
+
+        $this->artisan('stats', [
+            '--verbose' => true
+        ]);
+        $output = Artisan::output();
+
+        $this->assertStringContainsString('Middleware', $output);
+        $this->assertStringContainsString('Controllers', $output);
+        $this->assertStringContainsString('Other', $output);
+        $this->assertStringContainsString('Total', $output);
+        $this->assertStringContainsString('Routes:', $output);
+
+        $this->assertStringContainsString('ProjectsController', $output);
+        $this->assertStringContainsString('UsersController', $output);
+    }
+
+    /** @test */
+    public function it_displays_correct_headers_in_ascii_table()
     {
         $this->artisan('stats');
-        $result = Artisan::output();
+        $output = Artisan::output();
 
-        $this->assertStringContainsString('Name', $result);
-        $this->assertStringContainsString('Classes', $result);
-        $this->assertStringContainsString('Methods', $result);
-        $this->assertStringContainsString('Methods/Class', $result);
-        $this->assertStringContainsString('LoC', $result);
-        $this->assertStringContainsString('LLoC', $result);
-        $this->assertStringContainsString('LLoC/Method', $result);
+        $this->assertStringContainsString('Name', $output);
+        $this->assertStringContainsString('Classes', $output);
+        $this->assertStringContainsString('Methods', $output);
+        $this->assertStringContainsString('Methods/Class', $output);
+        $this->assertStringContainsString('LoC', $output);
+        $this->assertStringContainsString('LLoC', $output);
+        $this->assertStringContainsString('LLoC/Method', $output);
     }
 
     /** @test */
@@ -65,8 +89,36 @@ class StatsListCommandTest extends TestCase
         $this->artisan('stats', [
             '--json' => true,
         ]);
-        $result = Artisan::output();
+        $output = Artisan::output();
 
-        $this->assertJson($result);
+        $this->assertJson($output);
+    }
+
+    /** @test */
+    public function it_executes_stats_command_in_verbose_mode_and_shows_which_class_belongs_to_which_component()
+    {
+        $this->artisan('stats', [
+            '--json' => true,
+            '--verbose' => true,
+        ]);
+        $output = Artisan::output();
+
+        $this->assertStringContainsString('StatsListCommandTest', $output);
+
+        $this->assertJson($output);
+    }
+
+    /** @test */
+    public function it_only_returns_stats_for_given_components()
+    {
+        $this->artisan('stats', [
+            '--json' => true,
+            '--verbose' => true,
+            '--components' => 'Commands'
+        ]);
+        $output = Artisan::output();
+
+        $this->assertStringContainsString('StatsListCommand', $output);
+        $this->assertStringNotContainsString('StatsListCommandTest', $output);
     }
 }
