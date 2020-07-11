@@ -14,6 +14,7 @@ use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsFolder;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsMassAssignment;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRelationships;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRoutes;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\ScheduledTasks;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLinesOfCode;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLogicalLinesOfCode;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectNumberOfClasses;
@@ -33,6 +34,7 @@ class CollectMetrics
     {
         $availableMetrics = collect([
             InstalledPackages::class,
+            ScheduledTasks::class,
             NumberOfRelationships::class,
             NumberOfRoutes::class,
             ProjectLinesOfCode::class,
