@@ -4,7 +4,6 @@ namespace Wnx\LaravelStats\ShareableMetrics\Metrics;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Wnx\LaravelStats\Contracts\CollectableMetric;
-use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
 
 class ScheduledTasks extends Metric implements CollectableMetric
 {

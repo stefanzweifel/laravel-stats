@@ -2,7 +2,6 @@
 
 namespace Wnx\LaravelStats\Tests\ShareableMetrics\Metrics;
 
-use Illuminate\Database\Eloquent\Model;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsFolder;
 use Wnx\LaravelStats\Tests\Stubs\Models\User;
 use Wnx\LaravelStats\Tests\TestCase;

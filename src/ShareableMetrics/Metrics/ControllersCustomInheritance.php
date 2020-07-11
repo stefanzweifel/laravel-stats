@@ -37,7 +37,6 @@ class ControllersCustomInheritance extends Metric implements CollectableMetric
                     return $parentclass->isVendorProvided();
                 })
                 ->reject(function (ClassifiedClass $classifiedClass) {
-
                     $parentClassName = $classifiedClass->reflectionClass->getParentClass()->getShortName();
 
                     return $parentClassName === 'Controller';

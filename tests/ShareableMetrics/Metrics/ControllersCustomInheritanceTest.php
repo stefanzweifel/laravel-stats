@@ -62,5 +62,4 @@ class ControllersCustomInheritanceTest extends TestCase
 
         $this->assertFalse($metric->value());
     }
-
 }
