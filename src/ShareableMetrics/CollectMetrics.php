@@ -35,20 +35,20 @@ class CollectMetrics
     protected function getProjectMetrics(Project $project): Collection
     {
         $availableMetrics = collect([
-            InstalledPackages::class,
-            ScheduledTasks::class,
-            ModelRelationships::class,
+            CodeTestRatio::class,
             ComposerPsr4Sources::class,
+            ControllersCustomInheritance::class,
+            ControllersFormRequestInjection::class,
+            InstalledPackages::class,
+            ModelRelationships::class,
+            ModelsCustomInheritance::class,
+            ModelsFolder::class,
+            ModelsMassAssignment::class,
             NumberOfRoutes::class,
             ProjectLinesOfCode::class,
             ProjectLogicalLinesOfCode::class,
             ProjectNumberOfClasses::class,
-            ModelsMassAssignment::class,
-            ControllersFormRequestInjection::class,
-            ControllersCustomInheritance::class,
-            CodeTestRatio::class,
-            ModelsFolder::class,
-            ModelsCustomInheritance::class,
+            ScheduledTasks::class,
         ])->map(function ($statClass) use ($project) {
             return new $statClass($project);
         });
