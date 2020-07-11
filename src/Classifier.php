@@ -22,6 +22,7 @@ use Wnx\LaravelStats\Classifiers\Nova\FilterClassifier;
 use Wnx\LaravelStats\Classifiers\Nova\LensClassifier;
 use Wnx\LaravelStats\Classifiers\Nova\ResourceClassifier as NovaResourceClassifier;
 use Wnx\LaravelStats\Classifiers\NullClassifier;
+use Wnx\LaravelStats\Classifiers\ObserverClassifier;
 use Wnx\LaravelStats\Classifiers\PolicyClassifier;
 use Wnx\LaravelStats\Classifiers\RequestClassifier;
 use Wnx\LaravelStats\Classifiers\ResourceClassifier;
@@ -44,6 +45,7 @@ class Classifier
         MiddlewareClassifier::class,
         EventClassifier::class,
         EventListenerClassifier::class,
+        ObserverClassifier::class,
         MailClassifier::class,
         NotificationClassifier::class,
         JobClassifier::class,

@@ -3,21 +3,25 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Closure;
+use Illuminate\Support\Str;
 use ReflectionFunction;
 use ReflectionProperty;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\Classifier;
 
-class EventListenerClassifier implements Classifier
+class ObserverClassifier implements Classifier
 {
     public function name(): string
     {
-        return 'Event Listeners';
+        return 'Observers';
     }
 
     public function satisfies(ReflectionClass $class): bool
     {
         return collect($this->getEvents())
+            ->filter(function ($listeners, $event) {
+                return Str::of($event)->startsWith('eloquent.');
+            })
             ->map(function ($listeners) {
                 return collect($listeners)->map(function (Closure $closure) {
                     return $this->getEventListener($closure);
@@ -25,7 +29,10 @@ class EventListenerClassifier implements Classifier
             })
             ->collapse()
             ->unique()
-            ->contains($class->getName());
+            ->filter(function ($eventListenerSignature) use ($class) {
+                return Str::of($eventListenerSignature)->contains($class->getName());
+            })
+            ->count() > 0;
     }
 
     protected function getEvents()
