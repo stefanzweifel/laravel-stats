@@ -8,6 +8,7 @@ use Wnx\LaravelStats\Classifier;
 use Wnx\LaravelStats\Project;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\CodeTestRatio;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ComposerPsr4Sources;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\ControllersCustomInheritance;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ControllersFormRequestInjection;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\InstalledPackages;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsCustomInheritance;
@@ -44,6 +45,7 @@ class CollectMetrics
             ProjectNumberOfClasses::class,
             ModelsMassAssignment::class,
             ControllersFormRequestInjection::class,
+            ControllersCustomInheritance::class,
             CodeTestRatio::class,
             ModelsFolder::class,
             ModelsCustomInheritance::class,
