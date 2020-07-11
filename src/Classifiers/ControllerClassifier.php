@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Classifiers;
 
+use Illuminate\Routing\Router;
 use Throwable;
 use Illuminate\Support\Str;
 use Wnx\LaravelStats\ReflectionClass;
@@ -16,7 +17,7 @@ class ControllerClassifier implements Classifier
 
     public function satisfies(ReflectionClass $class): bool
     {
-        return collect(app('router')->getRoutes())
+        return collect(app(Router::class)->getRoutes())
             ->reject(function ($route) {
                 if (method_exists($route, 'getActionName')) {
                     // Laravel

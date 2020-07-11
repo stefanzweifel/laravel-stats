@@ -68,7 +68,6 @@ return [
      * List of files/folders to be excluded from analysis.
      */
     'exclude' => [
-        base_path('tests/bootstrap.php'),
         // base_path('app/helpers.php'),
         // base_path('app/Services'),
     ],

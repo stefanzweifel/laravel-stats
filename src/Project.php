@@ -11,14 +11,14 @@ class Project
     /**
      * Collection of ReflectionClasses.
      *
-     * @var \Illuminate\Support\Collection<\Wnx\LaravelStats\ReflectionClass>
+     * @var \Illuminate\Support\Collection <\Wnx\LaravelStats\ReflectionClass>
      */
     private $classes;
 
     /**
      * Collection of ClassifiedClasses.
      *
-     * @var \Illuminate\Support\Collection<\Wnx\LaravelStats\ValueObjects\ClassifiedClass>
+     * @var \Illuminate\Support\Collection <\Wnx\LaravelStats\ValueObjects\ClassifiedClass>
      */
     private $classifiedClasses;
 
