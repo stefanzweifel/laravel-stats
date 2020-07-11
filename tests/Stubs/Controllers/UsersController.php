@@ -6,7 +6,7 @@ use Wnx\LaravelStats\Tests\Stubs\Requests\UserRequest;
 
 class UsersController extends Controller
 {
-    public function index()
+    public function index(array $filter = [])
     {
         return [];
     }

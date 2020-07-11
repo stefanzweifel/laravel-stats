@@ -35,6 +35,9 @@ class ControllersFormRequestInjection extends Metric implements CollectableMetri
                 ->filter(function (ReflectionParameter $param) {
                     return $param->hasType();
                 })
+                ->reject(function (ReflectionParameter $param) {
+                    return $param->getType()->isBuiltin();
+                })
                 ->filter(function (ReflectionParameter $param) {
                     $reflectionClass = new ReflectionClass($param->getType()->getName());
 
