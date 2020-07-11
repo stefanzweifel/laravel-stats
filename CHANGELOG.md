@@ -6,7 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.2.0...HEAD)
 
-> TBD
+### Added
+- Add Observer Classifier [#177](https://github.com/stefanzweifel/laravel-stats/pull/177), [#128](https://github.com/stefanzweifel/laravel-stats/issues/128)
 
 ## [v2.2.0](https://github.com/stefanzweifel/laravel-stats/compare/v2.1.1...v2.2.0) - 2020-04-04
 
