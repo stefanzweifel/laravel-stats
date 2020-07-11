@@ -2,20 +2,20 @@
 
 namespace Wnx\LaravelStats\Tests\ShareableMetrics\Metrics;
 
-use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRelationships;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelRelationships;
 use Wnx\LaravelStats\Tests\Stubs\Models\Group;
 use Wnx\LaravelStats\Tests\Stubs\Models\Post;
 use Wnx\LaravelStats\Tests\Stubs\Models\User;
 use Wnx\LaravelStats\Tests\TestCase;
 
-class NumberOfRelationshipsTest extends TestCase
+class ModelRelationshipsTest extends TestCase
 {
     /** @test */
     public function it_returns_correct_metric_name()
     {
         $project = $this->createProjectFromClasses([]);
 
-        $metric = new NumberOfRelationships($project);
+        $metric = new ModelRelationships($project);
 
         $this->assertEquals('models_relationships', $metric->name());
     }
@@ -25,7 +25,7 @@ class NumberOfRelationshipsTest extends TestCase
     {
         $project = $this->createProjectFromClasses([]);
 
-        $metric = new NumberOfRelationships($project);
+        $metric = new ModelRelationships($project);
 
         $this->assertEquals(0, $metric->value());
     }
@@ -39,7 +39,7 @@ class NumberOfRelationshipsTest extends TestCase
             Group::class
         ]);
 
-        $metric = new NumberOfRelationships($project);
+        $metric = new ModelRelationships($project);
 
         $this->assertEquals(5, $metric->value());
     }

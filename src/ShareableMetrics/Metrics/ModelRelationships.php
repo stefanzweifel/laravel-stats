@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 use Wnx\LaravelStats\Contracts\CollectableMetric;
 use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
 
-class NumberOfRelationships extends Metric implements CollectableMetric
+class ModelRelationships extends Metric implements CollectableMetric
 {
     public function name(): string
     {
@@ -20,10 +20,9 @@ class NumberOfRelationships extends Metric implements CollectableMetric
             ->filter(function (ClassifiedClass $classifiedClass) {
                 return $classifiedClass->classifier->name() === 'Models';
             })
-            ->map(function (ClassifiedClass $classifiedClass) {
+            ->flatMap(function (ClassifiedClass $classifiedClass) {
                 return $classifiedClass->reflectionClass->getMethods();
             })
-            ->flatten(1)
             ->filter(function (\ReflectionMethod $method) {
                 return $method->hasReturnType();
             })
