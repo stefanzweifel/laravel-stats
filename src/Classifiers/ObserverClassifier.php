@@ -29,8 +29,9 @@ class ObserverClassifier implements Classifier
                 })->toArray();
             })
             ->collapse()
+            ->unique()
             ->filter(function ($eventListenerSignature) use ($class) {
-               return Str::of($eventListenerSignature)->contains($class->getName());
+                return Str::of($eventListenerSignature)->contains($class->getName());
             })
             ->count() > 0;
     }

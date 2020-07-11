@@ -19,12 +19,11 @@ class EventListenerClassifier implements Classifier
     {
         return collect($this->getEvents())
             ->map(function ($listeners) {
-                $subscriber = collect($listeners)->map(function (Closure $closure) {
+                return collect($listeners)->map(function (Closure $closure) {
                     return $this->getEventListener($closure);
                 })->toArray();
-
-                return $subscriber;
-            })->collapse()
+            })
+            ->collapse()
             ->unique()
             ->contains($class->getName());
     }
