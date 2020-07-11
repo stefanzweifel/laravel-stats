@@ -8,7 +8,6 @@ use ReflectionFunction;
 use ReflectionProperty;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\Classifier;
-use Illuminate\Foundation\Events\Dispatchable;
 
 class ObserverClassifier implements Classifier
 {
