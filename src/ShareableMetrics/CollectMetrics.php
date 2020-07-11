@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Wnx\LaravelStats\Classifier;
 use Wnx\LaravelStats\Project;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\CodeTestRatio;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\ComposerPsr4Sources;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ControllersFormRequestInjection;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\InstalledPackages;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsCustomInheritance;
@@ -36,6 +37,7 @@ class CollectMetrics
             InstalledPackages::class,
             ScheduledTasks::class,
             NumberOfRelationships::class,
+            ComposerPsr4Sources::class,
             NumberOfRoutes::class,
             ProjectLinesOfCode::class,
             ProjectLogicalLinesOfCode::class,
