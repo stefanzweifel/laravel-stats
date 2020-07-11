@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Outputs;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Wnx\LaravelStats\Project;
 use Illuminate\Console\OutputStyle;
@@ -39,7 +40,7 @@ class AsciiTableOutput
         $this->output = $output;
     }
 
-    public function render(Project $project, bool $isVerbose = false, $filterByComponentName = [])
+    public function render(Project $project, bool $isVerbose = false, array $filterByComponentName = [])
     {
         $this->isVerbose = $isVerbose;
         $this->project = $project;
@@ -74,7 +75,7 @@ class AsciiTableOutput
         $table->render();
     }
 
-    private function renderComponents($table, $groupedByComponent)
+    private function renderComponents(Table $table, Collection $groupedByComponent)
     {
         foreach ($groupedByComponent as $componentName => $classifiedClasses) {
             $component = new Component($componentName, $classifiedClasses);

@@ -2,8 +2,8 @@
 
 namespace Wnx\LaravelStats\Classifiers;
 
-use Wnx\LaravelStats\ReflectionClass;
 use Illuminate\Contracts\Auth\Access\Gate;
+use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\Classifier;
 
 class PolicyClassifier implements Classifier
@@ -15,9 +15,12 @@ class PolicyClassifier implements Classifier
 
     public function satisfies(ReflectionClass $class): bool
     {
+        /** @var \Illuminate\Auth\Access\Gate $gate */
+        $gate = app(Gate::class);
+
         return in_array(
             $class->getName(),
-            app(Gate::class)->policies()
+            $gate->policies()
         );
     }
 
