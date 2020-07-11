@@ -30,21 +30,7 @@ class ModelsFolderTest extends TestCase
 
         $this->assertNull($metric->value());
     }
-
-    /** @test */
-    public function it_returns_false_if_models_are_stored_in_default_namespace()
-    {
-        $this->markTestIncomplete("Need to add Model under correct namespace for testing");
-
-        $project = $this->createProjectFromClasses([
-            // Model located under App\
-        ]);
-
-        $metric = new ModelsFolder($project);
-
-        $this->assertFalse($metric->value());
-    }
-
+    
     /** @test */
     public function it_returns_true_if_models_are_stored_in_non_default_namespace()
     {
