@@ -25,6 +25,7 @@ class StatsListCommand extends Command
                             {--json : Output the statistics as JSON}
                             {-c|--components= : Comma separated list of components which should be displayed}
                             {--s|share : Share project statistic with Laravel community <link>}
+                            {--no-send : Do not send the project statistic to Shift}
                             {--name= : The name used when sharing project statistics}';
 
     /**
@@ -81,7 +82,7 @@ class StatsListCommand extends Command
 
     private function renderOutput(Project $project)
     {
-        if ($this->option('json') === true) {
+        if ($this->option('json') === true && $this->option('share') !== true) {
             $json = (new JsonOutput())->render(
                 $project,
                 $this->option('verbose'),
@@ -102,12 +103,9 @@ class StatsListCommand extends Command
     {
         $metrics = app(CollectMetrics::class)->collect($project);
 
-        $this->info("\n");
-        $this->info("The following metrics will be shared with stats.laravelshift.com.");
-        $this->table(
-            ['Name', 'Value'],
-            $metrics->toAsciiTableFormat()
-        );
+        if ($this->option('json') === false) {
+            $this->renderMetricsAsciiTable($metrics);
+        }
 
         if ($this->confirm("Do you want to share stats above from your project with the Laravel Community to stats.laravelshift.com?", true)) {
             $projectName = $this->getProjectName();
@@ -117,7 +115,17 @@ class StatsListCommand extends Command
                 return;
             }
 
-            $this->info("The project name '{$projectName}' will be used.");
+            if ($this->option('json') === false) {
+                $this->info("The project name '{$projectName}' will be used.");
+            }
+
+
+            $payload = $metrics->toHttpPayload($projectName);
+
+            if ($this->option('no-send')) {
+                $this->output->text(json_encode($payload));
+                return;
+            }
 
             $response = app(SendToLaravelShift::class)->send($metrics->toHttpPayload($projectName));
 
@@ -131,6 +139,16 @@ class StatsListCommand extends Command
                 $this->info("Thanks for sharing your project data with the community!");
             }
         }
+    }
+
+    private function renderMetricsAsciiTable($metrics): void
+    {
+        $this->info("\n");
+        $this->info("The following metrics will be shared with stats.laravelshift.com.");
+        $this->table(
+            ['Name', 'Value'],
+            $metrics->toAsciiTableFormat()
+        );
     }
 
     private function getProjectName(): ?string
