@@ -17,7 +17,7 @@
         "ext-json": "*",
         "illuminate/console": "^6.0 || ^7.0",
         "illuminate/support": "^6.0 || ^7.0",
-        "phploc/phploc": "^5.0 || ^6.0",
+        "phploc/phploc": "dev-metrics",
         "symfony/finder": "^4.3 || ^5.0",
         "symfony/process": "^4.3 || ^5.0"
     },
@@ -55,5 +55,9 @@
                 "Wnx\\LaravelStats\\StatsServiceProvider"
             ]
         }
-    }
+    },
+    "repositories": [{
+            "type": "vcs",
+            "url": "git@github.com:stefanzweifel/phploc.git"
+        }]
 }
