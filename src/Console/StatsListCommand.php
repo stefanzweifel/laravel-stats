@@ -82,14 +82,16 @@ class StatsListCommand extends Command
 
     private function renderOutput(Project $project)
     {
-        if ($this->option('json') === true && $this->option('share') !== true) {
+        if ($this->option('json') === true) {
             $json = (new JsonOutput())->render(
                 $project,
                 $this->option('verbose'),
                 $this->getArrayOfComponentsToDisplay()
             );
 
-            $this->output->text(json_encode($json));
+            if ($this->option('share') !== true) {
+                $this->output->text(json_encode($json));
+            }
         } else {
             (new AsciiTableOutput($this->output))->render(
                 $project,
