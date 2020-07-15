@@ -14,7 +14,6 @@ use Wnx\LaravelStats\ShareableMetrics\Metrics\InstalledPackages;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsCustomInheritance;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsFolder;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsMassAssignment;
-use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelRelationships;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRoutes;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ScheduledTasks;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLinesOfCode;
@@ -40,7 +39,6 @@ class CollectMetrics
             ControllersCustomInheritance::class,
             ControllersFormRequestInjection::class,
             InstalledPackages::class,
-            ModelRelationships::class,
             ModelsCustomInheritance::class,
             ModelsFolder::class,
             ModelsMassAssignment::class,
