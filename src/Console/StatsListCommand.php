@@ -129,17 +129,7 @@ class StatsListCommand extends Command
                 return;
             }
 
-            $response = app(SendToLaravelShift::class)->send($metrics->toHttpPayload($projectName));
-
-            if ($response->failed()) {
-                $this->error("An error occured while transmitting data to laravelshift.com. Please try again.");
-
-                dd($response->body());
-            }
-
-            if ($response->successful()) {
-                $this->info("Thanks for sharing your project data with the community!");
-            }
+            app(SendToLaravelShift::class)->send($metrics->toHttpPayload($projectName));
         }
     }
 
