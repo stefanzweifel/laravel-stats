@@ -225,6 +225,33 @@ class RepositoryClassifier implements Classifier
     ...
 ```
 
+## Share Metrics with the Laravel Community
+> TODO: Intro to what --share does and where to find charts
+
+
+You can share your projects statistic by using the `--share` option. 
+
+```shell
+php artisan stats --share
+```
+
+### Share statistic through CI
+
+If you would like to share your project statistic in an environment where you don't have access to a running shell, you can use the `--no-interaction` and `--name`-options.
+
+Use the following command in your CI script to share your project statistic automatically. Update `org/repo` with the name of your application (eg. `stefanzweifel/`).
+
+```shell
+php artisan stats --share --no-interaction --name=org/repo
+```
+
+If you're using GitHub Actions you can use the following Workflow template to share data once a week.
+> TODO: Add GitHub Actions link here.
+
+### See Request Data shared with the community
+
+> TODO: Describe how to use the `--dry-option`.
+
 ## Treeware
 
 You're free to use this package, but if it makes it to your production environment you are required to buy the world a tree.
