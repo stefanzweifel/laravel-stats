@@ -30,9 +30,7 @@ class ProjectName
 
         $remoteUrl = parse_url(trim($process->getOutput()));
 
-        return Str::of($remoteUrl['path'])
-            ->replaceFirst('/', '')
-            ->__toString();
+        return Str::replaceFirst('/', '', $remoteUrl['path']);
     }
 
     protected function pathToRcFile(): string

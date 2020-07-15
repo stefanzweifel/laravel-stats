@@ -39,7 +39,7 @@ class ModelsCustomInheritance extends Metric implements CollectableMetric
 
                     // If a Model extends an Illuminate-class, remove it from the collection
                     // as we see it as a "normal" Model
-                    return Str::of($parentClassName)->startsWith('Illuminate');
+                    return Str::startsWith($parentClassName, 'Illuminate');
                 })
                 ->count() > 0;
     }

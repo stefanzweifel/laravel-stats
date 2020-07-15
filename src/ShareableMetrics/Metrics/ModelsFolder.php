@@ -32,7 +32,7 @@ class ModelsFolder extends Metric implements CollectableMetric
             ->filter(function (string $namespace) {
                 // If a Models namespace contains a back-slash, we assume that the Model
                 // is not located in the default location under /app, but somewhere else
-                return Str::of($namespace)->contains("\\");
+                return Str::contains($namespace, "\\");
             })
             ->count() > 0;
     }

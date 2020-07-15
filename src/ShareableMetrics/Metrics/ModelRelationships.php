@@ -27,7 +27,7 @@ class ModelRelationships extends Metric implements CollectableMetric
                 return $method->hasReturnType();
             })
             ->filter(function (\ReflectionMethod $method) {
-                return Str::of($method->getReturnType()->getName())->startsWith('Illuminate\Database\Eloquent\Relations');
+                return Str::startsWith($method->getReturnType()->getName(), 'Illuminate\Database\Eloquent\Relations');
             })
             ->count();
     }
