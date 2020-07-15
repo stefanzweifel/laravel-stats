@@ -105,10 +105,6 @@ class StatsListCommand extends Command
     {
         $metrics = app(CollectMetrics::class)->collect($project);
 
-        if ($this->option('json') === false) {
-            $this->renderMetricsAsciiTable($metrics);
-        }
-
         if ($this->confirm("Do you want to share stats above from your project with the Laravel Community to stats.laravelshift.com?", true)) {
             $projectName = $this->getProjectName();
 
@@ -131,16 +127,6 @@ class StatsListCommand extends Command
 
             app(SendToLaravelShift::class)->send($metrics->toHttpPayload($projectName));
         }
-    }
-
-    private function renderMetricsAsciiTable($metrics): void
-    {
-        $this->info("\n");
-        $this->info("The following metrics will be shared with stats.laravelshift.com.");
-        $this->table(
-            ['Name', 'Value'],
-            $metrics->toAsciiTableFormat()
-        );
     }
 
     private function getProjectName(): ?string

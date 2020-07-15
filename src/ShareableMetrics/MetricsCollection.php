@@ -6,33 +6,6 @@ use Illuminate\Support\Collection;
 
 class MetricsCollection extends Collection
 {
-    public function toAsciiTableFormat(): array
-    {
-        $projectMetrics = $this->items['project_metrics']
-            ->map(function ($metric) {
-                if (is_array($metric)) {
-                    return json_encode($metric, JSON_PRETTY_PRINT);
-                }
-
-                if ($metric === true) {
-                    return 'true';
-                }
-
-                if ($metric === false) {
-                    return 'false';
-                }
-
-                return $metric;
-            })
-            ->sort();
-
-        return $projectMetrics
-            ->forget('packages')
-            ->keys()
-            ->zip($projectMetrics)
-            ->toArray();
-    }
-
     public function toHttpPayload(string $projectName): array
     {
         $projectMetrics = $this->get('project_metrics');
