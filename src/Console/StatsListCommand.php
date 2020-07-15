@@ -24,9 +24,9 @@ class StatsListCommand extends Command
     protected $signature = 'stats
                             {--json : Output the statistics as JSON}
                             {-c|--components= : Comma separated list of components which should be displayed}
-                            {--s|share : Share project statistic with Laravel community <link>}
-                            {--no-send : Do not send the project statistic to Shift}
-                            {--name= : The name used when sharing project statistics}';
+                            {--s|share : Share project statistic with Laravel community <https://stats.laravelshift.com>}
+                            {--payload : Output payload to be shared with Laravel community <https://stats.laravelshift.com>}
+                            {--name= : Name used when sharing project statistic}';
 
     /**
      * The console command description.
@@ -89,10 +89,10 @@ class StatsListCommand extends Command
                 $this->getArrayOfComponentsToDisplay()
             );
 
-            if ($this->option('share') !== true) {
+            if ($this->option('payload') !== true) {
                 $this->output->text(json_encode($json));
             }
-        } else {
+        } elseif ($this->option('payload') !== true) {
             (new AsciiTableOutput($this->output))->render(
                 $project,
                 $this->option('verbose'),
@@ -113,19 +113,21 @@ class StatsListCommand extends Command
                 return;
             }
 
-            if ($this->option('json') === false) {
-                $this->info("The project name '{$projectName}' will be used.");
-            }
-
-
             $payload = $metrics->toHttpPayload($projectName);
 
-            if ($this->option('no-send')) {
+            if ($this->option('payload')) {
                 $this->output->text(json_encode($payload));
                 return;
             }
 
-            app(SendToLaravelShift::class)->send($metrics->toHttpPayload($projectName));
+            $wasSuccessful = app(SendToLaravelShift::class)->send($metrics->toHttpPayload($projectName));
+
+            if ($wasSuccessful) {
+                $this->info("Thanks for sharing your project statistic with the community!");
+                return;
+            }
+
+            $this->error("Unable to share stats. (Check logs for details)");
         }
     }
 

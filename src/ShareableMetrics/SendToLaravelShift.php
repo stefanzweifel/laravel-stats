@@ -7,7 +7,7 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class SendToLaravelShift
 {
-    public function send(array $payload): void
+    public function send(array $payload): bool
     {
         info('Sharing stats with stats.laravelshift.com', $payload);
 
@@ -22,11 +22,15 @@ class SendToLaravelShift
                 'json' => $payload,
             ]);
         } catch (GuzzleException $exception) {
-            error('unable to share stats: ' . $exception->getMessage());
+            info('Unable to share stats: ' . $exception->getMessage());
+            return false;
         }
 
         if (in_array($response->getStatusCode(), [201, 204])) {
             info("Thanks for sharing your project data with the community!");
+            return true;
         }
+
+        return false;
     }
 }
