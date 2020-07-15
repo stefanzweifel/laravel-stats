@@ -117,10 +117,13 @@ class StatsListCommand extends Command
 
             if ($this->option('payload')) {
                 $this->output->text(json_encode($payload));
-                return;
             }
 
             $wasSuccessful = app(SendToLaravelShift::class)->send($metrics->toHttpPayload($projectName));
+
+            if ($this->option('payload')) {
+                return;
+            }
 
             if ($wasSuccessful) {
                 $this->info("Thanks for sharing your project statistic with the community!");
