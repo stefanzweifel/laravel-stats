@@ -7,7 +7,7 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class SendToLaravelShift
 {
-    public function send(array $payload): Response
+    public function send(array $payload): void
     {
         info('Sharing stats with stats.laravelshift.com', $payload);
 
