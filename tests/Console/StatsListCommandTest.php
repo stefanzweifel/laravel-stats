@@ -127,6 +127,7 @@ class StatsListCommandTest extends TestCase
         $this->artisan('stats', [
             '--share' => true,
             '--no-interaction' => true,
+            '--name' => 'repo/org',
         ]);
         $output = Artisan::output();
 
@@ -140,6 +141,7 @@ class StatsListCommandTest extends TestCase
             '--share' => true,
             '--no-interaction' => true,
             '--dry-run' => true,
+            '--name' => 'repo/org',
         ]);
         $output = Artisan::output();
 
@@ -153,26 +155,7 @@ class StatsListCommandTest extends TestCase
             '--share' => true,
             '--no-interaction' => true,
             '--payload' => true,
-        ]);
-        $output = Artisan::output();
-
-        $output = json_decode(trim($output), true);
-
-        $this->assertIsArray($output);
-        $this->assertArrayHasKey('project', $output);
-        $this->assertArrayHasKey('metrics', $output);
-
-        $this->assertEquals('stefanzweifel/laravel-stats', $output['project']);
-    }
-
-    /** @test */
-    public function it_allows_users_to_set_project_name_through_command_option()
-    {
-        $this->artisan('stats', [
-            '--share' => true,
-            '--no-interaction' => true,
-            '--payload' => true,
-            '--name' => 'repo/org'
+            '--name' => 'repo/org',
         ]);
         $output = Artisan::output();
 
