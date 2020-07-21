@@ -25,8 +25,9 @@ class StatsListCommand extends Command
                             {--json : Output the statistics as JSON}
                             {-c|--components= : Comma separated list of components which should be displayed}
                             {--s|share : Share project statistic with Laravel community <https://stats.laravelshift.com>}
+                            {--name= : Name used when sharing project statistic}
                             {--payload : Output payload to be shared with Laravel community <https://stats.laravelshift.com>}
-                            {--name= : Name used when sharing project statistic}';
+                            {--dry-run : Do not make request to share statistic}';
 
     /**
      * The console command description.
@@ -117,6 +118,10 @@ class StatsListCommand extends Command
 
             if ($this->option('payload')) {
                 $this->output->text(json_encode($payload));
+            }
+
+            if ($this->option('dry-run')) {
+                return;
             }
 
             $wasSuccessful = app(SendToLaravelShift::class)->send($metrics->toHttpPayload($projectName));
