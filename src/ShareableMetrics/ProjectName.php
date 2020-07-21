@@ -30,7 +30,9 @@ class ProjectName
 
         $remoteUrl = parse_url(trim($process->getOutput()));
 
-        return Str::replaceFirst('/', '', $remoteUrl['path']);
+        $remoteUrl = Str::replaceLast('.git', '', $remoteUrl['path']);
+
+        return Str::replaceFirst('/', '', $remoteUrl);
     }
 
     protected function pathToRcFile(): string
