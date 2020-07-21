@@ -11,6 +11,10 @@ class SendToLaravelShift
     {
         info('Sharing stats with stats.laravelshift.com', $payload);
 
+        if (app()->environment('testing')) {
+            return true;
+        }
+
         try {
             $client = new Client([
                 'base_uri' => 'https://laravelshift.com',
