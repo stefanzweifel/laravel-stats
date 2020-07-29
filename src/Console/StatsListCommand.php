@@ -106,7 +106,9 @@ class StatsListCommand extends Command
     {
         $metrics = app(CollectMetrics::class)->collect($project);
 
-        if ($this->confirm("Do you want to share stats above from your project with the Laravel Community to stats.laravelshift.com?", true)) {
+        $defaultValueForConfirmation = $this->option('no-interaction') ?? false;
+
+        if ($this->confirm("Do you want to share stats above from your project with the Laravel Community to stats.laravelshift.com?", $defaultValueForConfirmation)) {
             $projectName = $this->getProjectName();
 
             if ($projectName === null) {
