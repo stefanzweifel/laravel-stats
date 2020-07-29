@@ -4,7 +4,6 @@ namespace Wnx\LaravelStats\Classifiers;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes;
-use Illuminate\Contracts\Validation\Rule;
 use Wnx\LaravelStats\Contracts\Classifier;
 use Wnx\LaravelStats\ReflectionClass;
 
