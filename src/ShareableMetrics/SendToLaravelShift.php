@@ -18,7 +18,7 @@ class SendToLaravelShift
         try {
             $client = new Client([
                 'base_uri' => 'https://laravelshift.com',
-                'timeout' => 1,
+                'timeout' => 5,
                 'headers' => ['Accept' => 'application/json'],
             ]);
 
