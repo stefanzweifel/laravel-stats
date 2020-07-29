@@ -4,6 +4,7 @@ namespace Wnx\LaravelStats\Classifiers;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes;
+use Illuminate\Contracts\Validation\Rule;
 use Wnx\LaravelStats\Contracts\Classifier;
 use Wnx\LaravelStats\ReflectionClass;
 
@@ -16,6 +17,10 @@ class CustomCastClassifier implements Classifier
 
     public function satisfies(ReflectionClass $class): bool
     {
+        if ((float) app()->version() < 7) {
+            return false;
+        }
+
         return $class->implementsInterface(CastsAttributes::class) ||
             $class->implementsInterface(CastsInboundAttributes::class);
     }

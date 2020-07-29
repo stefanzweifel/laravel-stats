@@ -15,6 +15,10 @@ class BladeComponentClassifier implements Classifier
 
     public function satisfies(ReflectionClass $class): bool
     {
+        if (! class_exists(Component::class)) {
+            return false;
+        }
+
         return $class->isSubclassOf(Component::class);
     }
 
