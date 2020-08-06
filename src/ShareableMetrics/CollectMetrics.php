@@ -15,10 +15,11 @@ use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsCustomInheritance;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsFolder;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsMassAssignment;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\NumberOfRoutes;
-use Wnx\LaravelStats\ShareableMetrics\Metrics\ScheduledTasks;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLinesOfCode;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLogicalLinesOfCode;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectLogicalLinesOfCodePerMethod;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ProjectNumberOfClasses;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\ScheduledTasks;
 use Wnx\LaravelStats\ValueObjects\Component;
 
 class CollectMetrics
@@ -45,6 +46,7 @@ class CollectMetrics
             NumberOfRoutes::class,
             ProjectLinesOfCode::class,
             ProjectLogicalLinesOfCode::class,
+            ProjectLogicalLinesOfCodePerMethod::class,
             ProjectNumberOfClasses::class,
             ScheduledTasks::class,
         ])->map(function ($statClass) use ($project) {
