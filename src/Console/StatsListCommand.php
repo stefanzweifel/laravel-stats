@@ -116,6 +116,11 @@ class StatsListCommand extends Command
                 return;
             }
 
+            if (! Str::contains($projectName, '/')) {
+                $this->error("Please use the organisation/repository schema for naming your project.");
+                return;
+            }
+
             $payload = $metrics->toHttpPayload($projectName);
 
             if ($this->option('payload')) {

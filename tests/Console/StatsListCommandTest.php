@@ -135,6 +135,19 @@ class StatsListCommandTest extends TestCase
     }
 
     /** @test */
+    public function it_shows_error_message_when_project_name_does_not_follow_org_repo_schema_when_sharing()
+    {
+        $this->artisan('stats', [
+            '--share' => true,
+            '--no-interaction' => true,
+            '--name' => 'foo',
+        ]);
+        $output = Artisan::output();
+
+        $this->assertStringContainsString('Please use the organisation/repository schema for naming your project.', $output);
+    }
+
+    /** @test */
     public function it_does_not_show_success_message_for_share_option_if_dry_run_option_is_passed()
     {
         $this->artisan('stats', [
