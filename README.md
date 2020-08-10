@@ -179,7 +179,7 @@ php artisan stats --share --no-interaction --name=org/repo
 ```
 
 If you're code is hosted on GitHub, you can integrate `stats` with [GitHub Actions](https://docs.github.com/en/actions).
-Use the following Workflow template to share data when a commit is pushed to the `master` branch. The Action automatically uses your GitHub repository name.
+Copy the following Workflow to `.github/workflows/laravel-stats.yml`. It will share data when a commit is pushed to the `master` branch. The Action automatically uses your GitHub repository name in the `--name`-option.
 
 ```yaml
 name: stats
@@ -215,7 +215,7 @@ jobs:
 If you would like to inspect the payload the command is sending to the API you can use the `--dry-run` and `--payload` options.
 
 ```shell
-php artisan stats --share --dry-run --payload --name="org/repo" --no-interaction
+php artisan stats --share  --no-interaction  --name="org/repo" --dry-run --payload
 ```
 
 ## Treeware
