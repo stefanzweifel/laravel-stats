@@ -155,7 +155,7 @@ class StatsListCommand extends Command
         if (app(ProjectName::class)->hasStoredProjectName() === false) {
             $generatedProjectName = app(ProjectName::class)->determineProjectNameFromGit();
 
-            $projectName = $this->ask("We've determined the following name for your project. Do you want to rename it?", $generatedProjectName);
+            $projectName = $this->ask("We've determined the following name for your project: \"{$generatedProjectName}\".\n Type a new name or leave it blank to continue.", $generatedProjectName);
 
             app(ProjectName::class)->storeNameInRcFile($projectName);
 
