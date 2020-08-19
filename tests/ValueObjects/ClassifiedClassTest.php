@@ -22,7 +22,7 @@ class ClassifiedClassTest extends TestCase
     public function it_returns_number_of_methods_for_a_classified_class()
     {
         $this->assertEquals(
-            7,
+            9,
             $this->getClassifiedClass()->getNumberOfMethods()
         );
     }
@@ -49,7 +49,7 @@ class ClassifiedClassTest extends TestCase
     public function it_returns_number_of_lines_of_code_for_a_classified_class()
     {
         $this->assertEquals(
-            41,
+            51,
             $this->getClassifiedClass()->getLines()
         );
     }
@@ -67,7 +67,7 @@ class ClassifiedClassTest extends TestCase
     public function it_returns_average_number_of_logical_lines_of_code_per_method_for_a_classified_class()
     {
         $this->assertEquals(
-            1.0,
+            0.78,
             $this->getClassifiedClass()->getLogicalLinesOfCodePerMethod()
         );
     }
