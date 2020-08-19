@@ -48,6 +48,22 @@ class ComponentTest extends TestCase
     }
 
     /** @test */
+    public function it_returns_number_of_public_methods_for_all_classes_within_a_component()
+    {
+        $component = $this->getTestComponent();
+
+        $this->assertEquals(12, $component->getNumberOfPublicMethods());
+    }
+
+    /** @test */
+    public function it_returns_number_of_non_public_methods_for_all_classes_within_a_component()
+    {
+        $component = $this->getTestComponent();
+
+        $this->assertEquals(3, $component->getNumberOfNonPublicMethods());
+    }
+
+    /** @test */
     public function it_returns_average_number_of_methods_per_class_for_all_classes_within_a_component()
     {
         $component = $this->getTestComponent();

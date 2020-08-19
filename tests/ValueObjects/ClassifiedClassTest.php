@@ -28,6 +28,24 @@ class ClassifiedClassTest extends TestCase
     }
 
     /** @test */
+    public function it_returns_number_of_public_methods_for_a_classified_class()
+    {
+        $this->assertEquals(
+            7,
+            $this->getClassifiedClass()->getNumberOfPublicMethods()
+        );
+    }
+
+    /** @test */
+    public function it_returns_number_of_non_public_methods_for_a_classified_class()
+    {
+        $this->assertEquals(
+            2,
+            $this->getClassifiedClass()->getNumberOfNonPublicMethods()
+        );
+    }
+
+    /** @test */
     public function it_returns_number_of_lines_of_code_for_a_classified_class()
     {
         $this->assertEquals(
