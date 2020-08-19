@@ -28,6 +28,11 @@ class ClassifiedClass
     /**
      * @var int
      */
+    private $numberOfPublicMethods;
+
+    /**
+     * @var int
+     */
     private $linesOfCode;
 
     /**
@@ -58,6 +63,18 @@ class ClassifiedClass
         }
 
         return $this->numberOfMethods;
+    }
+
+    public function getNumberOfPublicMethods(): int
+    {
+        if ($this->numberOfPublicMethods === null) {
+            $this->numberOfPublicMethods = $this->reflectionClass->getDefinedMethods()
+                ->filter(function (\ReflectionMethod $method) {
+                    return $method->isPublic();
+                })->count();
+        }
+
+        return $this->numberOfPublicMethods;
     }
 
     /**
