@@ -15,7 +15,6 @@ class PolicyClassifier implements Classifier
 
     public function satisfies(ReflectionClass $class): bool
     {
-        /** @var \Illuminate\Auth\Access\Gate $gate */
         $gate = app(Gate::class);
 
         return in_array(
