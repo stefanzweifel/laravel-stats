@@ -32,6 +32,11 @@ class Component
     private $numberOfPublicMethods;
 
     /**
+     * @var int
+     */
+    private $numberOfNonPublicMethods;
+
+    /**
      * @var float
      */
     private $numberOfMethodsPerClass;
@@ -86,6 +91,17 @@ class Component
         }
 
         return $this->numberOfPublicMethods;
+    }
+
+    public function getNumberOfNonPublicMethods(): int
+    {
+        if ($this->numberOfNonPublicMethods === null) {
+            $this->numberOfNonPublicMethods = $this->classifiedClasses->sum(function (ClassifiedClass  $class) {
+                return $class->getNumberOfNonPublicMethods();
+            });
+        }
+
+        return $this->numberOfNonPublicMethods;
     }
 
     public function getNumberOfMethodsPerClass(): float
