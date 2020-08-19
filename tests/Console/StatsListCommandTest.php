@@ -2,7 +2,6 @@
 
 namespace Wnx\LaravelStats\Tests\Console;
 
-use Wnx\LaravelStats\Tests\Stubs\Mails\DemoMail;
 use Wnx\LaravelStats\Tests\TestCase;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
