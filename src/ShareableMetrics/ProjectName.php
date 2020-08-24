@@ -21,7 +21,13 @@ class ProjectName
 
     public function determineProjectNameFromGit(): ?string
     {
-        $process = Process::fromShellCommandline('/usr/local/bin/git config --get remote.origin.url');
+        $gitPath = $this->getGitBinaryPath();
+
+        if (is_null($gitPath)) {
+            return null;
+        }
+
+        $process = Process::fromShellCommandline("{$gitPath} config --get remote.origin.url");
         $process->run();
 
         if ($process->isSuccessful() === false) {
@@ -33,6 +39,18 @@ class ProjectName
         $remoteUrl = Str::replaceLast('.git', '', $remoteUrl['path']);
 
         return Str::replaceFirst('/', '', $remoteUrl);
+    }
+
+    protected function getGitBinaryPath(): ?string
+    {
+        $process = Process::fromShellCommandline('which git');
+        $process->run();
+
+        if ($process->isSuccessful() === false) {
+            return null;
+        }
+
+        return trim($process->getOutput());
     }
 
     protected function pathToRcFile(): string
