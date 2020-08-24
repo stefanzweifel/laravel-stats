@@ -24,6 +24,23 @@ use Wnx\LaravelStats\ValueObjects\Component;
 
 class CollectMetrics
 {
+    public const PROJECT_METRICS = [
+        CodeTestRatio::class,
+        ComposerPsr4Sources::class,
+        ControllersCustomInheritance::class,
+        ControllersFormRequestInjection::class,
+        InstalledPackages::class,
+        ModelsCustomInheritance::class,
+        ModelsFolder::class,
+        ModelsMassAssignment::class,
+        NumberOfRoutes::class,
+        ProjectLinesOfCode::class,
+        ProjectLogicalLinesOfCode::class,
+        ProjectLogicalLinesOfCodePerMethod::class,
+        ProjectNumberOfClasses::class,
+        ScheduledTasks::class,
+    ];
+
     public function collect(Project $project): MetricsCollection
     {
         return new MetricsCollection([
@@ -34,26 +51,13 @@ class CollectMetrics
 
     protected function getProjectMetrics(Project $project): Collection
     {
-        $availableMetrics = collect([
-            CodeTestRatio::class,
-            ComposerPsr4Sources::class,
-            ControllersCustomInheritance::class,
-            ControllersFormRequestInjection::class,
-            InstalledPackages::class,
-            ModelsCustomInheritance::class,
-            ModelsFolder::class,
-            ModelsMassAssignment::class,
-            NumberOfRoutes::class,
-            ProjectLinesOfCode::class,
-            ProjectLogicalLinesOfCode::class,
-            ProjectLogicalLinesOfCodePerMethod::class,
-            ProjectNumberOfClasses::class,
-            ScheduledTasks::class,
-        ])->map(function ($statClass) use ($project) {
-            return new $statClass($project);
-        });
-
-        return $availableMetrics->map->toArray()->collapse();
+        return collect(self::PROJECT_METRICS)
+            ->map(function ($metricClass) use ($project) {
+                return new $metricClass($project);
+            })
+            ->map
+            ->toArray()
+            ->collapse();
     }
 
     protected function getComponentMetrics(Project $project): Collection
