@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Wnx\LaravelStats\ShareableMetrics;
 
@@ -6,7 +6,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Wnx\LaravelStats\Classifier;
 use Wnx\LaravelStats\Project;
-use Wnx\LaravelStats\ShareableMetrics\CollectMetrics;
 
 class AllMetricPayloadKeys
 {
