@@ -75,8 +75,7 @@ class ComponentTest extends TestCase
     public function it_returns_total_number_of_lines_of_code_for_all_classes_within_a_component()
     {
         $component = $this->getTestComponent();
-
-        $this->assertEquals(113, $component->getLinesOfCode());
+        $this->assertEquals(115, $component->getLinesOfCode());
     }
 
     /** @test */

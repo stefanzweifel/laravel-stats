@@ -2,9 +2,11 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs\Controllers;
 
+use Wnx\LaravelStats\Tests\Stubs\Requests\UserRequest;
+
 class UsersController extends Controller
 {
-    public function index()
+    public function index(array $filter = [])
     {
         return [];
     }
@@ -14,7 +16,7 @@ class UsersController extends Controller
         return [];
     }
 
-    public function store()
+    public function store(UserRequest $request)
     {
         return [];
     }
@@ -29,7 +31,7 @@ class UsersController extends Controller
         return [];
     }
 
-    public function update()
+    public function update(UserRequest $request)
     {
         return [];
     }
