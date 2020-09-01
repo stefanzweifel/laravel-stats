@@ -40,4 +40,14 @@ class UsersController extends Controller
     {
         return [];
     }
+
+    private function thePrivateMethod()
+    {
+        //
+    }
+
+    protected function theProtectedMethod()
+    {
+        //
+    }
 }

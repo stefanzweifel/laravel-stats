@@ -44,7 +44,23 @@ class ComponentTest extends TestCase
     {
         $component = $this->getTestComponent();
 
-        $this->assertEquals(13, $component->getNumberOfMethods());
+        $this->assertEquals(15, $component->getNumberOfMethods());
+    }
+
+    /** @test */
+    public function it_returns_number_of_public_methods_for_all_classes_within_a_component()
+    {
+        $component = $this->getTestComponent();
+
+        $this->assertEquals(12, $component->getNumberOfPublicMethods());
+    }
+
+    /** @test */
+    public function it_returns_number_of_non_public_methods_for_all_classes_within_a_component()
+    {
+        $component = $this->getTestComponent();
+
+        $this->assertEquals(3, $component->getNumberOfNonPublicMethods());
     }
 
     /** @test */
@@ -52,15 +68,14 @@ class ComponentTest extends TestCase
     {
         $component = $this->getTestComponent();
 
-        $this->assertEquals(4.33, $component->getNumberOfMethodsPerClass());
+        $this->assertEquals(5, $component->getNumberOfMethodsPerClass());
     }
 
     /** @test */
     public function it_returns_total_number_of_lines_of_code_for_all_classes_within_a_component()
     {
         $component = $this->getTestComponent();
-
-        $this->assertEquals(105, $component->getLinesOfCode());
+        $this->assertEquals(115, $component->getLinesOfCode());
     }
 
     /** @test */
@@ -76,6 +91,6 @@ class ComponentTest extends TestCase
     {
         $component = $this->getTestComponent();
 
-        $this->assertEquals(0.85, $component->getLogicalLinesOfCodePerMethod());
+        $this->assertEquals(0.73, $component->getLogicalLinesOfCodePerMethod());
     }
 }

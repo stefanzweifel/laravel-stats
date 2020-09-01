@@ -22,8 +22,26 @@ class ClassifiedClassTest extends TestCase
     public function it_returns_number_of_methods_for_a_classified_class()
     {
         $this->assertEquals(
-            7,
+            9,
             $this->getClassifiedClass()->getNumberOfMethods()
+        );
+    }
+
+    /** @test */
+    public function it_returns_number_of_public_methods_for_a_classified_class()
+    {
+        $this->assertEquals(
+            7,
+            $this->getClassifiedClass()->getNumberOfPublicMethods()
+        );
+    }
+
+    /** @test */
+    public function it_returns_number_of_non_public_methods_for_a_classified_class()
+    {
+        $this->assertEquals(
+            2,
+            $this->getClassifiedClass()->getNumberOfNonPublicMethods()
         );
     }
 
@@ -31,7 +49,7 @@ class ClassifiedClassTest extends TestCase
     public function it_returns_number_of_lines_of_code_for_a_classified_class()
     {
         $this->assertEquals(
-            43,
+            53,
             $this->getClassifiedClass()->getLines()
         );
     }
@@ -49,7 +67,7 @@ class ClassifiedClassTest extends TestCase
     public function it_returns_average_number_of_logical_lines_of_code_per_method_for_a_classified_class()
     {
         $this->assertEquals(
-            1.0,
+            0.78,
             $this->getClassifiedClass()->getLogicalLinesOfCodePerMethod()
         );
     }
