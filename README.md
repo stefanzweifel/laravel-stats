@@ -26,9 +26,7 @@
 
 ### Installing
 
-The easiest way to install the package is by using composer. The package requires PHP 7.3, Laravel 7.0 or higher or Lumen 7.0 or higher.  
-
-Due to version conflicts, `stats` can't be installed in Laravel 7 projects which are running with phpunit 8. **Phpunit 9 is required.**
+The easiest way to install the package is by using composer. The package requires PHP 7.3, Laravel 6.0 or higher or Lumen 6.0 or higher.  
 
 ```shell
 composer require "wnx/laravel-stats" --dev
@@ -42,77 +40,11 @@ If you're using Lumen you have to manually register the Service Provider in your
 $app->register(\Wnx\LaravelStats\StatsServiceProvider::class);
 ```
 
-Optionally, you can publish the config file of this package with this command (Laravel only):
+Optionally, you can publish the config file in your Laravel applications with the following command:
 
 ```shell
 php artisan vendor:publish --provider="Wnx\LaravelStats\StatsServiceProvider"
 ```
-
-The following config file will be published in `config/stats.php`
-
-```php
-<?php
-
-return [
-
-    /*
-     * List of folders to be analyzed.
-     */
-    'paths' => [
-        base_path('app'),
-        base_path('database'),
-        base_path('tests'),
-    ],
-
-    /*
-     * List of files/folders to be excluded from analysis.
-     */
-    'exclude' => [
-        // base_path('app/helpers.php'),
-        // base_path('app/Services'),
-    ],
-
-    /*
-     * List of your custom Classifiers
-     */
-    'custom_component_classifier' => [
-        // \App\Classifiers\CustomerExportClassifier::class
-    ],
-
-    /*
-     * The Strategy used to reject Classes from the project statistics.
-     *
-     * By default all Classes located in
-     * the vendor directory are being rejected and don't
-     * count to the statistics.
-     *
-     * The package ships with 2 strategies:
-     * - \Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses::class
-     * - \Wnx\LaravelStats\RejectionStrategies\RejectInternalClasses::class
-     *
-     * If none of the default strategies fit for your usecase, you can
-     * write your own class which implements the RejectionStrategy Contract.
-     */
-    'rejection_strategy' => \Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses::class,
-
-    /*
-     * Namespaces which should be ignored.
-     * Laravel Stats uses the `Str::startsWith()`class to
-     * check if a Namespace should be ignored.
-     *
-     * You can use `Illuminate` to ignore the entire `Illuminate`-namespace
-     * or `Illuminate\Support` to ignore a subset of the namespace.
-     */
-    'ignored_namespaces' => [
-        'Wnx\LaravelStats',
-        'Illuminate',
-        'Symfony',
-    ],
-
-];
-
-```
-
 
 ## Usage
 
@@ -134,12 +66,11 @@ If you want a more detailed report and see which classes have been grouped into 
 php artisan stats --verbose
 ```
 
-The verbose option is also available for the JSON format.
+The verbose option is available for the JSON format also.
 
 ```
 php artisan stats --json --verbose
 ```
-
 
 
 ## How does this package detect certain Laravel Components?
@@ -223,6 +154,68 @@ class RepositoryClassifier implements Classifier
         \App\Classifiers\RepositoryClassifier::class
     ],
     ...
+```
+
+## Share Metrics with the Laravel Community
+
+You can optionally share your projects statistic by using the `--share` option. 
+
+```shell
+php artisan stats --share
+```
+
+Your project statistics is shared anonymously with [stats.laravelshift.com](https://stats.laravelshift.com). In regular intervals the dashboard and charts on the site are updated with shared data from other Laravel projects.
+
+To learn more about this feature, please check out PR [#178](https://github.com/stefanzweifel/laravel-stats/pull/178).
+
+### Share statistic through CI
+
+If you would like to share your project statistic in a CI environment you can use the `--no-interaction` and `--name`-options.
+
+Use the following command in your CI script to share your project statistic automatically. (Update `org/repo` with the name of your application (eg. `acme/podcasting-app`))
+
+```shell
+php artisan stats --share --no-interaction --name=org/repo
+```
+
+If you're code is hosted on GitHub, you can integrate `stats` with [GitHub Actions](https://docs.github.com/en/actions).
+Copy the following Workflow to `.github/workflows/laravel-stats.yml`. It will share data when a commit is pushed to the `master` branch. The Action automatically uses your GitHub repository name in the `--name`-option.
+
+```yaml
+name: stats
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+          tools: composer:v2
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-suggest
+
+      - name: Share Stats
+        run: php artisan stats --share --name=$GITHUB_REPOSITORY --no-interaction
+```
+
+### Inspect Data shared with the Community
+
+If you would like to inspect the payload the command is sending to the API you can use the `--dry-run` and `--payload` options.
+
+```shell
+php artisan stats --share  --no-interaction  --name="org/repo" --dry-run --payload
 ```
 
 ## Treeware

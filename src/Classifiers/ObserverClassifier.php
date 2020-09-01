@@ -20,7 +20,7 @@ class ObserverClassifier implements Classifier
     {
         return collect($this->getEvents())
             ->filter(function ($listeners, $event) {
-                return Str::of($event)->startsWith('eloquent.');
+                return Str::startsWith($event, 'eloquent.');
             })
             ->map(function ($listeners) {
                 return collect($listeners)->map(function (Closure $closure) {
@@ -30,7 +30,7 @@ class ObserverClassifier implements Classifier
             ->collapse()
             ->unique()
             ->filter(function ($eventListenerSignature) use ($class) {
-                return Str::of($eventListenerSignature)->contains($class->getName());
+                return Str::contains($eventListenerSignature, $class->getName());
             })
             ->count() > 0;
     }

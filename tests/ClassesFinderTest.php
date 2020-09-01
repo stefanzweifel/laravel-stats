@@ -10,13 +10,21 @@ class ClassesFinderTest extends TestCase
     {
         parent::setUp();
 
+        $excludedFiles = [
+            __DIR__.'/../tests/Stubs/ExcludedFile.php',
+        ];
+
+        if ($this->getLaravelVersion() < 7) {
+            $excludedFiles[] = __DIR__.'/../tests/Stubs/CustomCasts/StubCast.php';
+            $excludedFiles[] = __DIR__.'/../tests/Stubs/CustomCasts/StubInboundCast.php';
+            $excludedFiles[] = __DIR__.'/../tests/Stubs/BladeComponents/StubBladeComponent.php';
+        }
+
         config()->set('stats', [
             'paths' => [
                 __DIR__.'/../tests/Stubs',
             ],
-            'exclude' => [
-                __DIR__.'/../tests/Stubs/ExcludedFile.php',
-            ],
+            'exclude' => $excludedFiles,
             'ignored_namespaces' => [],
         ]);
 
