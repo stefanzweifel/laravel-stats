@@ -6,6 +6,7 @@ jobs:
   test:
 
     runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental }}
     strategy:
       fail-fast: true
       matrix:
@@ -17,6 +18,8 @@ jobs:
             testbench: 4.*
           - laravel: 7.*
             testbench: 5.*
+          - php: 8.0
+            experimental: true
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }}
 
