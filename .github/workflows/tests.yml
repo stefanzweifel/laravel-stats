@@ -17,9 +17,10 @@ jobs:
         include:
           - laravel: 6.*
             testbench: 4.*
+            php: [7.3, 7.4]
           - laravel: 7.*
             testbench: 5.*
-          - php: 8.0
+            php: [7.3, 7.4, 8.0]
             experimental: true
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }}
