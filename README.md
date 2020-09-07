@@ -102,6 +102,7 @@ The package scans the files defined in the `paths`-array in the configuration fi
 | ServiceProvider | Must extend `Illuminate\Support\ServiceProvider` |
 | Blade Components | Must extend `Illuminate\View\Component` |
 | Custom Casts | Must implement `Illuminate\Contracts\Database\Eloquent\CastsAttributes` or `Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes` |
+| Database Factory | Must extend `Illuminate\Database\Eloquent\Factory` |
 | Dusk Tests | Must extend `Laravel\Dusk\TestCase` |
 | BrowserKit Test | Must extend `Laravel\BrowserKitTesting\TestCase` |
 | PHPUnit Test | Must extend `PHPUnit\Framework\TestCase` |
