@@ -6,7 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.3.0...HEAD)
 
-> TBD
+### Added
+- Add Database Factory Classifier [#183](https://github.com/stefanzweifel/laravel-stats/pull/183)
+- Add Support for Laravel 8 [#180](https://github.com/stefanzweifel/laravel-stats/pull/180)
 
 
 ## [v2.3.0](https://github.com/stefanzweifel/laravel-stats/compare/v2.2.0...v2.3.0) - 2020-09-01
