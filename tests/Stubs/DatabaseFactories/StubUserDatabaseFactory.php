@@ -2,7 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\Stubs\DatabaseFactories;
 
-use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Wnx\LaravelStats\Tests\Stubs\Models\User;
 
 class StubUserDatabaseFactory extends Factory
