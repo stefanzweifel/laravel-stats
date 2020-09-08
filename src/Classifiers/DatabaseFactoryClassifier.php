@@ -15,6 +15,10 @@ class DatabaseFactoryClassifier implements Classifier
 
     public function satisfies(ReflectionClass $class): bool
     {
+        if ((float) app()->version() < 8) {
+            return false;
+        }
+
         return $class->isSubclassOf(Factory::class);
     }
 
