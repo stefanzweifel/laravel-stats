@@ -8,6 +8,7 @@ use Wnx\LaravelStats\Classifiers\BladeComponentClassifier;
 use Wnx\LaravelStats\Classifiers\CommandClassifier;
 use Wnx\LaravelStats\Classifiers\ControllerClassifier;
 use Wnx\LaravelStats\Classifiers\CustomCastClassifier;
+use Wnx\LaravelStats\Classifiers\DatabaseFactoryClassifier;
 use Wnx\LaravelStats\Classifiers\EventClassifier;
 use Wnx\LaravelStats\Classifiers\EventListenerClassifier;
 use Wnx\LaravelStats\Classifiers\JobClassifier;
@@ -56,6 +57,7 @@ class Classifier
         ServiceProviderClassifier::class,
         BladeComponentClassifier::class,
         CustomCastClassifier::class,
+        DatabaseFactoryClassifier::class,
         BrowserKitTestClassifier::class,
         DuskClassifier::class,
         PhpUnitClassifier::class,

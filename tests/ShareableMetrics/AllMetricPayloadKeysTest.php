@@ -19,5 +19,6 @@ class AllMetricPayloadKeysTest extends TestCase
         $this->assertContains('models_mass_assignment', $result);
         $this->assertContains('controllers_lloc_per_method', $result);
         $this->assertContains('nova_lenses_methods', $result);
+        $this->assertContains('database_factories_lloc', $result);
     }
 }
