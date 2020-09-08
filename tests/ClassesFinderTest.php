@@ -20,6 +20,10 @@ class ClassesFinderTest extends TestCase
             $excludedFiles[] = __DIR__.'/../tests/Stubs/BladeComponents/StubBladeComponent.php';
         }
 
+        if ($this->getLaravelVersion() < 8) {
+            $excludedFiles[] = __DIR__.'/../tests/Stubs/DatabaseFactories/StubUserDatabaseFactory.php';
+        }
+
         config()->set('stats', [
             'paths' => [
                 __DIR__.'/../tests/Stubs',

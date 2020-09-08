@@ -2,9 +2,9 @@
 
 namespace Wnx\LaravelStats\Classifiers;
 
-use Illuminate\Database\Eloquent\Factory;
-use Wnx\LaravelStats\ReflectionClass;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Wnx\LaravelStats\Contracts\Classifier;
+use Wnx\LaravelStats\ReflectionClass;
 
 class DatabaseFactoryClassifier implements Classifier
 {
@@ -15,6 +15,10 @@ class DatabaseFactoryClassifier implements Classifier
 
     public function satisfies(ReflectionClass $class): bool
     {
+        if ((float) app()->version() < 8) {
+            return false;
+        }
+
         return $class->isSubclassOf(Factory::class);
     }
 

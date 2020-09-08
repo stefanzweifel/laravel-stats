@@ -15,20 +15,19 @@
     "require": {
         "php": ">=7.3.0",
         "ext-json": "*",
-        "illuminate/console": "^6.0 || ^7.0",
-        "illuminate/support": "^6.0 || ^7.0",
+        "illuminate/console": "^6.0 || ^7.0 || ^8.0",
+        "illuminate/support": "^6.0 || ^7.0 || ^8.0",
         "stefanzweifel/laravel-stats-phploc": "^6.1",
         "symfony/finder": "^4.3 || ^5.0",
         "symfony/process": "^4.3 || ^5.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.15",
-        "laravel/browser-kit-testing": "~5.0 || ~6.0",
-        "laravel/dusk": "~5.0",
+        "laravel/browser-kit-testing": "~5.0 || ~6.0 || ~7.0",
+        "laravel/dusk": "~5.0 || ~6.0",
         "mockery/mockery": "^1.1",
-        "orchestra/testbench": "^4.0 || ^5.0",
+        "orchestra/testbench": "^4.0 || ^5.0 || ^6.0",
         "phpunit/phpunit": "8.* || 9.*",
-        "psalm/plugin-laravel": "^1.3",
         "vimeo/psalm": "^3.12"
     },
     "autoload": {
