@@ -17,7 +17,7 @@
         "ext-json": "*",
         "illuminate/console": "^6.0 || ^7.0 || ^8.0",
         "illuminate/support": "^6.0 || ^7.0 || ^8.0",
-        "stefanzweifel/laravel-stats-phploc": "^7.1",
+        "stefanzweifel/laravel-stats-phploc": "^6.1 || ^7.1",
         "symfony/finder": "^4.3 || ^5.0",
         "symfony/process": "^4.3 || ^5.0"
     },
