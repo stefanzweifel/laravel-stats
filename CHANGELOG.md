@@ -6,7 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.4.0...HEAD)
 
-> TBD
+### Changed
+- Use latest version of `stefanzweifel/laravel-stats-phploc` [#185](https://github.com/stefanzweifel/laravel-stats/pull/185), [#184](https://github.com/stefanzweifel/laravel-stats/issues/184)
 
 
 ## [v2.4.0](https://github.com/stefanzweifel/laravel-stats/compare/v2.3.0...v2.4.0) - 2020-09-08
