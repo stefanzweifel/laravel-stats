@@ -11,6 +11,8 @@
     <projectFiles>
         <directory name="src"/>
          <ignoreFiles>
+            <directory name="tests" />
+            <directory name="test-stubs-nova" />
             <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
