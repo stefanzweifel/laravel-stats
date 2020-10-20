@@ -135,6 +135,19 @@ class StatsListCommandTest extends TestCase
     }
 
     /** @test */
+    public function it_uses_generated_project_name_when_sharing_project_statistics()
+    {
+        $this->artisan('stats', [
+            '--share' => true,
+            '--no-interaction' => true,
+            '--payload' => true,
+        ]);
+        $output = Artisan::output();
+
+        $this->assertStringContainsString('\/laravel-stats', $output);
+    }
+
+    /** @test */
     public function it_shows_error_message_when_project_name_does_not_follow_org_repo_schema_when_sharing()
     {
         $this->artisan('stats', [
