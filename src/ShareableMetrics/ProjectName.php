@@ -65,6 +65,10 @@ class ProjectName
 
     public function storeNameInRcFile(string $projectName): void
     {
+        if (app()->environment('testing')) {
+            return;
+        }
+
         File::put($this->pathToRcFile(), $projectName);
     }
 }
