@@ -16,7 +16,7 @@ class StatsListCommandTest extends TestCase
         $this->withoutMockingConsoleOutput();
 
         /*
-         * Override stats.path confiugration to not include `tests` folder
+         * Override stats.path configuration to not include `tests` folder
          * This fixes the issue, that orchestra does not ship with the
          * default `tests` folder and would throw an error, because
          * the path does not exist.
