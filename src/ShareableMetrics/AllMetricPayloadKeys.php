@@ -35,7 +35,6 @@ class AllMetricPayloadKeys
 
         $metrics = [];
 
-        /** @var Component $component */
         foreach ($coreClassifierNames as $coreClassifier) {
             $slug = Str::slug(strtolower($coreClassifier), '_');
 
