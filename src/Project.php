@@ -57,7 +57,7 @@ class Project
 
         return $this->classifiedClassesGroupedByComponentName()
             ->when($shouldCollectionBeFiltered, function ($components) use ($componentNamesToFilter) {
-                return $components->filter(function ($item, $key) use ($componentNamesToFilter) {
+                return $components->filter(function ($_item, $key) use ($componentNamesToFilter) {
                     return in_array($key, $componentNamesToFilter);
                 });
             });

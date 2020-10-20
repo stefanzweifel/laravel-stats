@@ -19,7 +19,7 @@ class ObserverClassifier implements Classifier
     public function satisfies(ReflectionClass $class): bool
     {
         return collect($this->getEvents())
-            ->filter(function ($listeners, $event) {
+            ->filter(function ($_listeners, $event) {
                 return Str::startsWith($event, 'eloquent.');
             })
             ->map(function ($listeners) {
