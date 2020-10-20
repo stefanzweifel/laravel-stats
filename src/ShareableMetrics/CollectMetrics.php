@@ -11,6 +11,7 @@ use Wnx\LaravelStats\ShareableMetrics\Metrics\ComposerPsr4Sources;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ControllersCustomInheritance;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ControllersFormRequestInjection;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\InstalledPackages;
+use Wnx\LaravelStats\ShareableMetrics\Metrics\Metric;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsCustomInheritance;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsFolder;
 use Wnx\LaravelStats\ShareableMetrics\Metrics\ModelsMassAssignment;
@@ -52,11 +53,12 @@ class CollectMetrics
     protected function getProjectMetrics(Project $project): Collection
     {
         return collect(self::PROJECT_METRICS)
-            ->map(function ($metricClass) use ($project) {
+            ->map(function (string $metricClass) use ($project) {
                 return new $metricClass($project);
             })
-            ->map
-            ->toArray()
+            ->map(function (Metric $metric) {
+                return $metric->toArray();
+            })
             ->collapse();
     }
 

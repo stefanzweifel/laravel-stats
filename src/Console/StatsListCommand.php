@@ -149,7 +149,7 @@ class StatsListCommand extends Command
     private function getProjectName(): ?string
     {
         if ($this->option('name')) {
-            return $this->option('name');
+            return (string) $this->option('name');
         }
 
         if (app(ProjectName::class)->hasStoredProjectName() === false) {
