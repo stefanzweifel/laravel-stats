@@ -53,6 +53,7 @@ After installing you can generate the statistics by running the following Artisa
 ```shell
 php artisan stats
 ```
+(Make sure you run `php artisan config:clear` before running the above command.)
 
 The statistics are also available as JSON.
 
