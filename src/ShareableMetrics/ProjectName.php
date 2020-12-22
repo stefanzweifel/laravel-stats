@@ -34,11 +34,23 @@ class ProjectName
             return null;
         }
 
-        $remoteUrl = parse_url(trim($process->getOutput()));
+        $remoteUrl = trim($process->getOutput());
 
+        // HTTPS Connections
+        if (Str::startsWith($remoteUrl, 'http')) {
+            $remoteUrl = parse_url($remoteUrl);
+            $remoteUrl = Str::replaceLast('.git', '', $remoteUrl['path']);
+
+            return Str::replaceFirst('/', '', $remoteUrl);
+        }
+
+        // SSH Connections
+        $remoteUrl = parse_url($remoteUrl);
         $remoteUrl = Str::replaceLast('.git', '', $remoteUrl['path']);
 
-        return Str::replaceFirst('/', '', $remoteUrl);
+        [$_, $remoteUrl] = explode(':', $remoteUrl);
+
+        return $remoteUrl;
     }
 
     protected function getGitBinaryPath(): ?string
