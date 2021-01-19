@@ -22,6 +22,7 @@
         "symfony/process": "^4.3 || ^5.0"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.18",
         "laravel/browser-kit-testing": "~5.0 || ~6.0 || ~7.0",
         "laravel/dusk": "~5.0 || ~6.0",
         "mockery/mockery": "^1.1",
