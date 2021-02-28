@@ -11,8 +11,6 @@ class ReflectionClass extends NativeReflectionClass
 {
     /**
      * Determine if class is located in the vendor directory.
-     *
-     * @return bool
      */
     public function isVendorProvided(): bool
     {
@@ -22,9 +20,7 @@ class ReflectionClass extends NativeReflectionClass
     /**
      * Determine whether the class uses the given trait.
      *
-     * @param  string $name
      *
-     * @return bool
      */
     public function usesTrait(string $name): bool
     {
@@ -37,14 +33,12 @@ class ReflectionClass extends NativeReflectionClass
     /**
      * Return a collection of methods defined on the given class.
      * This ignores methods defined in parent class, traits etc.
-     *
-     * @return \Illuminate\Support\Collection
      */
     public function getDefinedMethods(): Collection
     {
         return collect($this->getMethods())
             ->filter(function (ReflectionMethod $method) {
-                return $method->getFileName() == $this->getFileName();
+                return $method->getFileName() === $this->getFileName();
             });
     }
 }

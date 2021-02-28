@@ -32,8 +32,6 @@ class AsciiTableOutput
 
     /**
      * Create new instance of JsonOutput.
-     *
-     * @param \Illuminate\Console\OutputStyle $output
      */
     public function __construct(OutputStyle $output)
     {
@@ -84,7 +82,7 @@ class AsciiTableOutput
 
             // If the verbose option has been passed, also display each
             // classified Class in it's own row
-            if ($this->isVerbose === true) {
+            if ($this->isVerbose) {
                 foreach ($classifiedClasses as $classifiedClass) {
                     $this->addClassifiedClassTableRow($table, $classifiedClass);
                 }

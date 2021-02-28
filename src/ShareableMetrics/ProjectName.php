@@ -30,7 +30,7 @@ class ProjectName
         $process = Process::fromShellCommandline("{$gitPath} config --get remote.origin.url");
         $process->run();
 
-        if ($process->isSuccessful() === false) {
+        if (!$process->isSuccessful()) {
             return null;
         }
 
@@ -58,7 +58,7 @@ class ProjectName
         $process = Process::fromShellCommandline('which git');
         $process->run();
 
-        if ($process->isSuccessful() === false) {
+        if (!$process->isSuccessful()) {
             return null;
         }
 

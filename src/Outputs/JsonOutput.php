@@ -23,7 +23,7 @@ class JsonOutput
         foreach ($groupedByComponent as $componentName => $classifiedClasses) {
             $singleComponent = $this->getStatisticsArrayComponent($componentName, $classifiedClasses);
 
-            if ($isVerbose === true) {
+            if ($isVerbose) {
                 $arrayOfClasses = [];
 
                 foreach ($classifiedClasses as $classifiedClass) {

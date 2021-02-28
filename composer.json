@@ -29,6 +29,7 @@
         "orchestra/testbench": "^4.0 || ^5.0 || ^6.0",
         "phpunit/phpunit": "8.* || 9.*",
         "psalm/plugin-laravel": "^1.4",
+        "rector/rector": "^0.9",
         "vimeo/psalm": "^4.0"
     },
     "autoload": {

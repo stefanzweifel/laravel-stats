@@ -109,9 +109,7 @@ class Classifier
     /**
      * Check if a class implements our Classifier Contract.
      *
-     * @param  string $classifier
      *
-     * @return bool
      */
     protected function implementsContract(string $classifier): bool
     {
