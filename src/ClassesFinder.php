@@ -14,8 +14,6 @@ class ClassesFinder
      * Find PHP Files on filesystem and require them.
      * We need to use ob_* functions to ensure that
      * loaded files do not output anything.
-     *
-     * @return \Illuminate\Support\Collection
      */
     public function findAndLoadClasses(): Collection
     {
@@ -36,8 +34,6 @@ class ClassesFinder
 
     /**
      * Find PHP Files which should be analyzed.
-     *
-     * @return \Illuminate\Support\Collection
      */
     protected function findFilesInProjectPath(): Collection
     {
@@ -56,10 +52,7 @@ class ClassesFinder
     /**
      * Determine if a file has been defined in the exclude configuration.
      *
-     * @param  SplFileInfo $file
-     * @param  \Illuminate\Support\Collection  $excludes
      *
-     * @return bool
      */
     protected function isExcluded(SplFileInfo $file, Collection $excludes): bool
     {

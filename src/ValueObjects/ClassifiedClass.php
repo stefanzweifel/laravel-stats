@@ -58,8 +58,6 @@ class ClassifiedClass
 
     /**
      * Return the total number of Methods declared in all declared classes.
-     *
-     * @return int
      */
     public function getNumberOfMethods(): int
     {
@@ -96,8 +94,6 @@ class ClassifiedClass
 
     /**
      * Return the total number of lines.
-     *
-     * @return int
      */
     public function getLines(): int
     {
@@ -111,8 +107,6 @@ class ClassifiedClass
 
     /**
      * Return the total number of lines of code.
-     *
-     * @return float
      */
     public function getLogicalLinesOfCode(): float
     {
@@ -126,8 +120,6 @@ class ClassifiedClass
 
     /**
      * Return the average number of lines of code per method.
-     *
-     * @return float
      */
     public function getLogicalLinesOfCodePerMethod(): float
     {

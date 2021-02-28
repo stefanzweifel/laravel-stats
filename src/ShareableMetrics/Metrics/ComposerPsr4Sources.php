@@ -17,8 +17,6 @@ class ComposerPsr4Sources extends Metric implements CollectableMetric
     {
         $composerJson = json_decode(File::get(base_path('composer.json')), true);
 
-        $psr4 = Arr::get($composerJson, 'autoload.psr-4', []);
-
-        return $psr4;
+        return Arr::get($composerJson, 'autoload.psr-4', []);
     }
 }
