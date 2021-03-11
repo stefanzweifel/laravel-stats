@@ -29,7 +29,10 @@ class ObserverClassifier implements Classifier
             })
             ->collapse()
             ->unique()
-            ->filter(function ($eventListenerSignature) use ($class) {
+            ->filter(function ($eventListener) {
+                return is_string($eventListener);
+            })
+            ->filter(function (string $eventListenerSignature) use ($class) {
                 return Str::contains($eventListenerSignature, $class->getName());
             })
             ->count() > 0;

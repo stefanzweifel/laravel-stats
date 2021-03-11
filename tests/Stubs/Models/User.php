@@ -10,6 +10,13 @@ class User extends Model
 {
     protected $fillable = [];
 
+    protected static function booted()
+    {
+        static::created(function ($user) {
+            // Closure Event Listener
+        });
+    }
+
     public function projects(): HasMany
     {
         return $this->hasMany(Project::class);
