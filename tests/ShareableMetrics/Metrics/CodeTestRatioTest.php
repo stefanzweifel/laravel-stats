@@ -33,6 +33,6 @@ class CodeTestRatioTest extends TestCase
 
         $metric = new CodeTestRatio($project);
 
-        $this->assertEquals(0.8, $metric->value());
+        $this->assertEquals(0.6, $metric->value());
     }
 }
