@@ -54,6 +54,7 @@ return [
         'Wnx\LaravelStats',
         'Illuminate',
         'Symfony',
+        'Swoole',
     ],
 
 ];
