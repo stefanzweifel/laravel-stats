@@ -4,9 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.5.1...HEAD)
+## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.5.2...HEAD)
 
 > TBD
+
+
+## [v2.5.2](https://github.com/stefanzweifel/laravel-stats/compare/v2.5.1...v2.5.2) - 2021-05-02
+
+## Fixes
+- Update config to exclude `Swoole` namespace when running `stats` command. (Fixes Issue when running `stats` in a Laraevl Octane Application) [#196](https://github.com/stefanzweifel/laravel-stats/pull/196)
 
 
 ## [v2.5.1](https://github.com/stefanzweifel/laravel-stats/compare/v2.5.0...v2.5.1) - 2021-03-11
