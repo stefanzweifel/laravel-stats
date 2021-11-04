@@ -15,18 +15,18 @@
     "require": {
         "php": "^7.3 || ^8.0",
         "ext-json": "*",
-        "illuminate/console": "^6.0 || ^7.0 || ^8.0",
-        "illuminate/support": "^6.0 || ^7.0 || ^8.0",
-        "stefanzweifel/laravel-stats-phploc": "^6.1 || ^7.1",
+        "illuminate/console": "^7.0 || ^8.0",
+        "illuminate/support": "^7.0 || ^8.0",
+        "phploc/phploc": "^7.0",
         "symfony/finder": "^4.3 || ^5.0",
         "symfony/process": "^4.3 || ^5.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.2",
-        "laravel/browser-kit-testing": "~5.0 || ~6.0 || ~7.0",
+        "laravel/browser-kit-testing": "~6.0 || ~7.0",
         "laravel/dusk": "~5.0 || ~6.0",
         "mockery/mockery": "^1.1",
-        "orchestra/testbench": "^4.0 || ^5.0 || ^6.0",
+        "orchestra/testbench": "^5.0 || ^6.0",
         "phpunit/phpunit": "8.* || 9.*",
         "psalm/plugin-laravel": "^1.4",
         "rector/rector": "^0.11.58",
