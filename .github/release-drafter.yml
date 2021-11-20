@@ -2,6 +2,7 @@ ame-template: 'v$RESOLVED_VERSION'
 tag-template: 'v$RESOLVED_VERSION'
 template: |
   $CHANGES
+change-template: '- $TITLE ([#$NUMBER](https://github.com/stefanzweifel/laravel-stats/pull/$NUMBER))'
 categories:
   - title: Added
     labels:
