@@ -80,7 +80,8 @@ The package scans the files defined in the `paths`-array in the configuration fi
 
 | Component | Classification |
 |:--|:--|
-| Controller | Must be registered with a Route |
+| Livewire Components | Must extend `Livewire\Component` |
+| Controller | Must be registered with a Route & does not extend `Livewire\Component` |
 | Model | Must extend `Illuminate\Database\Eloquent\Model` |
 | Command | Must extend `Illuminate\Console\Command` |
 | Rule | Must extend `Illuminate\Contracts\Validation\Rule` |

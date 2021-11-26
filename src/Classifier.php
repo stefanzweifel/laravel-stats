@@ -12,6 +12,7 @@ use Wnx\LaravelStats\Classifiers\DatabaseFactoryClassifier;
 use Wnx\LaravelStats\Classifiers\EventClassifier;
 use Wnx\LaravelStats\Classifiers\EventListenerClassifier;
 use Wnx\LaravelStats\Classifiers\JobClassifier;
+use Wnx\LaravelStats\Classifiers\LivewireComponentClassifier;
 use Wnx\LaravelStats\Classifiers\MailClassifier;
 use Wnx\LaravelStats\Classifiers\MiddlewareClassifier;
 use Wnx\LaravelStats\Classifiers\MigrationClassifier;
@@ -38,6 +39,7 @@ use Wnx\LaravelStats\Contracts\Classifier as ClassifierContract;
 class Classifier
 {
     public const DEFAULT_CLASSIFIER = [
+        LivewireComponentClassifier::class,
         ControllerClassifier::class,
         ModelClassifier::class,
         CommandClassifier::class,
