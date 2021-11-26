@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\Classifiers;
 
+use Illuminate\Support\Facades\Route;
 use Wnx\LaravelStats\Classifiers\LivewireComponentClassifier;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Tests\Stubs\LivewireComponents\StubLivewireComponent;
@@ -17,7 +18,7 @@ class LivewireComponentClassifierTest extends TestCase
         }
 
         $this->assertTrue(
-            (new LaravelComponentClassifier())->satisfies(
+            (new LivewireComponentClassifier())->satisfies(
                 new ReflectionClass(StubLivewireComponent::class)
             )
         );
@@ -29,7 +30,7 @@ class LivewireComponentClassifierTest extends TestCase
         Route::get('users', StubLivewireComponent::class);
 
         $this->assertTrue(
-            (new LaravelComponentClassifier())->satisfies(
+            (new LivewireComponentClassifier())->satisfies(
                 new ReflectionClass(StubLivewireComponent::class)
             )
         );
