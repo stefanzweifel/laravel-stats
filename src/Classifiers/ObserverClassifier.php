@@ -3,6 +3,8 @@
 namespace Wnx\LaravelStats\Classifiers;
 
 use Closure;
+use Illuminate\Events\Dispatcher;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use ReflectionFunction;
 use ReflectionProperty;
@@ -16,6 +18,9 @@ class ObserverClassifier implements Classifier
         return 'Observers';
     }
 
+    /**
+     * @throws \ReflectionException
+     */
     public function satisfies(ReflectionClass $class): bool
     {
         return collect($this->getEvents())
@@ -23,7 +28,7 @@ class ObserverClassifier implements Classifier
                 return Str::startsWith($event, 'eloquent.');
             })
             ->map(function ($listeners) {
-                return collect($listeners)->map(function (Closure $closure) {
+                return collect($listeners)->map(function ($closure) {
                     return $this->getEventListener($closure);
                 })->toArray();
             })
@@ -38,9 +43,17 @@ class ObserverClassifier implements Classifier
             ->count() > 0;
     }
 
+    /**
+     * @throws \ReflectionException
+     */
     protected function getEvents()
     {
+        /** @var Dispatcher $dispatcher */
         $dispatcher = app('events');
+
+        if (method_exists($dispatcher, 'getRawListeners')) {
+            return $dispatcher->getRawListeners();
+        }
 
         $property = new ReflectionProperty($dispatcher, 'listeners');
         $property->setAccessible(true);
@@ -48,11 +61,20 @@ class ObserverClassifier implements Classifier
         return $property->getValue($dispatcher);
     }
 
-    protected function getEventListener(Closure $closure)
+    /**
+     * @param Closure|string $closure
+     * @retrun null|string
+     * @throws \ReflectionException
+     */
+    protected function getEventListener($closure): ?string
     {
+        if (is_string($closure)) {
+            return $closure;
+        }
+
         $reflection = new ReflectionFunction($closure);
 
-        return $reflection->getStaticVariables()['listener'];
+        return Arr::get($reflection->getStaticVariables(), 'listener');
     }
 
     public function countsTowardsApplicationCode(): bool
