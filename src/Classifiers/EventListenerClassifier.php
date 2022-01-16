@@ -53,10 +53,10 @@ class EventListenerClassifier implements Classifier
 
     /**
      * @param Closure|string $closure
-     * @retrun null|string
+     * @retrun null|string|object
      * @throws \ReflectionException
      */
-    protected function getEventListener($closure): ?string
+    protected function getEventListener($closure)
     {
         if (is_string($closure)) {
             return $closure;
