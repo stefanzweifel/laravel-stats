@@ -17,7 +17,9 @@ jobs:
           - laravel: 7.*
             php: 8.1
 
-          # Laravel 9 does not support PHP 7.3
+          # Laravel 9 does not support PHP 7.3 and 7.4
+          - laravel: 9.*
+            php: 7.3
           - laravel: 9.*
             php: 7.3
         include:
