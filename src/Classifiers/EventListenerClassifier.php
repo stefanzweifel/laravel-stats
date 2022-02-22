@@ -29,6 +29,7 @@ class EventListenerClassifier implements Classifier
                 })->toArray();
             })
             ->collapse()
+            ->flatten()
             ->unique()
             ->contains($class->getName());
     }
