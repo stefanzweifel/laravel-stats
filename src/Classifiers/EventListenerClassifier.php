@@ -63,6 +63,10 @@ class EventListenerClassifier implements Classifier
             return $closure;
         }
 
+        if (is_array($closure)) {
+            return head($closure);
+        }
+
         $reflection = new ReflectionFunction($closure);
 
         return Arr::get($reflection->getStaticVariables(), 'listener');
