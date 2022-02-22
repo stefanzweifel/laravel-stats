@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\Classifiers;
 
+use Wnx\LaravelStats\Tests\Stubs\EventListeners\UserEventSubscriber;
 use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Classifiers\EventListenerClassifier;
@@ -15,6 +16,12 @@ class EventListenerClassifierTest extends TestCase
         $this->assertTrue(
             (new EventListenerClassifier())->satisfies(
                 new ReflectionClass(DemoEventListener::class)
+            )
+        );
+
+        $this->assertTrue(
+            (new EventListenerClassifier())->satisfies(
+                new ReflectionClass(UserEventSubscriber::class)
             )
         );
     }
