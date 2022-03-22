@@ -10,9 +10,6 @@ use Wnx\LaravelStats\Outputs\JsonOutput;
 use Wnx\LaravelStats\Project;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
-use Wnx\LaravelStats\ShareableMetrics\CollectMetrics;
-use Wnx\LaravelStats\ShareableMetrics\ProjectName;
-use Wnx\LaravelStats\ShareableMetrics\SendToLaravelShift;
 
 class StatsListCommand extends Command
 {
