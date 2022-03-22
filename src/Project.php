@@ -26,7 +26,7 @@ class Project
     {
         $this->classes = $classes;
 
-        // Loop through ReflectionClasses and classifiy them.
+        // Loop through ReflectionClasses and classify them.
         $this->classifiedClasses = $classes->map(function (ReflectionClass $reflectionClass) {
             return new ClassifiedClass(
                 $reflectionClass,

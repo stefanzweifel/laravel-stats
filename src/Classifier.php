@@ -111,7 +111,7 @@ class Classifier
     /**
      * Check if a class implements our Classifier Contract.
      *
-     *
+     * @throws \ReflectionException
      */
     protected function implementsContract(string $classifier): bool
     {
