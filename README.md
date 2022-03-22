@@ -159,68 +159,6 @@ class RepositoryClassifier implements Classifier
     ...
 ```
 
-## Share Metrics with the Laravel Community
-
-You can optionally share your projects statistic by using the `--share` option. 
-
-```shell
-php artisan stats --share
-```
-
-Your project statistics is shared anonymously with [stats.laravelshift.com](https://stats.laravelshift.com). In regular intervals the dashboard and charts on the site are updated with shared data from other Laravel projects.
-
-To learn more about this feature, please check out PR [#178](https://github.com/stefanzweifel/laravel-stats/pull/178).
-
-### Share statistic through CI
-
-If you would like to share your project statistic in a CI environment you can use the `--no-interaction` and `--name`-options.
-
-Use the following command in your CI script to share your project statistic automatically. (Update `org/repo` with the name of your application (eg. `acme/podcasting-app`))
-
-```shell
-php artisan stats --share --no-interaction --name=org/repo
-```
-
-If you're code is hosted on GitHub, you can integrate `stats` with [GitHub Actions](https://docs.github.com/en/actions).
-Copy the following Workflow to `.github/workflows/laravel-stats.yml`. It will share data when a commit is pushed to the `master` branch. The Action automatically uses your GitHub repository name in the `--name`-option.
-
-```yaml
-name: stats
-
-on:
-  push:
-    branches:
-      - master
-
-jobs:
-  stats:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 7.4
-          tools: composer:v2
-
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-interaction --no-suggest
-
-      - name: Share Stats
-        run: php artisan stats --share --name=$GITHUB_REPOSITORY --no-interaction
-```
-
-### Inspect Data shared with the Community
-
-If you would like to inspect the payload the command is sending to the API you can use the `--dry-run` and `--payload` options.
-
-```shell
-php artisan stats --share  --no-interaction  --name="org/repo" --dry-run --payload
-```
-
 ## Treeware
 
 You're free to use this package, but if it makes it to your production environment you are required to buy the world a tree.

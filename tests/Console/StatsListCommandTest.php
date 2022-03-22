@@ -122,75 +122,13 @@ class StatsListCommandTest extends TestCase
     }
 
     /** @test */
-    public function it_allows_users_to_share_project_statistics_with_the_community()
+    public function it_outputs_warning_when_someone_uses_the_share_option()
     {
         $this->artisan('stats', [
             '--share' => true,
-            '--no-interaction' => true,
-            '--name' => 'repo/org',
         ]);
         $output = Artisan::output();
 
-        $this->assertStringContainsString('Thanks for sharing your project statistic with the community!', $output);
-    }
-
-    /** @test */
-    public function it_uses_generated_project_name_when_sharing_project_statistics()
-    {
-        $this->artisan('stats', [
-            '--share' => true,
-            '--no-interaction' => true,
-            '--payload' => true,
-        ]);
-        $output = Artisan::output();
-
-        $this->assertStringContainsString('\/laravel-stats', $output);
-    }
-
-    /** @test */
-    public function it_shows_error_message_when_project_name_does_not_follow_org_repo_schema_when_sharing()
-    {
-        $this->artisan('stats', [
-            '--share' => true,
-            '--no-interaction' => true,
-            '--name' => 'foo',
-        ]);
-        $output = Artisan::output();
-
-        $this->assertStringContainsString('Please use the organisation/repository schema for naming your project.', $output);
-    }
-
-    /** @test */
-    public function it_does_not_show_success_message_for_share_option_if_dry_run_option_is_passed()
-    {
-        $this->artisan('stats', [
-            '--share' => true,
-            '--no-interaction' => true,
-            '--dry-run' => true,
-            '--name' => 'repo/org',
-        ]);
-        $output = Artisan::output();
-
-        $this->assertStringNotContainsString('Thanks for sharing your project statistic with the community!', $output);
-    }
-
-    /** @test */
-    public function it_output_payload_to_be_sent_to_shift()
-    {
-        $this->artisan('stats', [
-            '--share' => true,
-            '--no-interaction' => true,
-            '--payload' => true,
-            '--name' => 'repo/org',
-        ]);
-        $output = Artisan::output();
-
-        $output = json_decode(trim($output), true);
-
-        $this->assertIsArray($output);
-        $this->assertArrayHasKey('project', $output);
-        $this->assertArrayHasKey('metrics', $output);
-
-        $this->assertEquals('repo/org', $output['project']);
+        $this->assertStringContainsString('The share option has been deprecated and will be removed in a future update.', $output);
     }
 }
