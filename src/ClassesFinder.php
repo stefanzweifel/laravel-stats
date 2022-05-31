@@ -29,7 +29,10 @@ class ClassesFinder
 
         ob_end_clean();
 
-        return collect(get_declared_classes());
+        return collect(get_declared_classes())
+            ->reject(function (string $className) {
+                return Str::startsWith($className, ['SwooleLibrary']);
+            });
     }
 
     /**
