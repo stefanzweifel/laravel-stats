@@ -49,7 +49,14 @@ class StatsListCommand extends Command
         })->reject(function (ReflectionClass $class) {
             return app(config('stats.rejection_strategy', RejectVendorClasses::class))
                 ->shouldClassBeRejected($class);
+        })->unique(function (ReflectionClass  $class) {
+            return $class->getFileName();
         })->reject(function (ReflectionClass $class) {
+            // Never discard anonymous database migrations
+            if (Str::contains($class->getName(), 'Migration@anonymous')) {
+                return false;
+            }
+
             foreach (config('stats.ignored_namespaces', []) as $namespace) {
                 if (Str::startsWith($class->getNamespaceName(), $namespace)) {
                     return true;

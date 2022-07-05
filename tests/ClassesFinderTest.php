@@ -81,7 +81,7 @@ class ClassesFinderTest extends TestCase
     /** @test */
     public function it_finds_migrations()
     {
-        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Migrations\CreateUsersTable::class));
+        $this->assertTrue($this->classes->contains(\Wnx\LaravelStats\Tests\Stubs\Migrations\CreatePasswordResetsTable::class));
     }
 
     /** @test */
