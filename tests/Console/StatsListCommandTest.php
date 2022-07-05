@@ -105,6 +105,13 @@ class StatsListCommandTest extends TestCase
         $this->assertStringContainsString('StatsListCommandTest', $output);
 
         $this->assertJson($output);
+
+        $outputAsCollection = collect(json_decode($output, true));
+        $components = collect($outputAsCollection->get('components'));
+
+        $migrations = $components->firstWhere('name', 'Migrations');
+
+        $this->assertEquals(2, $migrations['number_of_classes']);
     }
 
     /** @test */
