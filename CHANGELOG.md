@@ -5,9 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.9.2...HEAD)
+## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.10.0...HEAD)
 
 > TBD
+
+## [v2.10.0](https://github.com/stefanzweifel/laravel-stats/compare/v2.9.2...v2.10.0) - 2022-10-29
+
+### Added
+
+- Add Support for PHP 8.2 ([#210](https://github.com/stefanzweifel/laravel-stats/pull/210))
 
 ## [v2.9.2](https://github.com/stefanzweifel/laravel-stats/compare/v2.9.1...v2.9.2) - 2022-07-05
 
@@ -167,6 +173,7 @@ Checkout the [Release and Upgrade Guide](https://github.com/stefanzweifel/larave
 - 
 - 
 - 
+- 
 - - Update `Classifier`-contract and update existing Classifiers to implement new contract
 - 
 - 
@@ -174,7 +181,9 @@ Checkout the [Release and Upgrade Guide](https://github.com/stefanzweifel/larave
 - 
 - 
 - 
+- 
 - - Move tests for each existing Classifier into their own test files
+- 
 - 
 - 
 - 
