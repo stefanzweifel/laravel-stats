@@ -16,16 +16,21 @@ jobs:
           # Laravel 7 does not support PHP 8.1
           - laravel: 7.*
             php: 8.1
-
+          - laravel: 7.*
+            php: 8.2
+          # Laravel 8 does not support PHP 8.2
           - laravel: 8.*
             php: 8.2
-
           # Laravel 9 does not support PHP 7.3 and 7.4
           - laravel: 9.*
             php: 7.3
           - laravel: 9.*
             php: 7.4
-          # Laravel 10 does not support PHP 8.0
+          # Laravel 10 does not support PHP 8.0 or below
+          - laravel: 10.*
+            php: 7.3
+          - laravel: 10.*
+            php: 7.4
           - laravel: 10.*
             php: 8.0
 
