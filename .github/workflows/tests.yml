@@ -9,22 +9,10 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [7.3, 7.4, 8.0, 8.1, 8.2]
-        laravel: [8.*, 9.*]
+        php: [8.0, 8.1, 8.2]
+        laravel: [9.*]
         dependency-version: [prefer-lowest, prefer-stable]
-        exclude:
-          # Laravel 7 does not support PHP 8.1
-          - laravel: 7.*
-            php: 8.1
-
-          # Laravel 9 does not support PHP 7.3 and 7.4
-          - laravel: 9.*
-            php: 7.3
-          - laravel: 9.*
-            php: 7.4
         include:
-          - laravel: 8.*
-            testbench: 6.23
           - laravel: 9.*
             testbench: 7.*
 
