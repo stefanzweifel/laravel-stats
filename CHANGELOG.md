@@ -5,9 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.10.0...HEAD)
+## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.11.0...HEAD)
 
 > TBD
+
+## [v2.11.0](https://github.com/stefanzweifel/laravel-stats/compare/v2.10.0...v2.11.0) - 2023-01-28
+
+### Added
+
+- Add Support for Laravel 10 ([#213](https://github.com/stefanzweifel/laravel-stats/pull/213))
+
+### Changed
+
+- Drop Support for Laravel 7 &  Laravel 8 ([#212](https://github.com/stefanzweifel/laravel-stats/pull/212))
+- Drop Support for PHP 7.3 & PHP 7.4 ([#212](https://github.com/stefanzweifel/laravel-stats/pull/212))
 
 ## [v2.10.0](https://github.com/stefanzweifel/laravel-stats/compare/v2.9.2...v2.10.0) - 2022-10-29
 
@@ -174,6 +185,7 @@ Checkout the [Release and Upgrade Guide](https://github.com/stefanzweifel/larave
 - 
 - 
 - 
+- 
 - - Update `Classifier`-contract and update existing Classifiers to implement new contract
 - 
 - 
@@ -182,7 +194,9 @@ Checkout the [Release and Upgrade Guide](https://github.com/stefanzweifel/larave
 - 
 - 
 - 
+- 
 - - Move tests for each existing Classifier into their own test files
+- 
 - 
 - 
 - 
