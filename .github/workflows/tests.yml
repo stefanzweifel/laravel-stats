@@ -7,10 +7,11 @@ jobs:
 
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         php: [8.0, 8.1, 8.2]
         laravel: [9.*, 10.*]
+        phpunit: [9.*, 10.*]
         dependency-version: [prefer-lowest, prefer-stable]
         include:
           - laravel: 9.*
@@ -20,12 +21,14 @@ jobs:
         exclude:
           - laravel: 10.*
             php: 8.0
+          - laravel: 9.*
+            phpunit: 10.*
 
-    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }}
+    name: P${{ matrix.php }} - L${{ matrix.laravel }} PU${{ matrix.phpunit }} - ${{ matrix.dependency-version }}
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: Cache dependencies
         uses: actions/cache@v1
@@ -43,7 +46,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "phpunit/phpunit:${{ matrix.phpunit }}" --no-interaction --no-update
           composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
 
       - name: Execute tests
