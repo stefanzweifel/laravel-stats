@@ -8,6 +8,9 @@
   <testsuites>
     <testsuite name="Test Suite">
       <directory>tests</directory>
+        <exclude>./tests/Stubs/Tests/DemoBrowserKit.php</exclude>
+        <exclude>./tests/Stubs/Tests/DemoDuskTest.php</exclude>
+        <exclude>./tests/Stubs/Tests/DemoUnitTest.php</exclude>
     </testsuite>
   </testsuites>
 </phpunit>
