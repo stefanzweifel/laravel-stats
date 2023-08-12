@@ -73,6 +73,10 @@ class ClassesFinder
      */
     protected function isMostLikelyPestTest(SplFileInfo $file): bool
     {
+        if (str_ends_with($file->getRealPath(), 'Pest.php')) {
+            return true;
+        }
+
         // If the file path does not contain "test" or "Test", then it's probably not a Pest Test.
         if (! str_contains($file->getRealPath(), 'test') && ! str_contains($file->getRealPath(), 'Test')) {
             return false;
