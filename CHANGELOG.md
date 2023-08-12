@@ -5,9 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.11.2...HEAD)
+## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.11.3...HEAD)
 
 > TBD
+
+## [v2.11.3](https://github.com/stefanzweifel/laravel-stats/compare/v2.11.2...v2.11.3) - 2023-08-12
+
+### Fixed
+
+- Ignore Pest Files when finding and loading Classes ([#219](https://github.com/stefanzweifel/laravel-stats/pull/219))
 
 ## [v2.11.2](https://github.com/stefanzweifel/laravel-stats/compare/v2.11.1...v2.11.2) - 2023-03-18
 
@@ -189,7 +195,8 @@ Checkout the [Release and Upgrade Guide](https://github.com/stefanzweifel/larave
 - Rename `getName()` to `name()` [#147](https://github.com/stefanzweifel/laravel-stats/pull/147)
 - Rename "LOC" to "LLOC" [#148](https://github.com/stefanzweifel/laravel-stats/pull/148)
 - Refactored Internal Classes [#150](https://github.com/stefanzweifel/laravel-stats/pull/150)
-- - Move some of the logic from `ComponentFinder` to `ClassesFinder`
+- - Move some of the logic from `ComponentFinder` to `ClassesFinder`   
+  
 - 
 - 
 - 
@@ -200,7 +207,8 @@ Checkout the [Release and Upgrade Guide](https://github.com/stefanzweifel/larave
 - 
 - 
 - 
-- - Update `Classifier`-contract and update existing Classifiers to implement new contract
+- - Update `Classifier`-contract and update existing Classifiers to implement new contract   
+  
 - 
 - 
 - 
@@ -211,7 +219,8 @@ Checkout the [Release and Upgrade Guide](https://github.com/stefanzweifel/larave
 - 
 - 
 - 
-- - Move tests for each existing Classifier into their own test files
+- - Move tests for each existing Classifier into their own test files   
+  
 - 
 - 
 - 
