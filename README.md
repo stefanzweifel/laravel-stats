@@ -73,6 +73,8 @@ The verbose option is available for the JSON format also.
 php artisan stats --json --verbose
 ```
 
+> **Note**
+> If your project is using [Pest PHP](https://pestphp.com) for writing tests, these files will automatically be excluded from the statistics. Due to how "laravel-stats" works internally, Pest PHP tests can't currently be detected. See [#194](https://github.com/stefanzweifel/laravel-stats/discussions/194) for more information.
 
 ## How does this package detect certain Laravel Components?
 
