@@ -24,7 +24,7 @@ class ClassesFinder
                 try {
                     // Files that look like to be Pest Tests are ignored as we currently don't support them.
                     if ($this->isMostLikelyPestTest($file)) {
-                         return true;
+                        return true;
                     }
                     require_once $file->getRealPath();
                 } catch (Exception $e) {
