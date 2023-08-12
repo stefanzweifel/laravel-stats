@@ -22,8 +22,13 @@ class ClassesFinder
         $this->findFilesInProjectPath()
             ->each(function (SplFileInfo $file) {
                 try {
+                    // Files that look like to be Pest Tests are ignored as we currently don't support them.
+                    if ($this->isMostLikelyPestTest($file)) {
+                        return true;
+                    }
                     require_once $file->getRealPath();
                 } catch (Exception $e) {
+                    //
                 }
             });
 
@@ -54,13 +59,53 @@ class ClassesFinder
 
     /**
      * Determine if a file has been defined in the exclude configuration.
-     *
-     *
      */
     protected function isExcluded(SplFileInfo $file, Collection $excludes): bool
     {
         return $excludes->contains(function ($exclude) use ($file) {
             return Str::startsWith($file->getPathname(), $exclude);
         });
+    }
+
+    /**
+     * Determine if a file is a Pest Test.
+     * Pest Tess are currently not supported as requiring them will throw an exception.
+     */
+    protected function isMostLikelyPestTest(SplFileInfo $file): bool
+    {
+        if (str_ends_with($file->getRealPath(), 'Pest.php')) {
+            return true;
+        }
+
+        // If the file path does not contain "test" or "Test", then it's probably not a Pest Test.
+        if (! str_contains($file->getRealPath(), 'test') && ! str_contains($file->getRealPath(), 'Test')) {
+            return false;
+        }
+
+        $fileContent = file_get_contents($file->getRealPath());
+
+        // Check if file contains "class $name" syntax.
+        // If it does, it's probably a normal PhpUnit Test.
+        if (preg_match('/class\s/', $fileContent)) {
+            return false;
+        }
+
+        // Check if file contains method calls to prominent Pest functions.
+        // If it does, it's probably a Pest Test.
+        $methodNames = implode('|', [
+            'describe',
+            'test',
+            'it',
+            'beforeEach',
+            'afterEach',
+            'beforeAll',
+            'afterAll',
+        ]);
+
+        if (preg_match("/$methodNames\s*\(/", $fileContent)) {
+            return true;
+        }
+
+        return false;
     }
 }

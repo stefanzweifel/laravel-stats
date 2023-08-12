@@ -27,6 +27,7 @@ class ClassesFinderTest extends TestCase
         config()->set('stats', [
             'paths' => [
                 __DIR__.'/../tests/Stubs',
+                __DIR__.'/../stubs/',
             ],
             'exclude' => $excludedFiles,
             'ignored_namespaces' => [],
