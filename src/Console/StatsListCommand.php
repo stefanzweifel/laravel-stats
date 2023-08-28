@@ -20,7 +20,7 @@ class StatsListCommand extends Command
      */
     protected $signature = 'stats
                             {--json : Output the statistics as JSON}
-                            {-c|--components= : Comma separated list of components which should be displayed}
+                            {--c|components= : Comma separated list of components which should be displayed}
                             {--s|share : DEPRECATED Share project statistic with Laravel community <https://stats.laravelshift.com>}
                             {--name= : Name used when sharing project statistic}
                             {--dry-run : Do not make request to share statistic}';
