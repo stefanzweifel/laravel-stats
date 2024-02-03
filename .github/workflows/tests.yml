@@ -24,6 +24,8 @@ jobs:
           - laravel: 11.*
             php: 8.0
           - laravel: 11.*
+            phpunit: 9.*
+          - laravel: 11.*
             php: 8.1
           - laravel: 10.*
             php: 8.0
