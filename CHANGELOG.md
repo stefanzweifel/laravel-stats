@@ -5,9 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.12.0...HEAD)
+## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.13.0...HEAD)
 
 > TBD
+
+## [v2.13.0](https://github.com/stefanzweifel/laravel-stats/compare/v2.12.0...v2.13.0) - 2024-02-03
+
+### Added
+
+- Add Support for Laravel 11 ([#222](https://github.com/stefanzweifel/laravel-stats/pull/222))
 
 ## [v2.12.0](https://github.com/stefanzweifel/laravel-stats/compare/v2.11.4...v2.12.0) - 2023-10-16
 
@@ -204,25 +210,13 @@ Checkout the [Release and Upgrade Guide](https://github.com/stefanzweifel/larave
 
 ### Changed
 
-- Rename `getName()` to `name()` [#147](https://github.com/stefanzweifel/laravel-stats/pull/147)   
+- Rename `getName()` to `name()` [#147](https://github.com/stefanzweifel/laravel-stats/pull/147)
   
-- Rename "LOC" to "LLOC" [#148](https://github.com/stefanzweifel/laravel-stats/pull/148)   
+- Rename "LOC" to "LLOC" [#148](https://github.com/stefanzweifel/laravel-stats/pull/148)
   
-- Refactored Internal Classes [#150](https://github.com/stefanzweifel/laravel-stats/pull/150)   
+- Refactored Internal Classes [#150](https://github.com/stefanzweifel/laravel-stats/pull/150)
   
-- - Move some of the logic from `ComponentFinder` to `ClassesFinder`   
-  
-- 
-- 
-- 
-- 
-- 
-- 
-- 
-- 
-- 
-- 
-- - Update `Classifier`-contract and update existing Classifiers to implement new contract   
+- - Move some of the logic from `ComponentFinder` to `ClassesFinder`
   
 - 
 - 
@@ -234,7 +228,19 @@ Checkout the [Release and Upgrade Guide](https://github.com/stefanzweifel/larave
 - 
 - 
 - 
-- - Move tests for each existing Classifier into their own test files   
+- - Update `Classifier`-contract and update existing Classifiers to implement new contract
+  
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- - Move tests for each existing Classifier into their own test files
   
 - 
 - 
