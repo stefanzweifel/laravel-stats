@@ -13,10 +13,6 @@ class CustomCastClassifierTest extends TestCase
     /** @test */
     public function it_returns_true_if_given_class_is_a_custom_cast()
     {
-        if ($this->getLaravelVersion() < 7) {
-            $this->markTestSkipped("Can't run test on older Laravel Versions");
-        }
-
         $this->assertTrue(
             (new CustomCastClassifier())->satisfies(
                 new ReflectionClass(StubCast::class)
@@ -27,10 +23,6 @@ class CustomCastClassifierTest extends TestCase
     /** @test */
     public function it_returns_true_if_given_class_is_a_custom_inbound_cast()
     {
-        if ($this->getLaravelVersion() < 7) {
-            $this->markTestSkipped("Can't run test on older Laravel Versions");
-        }
-
         $this->assertTrue(
             (new CustomCastClassifier())->satisfies(
                 new ReflectionClass(StubInboundCast::class)
