@@ -26,13 +26,6 @@ abstract class TestCase extends Orchestra
     }
 
     /**
-     * @param \Illuminate\Foundation\Application $app
-     */
-    protected function getEnvironmentSetUp($app)
-    {
-    }
-
-    /**
      * Resolve application HTTP Kernel implementation.
      *
      * @param \Illuminate\Foundation\Application $app
