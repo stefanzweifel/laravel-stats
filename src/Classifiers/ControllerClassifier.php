@@ -31,8 +31,8 @@ class ControllerClassifier implements Classifier
                 if (method_exists($route, 'getController')) {
                     // Laravel
                     try {
-                        return get_class($route->getController());
-                    } catch (Throwable $e) {
+                        return $route->getController()::class;
+                    } catch (Throwable) {
                         return;
                     }
                 }

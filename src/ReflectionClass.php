@@ -25,9 +25,7 @@ class ReflectionClass extends NativeReflectionClass
     public function usesTrait(string $name): bool
     {
         return collect($this->getTraits())
-            ->contains(function (NativeReflectionClass $trait) use ($name) {
-                return $trait->name == $name;
-            });
+            ->contains(fn (NativeReflectionClass $trait) => $trait->name == $name);
     }
 
     /**
@@ -37,8 +35,6 @@ class ReflectionClass extends NativeReflectionClass
     public function getDefinedMethods(): Collection
     {
         return collect($this->getMethods())
-            ->filter(function (ReflectionMethod $method) {
-                return $method->getFileName() === $this->getFileName();
-            });
+            ->filter(fn (ReflectionMethod $method) => $method->getFileName() === $this->getFileName());
     }
 }

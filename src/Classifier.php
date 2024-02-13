@@ -96,7 +96,7 @@ class Classifier
 
             try {
                 $satisfied = $classifierInstance->satisfies($class);
-            } catch (Exception $e) {
+            } catch (Exception) {
                 $satisfied = false;
             }
 

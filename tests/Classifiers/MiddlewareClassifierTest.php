@@ -20,9 +20,7 @@ class MiddlewareClassifierTest extends TestCase
      */
     protected function usesMiddlewareRoutes($router)
     {
-        $router->get('/demo', function () {
-            return 'Hello World';
-        })->middleware(DemoMiddleware::class);
+        $router->get('/demo', fn () => 'Hello World')->middleware(DemoMiddleware::class);
     }
 
     #[Test]
