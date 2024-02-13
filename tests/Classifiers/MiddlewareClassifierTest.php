@@ -2,6 +2,8 @@
 
 namespace Wnx\LaravelStats\Tests\Classifiers;
 
+use Orchestra\Testbench\Attributes\DefineRoute;
+use PHPUnit\Framework\Attributes\Test;
 use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
 use Illuminate\Routing\Middleware\ThrottleRequests;
@@ -10,13 +12,23 @@ use Wnx\LaravelStats\Tests\Stubs\Middleware\DemoMiddleware;
 
 class MiddlewareClassifierTest extends TestCase
 {
-    /** @test */
-    public function it_returns_true_if_given_class_is_a_middleware()
+    /**
+     * Define routes setup.
+     *
+     * @param  \Illuminate\Routing\Router  $router
+     * @return void
+     */
+    protected function usesMiddlewareRoutes($router)
     {
-        if ($this->getLaravelVersion() === 11.0) {
-            $this->markTestSkipped("Middleware classification currently broken in Laravel 11.");
-        }
+        $router->get('/demo', function () {
+            return 'Hello World';
+        })->middleware(DemoMiddleware::class);
+    }
 
+    #[Test]
+    #[DefineRoute('usesMiddlewareRoutes')]
+    public function it_returns_true_if_given_class_is_a_middleware(): void
+    {
         $this->assertTrue(
             (new MiddlewareClassifier())->satisfies(
                 new ReflectionClass(DemoMiddleware::class)
