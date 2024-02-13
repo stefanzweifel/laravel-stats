@@ -37,7 +37,7 @@ class StatsListCommand extends Command
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $classes = app(ClassesFinder::class)->findAndLoadClasses();
 
@@ -84,7 +84,7 @@ class StatsListCommand extends Command
         return explode(',', $this->option('components'));
     }
 
-    private function renderOutput(Project $project)
+    private function renderOutput(Project $project): void
     {
         if ($this->option('json') === true) {
             $json = (new JsonOutput())->render(

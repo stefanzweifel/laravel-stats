@@ -38,7 +38,7 @@ class AsciiTableOutput
         $this->output = $output;
     }
 
-    public function render(Project $project, bool $isVerbose = false, array $filterByComponentName = [])
+    public function render(Project $project, bool $isVerbose = false, array $filterByComponentName = []): void
     {
         $this->isVerbose = $isVerbose;
         $this->project = $project;
@@ -73,7 +73,7 @@ class AsciiTableOutput
         $table->render();
     }
 
-    private function renderComponents(Table $table, Collection $groupedByComponent)
+    private function renderComponents(Table $table, Collection $groupedByComponent): void
     {
         foreach ($groupedByComponent as $componentName => $classifiedClasses) {
             $component = new Component($componentName, $classifiedClasses);
@@ -104,7 +104,7 @@ class AsciiTableOutput
         ]);
     }
 
-    private function addClassifiedClassTableRow(Table $table, ClassifiedClass $classifiedClass)
+    private function addClassifiedClassTableRow(Table $table, ClassifiedClass $classifiedClass): void
     {
         $table->addRow([
             new TableCell(
@@ -119,7 +119,7 @@ class AsciiTableOutput
         ]);
     }
 
-    private function addTotalRow(Table $table)
+    private function addTotalRow(Table $table): void
     {
         $table->addRow([
             'name' => 'Total',
@@ -132,7 +132,7 @@ class AsciiTableOutput
         ]);
     }
 
-    private function addMetaRow(Table $table)
+    private function addMetaRow(Table $table): void
     {
         $table->setFooterTitle(implode(' • ', [
             "Code LLoC: {$this->project->statistic()->getLogicalLinesOfCodeForApplicationCode()}",
@@ -142,7 +142,7 @@ class AsciiTableOutput
         ]));
     }
 
-    private function rightAlignNumbers(Table $table)
+    private function rightAlignNumbers(Table $table): void
     {
         for ($i = 1; $i <= 6; $i++) {
             $table->setColumnStyle($i, (new TableStyle)->setPadType(STR_PAD_LEFT));
