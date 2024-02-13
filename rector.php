@@ -2,22 +2,16 @@
 
 declare(strict_types=1);
 
-use Rector\Core\Configuration\Option;
-use Rector\Core\ValueObject\PhpVersion;
-use Rector\Php74\Rector\Property\TypedPropertyRector;
-use Rector\Set\ValueObject\SetList;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Rector\Config\RectorConfig;
+use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRector;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $parameters = $containerConfigurator->parameters();
-
-    $parameters->set(Option::SETS, [
-        SetList::CODE_QUALITY,
-        SetList::DEAD_DOC_BLOCK,
+return RectorConfig::configure()
+    ->withPaths([
+        __DIR__ . '/src',
+        __DIR__ . '/tests',
+    ])
+    // uncomment to reach your current PHP version
+    // ->withPhpSets(php80: true)
+    ->withRules([
+        AddVoidReturnTypeWhereNoReturnRector::class,
     ]);
-
-    $parameters->set(Option::PHP_VERSION_FEATURES, PhpVersion::PHP_73);
-
-    $services = $containerConfigurator->services();
-    $services->set(TypedPropertyRector::class);
-};
