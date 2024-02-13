@@ -9,7 +9,7 @@ use Wnx\LaravelStats\Statistics\NumberOfRoutes;
 class NumberOfRoutesTest extends TestCase
 {
     /** @test */
-    public function it_returns_0_if_no_routes_are_registered()
+    public function it_returns_0_if_no_routes_are_registered(): void
     {
         $result = app(NumberOfRoutes::class)->get();
 
@@ -17,7 +17,7 @@ class NumberOfRoutesTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_the_number_of_registered_routes()
+    public function it_returns_the_number_of_registered_routes(): void
     {
         Route::get('users', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@index');
         Route::get('users/create', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@create');
@@ -33,7 +33,7 @@ class NumberOfRoutesTest extends TestCase
     }
 
     /** @test */
-    public function it_only_counts_unique_routes()
+    public function it_only_counts_unique_routes(): void
     {
         Route::get('users', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@index');
         Route::get('users', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@create');

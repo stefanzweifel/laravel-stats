@@ -10,7 +10,7 @@ use Wnx\LaravelStats\Tests\Stubs\Commands\DemoCommand;
 class CommandClassifierTest extends TestCase
 {
     /** @test */
-    public function it_returns_true_if_artisan_command_is_passed_to_satisfy_method()
+    public function it_returns_true_if_artisan_command_is_passed_to_satisfy_method(): void
     {
         $this->assertTrue(
             (new CommandClassifier())->satisfies(

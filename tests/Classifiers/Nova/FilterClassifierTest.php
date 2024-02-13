@@ -10,7 +10,7 @@ use Wnx\LaravelStats\Classifiers\Nova\FilterClassifier;
 class FilterClassifierTest extends TestCase
 {
     /** @test */
-    public function it_returns_true_if_given_class_is_a_nova_filter()
+    public function it_returns_true_if_given_class_is_a_nova_filter(): void
     {
         $this->assertTrue(
             (new FilterClassifier())->satisfies(

@@ -12,7 +12,7 @@ use Wnx\LaravelStats\Tests\Stubs\Resources\DemoCollectionResource;
 class ResourceClassifierTest extends TestCase
 {
     /** @test */
-    public function it_returns_true_if_given_class_is_an_api_resource()
+    public function it_returns_true_if_given_class_is_an_api_resource(): void
     {
         $this->assertTrue(
             (new ResourceClassifier())->satisfies(
@@ -22,7 +22,7 @@ class ResourceClassifierTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_true_if_given_class_is_a_json_resoure()
+    public function it_returns_true_if_given_class_is_a_json_resoure(): void
     {
         $this->assertTrue(
             (new ResourceClassifier())->satisfies(
@@ -32,7 +32,7 @@ class ResourceClassifierTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_true_if_given_class_is_a_resource_collection()
+    public function it_returns_true_if_given_class_is_a_resource_collection(): void
     {
         $this->assertTrue(
             (new ResourceClassifier())->satisfies(

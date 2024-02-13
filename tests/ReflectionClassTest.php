@@ -10,7 +10,7 @@ use Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController;
 class ReflectionClassTest extends TestCase
 {
     /** @test */
-    public function it_returns_a_list_of_methods_for_the_given_class_and_ignores_parent_and_trait_methods()
+    public function it_returns_a_list_of_methods_for_the_given_class_and_ignores_parent_and_trait_methods(): void
     {
         $class = new ReflectionClass(ProjectsController::class);
 
@@ -21,7 +21,7 @@ class ReflectionClassTest extends TestCase
     }
 
     /** @test */
-    public function it_determines_wether_the_given_class_uses_a_given_trait()
+    public function it_determines_wether_the_given_class_uses_a_given_trait(): void
     {
         $class = new ReflectionClass(Controller::class);
 

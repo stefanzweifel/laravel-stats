@@ -19,7 +19,7 @@ class ClassifiedClassTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_number_of_methods_for_a_classified_class()
+    public function it_returns_number_of_methods_for_a_classified_class(): void
     {
         $this->assertEquals(
             9,
@@ -28,7 +28,7 @@ class ClassifiedClassTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_number_of_public_methods_for_a_classified_class()
+    public function it_returns_number_of_public_methods_for_a_classified_class(): void
     {
         $this->assertEquals(
             7,
@@ -37,7 +37,7 @@ class ClassifiedClassTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_number_of_non_public_methods_for_a_classified_class()
+    public function it_returns_number_of_non_public_methods_for_a_classified_class(): void
     {
         $this->assertEquals(
             2,
@@ -46,7 +46,7 @@ class ClassifiedClassTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_number_of_lines_of_code_for_a_classified_class()
+    public function it_returns_number_of_lines_of_code_for_a_classified_class(): void
     {
         $this->assertEquals(
             53,
@@ -55,7 +55,7 @@ class ClassifiedClassTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_number_of_logical_lines_of_code_for_a_classified_class()
+    public function it_returns_number_of_logical_lines_of_code_for_a_classified_class(): void
     {
         $this->assertSame(
             7.0,
@@ -64,7 +64,7 @@ class ClassifiedClassTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_average_number_of_logical_lines_of_code_per_method_for_a_classified_class()
+    public function it_returns_average_number_of_logical_lines_of_code_per_method_for_a_classified_class(): void
     {
         $this->assertEquals(
             0.78,

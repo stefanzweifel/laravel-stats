@@ -10,7 +10,7 @@ use Wnx\LaravelStats\Classifiers\Nova\DashboardClassifier;
 class DashboardClassifierTest extends TestCase
 {
     /** @test */
-    public function it_returns_true_if_given_class_is_a_nova_dashboard()
+    public function it_returns_true_if_given_class_is_a_nova_dashboard(): void
     {
         $this->assertTrue(
             (new DashboardClassifier())->satisfies(

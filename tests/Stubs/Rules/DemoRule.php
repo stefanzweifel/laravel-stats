@@ -24,7 +24,7 @@ class DemoRule implements Rule
      *
      * @return bool
      */
-    public function passes($attribute, $value)
+    public function passes($attribute, $value): void
     {
         //
     }

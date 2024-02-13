@@ -37,7 +37,7 @@ class MiddlewareClassifierTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_true_if_given_class_is_a_route_middleware()
+    public function it_returns_true_if_given_class_is_a_route_middleware(): void
     {
         $this->assertTrue(
             (new MiddlewareClassifier())->satisfies(

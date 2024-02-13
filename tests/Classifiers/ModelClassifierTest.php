@@ -10,7 +10,7 @@ use Wnx\LaravelStats\Classifiers\ModelClassifier;
 class ModelClassifierTest extends TestCase
 {
     /** @test */
-    public function it_returns_true_if_given_class_is_an_eloquent_model()
+    public function it_returns_true_if_given_class_is_an_eloquent_model(): void
     {
         $this->assertTrue(
             (new ModelClassifier())->satisfies(

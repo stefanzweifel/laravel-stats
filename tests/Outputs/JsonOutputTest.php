@@ -26,7 +26,7 @@ class JsonOutputTest extends TestCase
     }
 
     /** @test */
-    public function it_creates_project_statistics_as_an_array()
+    public function it_creates_project_statistics_as_an_array(): void
     {
         $json = (new JsonOutput)->render($this->getTestProject());
 
@@ -89,7 +89,7 @@ class JsonOutputTest extends TestCase
     }
 
     /** @test */
-    public function it_includes_classes_in_project_statistics_array_if_verbose_output_is_requested()
+    public function it_includes_classes_in_project_statistics_array_if_verbose_output_is_requested(): void
     {
         $json = (new JsonOutput)->render($this->getTestProject(), $isVerbose = true);
 
@@ -113,7 +113,7 @@ class JsonOutputTest extends TestCase
     }
 
     /** @test */
-    public function it_only_contains_components_in_statistics_array_which_have_been_requested()
+    public function it_only_contains_components_in_statistics_array_which_have_been_requested(): void
     {
         $json = (new JsonOutput)->render(
             $this->getTestProject(),

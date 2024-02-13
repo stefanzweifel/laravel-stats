@@ -11,7 +11,7 @@ use Wnx\LaravelStats\Tests\TestCase;
 class CustomCastClassifierTest extends TestCase
 {
     /** @test */
-    public function it_returns_true_if_given_class_is_a_custom_cast()
+    public function it_returns_true_if_given_class_is_a_custom_cast(): void
     {
         $this->assertTrue(
             (new CustomCastClassifier())->satisfies(
@@ -21,7 +21,7 @@ class CustomCastClassifierTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_true_if_given_class_is_a_custom_inbound_cast()
+    public function it_returns_true_if_given_class_is_a_custom_inbound_cast(): void
     {
         $this->assertTrue(
             (new CustomCastClassifier())->satisfies(

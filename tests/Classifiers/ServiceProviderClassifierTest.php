@@ -10,7 +10,7 @@ use Wnx\LaravelStats\Tests\Stubs\ServiceProviders\DemoProvider;
 class ServiceProviderClassifierTest extends TestCase
 {
     /** @test */
-    public function it_returns_true_if_given_class_is_a_service_provider()
+    public function it_returns_true_if_given_class_is_a_service_provider(): void
     {
         $this->assertTrue(
             (new ServiceProviderClassifier())->satisfies(

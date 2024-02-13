@@ -10,7 +10,7 @@ use Wnx\LaravelStats\Tests\Stubs\Seeders\DemoSeeder;
 class SeederClassifierTest extends TestCase
 {
     /** @test */
-    public function it_returns_true_if_given_class_is_a_database_seeder()
+    public function it_returns_true_if_given_class_is_a_database_seeder(): void
     {
         $this->assertTrue(
             (new SeederClassifier())->satisfies(
