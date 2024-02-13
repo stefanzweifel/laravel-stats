@@ -9,23 +9,15 @@ use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
 class Project
 {
     /**
-     * Collection of ReflectionClasses.
-     *
-     * @var \Illuminate\Support\Collection <\Wnx\LaravelStats\ReflectionClass>
-     */
-    private $classes;
-
-    /**
      * Collection of ClassifiedClasses.
      *
      * @var \Illuminate\Support\Collection <\Wnx\LaravelStats\ValueObjects\ClassifiedClass>
      */
     private $classifiedClasses;
 
-    public function __construct(Collection $classes)
-    {
-        $this->classes = $classes;
-
+    public function __construct(
+        private Collection $classes
+    ) {
         // Loop through ReflectionClasses and classify them.
         $this->classifiedClasses = $this->classes->map(fn (ReflectionClass $reflectionClass) => new ClassifiedClass(
             $reflectionClass,
@@ -50,11 +42,10 @@ class Project
         $shouldCollectionBeFiltered = ! empty(array_filter($componentNamesToFilter));
 
         return $this->classifiedClassesGroupedByComponentName()
-            ->when($shouldCollectionBeFiltered, function ($components) use ($componentNamesToFilter) {
-                return $components->filter(function ($_item, $key) use ($componentNamesToFilter) {
-                    return in_array($key, $componentNamesToFilter);
-                });
-            });
+            ->when(
+                $shouldCollectionBeFiltered,
+                fn (Collection $components) => $components->filter(fn ($_item, string $key) => in_array($key, $componentNamesToFilter))
+            );
     }
 
     public function statistic(): ProjectStatistic
