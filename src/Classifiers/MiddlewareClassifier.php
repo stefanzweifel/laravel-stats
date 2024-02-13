@@ -21,19 +21,19 @@ class MiddlewareClassifier implements Classifier
     {
         $this->httpKernel = $this->getHttpKernelInstance();
 
-        $middleware = $this->getMiddleware();
+        $middlewares = $this->getMiddlewares();
 
-        if (in_array($class->getName(), $middleware)) {
+        if (in_array($class->getName(), $middlewares)) {
             return true;
         }
 
-        return collect($middleware)
+        return collect($middlewares)
             ->merge($this->getMiddlewareGroupsFromKernel())
             ->flatten()
             ->contains($class->getName());
     }
 
-    protected function getMiddleware(): array
+    protected function getMiddlewares(): array
     {
         $reflection = new ReflectionProperty($this->httpKernel, 'middleware');
         $reflection->setAccessible(true);
