@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Classifiers;
 
+use Illuminate\Routing\Route;
 use ReflectionProperty;
 use Illuminate\Contracts\Http\Kernel;
 use Wnx\LaravelStats\ReflectionClass;
@@ -21,19 +22,21 @@ class MiddlewareClassifier implements Classifier
     {
         $this->httpKernel = $this->getHttpKernelInstance();
 
-        $middleware = $this->getMiddleware();
+        $middlewares = $this->getMiddlewares();
 
-        if (in_array($class->getName(), $middleware)) {
+        if (in_array($class->getName(), $middlewares)) {
             return true;
         }
 
-        return collect($middleware)
+        return collect($middlewares)
             ->merge($this->getMiddlewareGroupsFromKernel())
+            ->merge($this->getRouteMiddlewares())
             ->flatten()
+            ->unique()
             ->contains($class->getName());
     }
 
-    protected function getMiddleware(): array
+    protected function getMiddlewares(): array
     {
         $reflection = new ReflectionProperty($this->httpKernel, 'middleware');
         $reflection->setAccessible(true);
@@ -76,5 +79,19 @@ class MiddlewareClassifier implements Classifier
     public function countsTowardsTests(): bool
     {
         return false;
+    }
+
+    private function getRouteMiddlewares(): array
+    {
+        $reflection = new ReflectionProperty($this->httpKernel, 'router');
+        $reflection->setAccessible(true);
+
+        $router = $reflection->getValue($this->httpKernel);
+
+        return collect($router->getRoutes()->getRoutes())
+            ->map(fn (Route $route) => $route->middleware())
+            ->flatten()
+            ->unique()
+            ->toArray();
     }
 }
