@@ -13,10 +13,6 @@ class LivewireComponentClassifierTest extends TestCase
     /** @test */
     public function it_returns_true_if_given_class_is_a_livewire_component()
     {
-        if ($this->getLaravelVersion() < 7) {
-            $this->markTestSkipped("Can't run test on older Laravel Versions");
-        }
-
         $this->assertTrue(
             (new LivewireComponentClassifier())->satisfies(
                 new ReflectionClass(StubLivewireComponent::class)
