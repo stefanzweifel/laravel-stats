@@ -7,16 +7,6 @@ use Illuminate\Support\Collection;
 class Component
 {
     /**
-     * @var string
-     */
-    public $name;
-
-    /**
-     * @var \Illuminate\Support\Collection
-     */
-    private $classifiedClasses;
-
-    /**
      * @var int
      */
     private $numberOfClasses;
@@ -56,10 +46,10 @@ class Component
      */
     private $logicalLinesOfCodePerMethod;
 
-    public function __construct(string $name, Collection $classifiedClasses)
-    {
-        $this->name = $name;
-        $this->classifiedClasses = $classifiedClasses;
+    public function __construct(
+        public string $name,
+        private Collection $classifiedClasses
+    ) {
     }
 
     public function getNumberOfClasses(): int
