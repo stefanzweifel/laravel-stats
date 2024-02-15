@@ -5,9 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.13.0...HEAD)
+## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.13.1...HEAD)
 
 > TBD
+
+## [v2.13.1](https://github.com/stefanzweifel/laravel-stats/compare/v2.13.0...v2.13.1) - 2024-02-15
+
+### Changed
+
+- Remove calls to getLaravelVersion() for versions no longer supported ([#224](https://github.com/stefanzweifel/laravel-stats/pull/224))
+
+### Fixed
+
+- Fix Middleware Classifier for Laravel 11 ([#223](https://github.com/stefanzweifel/laravel-stats/pull/223))
 
 ## [v2.13.0](https://github.com/stefanzweifel/laravel-stats/compare/v2.12.0...v2.13.0) - 2024-02-03
 
