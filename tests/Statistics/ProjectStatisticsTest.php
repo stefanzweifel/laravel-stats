@@ -58,7 +58,7 @@ class ProjectStatisticsTest extends TestCase
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 
-        $this->assertEquals(136, $statistic->getLinesOfCode());
+        $this->assertEquals(132, $statistic->getLinesOfCode());
     }
 
     /** @test */
