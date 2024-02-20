@@ -34,37 +34,31 @@ class StatsListCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $classes = app(ClassesFinder::class)->findAndLoadClasses();
 
         // Transform  Classes into ReflectionClass instances
         // Remove Classes based on the RejectionStrategy
         // Remove Classes based on the namespace
-        $reflectionClasses = $classes->map(function ($class) {
-            return new ReflectionClass($class);
-        })->reject(function (ReflectionClass $class) {
-            return app(config('stats.rejection_strategy', RejectVendorClasses::class))
-                ->shouldClassBeRejected($class);
-        })->unique(function (ReflectionClass  $class) {
-            return $class->getFileName();
-        })->reject(function (ReflectionClass $class) {
-            // Never discard anonymous database migrations
-            if (Str::contains($class->getName(), 'Migration@anonymous')) {
-                return false;
-            }
-
-            foreach (config('stats.ignored_namespaces', []) as $namespace) {
-                if (Str::startsWith($class->getNamespaceName(), $namespace)) {
-                    return true;
+        $reflectionClasses = $classes
+            ->map(static fn ($class) => new ReflectionClass($class))
+            ->reject(static fn (ReflectionClass $class) => app(config('stats.rejection_strategy', RejectVendorClasses::class))
+            ->shouldClassBeRejected($class))
+            ->unique(static fn (ReflectionClass  $class) => $class->getFileName())
+            ->reject(static function (ReflectionClass $class) {
+                // Never discard anonymous database migrations
+                if (Str::contains($class->getName(), 'Migration@anonymous')) {
+                    return false;
                 }
-            }
-
-            return false;
-        });
+                foreach (config('stats.ignored_namespaces', []) as $namespace) {
+                    if (Str::startsWith($class->getNamespaceName(), $namespace)) {
+                        return true;
+                    }
+                }
+                return false;
+            });
 
         $project = new Project($reflectionClasses);
 
@@ -84,7 +78,7 @@ class StatsListCommand extends Command
         return explode(',', $this->option('components'));
     }
 
-    private function renderOutput(Project $project)
+    private function renderOutput(Project $project): void
     {
         if ($this->option('json') === true) {
             $json = (new JsonOutput())->render(

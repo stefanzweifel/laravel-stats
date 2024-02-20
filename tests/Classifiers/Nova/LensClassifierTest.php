@@ -10,7 +10,7 @@ use Wnx\LaravelStats\Classifiers\Nova\LensClassifier;
 class LensClassifierTest extends TestCase
 {
     /** @test */
-    public function it_returns_true_if_given_class_is_a_nova_lens()
+    public function it_returns_true_if_given_class_is_a_nova_lens(): void
     {
         $this->assertTrue(
             (new LensClassifier())->satisfies(

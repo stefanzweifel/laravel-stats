@@ -18,25 +18,23 @@ class ControllerClassifier implements Classifier
     public function satisfies(ReflectionClass $class): bool
     {
         return collect(app(Router::class)->getRoutes())
-            ->reject(function ($route) {
+            ->reject(static function ($route) {
                 if (method_exists($route, 'getActionName')) {
                     // Laravel
                     return $route->getActionName() === 'Closure';
                 }
-
                 // Lumen
                 return data_get($route, 'action.uses') === null;
             })
-            ->map(function ($route) {
+            ->map(static function ($route) {
                 if (method_exists($route, 'getController')) {
                     // Laravel
                     try {
-                        return get_class($route->getController());
-                    } catch (Throwable $e) {
+                        return $route->getController()::class;
+                    } catch (Throwable) {
                         return;
                     }
                 }
-
                 // Lumen
                 return Str::before(data_get($route, 'action.uses'), '@');
             })

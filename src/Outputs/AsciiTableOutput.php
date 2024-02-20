@@ -38,7 +38,7 @@ class AsciiTableOutput
         $this->output = $output;
     }
 
-    public function render(Project $project, bool $isVerbose = false, array $filterByComponentName = [])
+    public function render(Project $project, bool $isVerbose = false, array $filterByComponentName = []): void
     {
         $this->isVerbose = $isVerbose;
         $this->project = $project;
@@ -52,19 +52,13 @@ class AsciiTableOutput
             ->setHeaders(['Name', 'Classes', 'Methods', 'Methods/Class', 'LoC', 'LLoC', 'LLoC/Method']);
 
         // Render "Core" components
-        $this->renderComponents($table, $groupedByComponent->filter(function ($_, $key) {
-            return $key !== 'Other' && ! Str::contains($key, 'Test');
-        }));
+        $this->renderComponents($table, $groupedByComponent->filter(static fn ($_, $key) => $key !== 'Other' && ! Str::contains($key, 'Test')));
 
         // Render Test components
-        $this->renderComponents($table, $groupedByComponent->filter(function ($_, $key) {
-            return Str::contains($key, 'Test');
-        }));
+        $this->renderComponents($table, $groupedByComponent->filter(static fn ($_, $key) => Str::contains($key, 'Test')));
 
         // Render "Other" component
-        $this->renderComponents($table, $groupedByComponent->filter(function ($_, $key) {
-            return $key == 'Other';
-        }));
+        $this->renderComponents($table, $groupedByComponent->filter(static fn ($_, $key) => $key === 'Other'));
 
         $table->addRow(new TableSeparator);
         $this->addTotalRow($table);
@@ -73,7 +67,7 @@ class AsciiTableOutput
         $table->render();
     }
 
-    private function renderComponents(Table $table, Collection $groupedByComponent)
+    private function renderComponents(Table $table, Collection $groupedByComponent): void
     {
         foreach ($groupedByComponent as $componentName => $classifiedClasses) {
             $component = new Component($componentName, $classifiedClasses);
@@ -86,6 +80,7 @@ class AsciiTableOutput
                 foreach ($classifiedClasses as $classifiedClass) {
                     $this->addClassifiedClassTableRow($table, $classifiedClass);
                 }
+
                 $table->addRow(new TableSeparator);
             }
         }
@@ -104,7 +99,7 @@ class AsciiTableOutput
         ]);
     }
 
-    private function addClassifiedClassTableRow(Table $table, ClassifiedClass $classifiedClass)
+    private function addClassifiedClassTableRow(Table $table, ClassifiedClass $classifiedClass): void
     {
         $table->addRow([
             new TableCell(
@@ -119,7 +114,7 @@ class AsciiTableOutput
         ]);
     }
 
-    private function addTotalRow(Table $table)
+    private function addTotalRow(Table $table): void
     {
         $table->addRow([
             'name' => 'Total',
@@ -132,19 +127,19 @@ class AsciiTableOutput
         ]);
     }
 
-    private function addMetaRow(Table $table)
+    private function addMetaRow(Table $table): void
     {
         $table->setFooterTitle(implode(' • ', [
-            "Code LLoC: {$this->project->statistic()->getLogicalLinesOfCodeForApplicationCode()}",
-            "Test LLoC: {$this->project->statistic()->getLogicalLinesOfCodeForTestCode()}",
+            'Code LLoC: ' . $this->project->statistic()->getLogicalLinesOfCodeForApplicationCode(),
+            'Test LLoC: ' . $this->project->statistic()->getLogicalLinesOfCodeForTestCode(),
             'Code/Test Ratio: 1:'.$this->project->statistic()->getApplicationCodeToTestCodeRatio(),
             'Routes: '.app(NumberOfRoutes::class)->get(),
         ]));
     }
 
-    private function rightAlignNumbers(Table $table)
+    private function rightAlignNumbers(Table $table): void
     {
-        for ($i = 1; $i <= 6; $i++) {
+        for ($i = 1; $i <= 6; ++$i) {
             $table->setColumnStyle($i, (new TableStyle)->setPadType(STR_PAD_LEFT));
         }
     }

@@ -10,8 +10,10 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class DemoJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
     /**
      * Create a new job instance.
      *
@@ -24,10 +26,8 @@ class DemoJob implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         //
     }

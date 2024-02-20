@@ -10,7 +10,7 @@ use Wnx\LaravelStats\Tests\Stubs\Notifications\ServerDownNotification;
 class NotificationClassifierTest extends TestCase
 {
     /** @test */
-    public function it_returns_true_if_given_class_is_a_notification()
+    public function it_returns_true_if_given_class_is_a_notification(): void
     {
         $this->assertTrue(
             (new NotificationClassifier())->satisfies(

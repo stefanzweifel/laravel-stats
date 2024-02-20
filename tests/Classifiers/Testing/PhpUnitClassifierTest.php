@@ -10,7 +10,7 @@ use Wnx\LaravelStats\Classifiers\Testing\PhpUnitClassifier;
 class PhpUnitClassifierTest extends TestCase
 {
     /** @test */
-    public function it_returns_true_if_given_test_is_a_php_unit_test()
+    public function it_returns_true_if_given_test_is_a_php_unit_test(): void
     {
         $this->assertTrue(
             (new PhpUnitClassifier())->satisfies(

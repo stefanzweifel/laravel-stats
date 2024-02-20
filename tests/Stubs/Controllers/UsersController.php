@@ -41,7 +41,7 @@ class UsersController extends Controller
         return [];
     }
 
-    private function thePrivateMethod()
+    private function thePrivateMethod(): void
     {
         //
     }

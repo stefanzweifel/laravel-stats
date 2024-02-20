@@ -10,7 +10,7 @@ use Wnx\LaravelStats\Tests\Stubs\Rules\DemoRule;
 class RuleClassifierTest extends TestCase
 {
     /** @test */
-    public function it_returns_true_if_given_class_is_a_validation_rule()
+    public function it_returns_true_if_given_class_is_a_validation_rule(): void
     {
         $this->assertTrue(
             (new RuleClassifier())->satisfies(

@@ -40,24 +40,19 @@ abstract class TestCase extends Orchestra
     /**
      * Create a new Project based on the passed FQDNs of Classes
      *
-     * @param  array  $classes
      *
      * @return \Wnx\LaravelStats\Project
      */
     public function createProjectFromClasses(array $classes = [])
     {
         $classes = collect($classes)
-            ->map(function ($class) {
-                return new ReflectionClass($class);
-            });
+            ->map(static fn ($class) => new ReflectionClass($class));
 
         return new Project($classes);
     }
 
     /**
      * Get currently installed Laravel Version
-     *
-     * @return float
      */
     public function getLaravelVersion(): float
     {

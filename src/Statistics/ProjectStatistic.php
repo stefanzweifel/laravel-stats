@@ -8,11 +8,6 @@ use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
 class ProjectStatistic
 {
     /**
-     * @var \Wnx\LaravelStats\Project
-     */
-    private $project;
-
-    /**
      * @var int
      */
     private $numberOfClasses;
@@ -42,9 +37,8 @@ class ProjectStatistic
      */
     private $logicalLinesOfCodePerMethod;
 
-    public function __construct(Project $project)
+    public function __construct(private Project $project)
     {
-        $this->project = $project;
     }
 
     public function getNumberOfClasses(): int
@@ -59,9 +53,7 @@ class ProjectStatistic
     public function getNumberOfMethods(): int
     {
         if ($this->numberOfMethods === null) {
-            $this->numberOfMethods = $this->project->classifiedClasses()->sum(function (ClassifiedClass $class) {
-                return $class->getNumberOfMethods();
-            });
+            $this->numberOfMethods = $this->project->classifiedClasses()->sum(static fn (ClassifiedClass $class) => $class->getNumberOfMethods());
         }
 
         return $this->numberOfMethods;
@@ -79,9 +71,7 @@ class ProjectStatistic
     public function getLinesOfCode(): int
     {
         if ($this->linesOfCode === null) {
-            $this->linesOfCode = $this->project->classifiedClasses()->sum(function (ClassifiedClass $class) {
-                return $class->getLines();
-            });
+            $this->linesOfCode = $this->project->classifiedClasses()->sum(static fn (ClassifiedClass $class) => $class->getLines());
         }
 
         return $this->linesOfCode;
@@ -90,9 +80,7 @@ class ProjectStatistic
     public function getLogicalLinesOfCode(): float
     {
         if ($this->logicalLinesOfCode === null) {
-            $this->logicalLinesOfCode = $this->project->classifiedClasses()->sum(function (ClassifiedClass $class) {
-                return $class->getLogicalLinesOfCode();
-            });
+            $this->logicalLinesOfCode = $this->project->classifiedClasses()->sum(static fn (ClassifiedClass $class) => $class->getLogicalLinesOfCode());
         }
 
         return $this->logicalLinesOfCode;
@@ -116,12 +104,8 @@ class ProjectStatistic
         return $this
             ->project
             ->classifiedClasses()
-            ->filter(function (ClassifiedClass $classifiedClass) {
-                return $classifiedClass->classifier->countsTowardsApplicationCode();
-            })
-            ->sum(function (ClassifiedClass $class) {
-                return $class->getLogicalLinesOfCode();
-            });
+            ->filter(static fn (ClassifiedClass $classifiedClass) => $classifiedClass->classifier->countsTowardsApplicationCode())
+            ->sum(static fn (ClassifiedClass $class) => $class->getLogicalLinesOfCode());
     }
 
     public function getLogicalLinesOfCodeForTestCode(): float
@@ -129,12 +113,8 @@ class ProjectStatistic
         return $this
             ->project
             ->classifiedClasses()
-            ->filter(function (ClassifiedClass $classifiedClass) {
-                return $classifiedClass->classifier->countsTowardsTests();
-            })
-            ->sum(function (ClassifiedClass $class) {
-                return $class->getLogicalLinesOfCode();
-            });
+            ->filter(static fn (ClassifiedClass $classifiedClass) => $classifiedClass->classifier->countsTowardsTests())
+            ->sum(static fn (ClassifiedClass $class) => $class->getLogicalLinesOfCode());
     }
 
     public function getApplicationCodeToTestCodeRatio(): float

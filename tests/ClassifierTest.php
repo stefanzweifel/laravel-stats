@@ -18,7 +18,7 @@ class ClassifierTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_instance_of_null_classifier_if_given_class_could_not_be_associated_with_a_component()
+    public function it_returns_instance_of_null_classifier_if_given_class_could_not_be_associated_with_a_component(): void
     {
         $this->assertInstanceOf(
             NullClassifier::class,
@@ -30,7 +30,7 @@ class ClassifierTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_instance_of_custom_classifier_if_the_custom_classifier_has_been_registered_correctly()
+    public function it_returns_instance_of_custom_classifier_if_the_custom_classifier_has_been_registered_correctly(): void
     {
         config()->set('stats.custom_component_classifier', [
             MyCustomComponentClassifier::class,
@@ -45,7 +45,7 @@ class ClassifierTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_an_instance_of_null_classifier_if_during_the_satisfy_check_an_exception_is_thrown()
+    public function it_returns_an_instance_of_null_classifier_if_during_the_satisfy_check_an_exception_is_thrown(): void
     {
         config()->set('stats.custom_component_classifier', [
             ThrowExceptionCustomComponentClassifier::class,
@@ -60,7 +60,7 @@ class ClassifierTest extends TestCase
     }
 
     /** @test */
-    public function it_throws_an_exception_if_a_custom_component_classifier_does_not_follow_the_contract()
+    public function it_throws_an_exception_if_a_custom_component_classifier_does_not_follow_the_contract(): void
     {
         $this->expectException(\Exception::class);
 

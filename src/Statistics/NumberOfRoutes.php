@@ -11,7 +11,7 @@ class NumberOfRoutes
     {
         try {
             return collect(app(Router::class)->getRoutes())->count();
-        } catch (Exception $e) {
+        } catch (Exception) {
             return 0;
         }
     }

@@ -11,7 +11,7 @@ use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
 class RejectVendorClassesTest extends TestCase
 {
     /** @test */
-    public function it_returns_true_if_the_given_class_is_a_php_internal()
+    public function it_returns_true_if_the_given_class_is_a_php_internal(): void
     {
         $strategy = app(RejectVendorClasses::class);
         $class = new ReflectionClass(new \stdClass);
@@ -20,7 +20,7 @@ class RejectVendorClassesTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_true_if_the_class_is_located_in_the_vendor_folder()
+    public function it_returns_true_if_the_class_is_located_in_the_vendor_folder(): void
     {
         $strategy = app(RejectVendorClasses::class);
         $class = new ReflectionClass(Encrypter::class);
@@ -29,7 +29,7 @@ class RejectVendorClassesTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_false_if_the_class_belongs_to_the_app()
+    public function it_returns_false_if_the_class_belongs_to_the_app(): void
     {
         $strategy = app(RejectVendorClasses::class);
         $class = new ReflectionClass(ModelClassifier::class);

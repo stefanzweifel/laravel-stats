@@ -10,7 +10,7 @@ use Wnx\LaravelStats\Classifiers\Testing\DuskClassifier;
 class DuskClassifierTest extends TestCase
 {
     /** @test */
-    public function it_returns_true_if_given_test_is_a_dusk_test()
+    public function it_returns_true_if_given_test_is_a_dusk_test(): void
     {
         $this->assertTrue(
             (new DuskClassifier())->satisfies(

@@ -26,7 +26,7 @@ class JsonOutputTest extends TestCase
     }
 
     /** @test */
-    public function it_creates_project_statistics_as_an_array()
+    public function it_creates_project_statistics_as_an_array(): void
     {
         $json = (new JsonOutput)->render($this->getTestProject());
 
@@ -55,7 +55,7 @@ class JsonOutputTest extends TestCase
                     'number_of_classes' => 1,
                     'number_of_methods' => 1,
                     'methods_per_class' => 1.0,
-                    'loc' => 18,
+                    'loc' => 16,
                     'lloc' => 1.0,
                     'lloc_per_method' => 1.0,
                 ],
@@ -64,7 +64,7 @@ class JsonOutputTest extends TestCase
                     'number_of_classes' => 1,
                     'number_of_methods' => 3,
                     'methods_per_class' => 3.0,
-                    'loc' => 41,
+                    'loc' => 39,
                     'lloc' => 1,
                     'lloc_per_method' => 0.33,
                 ],
@@ -73,7 +73,7 @@ class JsonOutputTest extends TestCase
                 'number_of_classes' => 4,
                 'number_of_methods' => 7,
                 'methods_per_class' => 1.75,
-                'loc' => 90,
+                'loc' => 86,
                 'lloc' => 5,
                 'lloc_per_method' => 0.71,
             ],
@@ -89,7 +89,7 @@ class JsonOutputTest extends TestCase
     }
 
     /** @test */
-    public function it_includes_classes_in_project_statistics_array_if_verbose_output_is_requested()
+    public function it_includes_classes_in_project_statistics_array_if_verbose_output_is_requested(): void
     {
         $json = (new JsonOutput)->render($this->getTestProject(), $isVerbose = true);
 
@@ -113,7 +113,7 @@ class JsonOutputTest extends TestCase
     }
 
     /** @test */
-    public function it_only_contains_components_in_statistics_array_which_have_been_requested()
+    public function it_only_contains_components_in_statistics_array_which_have_been_requested(): void
     {
         $json = (new JsonOutput)->render(
             $this->getTestProject(),

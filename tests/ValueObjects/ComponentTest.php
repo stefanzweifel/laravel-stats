@@ -24,7 +24,7 @@ class ComponentTest extends TestCase
     }
 
     /** @test */
-    public function component_name_is_accessible()
+    public function component_name_is_accessible(): void
     {
         $component = new Component('FooBar', collect([]));
 
@@ -32,7 +32,7 @@ class ComponentTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_number_of_classes_for_a_component()
+    public function it_returns_number_of_classes_for_a_component(): void
     {
         $component = $this->getTestComponent();
 
@@ -40,7 +40,7 @@ class ComponentTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_number_of_methods_for_all_classes_within_a_component()
+    public function it_returns_number_of_methods_for_all_classes_within_a_component(): void
     {
         $component = $this->getTestComponent();
 
@@ -48,7 +48,7 @@ class ComponentTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_number_of_public_methods_for_all_classes_within_a_component()
+    public function it_returns_number_of_public_methods_for_all_classes_within_a_component(): void
     {
         $component = $this->getTestComponent();
 
@@ -56,7 +56,7 @@ class ComponentTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_number_of_non_public_methods_for_all_classes_within_a_component()
+    public function it_returns_number_of_non_public_methods_for_all_classes_within_a_component(): void
     {
         $component = $this->getTestComponent();
 
@@ -64,7 +64,7 @@ class ComponentTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_average_number_of_methods_per_class_for_all_classes_within_a_component()
+    public function it_returns_average_number_of_methods_per_class_for_all_classes_within_a_component(): void
     {
         $component = $this->getTestComponent();
 
@@ -72,14 +72,14 @@ class ComponentTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_total_number_of_lines_of_code_for_all_classes_within_a_component()
+    public function it_returns_total_number_of_lines_of_code_for_all_classes_within_a_component(): void
     {
         $component = $this->getTestComponent();
-        $this->assertEquals(115, $component->getLinesOfCode());
+        $this->assertEquals(113, $component->getLinesOfCode());
     }
 
     /** @test */
-    public function it_returns_total_number_of_logical_lines_of_code_for_all_classes_within_a_component()
+    public function it_returns_total_number_of_logical_lines_of_code_for_all_classes_within_a_component(): void
     {
         $component = $this->getTestComponent();
 
@@ -87,7 +87,7 @@ class ComponentTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_average_number_of_logical_lines_of_code_per_method_for_all_classes_within_a_component()
+    public function it_returns_average_number_of_logical_lines_of_code_per_method_for_all_classes_within_a_component(): void
     {
         $component = $this->getTestComponent();
 

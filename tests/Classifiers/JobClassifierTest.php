@@ -10,7 +10,7 @@ use Wnx\LaravelStats\Classifiers\JobClassifier;
 class JobClassifierTest extends TestCase
 {
     /** @test */
-    public function it_returns_true_if_given_class_is_a_job()
+    public function it_returns_true_if_given_class_is_a_job(): void
     {
         $this->assertTrue(
             (new JobClassifier())->satisfies(

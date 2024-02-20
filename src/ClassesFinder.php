@@ -26,8 +26,9 @@ class ClassesFinder
                     if ($this->isMostLikelyPestTest($file)) {
                         return true;
                     }
+
                     require_once $file->getRealPath();
-                } catch (Exception $e) {
+                } catch (Exception) {
                     //
                 }
             });
@@ -35,9 +36,7 @@ class ClassesFinder
         ob_end_clean();
 
         return collect(get_declared_classes())
-            ->reject(function (string $className) {
-                return Str::startsWith($className, ['SwooleLibrary']);
-            });
+            ->reject(static fn (string $className) => Str::startsWith($className, ['SwooleLibrary']));
     }
 
     /**
@@ -52,9 +51,7 @@ class ClassesFinder
             ->name('*.php');
 
         return collect($files)
-            ->reject(function ($file) use ($excludes) {
-                return $this->isExcluded($file, $excludes);
-            });
+            ->reject(fn ($file) => $this->isExcluded($file, $excludes));
     }
 
     /**
@@ -62,9 +59,7 @@ class ClassesFinder
      */
     protected function isExcluded(SplFileInfo $file, Collection $excludes): bool
     {
-        return $excludes->contains(function ($exclude) use ($file) {
-            return Str::startsWith($file->getPathname(), $exclude);
-        });
+        return $excludes->contains(static fn ($exclude) => Str::startsWith($file->getPathname(), $exclude));
     }
 
     /**
@@ -102,7 +97,7 @@ class ClassesFinder
             'afterAll',
         ]);
 
-        if (preg_match("/$methodNames\s*\(/", $fileContent)) {
+        if (preg_match(sprintf('/%s\s*\(/', $methodNames), $fileContent)) {
             return true;
         }
 

@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\ValueObjects;
 
+use ReflectionMethod;
 use Wnx\LaravelStats\ReflectionClass;
 use SebastianBergmann\PHPLOC\Analyser;
 use Wnx\LaravelStats\Contracts\Classifier;
@@ -72,9 +73,7 @@ class ClassifiedClass
     {
         if ($this->numberOfPublicMethods === null) {
             $this->numberOfPublicMethods = $this->reflectionClass->getDefinedMethods()
-                ->filter(function (\ReflectionMethod $method) {
-                    return $method->isPublic();
-                })->count();
+                ->filter(static fn (ReflectionMethod $method) => $method->isPublic())->count();
         }
 
         return $this->numberOfPublicMethods;
@@ -84,9 +83,7 @@ class ClassifiedClass
     {
         if ($this->numberOfNonPublicMethods === null) {
             $this->numberOfNonPublicMethods = $this->reflectionClass->getDefinedMethods()
-                ->filter(function (\ReflectionMethod $method) {
-                    return ! $method->isPublic();
-                })->count();
+                ->filter(static fn (ReflectionMethod $method) => ! $method->isPublic())->count();
         }
 
         return $this->numberOfNonPublicMethods;
@@ -125,7 +122,7 @@ class ClassifiedClass
     {
         if ($this->logicalLinesOfCodePerMethod === null) {
             if ($this->getNumberOfMethods() === 0) {
-                $this->logicalLinesOfCodePerMethod = $this->logicalLinesOfCodePerMethod = 0;
+                $this->logicalLinesOfCodePerMethod = 0;
             } else {
                 $this->logicalLinesOfCodePerMethod = round($this->getLogicalLinesOfCode() / $this->getNumberOfMethods(), 2);
             }

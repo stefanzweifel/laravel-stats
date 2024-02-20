@@ -26,7 +26,7 @@ class ProjectStatisticsTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_total_number_of_classes_for_given_project()
+    public function it_returns_total_number_of_classes_for_given_project(): void
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 
@@ -34,7 +34,7 @@ class ProjectStatisticsTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_total_number_of_method_for_a_given_project()
+    public function it_returns_total_number_of_method_for_a_given_project(): void
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 
@@ -42,7 +42,7 @@ class ProjectStatisticsTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_average_number_of_methods_per_class_for_a_given_project()
+    public function it_returns_average_number_of_methods_per_class_for_a_given_project(): void
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 
@@ -54,15 +54,15 @@ class ProjectStatisticsTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_total_number_of_lines_of_code_for_a_given_project()
+    public function it_returns_total_number_of_lines_of_code_for_a_given_project(): void
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 
-        $this->assertEquals(136, $statistic->getLinesOfCode());
+        $this->assertEquals(133, $statistic->getLinesOfCode());
     }
 
     /** @test */
-    public function it_returns_total_number_of_logical_lines_of_code_for_a_given_project()
+    public function it_returns_total_number_of_logical_lines_of_code_for_a_given_project(): void
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 
@@ -70,7 +70,7 @@ class ProjectStatisticsTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_average_number_of_logical_lines_of_code_per_method_for_a_given_project()
+    public function it_returns_average_number_of_logical_lines_of_code_per_method_for_a_given_project(): void
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 
@@ -82,7 +82,7 @@ class ProjectStatisticsTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_total_number_of_logical_lines_of_code_for_application_code()
+    public function it_returns_total_number_of_logical_lines_of_code_for_application_code(): void
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 
@@ -90,7 +90,7 @@ class ProjectStatisticsTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_total_number_of_logical_lines_of_code_for_test_code()
+    public function it_returns_total_number_of_logical_lines_of_code_for_test_code(): void
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 
@@ -98,7 +98,7 @@ class ProjectStatisticsTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_application_code_to_test_code_ratio()
+    public function it_returns_application_code_to_test_code_ratio(): void
     {
         $statistic = new ProjectStatistic($this->getTestProject());
 

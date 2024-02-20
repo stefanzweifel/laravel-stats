@@ -20,9 +20,7 @@ class MiddlewareClassifierTest extends TestCase
      */
     protected function usesMiddlewareRoutes($router)
     {
-        $router->get('/demo', function () {
-            return 'Hello World';
-        })->middleware(DemoMiddleware::class);
+        $router->get('/demo', static fn () => 'Hello World')->middleware(DemoMiddleware::class);
     }
 
     #[Test]
@@ -37,7 +35,7 @@ class MiddlewareClassifierTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_true_if_given_class_is_a_route_middleware()
+    public function it_returns_true_if_given_class_is_a_route_middleware(): void
     {
         $this->assertTrue(
             (new MiddlewareClassifier())->satisfies(

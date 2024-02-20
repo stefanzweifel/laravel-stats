@@ -11,7 +11,7 @@ use Wnx\LaravelStats\Tests\Stubs\EventListeners\DemoEventListener;
 class EventListenerClassifierTest extends TestCase
 {
     /** @test */
-    public function it_returns_true_if_given_class_is_an_event_listener()
+    public function it_returns_true_if_given_class_is_an_event_listener(): void
     {
         $this->assertTrue(
             (new EventListenerClassifier())->satisfies(

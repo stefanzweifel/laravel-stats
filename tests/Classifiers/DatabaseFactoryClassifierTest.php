@@ -10,7 +10,7 @@ use Wnx\LaravelStats\Tests\Stubs\DatabaseFactories\StubUserDatabaseFactory;
 class DatabaseFactoryClassifierTest extends TestCase
 {
     /** @test */
-    public function it_returns_true_if_database_factory_is_passed_to_satisfy_method()
+    public function it_returns_true_if_database_factory_is_passed_to_satisfy_method(): void
     {
         $this->assertTrue(
             (new DatabaseFactoryClassifier())->satisfies(
@@ -20,13 +20,13 @@ class DatabaseFactoryClassifierTest extends TestCase
     }
 
     /** @test */
-    public function it_does_not_count_database_factory_againt_app_code()
+    public function it_does_not_count_database_factory_againt_app_code(): void
     {
         $this->assertFalse((new DatabaseFactoryClassifier())->countsTowardsApplicationCode());
     }
 
     /** @test */
-    public function it_does_not_count_database_factor_against_test_code()
+    public function it_does_not_count_database_factor_against_test_code(): void
     {
         $this->assertFalse((new DatabaseFactoryClassifier())->countsTowardsTests());
     }

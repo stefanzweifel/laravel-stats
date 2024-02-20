@@ -10,7 +10,7 @@ use Wnx\LaravelStats\Tests\Stubs\Events\DemoEvent;
 class EventClassifierTest extends TestCase
 {
     /** @test */
-    public function it_returns_true_if_given_class_is_an_event_class()
+    public function it_returns_true_if_given_class_is_an_event_class(): void
     {
         $this->assertTrue(
             (new EventClassifier())->satisfies(

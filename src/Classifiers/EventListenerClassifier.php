@@ -23,11 +23,7 @@ class EventListenerClassifier implements Classifier
     public function satisfies(ReflectionClass $class): bool
     {
         return collect($this->getEvents())
-            ->map(function (array $listeners) {
-                return collect($listeners)->map(function ($closure) {
-                    return $this->getEventListener($closure);
-                })->toArray();
-            })
+            ->map(fn (array $listeners) => collect($listeners)->map(fn ($closure) => $this->getEventListener($closure))->toArray())
             ->collapse()
             ->flatten()
             ->unique()

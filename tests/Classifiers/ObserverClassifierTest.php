@@ -11,7 +11,7 @@ use Wnx\LaravelStats\ReflectionClass;
 class ObserverClassifierTest extends TestCase
 {
     /** @test */
-    public function it_returns_true_if_given_class_is_a_registered_observer()
+    public function it_returns_true_if_given_class_is_a_registered_observer(): void
     {
         User::observe(UserObserver::class);
 

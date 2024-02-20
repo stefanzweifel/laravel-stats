@@ -9,30 +9,20 @@ use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
 class Project
 {
     /**
-     * Collection of ReflectionClasses.
-     *
-     * @var \Illuminate\Support\Collection <\Wnx\LaravelStats\ReflectionClass>
-     */
-    private $classes;
-
-    /**
      * Collection of ClassifiedClasses.
      *
      * @var \Illuminate\Support\Collection <\Wnx\LaravelStats\ValueObjects\ClassifiedClass>
      */
     private $classifiedClasses;
 
-    public function __construct(Collection $classes)
-    {
-        $this->classes = $classes;
-
+    public function __construct(
+        private Collection $classes
+    ) {
         // Loop through ReflectionClasses and classify them.
-        $this->classifiedClasses = $classes->map(function (ReflectionClass $reflectionClass) {
-            return new ClassifiedClass(
-                $reflectionClass,
-                app(Classifier::class)->getClassifierForClassInstance($reflectionClass)
-            );
-        });
+        $this->classifiedClasses = $this->classes->map(static fn (ReflectionClass $reflectionClass) => new ClassifiedClass(
+            $reflectionClass,
+            app(Classifier::class)->getClassifierForClassInstance($reflectionClass)
+        ));
     }
 
     public function classifiedClasses(): Collection
@@ -43,12 +33,8 @@ class Project
     public function classifiedClassesGroupedByComponentName(): Collection
     {
         return $this->classifiedClasses()
-            ->groupBy(function (ClassifiedClass $classifiedClass) {
-                return $classifiedClass->classifier->name();
-            })
-            ->sortBy(function ($_, string $componentName) {
-                return $componentName;
-            });
+            ->groupBy(static fn (ClassifiedClass $classifiedClass) => $classifiedClass->classifier->name())
+            ->sortBy(static fn ($_, string $componentName) => $componentName);
     }
 
     public function classifiedClassesGroupedAndFilteredByComponentNames(array $componentNamesToFilter = []): Collection
@@ -56,11 +42,10 @@ class Project
         $shouldCollectionBeFiltered = ! empty(array_filter($componentNamesToFilter));
 
         return $this->classifiedClassesGroupedByComponentName()
-            ->when($shouldCollectionBeFiltered, function ($components) use ($componentNamesToFilter) {
-                return $components->filter(function ($_item, $key) use ($componentNamesToFilter) {
-                    return in_array($key, $componentNamesToFilter);
-                });
-            });
+            ->when(
+                $shouldCollectionBeFiltered,
+                static fn (Collection $components) => $components->filter(static fn ($_item, string $key) => in_array($key, $componentNamesToFilter))
+            );
     }
 
     public function statistic(): ProjectStatistic

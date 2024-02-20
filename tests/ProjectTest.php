@@ -14,7 +14,7 @@ use Wnx\LaravelStats\Tests\Stubs\Models\Project as ProjectModel;
 class ProjectTest extends TestCase
 {
     /** @test */
-    public function creates_a_project_object_from_a_collection_of_reflection_classes()
+    public function creates_a_project_object_from_a_collection_of_reflection_classes(): void
     {
         $classes = collect([
             $projectModel = new ReflectionClass(ProjectModel::class),
@@ -23,15 +23,13 @@ class ProjectTest extends TestCase
         $project = new Project($classes);
 
         $this->assertTrue(
-            $project->classifiedClasses()->map(function ($class) {
-                return $class->reflectionClass;
-            })->contains($projectModel)
+            $project->classifiedClasses()->map(static fn ($class) => $class->reflectionClass)->contains($projectModel)
         );
         $this->assertInstanceOf(ClassifiedClass::class, $project->classifiedClasses()->first());
     }
 
     /** @test */
-    public function returns_instance_of_project_statistics_when_accessing_project_statistics()
+    public function returns_instance_of_project_statistics_when_accessing_project_statistics(): void
     {
         $classes = collect([
             $projectModel = new ReflectionClass(ProjectModel::class),
@@ -43,7 +41,7 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
-    public function groups_classes_into_components()
+    public function groups_classes_into_components(): void
     {
         Gate::policy(\Wnx\LaravelStats\Tests\Stubs\Models\Project::class, \Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy::class);
 
@@ -64,7 +62,7 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
-    public function groups_classes_into_components_and_filters_by_component_name()
+    public function groups_classes_into_components_and_filters_by_component_name(): void
     {
         Gate::policy(\Wnx\LaravelStats\Tests\Stubs\Models\Project::class, \Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy::class);
 
@@ -83,7 +81,7 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
-    public function groups_classes_into_component_and_does_not_apply_filter_if_array_is_empty()
+    public function groups_classes_into_component_and_does_not_apply_filter_if_array_is_empty(): void
     {
         Gate::policy(\Wnx\LaravelStats\Tests\Stubs\Models\Project::class, \Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy::class);
 

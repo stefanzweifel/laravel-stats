@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Artisan;
 
 class StatsListCommandTest extends TestCase
 {
-    public function setUp() : void
+    protected function setUp() : void
     {
         parent::setUp();
 
@@ -29,7 +29,7 @@ class StatsListCommandTest extends TestCase
     }
 
     /** @test */
-    public function it_executes_stats_command_without_options_and_outputs_an_ascii_table()
+    public function it_executes_stats_command_without_options_and_outputs_an_ascii_table(): void
     {
         Route::get('projects', 'Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController@index');
         Route::get('users', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@index');
@@ -47,7 +47,7 @@ class StatsListCommandTest extends TestCase
     }
 
     /** @test */
-    public function it_executes_stats_command_with_verbose_option_and_displays_to_which_component_each_class_belongs_to()
+    public function it_executes_stats_command_with_verbose_option_and_displays_to_which_component_each_class_belongs_to(): void
     {
         Route::get('projects', 'Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController@index');
         Route::get('users', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@index');
@@ -68,7 +68,7 @@ class StatsListCommandTest extends TestCase
     }
 
     /** @test */
-    public function it_displays_correct_headers_in_ascii_table()
+    public function it_displays_correct_headers_in_ascii_table(): void
     {
         $this->artisan('stats');
         $output = Artisan::output();
@@ -83,7 +83,7 @@ class StatsListCommandTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_stats_as_json()
+    public function it_returns_stats_as_json(): void
     {
         $this->artisan('stats', [
             '--json' => true,
@@ -94,7 +94,7 @@ class StatsListCommandTest extends TestCase
     }
 
     /** @test */
-    public function it_executes_stats_command_in_verbose_mode_and_shows_which_class_belongs_to_which_component()
+    public function it_executes_stats_command_in_verbose_mode_and_shows_which_class_belongs_to_which_component(): void
     {
         $this->artisan('stats', [
             '--json' => true,
@@ -115,7 +115,7 @@ class StatsListCommandTest extends TestCase
     }
 
     /** @test */
-    public function it_only_returns_stats_for_given_components()
+    public function it_only_returns_stats_for_given_components(): void
     {
         $this->artisan('stats', [
             '--json' => true,
@@ -129,7 +129,7 @@ class StatsListCommandTest extends TestCase
     }
 
     /** @test */
-    public function it_outputs_warning_when_someone_uses_the_share_option()
+    public function it_outputs_warning_when_someone_uses_the_share_option(): void
     {
         $this->artisan('stats', [
             '--share' => true,
