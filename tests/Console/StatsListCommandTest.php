@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Artisan;
 
 class StatsListCommandTest extends TestCase
 {
-    public function setUp() : void
+    protected function setUp() : void
     {
         parent::setUp();
 

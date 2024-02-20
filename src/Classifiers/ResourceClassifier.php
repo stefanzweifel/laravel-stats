@@ -19,6 +19,7 @@ class ResourceClassifier implements Classifier
         if ($class->isSubclassOf(JsonResource::class)) {
             return true;
         }
+
         return $class->isSubclassOf(ResourceCollection::class);
     }
 

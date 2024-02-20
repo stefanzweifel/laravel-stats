@@ -25,7 +25,7 @@ class ReflectionClass extends NativeReflectionClass
     public function usesTrait(string $name): bool
     {
         return collect($this->getTraits())
-            ->contains(fn (NativeReflectionClass $trait) => $trait->name == $name);
+            ->contains(static fn(NativeReflectionClass $trait) => $trait->name == $name);
     }
 
     /**

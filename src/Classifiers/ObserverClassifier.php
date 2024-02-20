@@ -24,12 +24,12 @@ class ObserverClassifier implements Classifier
     public function satisfies(ReflectionClass $class): bool
     {
         return collect($this->getEvents())
-            ->filter(fn ($_listeners, $event) => Str::startsWith($event, 'eloquent.'))
+            ->filter(static fn($_listeners, $event) => Str::startsWith($event, 'eloquent.'))
             ->map(fn ($listeners) => collect($listeners)->map(fn ($closure) => $this->getEventListener($closure))->toArray())
             ->collapse()
             ->unique()
-            ->filter(fn ($eventListener) => is_string($eventListener))
-            ->filter(fn (string $eventListenerSignature) => Str::contains($eventListenerSignature, $class->getName()))
+            ->filter(static fn($eventListener) => is_string($eventListener))
+            ->filter(static fn(string $eventListenerSignature) => Str::contains($eventListenerSignature, $class->getName()))
             ->count() > 0;
     }
 

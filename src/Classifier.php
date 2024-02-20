@@ -91,7 +91,7 @@ class Classifier
             $classifierInstance = new $classifier();
 
             if (! $this->implementsContract($classifier)) {
-                throw new Exception("Classifier {$classifier} does not implement ".ClassifierContract::class.'.');
+                throw new Exception(sprintf('Classifier %s does not implement ', $classifier).ClassifierContract::class.'.');
             }
 
             try {

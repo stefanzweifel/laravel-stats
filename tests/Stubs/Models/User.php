@@ -12,7 +12,7 @@ class User extends Model
 
     protected static function booted()
     {
-        static::created(function ($user) {
+        static::created(static function ($user) {
             // Closure Event Listener
         });
     }

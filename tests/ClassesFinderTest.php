@@ -6,7 +6,7 @@ use Wnx\LaravelStats\ClassesFinder;
 
 class ClassesFinderTest extends TestCase
 {
-    public function setUp() : void
+    protected function setUp() : void
     {
         parent::setUp();
 

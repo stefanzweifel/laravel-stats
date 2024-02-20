@@ -19,7 +19,7 @@ class Project
         private Collection $classes
     ) {
         // Loop through ReflectionClasses and classify them.
-        $this->classifiedClasses = $this->classes->map(fn (ReflectionClass $reflectionClass) => new ClassifiedClass(
+        $this->classifiedClasses = $this->classes->map(static fn(ReflectionClass $reflectionClass) => new ClassifiedClass(
             $reflectionClass,
             app(Classifier::class)->getClassifierForClassInstance($reflectionClass)
         ));
@@ -33,8 +33,8 @@ class Project
     public function classifiedClassesGroupedByComponentName(): Collection
     {
         return $this->classifiedClasses()
-            ->groupBy(fn (ClassifiedClass $classifiedClass) => $classifiedClass->classifier->name())
-            ->sortBy(fn ($_, string $componentName) => $componentName);
+            ->groupBy(static fn(ClassifiedClass $classifiedClass) => $classifiedClass->classifier->name())
+            ->sortBy(static fn($_, string $componentName) => $componentName);
     }
 
     public function classifiedClassesGroupedAndFilteredByComponentNames(array $componentNamesToFilter = []): Collection
@@ -44,7 +44,7 @@ class Project
         return $this->classifiedClassesGroupedByComponentName()
             ->when(
                 $shouldCollectionBeFiltered,
-                fn (Collection $components) => $components->filter(fn ($_item, string $key) => in_array($key, $componentNamesToFilter))
+                static fn(Collection $components) => $components->filter(static fn($_item, string $key) => in_array($key, $componentNamesToFilter))
             );
     }
 

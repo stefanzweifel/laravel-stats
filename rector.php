@@ -12,7 +12,7 @@ return RectorConfig::configure()
     ])
     // uncomment to reach your current PHP version
     ->withPhpSets(php80: true)
-    ->withPreparedSets(deadCode: true)
+    ->withPreparedSets(deadCode: true, codingStyle: true)
     ->withRules([
         AddVoidReturnTypeWhereNoReturnRector::class,
     ]);

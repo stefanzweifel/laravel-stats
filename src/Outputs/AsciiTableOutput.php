@@ -52,13 +52,13 @@ class AsciiTableOutput
             ->setHeaders(['Name', 'Classes', 'Methods', 'Methods/Class', 'LoC', 'LLoC', 'LLoC/Method']);
 
         // Render "Core" components
-        $this->renderComponents($table, $groupedByComponent->filter(fn ($_, $key) => $key !== 'Other' && ! Str::contains($key, 'Test')));
+        $this->renderComponents($table, $groupedByComponent->filter(static fn($_, $key) => $key !== 'Other' && ! Str::contains($key, 'Test')));
 
         // Render Test components
-        $this->renderComponents($table, $groupedByComponent->filter(fn ($_, $key) => Str::contains($key, 'Test')));
+        $this->renderComponents($table, $groupedByComponent->filter(static fn($_, $key) => Str::contains($key, 'Test')));
 
         // Render "Other" component
-        $this->renderComponents($table, $groupedByComponent->filter(fn ($_, $key) => $key === 'Other'));
+        $this->renderComponents($table, $groupedByComponent->filter(static fn($_, $key) => $key === 'Other'));
 
         $table->addRow(new TableSeparator);
         $this->addTotalRow($table);
@@ -80,6 +80,7 @@ class AsciiTableOutput
                 foreach ($classifiedClasses as $classifiedClass) {
                     $this->addClassifiedClassTableRow($table, $classifiedClass);
                 }
+
                 $table->addRow(new TableSeparator);
             }
         }
@@ -129,8 +130,8 @@ class AsciiTableOutput
     private function addMetaRow(Table $table): void
     {
         $table->setFooterTitle(implode(' • ', [
-            "Code LLoC: {$this->project->statistic()->getLogicalLinesOfCodeForApplicationCode()}",
-            "Test LLoC: {$this->project->statistic()->getLogicalLinesOfCodeForTestCode()}",
+            'Code LLoC: ' . $this->project->statistic()->getLogicalLinesOfCodeForApplicationCode(),
+            'Test LLoC: ' . $this->project->statistic()->getLogicalLinesOfCodeForTestCode(),
             'Code/Test Ratio: 1:'.$this->project->statistic()->getApplicationCodeToTestCodeRatio(),
             'Routes: '.app(NumberOfRoutes::class)->get(),
         ]));
@@ -138,7 +139,7 @@ class AsciiTableOutput
 
     private function rightAlignNumbers(Table $table): void
     {
-        for ($i = 1; $i <= 6; $i++) {
+        for ($i = 1; $i <= 6; ++$i) {
             $table->setColumnStyle($i, (new TableStyle)->setPadType(STR_PAD_LEFT));
         }
     }

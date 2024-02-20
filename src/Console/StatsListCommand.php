@@ -43,22 +43,20 @@ class StatsListCommand extends Command
         // Remove Classes based on the RejectionStrategy
         // Remove Classes based on the namespace
         $reflectionClasses = $classes
-            ->map(fn ($class) => new ReflectionClass($class))
-            ->reject(fn (ReflectionClass $class) => app(config('stats.rejection_strategy', RejectVendorClasses::class))
+            ->map(static fn($class) => new ReflectionClass($class))
+            ->reject(static fn(ReflectionClass $class) => app(config('stats.rejection_strategy', RejectVendorClasses::class))
             ->shouldClassBeRejected($class))
-            ->unique(fn (ReflectionClass  $class) => $class->getFileName())
-            ->reject(function (ReflectionClass $class) {
+            ->unique(static fn(ReflectionClass  $class) => $class->getFileName())
+            ->reject(static function (ReflectionClass $class) {
                 // Never discard anonymous database migrations
                 if (Str::contains($class->getName(), 'Migration@anonymous')) {
                     return false;
                 }
-
                 foreach (config('stats.ignored_namespaces', []) as $namespace) {
                     if (Str::startsWith($class->getNamespaceName(), $namespace)) {
                         return true;
                     }
                 }
-
                 return false;
             });
 

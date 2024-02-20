@@ -40,10 +40,12 @@ class MiddlewareClassifier implements Classifier
     {
         $reflection = new ReflectionProperty($this->httpKernel, 'middleware');
         $reflection->setAccessible(true);
+
         $middleware = $reflection->getValue($this->httpKernel);
 
         $reflection = new ReflectionProperty($this->httpKernel, 'routeMiddleware');
         $reflection->setAccessible(true);
+
         $routeMiddlwares = $reflection->getValue($this->httpKernel);
 
         return array_values(array_unique(array_merge($middleware, $routeMiddlwares)));
@@ -89,7 +91,7 @@ class MiddlewareClassifier implements Classifier
         $router = $reflection->getValue($this->httpKernel);
 
         return collect($router->getRoutes()->getRoutes())
-            ->map(fn (Route $route) => $route->middleware())
+            ->map(static fn(Route $route) => $route->middleware())
             ->flatten()
             ->unique()
             ->toArray();
