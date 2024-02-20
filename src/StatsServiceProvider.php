@@ -14,8 +14,6 @@ class StatsServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap the application events.
-     *
-     * @return void
      */
     public function boot(): void
     {
@@ -28,8 +26,6 @@ class StatsServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register(): void
     {

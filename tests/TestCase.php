@@ -53,8 +53,6 @@ abstract class TestCase extends Orchestra
 
     /**
      * Get currently installed Laravel Version
-     *
-     * @return float
      */
     public function getLaravelVersion(): float
     {
