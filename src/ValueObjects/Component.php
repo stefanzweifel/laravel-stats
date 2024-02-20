@@ -64,7 +64,7 @@ class Component
     public function getNumberOfMethods(): int
     {
         if ($this->numberOfMethods === null) {
-            $this->numberOfMethods = $this->classifiedClasses->sum(static fn(ClassifiedClass $class) => $class->getNumberOfMethods());
+            $this->numberOfMethods = $this->classifiedClasses->sum(static fn (ClassifiedClass $class) => $class->getNumberOfMethods());
         }
 
         return $this->numberOfMethods;
@@ -73,7 +73,7 @@ class Component
     public function getNumberOfPublicMethods(): int
     {
         if ($this->numberOfPublicMethods === null) {
-            $this->numberOfPublicMethods = $this->classifiedClasses->sum(static fn(ClassifiedClass $class) => $class->getNumberOfPublicMethods());
+            $this->numberOfPublicMethods = $this->classifiedClasses->sum(static fn (ClassifiedClass $class) => $class->getNumberOfPublicMethods());
         }
 
         return $this->numberOfPublicMethods;
@@ -82,7 +82,7 @@ class Component
     public function getNumberOfNonPublicMethods(): int
     {
         if ($this->numberOfNonPublicMethods === null) {
-            $this->numberOfNonPublicMethods = $this->classifiedClasses->sum(static fn(ClassifiedClass  $class) => $class->getNumberOfNonPublicMethods());
+            $this->numberOfNonPublicMethods = $this->classifiedClasses->sum(static fn (ClassifiedClass  $class) => $class->getNumberOfNonPublicMethods());
         }
 
         return $this->numberOfNonPublicMethods;
@@ -100,7 +100,7 @@ class Component
     public function getLinesOfCode(): int
     {
         if ($this->linesOfCode === null) {
-            $this->linesOfCode = $this->classifiedClasses->sum(static fn(ClassifiedClass $class) => $class->getLines());
+            $this->linesOfCode = $this->classifiedClasses->sum(static fn (ClassifiedClass $class) => $class->getLines());
         }
 
         return $this->linesOfCode;
@@ -109,7 +109,7 @@ class Component
     public function getLogicalLinesOfCode(): float
     {
         if ($this->logicalLinesOfCode === null) {
-            $this->logicalLinesOfCode = $this->classifiedClasses->sum(static fn(ClassifiedClass $class) => $class->getLogicalLinesOfCode());
+            $this->logicalLinesOfCode = $this->classifiedClasses->sum(static fn (ClassifiedClass $class) => $class->getLogicalLinesOfCode());
         }
 
         return $this->logicalLinesOfCode;

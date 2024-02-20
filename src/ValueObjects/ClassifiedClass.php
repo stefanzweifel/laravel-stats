@@ -73,7 +73,7 @@ class ClassifiedClass
     {
         if ($this->numberOfPublicMethods === null) {
             $this->numberOfPublicMethods = $this->reflectionClass->getDefinedMethods()
-                ->filter(static fn(ReflectionMethod $method) => $method->isPublic())->count();
+                ->filter(static fn (ReflectionMethod $method) => $method->isPublic())->count();
         }
 
         return $this->numberOfPublicMethods;
@@ -83,7 +83,7 @@ class ClassifiedClass
     {
         if ($this->numberOfNonPublicMethods === null) {
             $this->numberOfNonPublicMethods = $this->reflectionClass->getDefinedMethods()
-                ->filter(static fn(ReflectionMethod $method) => ! $method->isPublic())->count();
+                ->filter(static fn (ReflectionMethod $method) => ! $method->isPublic())->count();
         }
 
         return $this->numberOfNonPublicMethods;

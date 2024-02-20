@@ -36,7 +36,7 @@ class ClassesFinder
         ob_end_clean();
 
         return collect(get_declared_classes())
-            ->reject(static fn(string $className) => Str::startsWith($className, ['SwooleLibrary']));
+            ->reject(static fn (string $className) => Str::startsWith($className, ['SwooleLibrary']));
     }
 
     /**
@@ -59,7 +59,7 @@ class ClassesFinder
      */
     protected function isExcluded(SplFileInfo $file, Collection $excludes): bool
     {
-        return $excludes->contains(static fn($exclude) => Str::startsWith($file->getPathname(), $exclude));
+        return $excludes->contains(static fn ($exclude) => Str::startsWith($file->getPathname(), $exclude));
     }
 
     /**

@@ -23,7 +23,7 @@ class ProjectTest extends TestCase
         $project = new Project($classes);
 
         $this->assertTrue(
-            $project->classifiedClasses()->map(static fn($class) => $class->reflectionClass)->contains($projectModel)
+            $project->classifiedClasses()->map(static fn ($class) => $class->reflectionClass)->contains($projectModel)
         );
         $this->assertInstanceOf(ClassifiedClass::class, $project->classifiedClasses()->first());
     }

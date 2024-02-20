@@ -46,7 +46,7 @@ abstract class TestCase extends Orchestra
     public function createProjectFromClasses(array $classes = [])
     {
         $classes = collect($classes)
-            ->map(static fn($class) => new ReflectionClass($class));
+            ->map(static fn ($class) => new ReflectionClass($class));
 
         return new Project($classes);
     }

@@ -91,7 +91,7 @@ class MiddlewareClassifier implements Classifier
         $router = $reflection->getValue($this->httpKernel);
 
         return collect($router->getRoutes()->getRoutes())
-            ->map(static fn(Route $route) => $route->middleware())
+            ->map(static fn (Route $route) => $route->middleware())
             ->flatten()
             ->unique()
             ->toArray();
