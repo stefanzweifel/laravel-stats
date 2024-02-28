@@ -36,7 +36,8 @@ class ClassesFinder
         ob_end_clean();
 
         return collect(get_declared_classes())
-            ->reject(static fn (string $className) => Str::startsWith($className, ['SwooleLibrary']));
+            ->reject(static fn (string $className) => Str::startsWith($className, ['SwooleLibrary']))
+            ->sort();
     }
 
     /**
