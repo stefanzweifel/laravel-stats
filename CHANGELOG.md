@@ -5,9 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.13.1...HEAD)
+## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.13.2...HEAD)
 
 > TBD
+
+## [v2.13.2](https://github.com/stefanzweifel/laravel-stats/compare/v2.13.1...v2.13.2) - 2024-02-28
+
+### Changed
+
+- Sort Files when statistics is shown in Verbose Mode ([#226](https://github.com/stefanzweifel/laravel-stats/pull/226))
+- Refactor Codebase to use modern PHP features using Rector ([#225](https://github.com/stefanzweifel/laravel-stats/pull/225))
 
 ## [v2.13.1](https://github.com/stefanzweifel/laravel-stats/compare/v2.13.0...v2.13.1) - 2024-02-15
 
