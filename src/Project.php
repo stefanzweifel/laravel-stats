@@ -16,7 +16,7 @@ class Project
     private $classifiedClasses;
 
     public function __construct(
-        private Collection $classes
+        private readonly Collection $classes
     ) {
         // Loop through ReflectionClasses and classify them.
         $this->classifiedClasses = $this->classes->map(static fn (ReflectionClass $reflectionClass) => new ClassifiedClass(

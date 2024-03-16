@@ -48,7 +48,7 @@ class Component
 
     public function __construct(
         public string $name,
-        private Collection $classifiedClasses
+        private readonly Collection $classifiedClasses
     ) {
     }
 
