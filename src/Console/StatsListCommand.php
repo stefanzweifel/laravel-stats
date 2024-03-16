@@ -52,11 +52,13 @@ class StatsListCommand extends Command
                 if (Str::contains($class->getName(), 'Migration@anonymous')) {
                     return false;
                 }
+
                 foreach (config('stats.ignored_namespaces', []) as $namespace) {
                     if (Str::startsWith($class->getNamespaceName(), $namespace)) {
                         return true;
                     }
                 }
+
                 return false;
             });
 
