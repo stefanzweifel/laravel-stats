@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\Outputs;
 
+use PHPUnit\Framework\Attributes\Test;
 use Wnx\LaravelStats\Project;
 use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
@@ -25,7 +26,7 @@ class JsonOutputTest extends TestCase
         return new Project($classes);
     }
 
-    /** @test */
+    #[Test]
     public function it_creates_project_statistics_as_an_array(): void
     {
         $json = (new JsonOutput)->render($this->getTestProject());
@@ -88,7 +89,7 @@ class JsonOutputTest extends TestCase
         $this->assertEquals($expected, $json);
     }
 
-    /** @test */
+    #[Test]
     public function it_includes_classes_in_project_statistics_array_if_verbose_output_is_requested(): void
     {
         $json = (new JsonOutput)->render($this->getTestProject(), $isVerbose = true);
@@ -112,7 +113,7 @@ class JsonOutputTest extends TestCase
         $this->assertEquals($expected, $classes[0]);
     }
 
-    /** @test */
+    #[Test]
     public function it_only_contains_components_in_statistics_array_which_have_been_requested(): void
     {
         $json = (new JsonOutput)->render(

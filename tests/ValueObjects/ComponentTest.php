@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\ValueObjects;
 
+use PHPUnit\Framework\Attributes\Test;
 use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\ValueObjects\Component;
@@ -23,7 +24,7 @@ class ComponentTest extends TestCase
         ]));
     }
 
-    /** @test */
+    #[Test]
     public function component_name_is_accessible(): void
     {
         $component = new Component('FooBar', collect([]));
@@ -31,7 +32,7 @@ class ComponentTest extends TestCase
         $this->assertEquals('FooBar', $component->name);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_number_of_classes_for_a_component(): void
     {
         $component = $this->getTestComponent();
@@ -39,7 +40,7 @@ class ComponentTest extends TestCase
         $this->assertEquals(3, $component->getNumberOfClasses());
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_number_of_methods_for_all_classes_within_a_component(): void
     {
         $component = $this->getTestComponent();
@@ -47,7 +48,7 @@ class ComponentTest extends TestCase
         $this->assertEquals(15, $component->getNumberOfMethods());
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_number_of_public_methods_for_all_classes_within_a_component(): void
     {
         $component = $this->getTestComponent();
@@ -55,7 +56,7 @@ class ComponentTest extends TestCase
         $this->assertEquals(12, $component->getNumberOfPublicMethods());
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_number_of_non_public_methods_for_all_classes_within_a_component(): void
     {
         $component = $this->getTestComponent();
@@ -63,7 +64,7 @@ class ComponentTest extends TestCase
         $this->assertEquals(3, $component->getNumberOfNonPublicMethods());
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_average_number_of_methods_per_class_for_all_classes_within_a_component(): void
     {
         $component = $this->getTestComponent();
@@ -71,14 +72,14 @@ class ComponentTest extends TestCase
         $this->assertEquals(5, $component->getNumberOfMethodsPerClass());
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_total_number_of_lines_of_code_for_all_classes_within_a_component(): void
     {
         $component = $this->getTestComponent();
         $this->assertEquals(113, $component->getLinesOfCode());
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_total_number_of_logical_lines_of_code_for_all_classes_within_a_component(): void
     {
         $component = $this->getTestComponent();
@@ -86,7 +87,7 @@ class ComponentTest extends TestCase
         $this->assertEquals(11, $component->getLogicalLinesOfCode());
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_average_number_of_logical_lines_of_code_per_method_for_all_classes_within_a_component(): void
     {
         $component = $this->getTestComponent();

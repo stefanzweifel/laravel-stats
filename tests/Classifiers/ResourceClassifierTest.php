@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\Classifiers;
 
+use PHPUnit\Framework\Attributes\Test;
 use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Classifiers\ResourceClassifier;
@@ -11,7 +12,7 @@ use Wnx\LaravelStats\Tests\Stubs\Resources\DemoCollectionResource;
 
 class ResourceClassifierTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_returns_true_if_given_class_is_an_api_resource(): void
     {
         $this->assertTrue(
@@ -21,7 +22,7 @@ class ResourceClassifierTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_true_if_given_class_is_a_json_resoure(): void
     {
         $this->assertTrue(
@@ -31,7 +32,7 @@ class ResourceClassifierTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_true_if_given_class_is_a_resource_collection(): void
     {
         $this->assertTrue(

@@ -2,13 +2,14 @@
 
 namespace Wnx\LaravelStats\Tests\Statistics;
 
+use PHPUnit\Framework\Attributes\Test;
 use Wnx\LaravelStats\Tests\TestCase;
 use Illuminate\Support\Facades\Route;
 use Wnx\LaravelStats\Statistics\NumberOfRoutes;
 
 class NumberOfRoutesTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_returns_0_if_no_routes_are_registered(): void
     {
         $result = app(NumberOfRoutes::class)->get();
@@ -16,7 +17,7 @@ class NumberOfRoutesTest extends TestCase
         $this->assertEquals(0, $result);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_the_number_of_registered_routes(): void
     {
         Route::get('users', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@index');
@@ -32,7 +33,7 @@ class NumberOfRoutesTest extends TestCase
         $this->assertEquals(7, $result);
     }
 
-    /** @test */
+    #[Test]
     public function it_only_counts_unique_routes(): void
     {
         Route::get('users', 'Wnx\LaravelStats\Tests\Stubs\Controllers\UsersController@index');

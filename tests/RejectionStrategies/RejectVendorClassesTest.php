@@ -3,6 +3,7 @@
 namespace Wnx\LaravelStats\Tests\Filters;
 
 use Illuminate\Encryption\Encrypter;
+use PHPUnit\Framework\Attributes\Test;
 use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Classifiers\ModelClassifier;
@@ -10,7 +11,7 @@ use Wnx\LaravelStats\RejectionStrategies\RejectVendorClasses;
 
 class RejectVendorClassesTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_returns_true_if_the_given_class_is_a_php_internal(): void
     {
         $strategy = app(RejectVendorClasses::class);
@@ -19,7 +20,7 @@ class RejectVendorClassesTest extends TestCase
         $this->assertTrue($strategy->shouldClassBeRejected($class));
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_true_if_the_class_is_located_in_the_vendor_folder(): void
     {
         $strategy = app(RejectVendorClasses::class);
@@ -28,7 +29,7 @@ class RejectVendorClassesTest extends TestCase
         $this->assertTrue($strategy->shouldClassBeRejected($class));
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_false_if_the_class_belongs_to_the_app(): void
     {
         $strategy = app(RejectVendorClasses::class);

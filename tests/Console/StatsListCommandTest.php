@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\Console;
 
+use PHPUnit\Framework\Attributes\Test;
 use Wnx\LaravelStats\Tests\TestCase;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -28,7 +29,7 @@ class StatsListCommandTest extends TestCase
         config()->set('stats.ignored_namespaces', []);
     }
 
-    /** @test */
+    #[Test]
     public function it_executes_stats_command_without_options_and_outputs_an_ascii_table(): void
     {
         Route::get('projects', 'Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController@index');
@@ -46,7 +47,7 @@ class StatsListCommandTest extends TestCase
         $this->assertStringNotContainsString('UsersController', $output);
     }
 
-    /** @test */
+    #[Test]
     public function it_executes_stats_command_with_verbose_option_and_displays_to_which_component_each_class_belongs_to(): void
     {
         Route::get('projects', 'Wnx\LaravelStats\Tests\Stubs\Controllers\ProjectsController@index');
@@ -67,7 +68,7 @@ class StatsListCommandTest extends TestCase
         $this->assertStringContainsString('UsersController', $output);
     }
 
-    /** @test */
+    #[Test]
     public function it_displays_correct_headers_in_ascii_table(): void
     {
         $this->artisan('stats');
@@ -82,7 +83,7 @@ class StatsListCommandTest extends TestCase
         $this->assertStringContainsString('LLoC/Method', $output);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_stats_as_json(): void
     {
         $this->artisan('stats', [
@@ -93,7 +94,7 @@ class StatsListCommandTest extends TestCase
         $this->assertJson($output);
     }
 
-    /** @test */
+    #[Test]
     public function it_executes_stats_command_in_verbose_mode_and_shows_which_class_belongs_to_which_component(): void
     {
         $this->artisan('stats', [
@@ -114,7 +115,7 @@ class StatsListCommandTest extends TestCase
         $this->assertEquals(2, $migrations['number_of_classes']);
     }
 
-    /** @test */
+    #[Test]
     public function it_only_returns_stats_for_given_components(): void
     {
         $this->artisan('stats', [
@@ -128,7 +129,7 @@ class StatsListCommandTest extends TestCase
         $this->assertStringNotContainsString('StatsListCommandTest', $output);
     }
 
-    /** @test */
+    #[Test]
     public function it_outputs_warning_when_someone_uses_the_share_option(): void
     {
         $this->artisan('stats', [

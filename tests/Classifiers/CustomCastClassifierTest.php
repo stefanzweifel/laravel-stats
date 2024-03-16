@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\Classifiers;
 
+use PHPUnit\Framework\Attributes\Test;
 use Wnx\LaravelStats\Classifiers\CustomCastClassifier;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Tests\Stubs\CustomCasts\StubCast;
@@ -10,7 +11,7 @@ use Wnx\LaravelStats\Tests\TestCase;
 
 class CustomCastClassifierTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_returns_true_if_given_class_is_a_custom_cast(): void
     {
         $this->assertTrue(
@@ -20,7 +21,7 @@ class CustomCastClassifierTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_true_if_given_class_is_a_custom_inbound_cast(): void
     {
         $this->assertTrue(

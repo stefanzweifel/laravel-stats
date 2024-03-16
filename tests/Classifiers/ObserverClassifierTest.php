@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\Classifiers;
 
+use PHPUnit\Framework\Attributes\Test;
 use Wnx\LaravelStats\Classifiers\ObserverClassifier;
 use Wnx\LaravelStats\Tests\Stubs\Models\User;
 use Wnx\LaravelStats\Tests\Stubs\Observers\UserObserver;
@@ -10,7 +11,7 @@ use Wnx\LaravelStats\ReflectionClass;
 
 class ObserverClassifierTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_returns_true_if_given_class_is_a_registered_observer(): void
     {
         User::observe(UserObserver::class);

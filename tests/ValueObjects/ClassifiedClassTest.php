@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\ValueObjects;
 
+use PHPUnit\Framework\Attributes\Test;
 use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\ValueObjects\ClassifiedClass;
@@ -18,7 +19,7 @@ class ClassifiedClassTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_number_of_methods_for_a_classified_class(): void
     {
         $this->assertEquals(
@@ -27,7 +28,7 @@ class ClassifiedClassTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_number_of_public_methods_for_a_classified_class(): void
     {
         $this->assertEquals(
@@ -36,7 +37,7 @@ class ClassifiedClassTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_number_of_non_public_methods_for_a_classified_class(): void
     {
         $this->assertEquals(
@@ -45,7 +46,7 @@ class ClassifiedClassTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_number_of_lines_of_code_for_a_classified_class(): void
     {
         $this->assertEquals(
@@ -54,7 +55,7 @@ class ClassifiedClassTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_number_of_logical_lines_of_code_for_a_classified_class(): void
     {
         $this->assertSame(
@@ -63,7 +64,7 @@ class ClassifiedClassTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_average_number_of_logical_lines_of_code_per_method_for_a_classified_class(): void
     {
         $this->assertEquals(
