@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests\Classifiers;
 
+use PHPUnit\Framework\Attributes\Test;
 use Wnx\LaravelStats\Tests\Stubs\Migrations\CreatePasswordResetsTable;
 use Wnx\LaravelStats\Tests\TestCase;
 use Wnx\LaravelStats\ReflectionClass;
@@ -9,7 +10,7 @@ use Wnx\LaravelStats\Classifiers\MigrationClassifier;
 
 class MigrationClassifierTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_returns_true_if_given_class_is_a_migration(): void
     {
         require_once __DIR__.'/../Stubs/Migrations/2014_10_12_100000_create_password_resets_table.php';
@@ -21,7 +22,7 @@ class MigrationClassifierTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_detects_anonymous_migrations(): void
     {
         $createUsersTableMigration = require __DIR__.'/../Stubs/Migrations/2014_10_12_000000_create_users_table.php';

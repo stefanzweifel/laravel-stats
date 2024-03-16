@@ -23,6 +23,7 @@ class ControllerClassifier implements Classifier
                     // Laravel
                     return $route->getActionName() === 'Closure';
                 }
+
                 // Lumen
                 return data_get($route, 'action.uses') === null;
             })
@@ -35,6 +36,7 @@ class ControllerClassifier implements Classifier
                         return;
                     }
                 }
+
                 // Lumen
                 return Str::before(data_get($route, 'action.uses'), '@');
             })

@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use Wnx\LaravelStats\Project;
 use Illuminate\Support\Facades\Gate;
 use Wnx\LaravelStats\ReflectionClass;
@@ -13,7 +14,7 @@ use Wnx\LaravelStats\Tests\Stubs\Models\Project as ProjectModel;
 
 class ProjectTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function creates_a_project_object_from_a_collection_of_reflection_classes(): void
     {
         $classes = collect([
@@ -28,7 +29,7 @@ class ProjectTest extends TestCase
         $this->assertInstanceOf(ClassifiedClass::class, $project->classifiedClasses()->first());
     }
 
-    /** @test */
+    #[Test]
     public function returns_instance_of_project_statistics_when_accessing_project_statistics(): void
     {
         $classes = collect([
@@ -40,7 +41,7 @@ class ProjectTest extends TestCase
         $this->assertInstanceOf(ProjectStatistic::class, $project->statistic());
     }
 
-    /** @test */
+    #[Test]
     public function groups_classes_into_components(): void
     {
         Gate::policy(\Wnx\LaravelStats\Tests\Stubs\Models\Project::class, \Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy::class);
@@ -61,7 +62,7 @@ class ProjectTest extends TestCase
         $this->assertCount(1, $groupedByName['Rules']);
     }
 
-    /** @test */
+    #[Test]
     public function groups_classes_into_components_and_filters_by_component_name(): void
     {
         Gate::policy(\Wnx\LaravelStats\Tests\Stubs\Models\Project::class, \Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy::class);
@@ -80,7 +81,7 @@ class ProjectTest extends TestCase
         $this->assertArrayHasKey('Rules', $groupedByName);
     }
 
-    /** @test */
+    #[Test]
     public function groups_classes_into_component_and_does_not_apply_filter_if_array_is_empty(): void
     {
         Gate::policy(\Wnx\LaravelStats\Tests\Stubs\Models\Project::class, \Wnx\LaravelStats\Tests\Stubs\Policies\DemoPolicy::class);

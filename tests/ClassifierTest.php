@@ -2,6 +2,7 @@
 
 namespace Wnx\LaravelStats\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use Wnx\LaravelStats\Classifier;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Console\StatsListCommand;
@@ -17,7 +18,7 @@ class ClassifierTest extends TestCase
         return (new Classifier())->getClassifierForClassInstance(new ReflectionClass($args));
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_instance_of_null_classifier_if_given_class_could_not_be_associated_with_a_component(): void
     {
         $this->assertInstanceOf(
@@ -29,7 +30,7 @@ class ClassifierTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_instance_of_custom_classifier_if_the_custom_classifier_has_been_registered_correctly(): void
     {
         config()->set('stats.custom_component_classifier', [
@@ -44,7 +45,7 @@ class ClassifierTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_an_instance_of_null_classifier_if_during_the_satisfy_check_an_exception_is_thrown(): void
     {
         config()->set('stats.custom_component_classifier', [
@@ -59,7 +60,7 @@ class ClassifierTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_throws_an_exception_if_a_custom_component_classifier_does_not_follow_the_contract(): void
     {
         $this->expectException(\Exception::class);

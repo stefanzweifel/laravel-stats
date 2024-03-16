@@ -16,10 +16,6 @@ class CustomCastClassifier implements Classifier
 
     public function satisfies(ReflectionClass $class): bool
     {
-        if ((float) app()->version() < 7) {
-            return false;
-        }
-
         return $class->implementsInterface(CastsAttributes::class) ||
             $class->implementsInterface(CastsInboundAttributes::class);
     }
