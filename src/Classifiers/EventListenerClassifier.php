@@ -49,7 +49,7 @@ class EventListenerClassifier implements Classifier
     }
 
     /**
-     * @param Closure|string $closure
+     * @param Closure|array|string $closure
      * @retrun null|string|object
      * @throws \ReflectionException
      */
