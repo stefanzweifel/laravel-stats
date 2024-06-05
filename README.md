@@ -10,9 +10,6 @@
 <a href="https://packagist.org/packages/wnx/laravel-stats">
     <img src="https://poser.pugx.org/wnx/laravel-stats/downloads" alt="">
 </a> 
-<a href="https://scrutinizer-ci.com/g/stefanzweifel/laravel-stats/?branch=master">
-    <img src="https://scrutinizer-ci.com/g/stefanzweifel/laravel-stats/badges/quality-score.png?b=master" alt="">
-</a>
 <a href="https://plant.treeware.earth/stefanzweifel/laravel-stats">
     <img src="https://img.shields.io/badge/Treeware-%F0%9F%8C%B3-lightgreen" alt="Buy us a tree">
 </a>
