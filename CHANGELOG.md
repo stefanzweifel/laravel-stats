@@ -5,9 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.13.2...HEAD)
+## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.14.0...HEAD)
 
 > TBD
+
+## [v2.14.0](https://github.com/stefanzweifel/laravel-stats/compare/v2.13.2...v2.14.0) - 2024-11-13
+
+### Added
+
+- Add Support for PHP 8.4 ([#229](https://github.com/stefanzweifel/laravel-stats/pull/229))
+
+### Changed
+
+- Add Larastan / PHPStan ([#228](https://github.com/stefanzweifel/laravel-stats/pull/228))
+- Drop Support for Laravel Versions below 11 and below PHP 8.2 ([#227](https://github.com/stefanzweifel/laravel-stats/pull/227))
 
 ## [v2.13.2](https://github.com/stefanzweifel/laravel-stats/compare/v2.13.1...v2.13.2) - 2024-02-28
 
