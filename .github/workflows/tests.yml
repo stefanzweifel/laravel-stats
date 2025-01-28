@@ -11,22 +11,14 @@ jobs:
       matrix:
         php: [8.2, 8.3, 8.4]
         laravel: [11.*, 12.*]
-        phpunit: [10.*, 11.*]
         stability: [prefer-lowest, prefer-stable]
         include:
           - laravel: 11.*
             testbench: 9.*
-            phpunit: 10.*
           - laravel: 12.*
             testbench: 10.*
-            phpunit: 11.*
-        exclude:
-          - php: 8.2
-            phpunit: 11.*
-          - laravel: 12.*
-            phpunit: 10.*
 
-    name: P${{ matrix.php }} - L${{ matrix.laravel }} PU${{ matrix.phpunit }} - ${{ matrix.stability }}
+    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
 
     steps:
       - name: Checkout code
