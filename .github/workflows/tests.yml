@@ -16,11 +16,15 @@ jobs:
         include:
           - laravel: 11.*
             testbench: 9.*
+            phpunit: 10.*
           - laravel: 12.*
             testbench: 10.*
+            phpunit: 11.*
         exclude:
           - php: 8.2
             phpunit: 11.*
+          - laravel: 12.*
+            phpunit: 10.*
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} PU${{ matrix.phpunit }} - ${{ matrix.stability }}
 
