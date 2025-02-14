@@ -15,20 +15,19 @@
     "require": {
         "php": "^8.2",
         "ext-json": "*",
-        "illuminate/console": "^11.0",
-        "illuminate/support": "^11.0",
+        "illuminate/console": "^11.0 | ^12.0",
+        "illuminate/support": "^11.0 | ^12.0",
         "stefanzweifel/laravel-stats-phploc": "^7.0 | ^8.0",
         "symfony/finder": "^7.0",
         "symfony/process": " ^7.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.2",
-        "larastan/larastan": "^2.0",
         "laravel/browser-kit-testing": "^7.1 | ^8.0",
         "laravel/dusk": "^8.0",
         "livewire/livewire": "^3.0",
-        "orchestra/testbench": "^9.0",
-        "pestphp/pest": "^2",
+        "orchestra/testbench": "^9.0 | ^10",
+        "pestphp/pest": "^2 | ^3",
         "phpunit/phpunit": "^10.0 | ^11.0",
         "rector/rector": "^1.0"
     },
