@@ -14,7 +14,7 @@ class NumberOfRoutesTest extends TestCase
     {
         $result = app(NumberOfRoutes::class)->get();
 
-        $this->assertEquals(0, $result);
+        $this->assertEquals(1, $result);
     }
 
     #[Test]
@@ -30,7 +30,7 @@ class NumberOfRoutesTest extends TestCase
 
         $result = app(NumberOfRoutes::class)->get();
 
-        $this->assertEquals(7, $result);
+        $this->assertEquals(8, $result);
     }
 
     #[Test]
@@ -41,6 +41,6 @@ class NumberOfRoutesTest extends TestCase
 
         $result = app(NumberOfRoutes::class)->get();
 
-        $this->assertEquals(1, $result);
+        $this->assertEquals(2, $result);
     }
 }
