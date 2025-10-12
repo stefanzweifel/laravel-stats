@@ -82,7 +82,7 @@ class JsonOutputTest extends TestCase
                 'code_lloc' => 4.0,
                 'test_lloc' => 1.0,
                 'code_to_test_ratio' => 0.3,
-                'number_of_route' => $this->getLaravelVersion() < 12 ? 0 : 1,
+                'number_of_routes' => $this->getLaravelVersion() < 12 ? 0 : 1,
             ],
         ];
 
