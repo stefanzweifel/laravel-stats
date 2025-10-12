@@ -5,9 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.16.0...HEAD)
+## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.17.0...HEAD)
 
 > TBD
+
+## [v2.17.0](https://github.com/stefanzweifel/laravel-stats/compare/v2.16.0...v2.17.0) - 2025-10-12
+
+### Changed
+
+- Add Support for PHPUnit 12 ([#233](https://github.com/stefanzweifel/laravel-stats/pull/233))
 
 ## [v2.16.0](https://github.com/stefanzweifel/laravel-stats/compare/v2.15.0...v2.16.0) - 2025-08-21
 
