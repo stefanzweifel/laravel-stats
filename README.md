@@ -10,13 +10,10 @@
 <a href="https://packagist.org/packages/wnx/laravel-stats">
     <img src="https://poser.pugx.org/wnx/laravel-stats/downloads" alt="">
 </a> 
-<a href="https://plant.treeware.earth/stefanzweifel/laravel-stats">
-    <img src="https://img.shields.io/badge/Treeware-%F0%9F%8C%B3-lightgreen" alt="Buy us a tree">
-</a>
 </p>
 
 <p align="center">
-    Get insights about your Laravel or Lumen Project.
+    Get insights about your Laravel Project.
 </p>
 
 ![Screenshot](https://raw.githubusercontent.com/stefanzweifel/laravel-stats/master/screenshot.png)
@@ -30,12 +27,6 @@ composer require "wnx/laravel-stats" --dev
 ```
 
 The package will automatically register itself.
-
-If you're using Lumen you have to manually register the Service Provider in your `bootstrap/app.php` file:
-
-```php
-$app->register(\Wnx\LaravelStats\StatsServiceProvider::class);
-```
 
 Optionally, you can publish the config file in your Laravel applications with the following command:
 
@@ -157,17 +148,6 @@ class RepositoryClassifier implements Classifier
     ],
     ...
 ```
-
-## Treeware
-
-You're free to use this package, but if it makes it to your production environment you are required to buy the world a tree.
-
-It’s now common knowledge that one of the best tools to tackle the climate crisis and keep our temperatures from rising above 1.5C is to <a href="https://www.bbc.co.uk/news/science-environment-48870920">plant trees</a>. If you support this package and contribute to the Treeware forest you’ll be creating employment for local families and restoring wildlife habitats.
-
-You can buy trees here [offset.earth/treeware](https://plant.treeware.earth/stefanzweifel/laravel-stats)
-
-Read more about Treeware at [treeware.earth](http://treeware.earth)
-
 
 ## Running the tests
 
