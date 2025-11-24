@@ -5,9 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.17.0...HEAD)
+## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.18.0...HEAD)
 
 > TBD
+
+## [v2.18.0](https://github.com/stefanzweifel/laravel-stats/compare/v2.17.0...v2.18.0) - 2025-11-24
+
+### Added
+
+- Add Support for PHP 8.5 ([#234](https://github.com/stefanzweifel/laravel-stats/pull/234))
+
+### Changed
+
+- Drop Support for Laravel 11 and PHP 8.2 and PHP 8.3 ([#235](https://github.com/stefanzweifel/laravel-stats/pull/235))
 
 ## [v2.17.0](https://github.com/stefanzweifel/laravel-stats/compare/v2.16.0...v2.17.0) - 2025-10-12
 
