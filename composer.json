@@ -13,10 +13,10 @@
         }
     ],
     "require": {
-        "php": "^8.2",
+        "php": "^8.4",
         "ext-json": "*",
-        "illuminate/console": "^11.0 | ^12.0",
-        "illuminate/support": "^11.0 | ^12.0",
+        "illuminate/console": "^12.0",
+        "illuminate/support": "^12.0",
         "stefanzweifel/laravel-stats-phploc": "^7.0 | ^8.0",
         "symfony/finder": "^7.0",
         "symfony/process": " ^7.0"
@@ -26,7 +26,7 @@
         "laravel/browser-kit-testing": "^7.1 | ^8.0",
         "laravel/dusk": "^8.0",
         "livewire/livewire": "^3.0",
-        "orchestra/testbench": "^9.0 | ^10",
+        "orchestra/testbench": "^10",
         "pestphp/pest": "^3 | ^4",
         "phpunit/phpunit": "^11.0 | ^12.0",
         "rector/rector": "^2.0"
