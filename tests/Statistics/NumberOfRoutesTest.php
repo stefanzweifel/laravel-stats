@@ -15,6 +15,7 @@ class NumberOfRoutesTest extends TestCase
         $result = app(NumberOfRoutes::class)->get();
 
         $this->assertEquals(match (true) {
+            $this->getLaravelVersion() === 12.1 => 1,
             $this->getLaravelVersion() < 13 => 2,
             $this->getLaravelVersion() >= 13 => 0,
         }, $result);
@@ -34,6 +35,7 @@ class NumberOfRoutesTest extends TestCase
         $result = app(NumberOfRoutes::class)->get();
 
         $this->assertEquals(match (true) {
+            $this->getLaravelVersion() === 12.1 => 8,
             $this->getLaravelVersion() < 13 => 9,
             $this->getLaravelVersion() >= 13 => 7,
         }, $result);
@@ -48,6 +50,7 @@ class NumberOfRoutesTest extends TestCase
         $result = app(NumberOfRoutes::class)->get();
 
         $this->assertEquals(match (true) {
+            $this->getLaravelVersion() === 12.1 => 2,
             $this->getLaravelVersion() < 13 => 3,
             $this->getLaravelVersion() >= 13 => 1,
         }, $result);
