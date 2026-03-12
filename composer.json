@@ -2,7 +2,12 @@
     "name": "wnx/laravel-stats",
     "description": "Get insights about your Laravel Project",
     "homepage": "https://github.com/stefanzweifel/laravel-stats",
-    "keywords": ["laravel", "wnx", "statistics", "stats"],
+    "keywords": [
+        "laravel",
+        "wnx",
+        "statistics",
+        "stats"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -15,8 +20,8 @@
     "require": {
         "php": "^8.4",
         "ext-json": "*",
-        "illuminate/console": "^12.0",
-        "illuminate/support": "^12.0",
+        "illuminate/console": "^12.0 | ^13.0",
+        "illuminate/support": "^12.0 | ^13.0",
         "stefanzweifel/laravel-stats-phploc": "^7.0 | ^8.0",
         "symfony/finder": "^7.0",
         "symfony/process": " ^7.0"
@@ -25,7 +30,7 @@
         "friendsofphp/php-cs-fixer": "^3.2",
         "laravel/browser-kit-testing": "^7.1 | ^8.0",
         "laravel/dusk": "^8.0",
-        "livewire/livewire": "^3.0",
+        "livewire/livewire": "^3.0 | ^4.0",
         "orchestra/testbench": "^10",
         "pestphp/pest": "^3 | ^4",
         "phpunit/phpunit": "^11.0 | ^12.0",

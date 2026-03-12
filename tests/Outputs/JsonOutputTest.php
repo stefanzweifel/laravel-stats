@@ -82,10 +82,13 @@ class JsonOutputTest extends TestCase
                 'code_lloc' => 4.0,
                 'test_lloc' => 1.0,
                 'code_to_test_ratio' => 0.3,
-                'number_of_routes' => $this->getLaravelVersion() < 12 ? 0 : 1,
+                'number_of_routes' => match (true) {
+                    $this->getLaravelVersion() === 12.1 => 1,
+                    $this->getLaravelVersion() < 13 => 2,
+                    $this->getLaravelVersion() >= 13 => 0,
+                },
             ],
         ];
-
         $this->assertEquals($expected, $json);
     }
 
