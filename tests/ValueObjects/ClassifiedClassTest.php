@@ -59,7 +59,7 @@ class ClassifiedClassTest extends TestCase
     public function it_returns_number_of_logical_lines_of_code_for_a_classified_class(): void
     {
         $this->assertSame(
-            7.0,
+            7,
             $this->getClassifiedClass()->getLogicalLinesOfCode()
         );
     }

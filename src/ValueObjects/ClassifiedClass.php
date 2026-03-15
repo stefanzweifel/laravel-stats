@@ -105,7 +105,7 @@ class ClassifiedClass
     /**
      * Return the total number of lines of code.
      */
-    public function getLogicalLinesOfCode(): float
+    public function getLogicalLinesOfCode(): int
     {
         if ($this->logicalLinesOfCode === null) {
             $this->logicalLinesOfCode = app(Analyser::class)
