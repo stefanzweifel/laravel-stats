@@ -6,7 +6,6 @@ use Closure;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Support\Arr;
 use ReflectionFunction;
-use ReflectionProperty;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\Classifier;
 
@@ -38,14 +37,7 @@ class EventListenerClassifier implements Classifier
         /** @var Dispatcher $dispatcher */
         $dispatcher = app('events');
 
-        if (method_exists($dispatcher, 'getRawListeners')) {
-            return $dispatcher->getRawListeners();
-        }
-
-        $property = new ReflectionProperty($dispatcher, 'listeners');
-        $property->setAccessible(true);
-
-        return $property->getValue($dispatcher);
+        return $dispatcher->getRawListeners();
     }
 
     /**
