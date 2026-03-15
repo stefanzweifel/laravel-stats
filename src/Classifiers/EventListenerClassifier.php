@@ -6,7 +6,6 @@ use Closure;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Support\Arr;
 use ReflectionFunction;
-use ReflectionProperty;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\Classifier;
 

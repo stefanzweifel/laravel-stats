@@ -7,7 +7,6 @@ use Illuminate\Events\Dispatcher;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use ReflectionFunction;
-use ReflectionProperty;
 use Wnx\LaravelStats\ReflectionClass;
 use Wnx\LaravelStats\Contracts\Classifier;
 
