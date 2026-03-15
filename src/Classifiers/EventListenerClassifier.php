@@ -38,14 +38,7 @@ class EventListenerClassifier implements Classifier
         /** @var Dispatcher $dispatcher */
         $dispatcher = app('events');
 
-        if (method_exists($dispatcher, 'getRawListeners')) {
-            return $dispatcher->getRawListeners();
-        }
-
-        $property = new ReflectionProperty($dispatcher, 'listeners');
-        $property->setAccessible(true);
-
-        return $property->getValue($dispatcher);
+        return $dispatcher->getRawListeners();
     }
 
     /**
