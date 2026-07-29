@@ -7,4 +7,4 @@ jobs:
   phpstan:
     uses: stefanzweifel/reusable-workflows/.github/workflows/phpstan.yml@main
     with:
-      php_version: '8.3'
+      php_version: '8.5'
