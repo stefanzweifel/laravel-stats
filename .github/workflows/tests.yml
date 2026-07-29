@@ -40,3 +40,34 @@ jobs:
 
       - name: Execute tests
         run: vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml
+
+  dependencies:
+
+    runs-on: ubuntu-latest
+
+    name: Newest majors resolve
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.4
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
+          coverage: none
+
+      # Guards against a dependency silently capping a core package below its
+      # newest allowed major (e.g. a transitive constraint blocking Pest v5).
+      # `composer require -W` exits non-zero if the newest majors can't be
+      # resolved together, instead of quietly falling back to an older version.
+      - name: Require newest majors and resolve
+        run: |
+          composer require --dev -W --prefer-stable --prefer-dist --no-interaction \
+            "pestphp/pest:^5" \
+            "phpunit/phpunit:^13" \
+            "livewire/livewire:^4"
+
+      - name: Execute tests
+        run: vendor/bin/phpunit
