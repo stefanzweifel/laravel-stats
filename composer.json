@@ -31,6 +31,7 @@
         "larastan/larastan": "^3.9",
         "laravel/browser-kit-testing": "^7.1 | ^8.0",
         "laravel/dusk": "^8.0",
+        "laravel/pao": "^1.1",
         "livewire/livewire": "^3.0 | ^4.0",
         "orchestra/testbench": "^10",
         "pestphp/pest": "^3 | ^4",
