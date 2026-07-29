@@ -33,9 +33,9 @@
         "laravel/dusk": "^8.0",
         "laravel/pao": "^1.1",
         "livewire/livewire": "^3.0 | ^4.0",
-        "orchestra/testbench": "^10",
-        "pestphp/pest": "^3 | ^4",
-        "phpunit/phpunit": "^11.0 | ^12.0",
+        "orchestra/testbench": "^10 | ^11",
+        "pestphp/pest": "^3 | ^4 | ^5",
+        "phpunit/phpunit": "^11.0 | ^12.0 | ^13.0",
         "rector/rector": "^2.0"
     },
     "autoload": {
