@@ -5,9 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.19.0...HEAD)
+## [Unreleased](https://github.com/stefanzweifel/laravel-stats/compare/v2.21.0...HEAD)
 
 > TBD
+
+## [v2.21.0](https://github.com/stefanzweifel/laravel-stats/compare/v2.19.0...v2.21.0) - 2026-10-24
+
+### Added
+
+- Add Support for PHP 8.6 ([#244](https://github.com/stefanzweifel/laravel-stats/pull/244))
+
+### Dependency Updates
+
+- Bump actions/checkout from 3 to 7 ([#242](https://github.com/stefanzweifel/laravel-stats/pull/242))
+- Bump stefanzweifel/git-auto-commit-action from 4 to 7 ([#243](https://github.com/stefanzweifel/laravel-stats/pull/243))
+- Bump release-drafter/release-drafter from 5 to 7 ([#241](https://github.com/stefanzweifel/laravel-stats/pull/241))
 
 ## [v2.19.0](https://github.com/stefanzweifel/laravel-stats/compare/v2.18.0...v2.19.0) - 2026-03-12
 
