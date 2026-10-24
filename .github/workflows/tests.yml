@@ -13,6 +13,10 @@ jobs:
         laravel: [12.*, 13.*]
         livewire: [3.*, 4.*]
         stability: [prefer-lowest, prefer-stable]
+        # Laravel 12 does not resolve together with the test dependencies on PHP 8.6.
+        exclude:
+          - php: 8.6
+            laravel: 12.*
         include:
           - laravel: 12.*
             testbench: 10.*
